@@ -2,11 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 # Tips 
-## Using Refs
+### Using Refs
 - https://moduscreate.com/blog/everything-you-need-to-know-about-refs-in-react/
 
-## Hamburger Nave
+### Hamburger Nave
 - https://material-ui.com/components/drawers/ (right drawer)
+- https://ux.stackexchange.com/questions/99921/is-a-navigation-drawer-preferred-over-a-menu-when-menu-items-are-not-the-main-fu
+
+### Base UI Drawings
+Located at: https://docs.google.com/document/d/1tQxkmGdVtd0WJWubap895Yxl-sWgUddfJ4YApr9N-CM/edit?ts=5f82050e
+(Have to logged into NU email to access)
 ## Available Scripts
 
 In the project directory, you can run:
