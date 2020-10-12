@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Log
+
+### 10.11.2020
+- Set up the app
+- Set up a hamburger and navigation
+
+Next
+1. App.js should just refer to home screen. So fix that up a bit
+2. Hamburger needs to go to actual pages so fix that as well
+3. Can easily add the "view more home" part
+4. The arrow down is clunk consider --> https://ux.stackexchange.com/questions/115110/what-is-the-best-way-to-tell-users-to-scroll-down-in-browsers to get users to scroll dow. 
 
 # Tips 
 ### Using Refs
