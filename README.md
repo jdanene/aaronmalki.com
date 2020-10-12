@@ -1,6 +1,13 @@
 <<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+# Tips 
+## Using Refs
+- https://moduscreate.com/blog/everything-you-need-to-know-about-refs-in-react/
+
+## Hamburger Nave
+- https://material-ui.com/components/drawers/ (right drawer)
 ## Available Scripts
 
 In the project directory, you can run:
