@@ -11,6 +11,8 @@ Next
 2. Hamburger needs to go to actual pages so fix that as well
 3. Can easily add the "view more home" part
 4. The arrow down is clunk consider --> https://ux.stackexchange.com/questions/115110/what-is-the-best-way-to-tell-users-to-scroll-down-in-browsers to get users to scroll dow. 
+5. Set up color scheme. Seems to be black and white
+6. Navbar changes color when scrolling.  https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
 # Tips 
 ### Using Refs
