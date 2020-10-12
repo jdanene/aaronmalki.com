@@ -1,0 +1,10 @@
+@import "../../sass-globals/variables";
+
+.topNavBar__container {
+  //width: 100%;
+  display: flex;
+  align-self: flex-start;
+  border-width: 3px;
+  border-color: black;
+  flex-grow: 1;
+}
