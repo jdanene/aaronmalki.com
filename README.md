@@ -12,7 +12,9 @@ Next
 3. Can easily add the "view more home" part
 4. The arrow down is clunk consider --> https://ux.stackexchange.com/questions/115110/what-is-the-best-way-to-tell-users-to-scroll-down-in-browsers to get users to scroll dow. 
 5. Set up color scheme. Seems to be black and white
-6. Navbar changes color when scrolling.  https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
+6. Navbar changes color when scrolling.  Actually do scroll to hide navbar thats more modern -> https://material-ui.com/components/app-bar/ 
+    - https://stackoverflow.com/questions/62058481/material-ui-appbar-changing-color-on-scroll-react
+    - https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
 # Tips 
 ### Using Refs
