@@ -1,3 +1,7 @@
+# Tips 
+## Using Refs
+- https://moduscreate.com/blog/everything-you-need-to-know-about-refs-in-react/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
