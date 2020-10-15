@@ -13,9 +13,10 @@
 }
 
 .app_container_main_body {
-    width: 100%;
     display: flex;
-    flex-grow: 1;
+    width: 100%;
+      border: 1px solid purple;
+
 }
 
 

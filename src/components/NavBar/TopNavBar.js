@@ -19,11 +19,48 @@ import MailIcon from '@material-ui/icons/Mail';
 import {StyledText} from "../StyledText";
 import Grid from '@material-ui/core/Grid';
 import DrawerNavOptions from "./routes/DrawerNavOptions";
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Slide from '@material-ui/core/Slide';
+import PropTypes from 'prop-types';
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+
+function ElevationScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  useEffect(()=>{
+      console.log(trigger)
+  },[trigger])
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+      style : {backgroundColor: trigger? "purple": "red"}
+  });
+}
+
+ElevationScroll.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+
+
 const navBarRouter = () => {
     console.log("Pressed!")
 };
 
-const TopNavBar = () => {
+const TopNavBar = (props) => {
     const [isDrawerOpen, setDrawerOpen] = useState(false);
     const ref = useRef();
 
@@ -35,63 +72,71 @@ const TopNavBar = () => {
     };
 
     return (
-        <header onClick={navBarRouter} className={"topNavBar__container"}>
-            <AppBar position="sticky" style={{background: 'transparent', boxShadow: 'none'}}>
-                <Toolbar style={{border: '1px solid black'}}>
+        <div className={"topNavBar__container"}>
+            <CssBaseline/>
+            <ElevationScroll {...props}>
+                <AppBar>
+                    <Toolbar style={{border: '1px solid black'}}>
 
-                    <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: "green"
-                    }}>
+                        <div style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            height: "100%",
+                            backgroundColor: "green"
+                        }}>
 
-                        <Grid container alignItems="center" style={{height:"75%",border: '1px solid black', maxWidth:"50%"}}>
-                            <Button color="inherit">
-                                <StyledText className={"topNavBar__logo"}>
-                                    Aaron Malki
+                            <Grid container alignItems="center"
+                                  style={{height: "75%", border: '1px solid black', maxWidth: "50%"}}>
+                                <Button color="inherit">
+                                    <StyledText className={"topNavBar__logo"}>
+                                        Aaron Malki
+                                    </StyledText>
+                                </Button>
+                                <div className={"topNavBar__logo_divider"}/>
+                                <StyledText className={"topNavBar__logo_logo"}>
+                                    Compass
                                 </StyledText>
-                            </Button>
-                            <div className={"topNavBar__logo_divider"}/>
-                            <StyledText className={"topNavBar__logo_logo"}>
-                                Compass
-                            </StyledText>
-                        </Grid>
+                            </Grid>
 
-                        {/*Menu hamburger*/}
-                        <div style={{display:"flex",alignItems: "center",justifyContent: "space-between"}}>
-                            <div style={{border: '1px solid white', justifySelf: "flex-end", marginRight:"10px", padding:"10px"}}>
-                                <StyledText className={"topNavBar__phoneNumber"}>
+                            {/*Menu hamburger*/}
+                            <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+                                <div style={{
+                                    border: '1px solid white',
+                                    justifySelf: "flex-end",
+                                    marginRight: "10px",
+                                    padding: "10px"
+                                }}>
+                                    <StyledText className={"topNavBar__phoneNumber"}>
                                         909-528-5364
                                     </StyledText>
+                                </div>
+
+                                <div key={"right"} style={{justifySelf: "flex-end", marginLeft: "10px"}}>
+                                    <IconButton onClick={toggleDrawer(true)} edge="start" style={{}}
+                                                color="inherit" aria-label="menu">
+                                        <MenuIcon/>
+                                    </IconButton>
+
+                                    <Drawer
+
+                                        anchor={"right"}
+                                        open={isDrawerOpen}
+                                        onClose={toggleDrawer(false)}
+                                    >
+                                        {DrawerNavOptions({toggleDrawerCallback: toggleDrawer})}
+                                    </Drawer>
+                                </div>
                             </div>
 
-                            <div key={"right"} style={{ justifySelf: "flex-end",marginLeft:"10px"}}>
-                                <IconButton onClick={toggleDrawer(true)} edge="start" style={{}}
-                                            color="inherit" aria-label="menu">
-                                    <MenuIcon/>
-                                </IconButton>
 
-                                <Drawer
-
-                                    anchor={"right"}
-                                    open={isDrawerOpen}
-                                    onClose={toggleDrawer(false)}
-                                >
-                                    {DrawerNavOptions({toggleDrawerCallback:toggleDrawer})}
-                                </Drawer>
-                            </div>
                         </div>
 
-
-
-                    </div>
-
-                </Toolbar>
-            </AppBar>
-        </header>
+                    </Toolbar>
+                </AppBar>
+            </ElevationScroll>
+        </div>
     )
 };
 

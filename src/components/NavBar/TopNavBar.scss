@@ -17,6 +17,13 @@
   font-family: "airbnb-light", serif;
 }
 
+.topNavbar__down_transition{
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.topNavbar__up_transition{}
+
 
 .topNavBar__logo_divider{
   background-color: whitesmoke;
