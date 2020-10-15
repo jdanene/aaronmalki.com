@@ -23,7 +23,7 @@ Summary:
 - [x] Hamburger needs to go to actial pages
 - [x] Navbar changes color when scrolling
 
-Also set up routing, context, and fonts. Tried to do something with StyledText s.t it grows and shrinks w/ window but not sure it works. 
+Also set up routing, context, and fonts. Tried to do something with StyledText s.t it grows and shrinks w/ window but not sure it works. Always check material-ui for shit it seems to have everything. 
 
 
 Next
