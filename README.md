@@ -17,10 +17,13 @@ Next
     - https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
 ### 10.15.2020
+
+Summary:
 - [x] App.js should refer to homescreen
 - [x] Hamburger needs to go to actial pages
 - [x] Navbar changes color when scrolling
 
+Also set up routing, context, and fonts. Tried to do something with StyledText s.t it grows and shrinks w/ window but not sure it works. 
 Next
 - [ ] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
     - See https://material-ui.com/components/transitions/
