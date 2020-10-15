@@ -1,17 +1,7 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
+$mobile-break: 600px;
+$nav-height: 60px;
+$tablet-break: 960px;
+$large-tablet-break: 1280px;
 
 @font-face {
   font-family: "source-sans-pro-regular";
@@ -47,3 +37,5 @@ code {
   font-family: "raleway-thin";
   src: url("./resources/fonts/Raleway-Light.ttf") format("truetype") ;
 }
+
+

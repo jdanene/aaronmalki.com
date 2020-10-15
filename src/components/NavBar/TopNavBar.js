@@ -16,6 +16,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import {StyledText} from "../StyledText";
+import Grid from '@material-ui/core/Grid';
 
 const navBarRouter = () => {
     console.log("Pressed!")
@@ -62,29 +64,49 @@ const TopNavBar = () => {
 
     return (
         <header onClick={navBarRouter} className={"topNavBar__container"}>
-            <AppBar position="static">
-                <Toolbar>
+            <AppBar position="sticky" style={{background: 'transparent', boxShadow: 'none'}}>
+                <Toolbar style={{border: '1px solid black'}}>
 
-                    <React.Fragment key={"right"}>
-                        <IconButton onClick={toggleDrawer(true)} edge="start" style={{border: '1px solid black'}}
-                                    color="inherit" aria-label="menu">
-                            <MenuIcon/>
-                        </IconButton>
+                    <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "green"
+                    }}>
 
-                        <Drawer
+                        <Grid container alignItems="center" style={{height:"75%",border: '1px solid black'}}>
+                            <Button color="inherit">
+                                <StyledText className={"topNavBar__logo"}>
+                                    Aaron Malki
+                                </StyledText>
+                            </Button>
+                            <div className={"topNavBar__logo_divider"}/>
+                            <StyledText className={"topNavBar__logo_logo"}>
+                                Compass
+                            </StyledText>
+                        </Grid>
 
-                            anchor={"right"}
-                            open={isDrawerOpen}
-                            onClose={toggleDrawer(false)}
-                        >
-                            {list()}
-                        </Drawer>
-                    </React.Fragment>
+                        {/*Menu hamburger*/}
+                        <div key={"right"}>
+                            <IconButton onClick={toggleDrawer(true)} edge="start" style={{border: '1px solid black'}}
+                                        color="inherit" aria-label="menu">
+                                <MenuIcon/>
+                            </IconButton>
 
-                    <Typography variant="h6" style={{flexGrow: 1, borderWidth: '50px', borderColor: 'black'}}>
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
+                            <Drawer
+
+                                anchor={"right"}
+                                open={isDrawerOpen}
+                                onClose={toggleDrawer(false)}
+                            >
+                                {list()}
+                            </Drawer>
+                        </div>
+
+                    </div>
+
                 </Toolbar>
             </AppBar>
         </header>

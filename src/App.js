@@ -13,6 +13,11 @@ function App() {
   return (
     <div className="app_container">
       <TopNavBar/>
+
+      <div className={"app_container_main_body"}>
+        jndklfmnrjlknfr
+      </div>
+
     </div>
   );
 }

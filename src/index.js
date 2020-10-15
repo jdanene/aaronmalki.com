@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import "./resources/fonts/SourceSansPro-Regular.ttf";
+import "./resources/fonts/SourceSansPro-Bold.ttf";
+import "./resources/fonts/SourceSansPro-SemiBold.ttf";
+import "./resources/fonts/AirbnbCereal-Light.ttf"
+import "./resources/fonts/AirbnbCereal-Black.ttf"
+import "./resources/fonts/AirbnbCereal-Book.ttf"
+import "./resources/fonts/Raleway-Light.ttf"
 
 ReactDOM.render(
     <App />,

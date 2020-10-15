@@ -1,10 +1,28 @@
-@import "../../sass-globals/variables";
+@import "../../variables";
 
 .topNavBar__container {
-  //width: 100%;
+  width: 100%;
   display: flex;
   align-self: flex-start;
   border-width: 3px;
   border-color: black;
   flex-grow: 1;
+}
+
+.topNavBar__logo{
+  font-family: "raleway-thin", serif;
+}
+
+.topNavBar__logo_divider{
+  background-color: whitesmoke;
+  opacity: 0.5;
+  width:.5px;
+  height:100%;
+}
+
+.topNavBar__logo_logo{
+  font-family: "raleway-thin", serif;
+  font-weight: lighter;
+  margin-left: 5px;
+  letter-spacing: 2px;
 }
