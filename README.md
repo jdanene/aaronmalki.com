@@ -16,7 +16,7 @@ Next
     - https://stackoverflow.com/questions/62058481/material-ui-appbar-changing-color-on-scroll-react
     - https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
-### 10.15.2020
+### 10.14.2020 - 7hr
 
 Summary:
 - [x] App.js should refer to homescreen
