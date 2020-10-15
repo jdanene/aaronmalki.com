@@ -1,13 +1,32 @@
-<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Log
+
+### 10.11.2020
+- Set up the app
+- Set up a hamburger and navigation
+
+Next
+1. App.js should just refer to home screen. So fix that up a bit
+2. Hamburger needs to go to actual pages so fix that as well
+3. Can easily add the "view more home" part
+4. The arrow down is clunk consider --> https://ux.stackexchange.com/questions/115110/what-is-the-best-way-to-tell-users-to-scroll-down-in-browsers to get users to scroll dow. 
+5. Set up color scheme. Seems to be black and white
+6. Navbar changes color when scrolling.  Actually do scroll to hide navbar thats more modern -> https://material-ui.com/components/app-bar/ 
+    - https://stackoverflow.com/questions/62058481/material-ui-appbar-changing-color-on-scroll-react
+    - https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
 # Tips 
-## Using Refs
+### Using Refs
 - https://moduscreate.com/blog/everything-you-need-to-know-about-refs-in-react/
 
-## Hamburger Nave
+### Hamburger Nave
 - https://material-ui.com/components/drawers/ (right drawer)
+- https://ux.stackexchange.com/questions/99921/is-a-navigation-drawer-preferred-over-a-menu-when-menu-items-are-not-the-main-fu
+
+### Base UI Drawings
+Located at: https://docs.google.com/document/d/1tQxkmGdVtd0WJWubap895Yxl-sWgUddfJ4YApr9N-CM/edit?ts=5f82050e
+(Have to logged into NU email to access)
 ## Available Scripts
 
 In the project directory, you can run:
@@ -74,22 +93,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
-# aaronmalki.com
-Freelance website for real estate broker
-
-
-### To Run
-npm start
-- Starts the development server
-
-npm run build
--bundles the app into static files for production
-
-npm test
-- Starts the test runner
-
-npm run eject
-- Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
->>>>>>> 93bb7c98741e03f700516a768adfa2202156b25b
