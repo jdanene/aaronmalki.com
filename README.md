@@ -24,6 +24,8 @@ Summary:
 - [x] Navbar changes color when scrolling
 
 Also set up routing, context, and fonts. Tried to do something with StyledText s.t it grows and shrinks w/ window but not sure it works. 
+
+
 Next
 - [ ] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
     - See https://material-ui.com/components/transitions/
