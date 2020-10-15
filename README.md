@@ -23,8 +23,9 @@ Next
 
 Next
 - [ ] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
-        - See https://www.nearform.com/blog/animation-in-react/
-        - See 'react-spring'
+    - See https://material-ui.com/components/transitions/
+    - See https://www.nearform.com/blog/animation-in-react/
+    - See 'react-spring'
 - [ ] Get weird effect where background stays same but everything else moves its from http://www.theaverygroupwinecountry.com
 - [ ] Add social media link like -> http://www.pogofskygroup.com/
 - [ ] Add the down arrow for more content like -> https://www.yourmyrtlebeachproperty.com
