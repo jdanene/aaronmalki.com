@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 
 
-const ContactUs = ()=>{
+const ContactUsPage = ()=>{
 
     return <div>
-        This is the home page
+        This is the contact page
     </div>
 
 };
 
-export default ContactUs;
+export default ContactUsPage;

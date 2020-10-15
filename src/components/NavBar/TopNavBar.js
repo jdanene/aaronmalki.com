@@ -18,7 +18,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {StyledText} from "../StyledText";
 import Grid from '@material-ui/core/Grid';
-
+import DrawerNavOptions from "./routes/DrawerNavOptions";
 const navBarRouter = () => {
     console.log("Pressed!")
 };
@@ -34,34 +34,6 @@ const TopNavBar = () => {
         setDrawerOpen(open);
     };
 
-    const list = () => (
-        <div
-            style={{width: 'auto'}}
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-        >
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                        <ListItemText primary={text}/>
-                    </ListItem>
-                ))}
-            </List>
-            <Divider/>
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                        <ListItemText primary={text}/>
-                    </ListItem>
-                ))}
-            </List>
-        </div>
-    );
-
-
     return (
         <header onClick={navBarRouter} className={"topNavBar__container"}>
             <AppBar position="sticky" style={{background: 'transparent', boxShadow: 'none'}}>
@@ -76,7 +48,7 @@ const TopNavBar = () => {
                         backgroundColor: "green"
                     }}>
 
-                        <Grid container alignItems="center" style={{height:"75%",border: '1px solid black'}}>
+                        <Grid container alignItems="center" style={{height:"75%",border: '1px solid black', maxWidth:"50%"}}>
                             <Button color="inherit">
                                 <StyledText className={"topNavBar__logo"}>
                                     Aaron Malki
@@ -89,21 +61,31 @@ const TopNavBar = () => {
                         </Grid>
 
                         {/*Menu hamburger*/}
-                        <div key={"right"}>
-                            <IconButton onClick={toggleDrawer(true)} edge="start" style={{border: '1px solid black'}}
-                                        color="inherit" aria-label="menu">
-                                <MenuIcon/>
-                            </IconButton>
+                        <div style={{display:"flex",alignItems: "center",justifyContent: "space-between"}}>
+                            <div style={{border: '1px solid white', justifySelf: "flex-end", marginRight:"10px", padding:"10px"}}>
+                                <StyledText className={"topNavBar__phoneNumber"}>
+                                        909-528-5364
+                                    </StyledText>
+                            </div>
 
-                            <Drawer
+                            <div key={"right"} style={{ justifySelf: "flex-end",marginLeft:"10px"}}>
+                                <IconButton onClick={toggleDrawer(true)} edge="start" style={{}}
+                                            color="inherit" aria-label="menu">
+                                    <MenuIcon/>
+                                </IconButton>
 
-                                anchor={"right"}
-                                open={isDrawerOpen}
-                                onClose={toggleDrawer(false)}
-                            >
-                                {list()}
-                            </Drawer>
+                                <Drawer
+
+                                    anchor={"right"}
+                                    open={isDrawerOpen}
+                                    onClose={toggleDrawer(false)}
+                                >
+                                    {DrawerNavOptions({toggleDrawerCallback:toggleDrawer})}
+                                </Drawer>
+                            </div>
                         </div>
+
+
 
                     </div>
 

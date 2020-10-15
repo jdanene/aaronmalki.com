@@ -10,9 +10,11 @@ import "./resources/fonts/AirbnbCereal-Light.ttf"
 import "./resources/fonts/AirbnbCereal-Black.ttf"
 import "./resources/fonts/AirbnbCereal-Book.ttf"
 import "./resources/fonts/Raleway-Light.ttf"
+import {AppContextProvider} from "./context";
 
 ReactDOM.render(
-    <App />,
+        <App />
+    ,
   document.getElementById('root')
 );
 

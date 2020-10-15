@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 
 
-const HomePage = ()=>{
+const BuyersPage = ()=>{
 
     return <div>
-        This is the home pagekln
+        This is the Buyers page
     </div>
 
 };
 
-export default HomePage;
+export default BuyersPage;

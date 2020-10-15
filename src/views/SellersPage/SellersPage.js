@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 
 
-const SearchForHome = ()=>{
+const SellersPage = ()=>{
 
     return <div>
-        This is the home page
+        This is the sellers page
     </div>
 
 };
 
-export default SearchForHome;
+export default SellersPage;
