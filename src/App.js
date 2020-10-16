@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -10,9 +10,32 @@ import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";
 import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage} from "./views";
 import {AppContextProvider} from "./context";
+// Firebase App (the core Firebase SDK) is always required and
+// must be listed before other Firebase SDKs
+import * as firebase from "firebase/app";
+// Add the Firebase services that you want to use
+import "firebase/auth";
+import "firebase/firestore";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyDb3T9-Cd7yQynA_W-mCldk29o7ALEcf2A",
+    authDomain: "the-malki-site.firebaseapp.com",
+    databaseURL: "https://the-malki-site.firebaseio.com",
+    projectId: "the-malki-site",
+    storageBucket: "the-malki-site.appspot.com",
+    messagingSenderId: "391631262205",
+    appId: "1:391631262205:web:a0ef5ae7d90c3d4aaf8994",
+    measurementId: "G-T7SZTH3QFR"
+};
 
 function App() {
+    useEffect(() => {
+// Initialize Firebase
+        firebase .initializeApp(firebaseConfig);
+
+    }, []);
+
     return (
 
 

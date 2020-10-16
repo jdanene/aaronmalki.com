@@ -16,3 +16,7 @@ export const pageToPageName = {
     'ContactUsPage': 'Contact Us'
 };
 
+export const navBarParams = {
+    innerNavbarHeight: "45px"
+}
+

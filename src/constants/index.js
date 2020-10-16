@@ -1,2 +1,3 @@
 import {pageToPathName, pageToPageName} from "./contants";
-export {pageToPageName,pageToPathName};
+import {colorScheme} from "./styles";
+export {pageToPageName,pageToPathName, colorScheme};

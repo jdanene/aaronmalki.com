@@ -7,6 +7,8 @@
   border-width: 3px;
   border-color: black;
   flex-grow: 1;
+
+
 }
 
 .topNavBar__logo{
@@ -27,9 +29,10 @@
 
 .topNavBar__logo_divider{
   background-color: whitesmoke;
-  opacity: 0.5;
-  width:.5px;
+  opacity: 1;
+  width:1px;
   height:100%;
+  border: 1px solid black;
 }
 
 .topNavBar__logo_logo{

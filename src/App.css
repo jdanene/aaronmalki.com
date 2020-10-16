@@ -4,18 +4,19 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    background-image: url("resources/images/hotairaballoon_landing.jpg");
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: slategrey;
+
 
 }
 
+
+
 .app_container_main_body {
     display: flex;
-    width: 100%;
-      border: 1px solid purple;
+    width: 100vw;
+    border: 1px solid purple;
+    height: 200vh;
 
 }
 
