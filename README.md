@@ -38,6 +38,11 @@ Next
     - [ ] The divider between name and logo is gone now figure out why. 
 - [ ] Set up firebase including hosting s.t can share progress
 
+# Firebase
+
+**Adding Project**
+firebase init
+
         
 # Tips 
 ### Using Refs
