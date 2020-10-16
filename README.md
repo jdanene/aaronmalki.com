@@ -16,21 +16,32 @@ Next
     - https://stackoverflow.com/questions/62058481/material-ui-appbar-changing-color-on-scroll-react
     - https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
-### 10.15.2020
+### 10.14.2020 - 7hr
+
+Summary:
 - [x] App.js should refer to homescreen
 - [x] Hamburger needs to go to actial pages
 - [x] Navbar changes color when scrolling
 
+Also set up routing, context, and fonts. Tried to do something with StyledText s.t it grows and shrinks w/ window but not sure it works. Always check material-ui for shit it seems to have everything. 
+
+
 Next
 - [ ] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
-        - See https://www.nearform.com/blog/animation-in-react/
-        - See 'react-spring'
+    - See https://material-ui.com/components/transitions/
+    - See https://www.nearform.com/blog/animation-in-react/
+    - See 'react-spring'
 - [ ] Get weird effect where background stays same but everything else moves its from http://www.theaverygroupwinecountry.com
 - [ ] Add social media link like -> http://www.pogofskygroup.com/
 - [ ] Add the down arrow for more content like -> https://www.yourmyrtlebeachproperty.com
 - [ ] On Navbar - drawer add some highlighting for page currently on,
     - [ ] The divider between name and logo is gone now figure out why. 
 - [ ] Set up firebase including hosting s.t can share progress
+
+# Firebase
+
+**Adding Project**
+firebase init
 
         
 # Tips 
