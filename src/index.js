@@ -10,6 +10,12 @@ import "./resources/fonts/AirbnbCereal-Light.ttf"
 import "./resources/fonts/AirbnbCereal-Black.ttf"
 import "./resources/fonts/AirbnbCereal-Book.ttf"
 import "./resources/fonts/Raleway-Light.ttf"
+import "./resources/fonts/Raleway-Regular.ttf"
+import "./resources/fonts/Raleway-Italic.ttf"
+import "./resources/fonts/Raleway-BoldItalic.ttf"
+import "./resources/fonts/ScopeOne-Regular.ttf"
+
+
 import {AppContextProvider} from "./context";
 
 ReactDOM.render(

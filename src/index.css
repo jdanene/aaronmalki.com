@@ -47,3 +47,29 @@ code {
   font-family: "raleway-thin";
   src: url("./resources/fonts/Raleway-Light.ttf") format("truetype") ;
 }
+
+@font-face {
+  font-family: "raleway-regular";
+  src: url("./resources/fonts/Raleway-Regular.ttf") format("truetype") ;
+}
+
+@font-face {
+  font-family: "raleway-italic";
+  src: url("./resources/fonts/Raleway-Italic.ttf") format("truetype") ;
+}
+
+@font-face {
+  font-family: "raleway-bold-italic";
+  src: url("./resources/fonts/Raleway-BoldItalic.ttf") format("truetype") ;
+}
+
+@font-face {
+  font-family: "scope-one-regular";
+  src: url("./resources/fonts/ScopeOne-Regular.ttf") format("truetype") ;
+}
+
+
+
+
+
+

@@ -98,7 +98,7 @@ const DownArrow = ({posnOfContainter}) => {
         reverse: toggle,
         immediate: false,
         from: {radians: 0, color: "white"},
-        config: {precision: .1, velocity: 5, mass: 10, tension: 75, friction: 40},
+        config: {precision: .1, velocity: 5, mass: 10, tension: 400, friction: 60},
         reset: true,
     });
 
