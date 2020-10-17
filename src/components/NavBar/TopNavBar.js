@@ -133,9 +133,9 @@ const TopNavBar = (props) => {
                                 <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
 
 
-                                    <PopText endFontSize={!mobileBreak ? "16px" : "10px"}
-                                             startFontSize={!mobileBreak ? "18px" : "10.5px"} trigger={trigger}
-                                             style={{fontFamily: "raleway-thin, serif", fontWeight: "bold"}}>
+                                    <PopText endFontSize={!mobileBreak ? "16px" : "10.5px"}
+                                             startFontSize={!mobileBreak ? "18px" : "11px"} trigger={trigger}
+                                             style={{fontFamily: "raleway-thin, serif", fontWeight: "bold", letterSpacing:"1.5px"}}>
 
                                         Aaron Malki
                                     </PopText>
