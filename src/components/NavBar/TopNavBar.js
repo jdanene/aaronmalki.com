@@ -29,6 +29,10 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Container} from "@material-ui/core";
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import {colorScheme, pageToPathName} from "../../constants";
+import {useTheme} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {FaPhoneAlt} from "react-icons/fa";
+
 
 function ElevationScroll({window, children, setTrigger}) {
     //const {children, window, setTrigger} = props;
@@ -87,6 +91,12 @@ const TopNavBar = (props) => {
     const [trigger, setTrigger] = useState(false);
     const ref = useRef();
 
+    const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
+
+    useEffect(() => {
+        console.log(mobileBreak)
+    }, [mobileBreak]);
+
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -113,16 +123,19 @@ const TopNavBar = (props) => {
 
                             <div style={{
                                 height: "100%",
-                                border: `1px solid ${colorScheme.secondary.light}`,
-                                maxWidth: "50%",
+                                //border: `1px solid ${colorScheme.secondary.light}`,
+                                maxWidth: "75%",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center"
                             }}>
 
                                 <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
-                                    <PopText endFontSize={"16px"} startFontSize={"18px"} trigger={trigger}
+
+
+                                    <PopText endFontSize={!mobileBreak?"16px":"10px"} startFontSize={!mobileBreak?"18px":"10.5px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif", fontWeight: "bold"}}>
+
                                         Aaron Malki
                                     </PopText>
                                 </Button>
@@ -142,14 +155,14 @@ const TopNavBar = (props) => {
                                     alignContent: 'center',
                                     margin: "0px 0px 0px 5px"
                                 }}>
-                                    <PopText endFontSize={"16px"} startFontSize={"18px"} trigger={trigger}
+                                    <PopText  endFontSize={!mobileBreak?"16px":"12.5px"} startFontSize={!mobileBreak?"18px":"12.5px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>
                                 </div>
 
                                 <div style={{width: "45px", height: "45px", padding: "0px 5px 0px 5px"}}>
-                                    <GTranslateIcon style={{width: "100%", height: "100%"}}/>
+                                    <GTranslateIcon style={{width: "100%", height: "100%", color: "rgba(255, 255, 255,.5)"}}/>
                                 </div>
 
                             </div>
@@ -157,26 +170,32 @@ const TopNavBar = (props) => {
                             {/*Menu hamburger*/}
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
-                                    <Button
-                                        href={pageToPathName["ContactUsPage"]}
-                                        size={"small"}
-                                        variant="contained"
-                                        className={"topNavBar__phoneNumber"}
-                                        style={
-                                            {
-                                                backgroundColor: "transparent",
-                                                border: '1px solid white',
-                                                borderRadius: 0,
-                                                justifySelf: "flex-end",
-                                                marginRight: "10px",
-                                                padding: "5px"
-                                            }}>
+                                {mobileBreak?
+                                <IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%"}} aria-label="add to shopping cart">
+                                    <FaPhoneAlt size={12}/>
+                                </IconButton>
+                                :
+                                <Button
+                                    href={pageToPathName["ContactUsPage"]}
+                                    size={"small"}
+                                    variant="contained"
+                                    className={"topNavBar__phoneNumber"}
+                                    style={
+                                        {
+                                            backgroundColor: "transparent",
+                                            border: '1px solid white',
+                                            borderRadius: 0,
+                                            justifySelf: "flex-end",
+                                            marginRight: "10px",
+                                            padding: "5px"
+                                        }}>
 
-                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger}
-                                                 className={"topNavBar__phoneNumber"}>
-                                            909-528-5364
-                                        </PopText>
-                                    </Button>
+                                    <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger}
+                                             className={"topNavBar__phoneNumber"}>
+                                        909-528-5364
+                                    </PopText>
+                                </Button>
+                                }
 
 
                                 <div key={"right"} style={{justifySelf: "flex-end", marginLeft: "10px"}}>

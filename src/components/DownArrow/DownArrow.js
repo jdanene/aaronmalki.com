@@ -49,7 +49,7 @@ const interp = i => r => `translate3d(0, ${15 * Math.sin(r + (i * 2 * Math.PI) /
 
 
 const DownArrow = ({posnOfContainter}) => {
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
     const [posn, setPosn] = useState(window.pageYOffset);
     const inputRef = useRef();
 
@@ -98,7 +98,7 @@ const DownArrow = ({posnOfContainter}) => {
         reverse: toggle,
         immediate: false,
         from: {radians: 0, color: "white"},
-        config: {precision: .1, velocity: 5, mass: 10, tension: 400, friction: 60},
+        config: {precision: .1, velocity: 5, mass: 10, tension: 300, friction: 90},
         reset: true,
     });
 
