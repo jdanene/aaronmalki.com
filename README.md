@@ -44,6 +44,8 @@ Next
     - [x] The divider between name and logo is gone now figure out why. 
 - [x] Add the down arrow for more content like -> https://www.yourmyrtlebeachproperty.com
 - [ ] Add social media link like -> http://www.pogofskygroup.com/
+    - Think i want the actual colors: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwebdesign.tutsplus.com%2Ftutorials%2Ftwitter-facebook-instagram-adding-social-media-icons-to-wordpress--cms-34471&psig=AOvVaw0R8_1p7ZHvrAJZRIFcuqVb&ust=1603020734609000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjDo-HDu-wCFQAAAAAdAAAAABAD
+    - Top right format? https://coschedule.com/blog/social-media-buttons/
 - [x] Get weird effect where background stays same but everything else moves its from http://www.theaverygroupwinecountry.com
 - [x] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
 - [x] Make top part of group home mobile friendly, disable contact when on contacts page
