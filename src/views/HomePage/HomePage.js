@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react"
 import "./HomePage.scss"
 import {DownArrow} from "../../components/DownArrow";
 import useWindowDimensions from "./useWindowDimensions";
-
+import HomePageTopHalfInfo from "./HomePageTopHalfInfo";
 
 const HomePage = ()=>{
     const id = "id123";
@@ -27,7 +27,9 @@ const HomePage = ()=>{
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div className={"homepage__container"}>
         <div id={"id123"}  ref={inputRef}  className={"homepage_generalInfo__container_top"}>
-                    This is the home pagekln
+                    <HomePageTopHalfInfo/>
+
+
             <DownArrow posnOfContainter={ topHalf_bottomPosn}/>
         </div>
                 <div className={"homepage_generalInfo__container_bottom"}>
