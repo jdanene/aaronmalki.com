@@ -10,6 +10,8 @@ import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";
 import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage} from "./views";
 import {AppContextProvider} from "./context";
+import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
+import {colorScheme} from "./constants";
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import * as firebase from "firebase/app";
@@ -29,10 +31,23 @@ const firebaseConfig = {
     measurementId: "G-T7SZTH3QFR"
 };
 
+
 function App() {
+
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: colorScheme.primary.primary,
+                light: colorScheme.primary.light,
+                dark: colorScheme.primary.dark
+            },
+            secondary: {main:"#634459"}
+        }
+    });
+
     useEffect(() => {
 // Initialize Firebase
-        firebase .initializeApp(firebaseConfig);
+        firebase.initializeApp(firebaseConfig);
 
     }, []);
 
@@ -40,24 +55,27 @@ function App() {
 
 
         <Router>
-            <AppContextProvider>
-                <div className="app_container">
+            <ThemeProvider theme={theme}>
+                <AppContextProvider>
+                    <div className="app_container">
 
-                    <TopNavBar/>
+                        <TopNavBar/>
 
-                    <div className={"app_container_main_body"}>
-                        {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
-                        <Switch>
-                            <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
-                            <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
-                            <Route path={pageToPathName["CurrentListingsPage"]} exact component={CurrentListingsPage}/>
-                            <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
-                            <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
-                        </Switch>
+                        <div className={"app_container_main_body"}>
+                            {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
+                            <Switch>
+                                <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
+                                <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
+                                <Route path={pageToPathName["CurrentListingsPage"]} exact
+                                       component={CurrentListingsPage}/>
+                                <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
+                                <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
+                            </Switch>
+                        </div>
                     </div>
-                </div>
 
-            </AppContextProvider>
+                </AppContextProvider>
+            </ThemeProvider>
         </Router>
 
     );

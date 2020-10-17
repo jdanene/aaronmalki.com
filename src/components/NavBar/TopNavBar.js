@@ -32,7 +32,7 @@ import {colorScheme, pageToPathName} from "../../constants";
 import {useTheme} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {FaPhoneAlt} from "react-icons/fa";
-
+import Fab from '@material-ui/core/Fab';
 
 function ElevationScroll({window, children, setTrigger}) {
     //const {children, window, setTrigger} = props;
@@ -133,7 +133,8 @@ const TopNavBar = (props) => {
                                 <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
 
 
-                                    <PopText endFontSize={!mobileBreak?"16px":"10px"} startFontSize={!mobileBreak?"18px":"10.5px"} trigger={trigger}
+                                    <PopText endFontSize={!mobileBreak ? "16px" : "10px"}
+                                             startFontSize={!mobileBreak ? "18px" : "10.5px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif", fontWeight: "bold"}}>
 
                                         Aaron Malki
@@ -155,14 +156,16 @@ const TopNavBar = (props) => {
                                     alignContent: 'center',
                                     margin: "0px 0px 0px 5px"
                                 }}>
-                                    <PopText  endFontSize={!mobileBreak?"16px":"12.5px"} startFontSize={!mobileBreak?"18px":"12.5px"} trigger={trigger}
+                                    <PopText endFontSize={!mobileBreak ? "16px" : "12.5px"}
+                                             startFontSize={!mobileBreak ? "18px" : "12.5px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>
                                 </div>
 
                                 <div style={{width: "45px", height: "45px", padding: "0px 5px 0px 5px"}}>
-                                    <GTranslateIcon style={{width: "100%", height: "100%", color: "rgba(255, 255, 255,.5)"}}/>
+                                    <GTranslateIcon
+                                        style={{width: "100%", height: "100%", color: "rgba(255, 255, 255,.5)"}}/>
                                 </div>
 
                             </div>
@@ -170,31 +173,34 @@ const TopNavBar = (props) => {
                             {/*Menu hamburger*/}
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
-                                {mobileBreak?
-                                <IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%"}} aria-label="add to shopping cart">
-                                    <FaPhoneAlt size={12}/>
-                                </IconButton>
-                                :
-                                <Button
-                                    href={pageToPathName["ContactUsPage"]}
-                                    size={"small"}
-                                    variant="contained"
-                                    className={"topNavBar__phoneNumber"}
-                                    style={
-                                        {
-                                            backgroundColor: "transparent",
-                                            border: '1px solid white',
-                                            borderRadius: 0,
-                                            justifySelf: "flex-end",
-                                            marginRight: "10px",
-                                            padding: "5px"
-                                        }}>
+                                {mobileBreak ?
+                                    <Fab color={"default"} aria-label="add" style={{position: 'fixed',bottom:15,right:10, color:colorScheme.primary.primary}} href={pageToPathName["ContactUsPage"]}>
+                                        <FaPhoneAlt/>
+                                    </Fab>
+                                    //<IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%", padding:0,position: 'fixed',bottom:0}} aria-label="add to shopping cart">
+                                    //  <FaPhoneAlt size={14}/>
+                                    //</IconButton>
+                                    :
+                                    <Button
+                                        href={pageToPathName["ContactUsPage"]}
+                                        size={"small"}
+                                        variant="contained"
+                                        className={"topNavBar__phoneNumber"}
+                                        style={
+                                            {
+                                                backgroundColor: "transparent",
+                                                border: '1px solid white',
+                                                borderRadius: 0,
+                                                justifySelf: "flex-end",
+                                                marginRight: "10px",
+                                                padding: "5px"
+                                            }}>
 
-                                    <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger}
-                                             className={"topNavBar__phoneNumber"}>
-                                        909-528-5364
-                                    </PopText>
-                                </Button>
+                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger}
+                                                 className={"topNavBar__phoneNumber"}>
+                                            909-528-5364
+                                        </PopText>
+                                    </Button>
                                 }
 
 

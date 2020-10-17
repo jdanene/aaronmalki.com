@@ -20,6 +20,7 @@ import {useSpring, animated} from 'react-spring'
 import {Button, ButtonBase} from "@material-ui/core";
 import * as Scroll from 'react-scroll';
 import {Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
+import {useMediaQuery} from "@material-ui/core";
 //https://react-icons.github.io/search
 
 const useStyles = makeStyles({
@@ -52,6 +53,7 @@ const DownArrow = ({posnOfContainter}) => {
     const [toggle, setToggle] = useState(false);
     const [posn, setPosn] = useState(window.pageYOffset);
     const inputRef = useRef();
+    const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
 
     useEffect(() => {
         const invtl = setInterval(() => {
@@ -121,7 +123,7 @@ const DownArrow = ({posnOfContainter}) => {
             ref={inputRef}
             onClick={onPress}
             focusRipple
-            className={classes.downArrow_container} style={{border: `3px solid rgba(112,134,144,.85)`}}
+            className={classes.downArrow_container} style={{border: !mobileBreak&&`3px solid rgba(112,134,144,.85)`}}
         >
             {/*size={30} color='aliceblue' style={{ ... }} (in pixels)*/}
             <animated.div className="script-bf-box" style={{transform: radians.interpolate(interp(0))}}>

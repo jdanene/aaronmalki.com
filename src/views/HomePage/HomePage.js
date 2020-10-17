@@ -33,7 +33,7 @@ const HomePage = ()=>{
             <DownArrow posnOfContainter={ topHalf_bottomPosn}/>
         </div>
                 <div className={"homepage_generalInfo__container_bottom"}>
-                    This is the home pagekln
+                    This is the home page
         </div>
     </div>
 
