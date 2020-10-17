@@ -38,6 +38,24 @@ Next
     - [ ] The divider between name and logo is gone now figure out why. 
 - [ ] Set up firebase including hosting s.t can share progress
 
+### 10.16.2020 -9hrs
+- [x] Set up firebase including hosting s.t can share progress
+- [ ] On Navbar - drawer add some highlighting for page currently on, (can get this info easily from work identiy path of route)
+    - [x] The divider between name and logo is gone now figure out why. 
+- [x] Add the down arrow for more content like -> https://www.yourmyrtlebeachproperty.com
+- [ ] Add social media link like -> http://www.pogofskygroup.com/
+- [x] Get weird effect where background stays same but everything else moves its from http://www.theaverygroupwinecountry.com
+- [x] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
+- [x] Make top part of group home mobile friendly, disable contact when on contacts page
+
+Next 
+- Do unchekced from previous
+- Finish off homepage
+    - Add bio page in HomePage 
+    - Add Footer part
+
+Notes:
+Started the social media but couldnt fix it quick enout
 # Firebase
 
 **Adding Project**
