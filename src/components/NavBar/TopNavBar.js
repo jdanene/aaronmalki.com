@@ -28,7 +28,7 @@ import Fade from "./NavBarTransition";
 import {makeStyles} from '@material-ui/core/styles';
 import {Container} from "@material-ui/core";
 import GTranslateIcon from '@material-ui/icons/GTranslate';
-import {colorScheme} from "../../constants";
+import {colorScheme, pageToPathName} from "../../constants";
 
 function ElevationScroll({window, children, setTrigger}) {
     //const {children, window, setTrigger} = props;
@@ -48,7 +48,7 @@ function ElevationScroll({window, children, setTrigger}) {
 
     return React.cloneElement(children, {
         elevation: trigger ? 4 : 0,
-        style: trigger? {backgroundColor:colorScheme.primary.dark} : {background: 'transparent'}
+        style: trigger ? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
     });
 }
 
@@ -111,41 +111,73 @@ const TopNavBar = (props) => {
                             background: 'transparent'
                         }}>
 
-                            <div style={{height: "100%", border: `1px solid ${colorScheme.secondary.light}`, maxWidth: "50%", display:"flex",alignItems: "center", justifyContent: "center"}}>
+                            <div style={{
+                                height: "100%",
+                                border: `1px solid ${colorScheme.secondary.light}`,
+                                maxWidth: "50%",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center"
+                            }}>
 
-                                <Button color="inherit" style={{/*border: "1px solid black",*/ height:"100%"}}>
-                                    <PopText endFontSize={"16px"} startFontSize={"18px"} trigger={trigger} style={{ fontFamily: "raleway-thin, serif", fontWeight:"bold"}}>
+                                <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
+                                    <PopText endFontSize={"16px"} startFontSize={"18px"} trigger={trigger}
+                                             style={{fontFamily: "raleway-thin, serif", fontWeight: "bold"}}>
                                         Aaron Malki
                                     </PopText>
                                 </Button>
 
-                                <div style={{height:"100%", minHeight:"30px",borderLeft: "1px solid white", backgroundColor:"white"}}/>
+                                <div style={{
+                                    height: "100%",
+                                    minHeight: "30px",
+                                    borderLeft: "1px solid white",
+                                    backgroundColor: "white"
+                                }}/>
 
-                                   <div style={{height:"100%", display:"flex", minHeight:"45px", alignItems:'center', alignContent:'center', margin:"0px 0px 0px 5px"}}>
-                                    <PopText  endFontSize={"16px"} startFontSize={"18px"} trigger={trigger} style={{fontFamily: "raleway-thin, serif"}}>
+                                <div style={{
+                                    height: "100%",
+                                    display: "flex",
+                                    minHeight: "45px",
+                                    alignItems: 'center',
+                                    alignContent: 'center',
+                                    margin: "0px 0px 0px 5px"
+                                }}>
+                                    <PopText endFontSize={"16px"} startFontSize={"18px"} trigger={trigger}
+                                             style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>
-                                   </div>
+                                </div>
 
-                                <div style={{width:"45px", height:"45px", padding:"0px 5px 0px 5px"}}>
-                                    <GTranslateIcon style={{width:"100%", height:"100%"}}/>
+                                <div style={{width: "45px", height: "45px", padding: "0px 5px 0px 5px"}}>
+                                    <GTranslateIcon style={{width: "100%", height: "100%"}}/>
                                 </div>
 
                             </div>
 
                             {/*Menu hamburger*/}
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-                                <div style={{
-                                    border: '1px solid white',
-                                    justifySelf: "flex-end",
-                                    marginRight: "10px",
-                                    padding: "10px"
-                                }}>
 
-                                    <PopText  endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger} className={"topNavBar__phoneNumber"}>
-                                        909-528-5364
-                                    </PopText>
-                                </div>
+                                    <Button
+                                        href={pageToPathName["ContactUsPage"]}
+                                        size={"small"}
+                                        variant="contained"
+                                        className={"topNavBar__phoneNumber"}
+                                        style={
+                                            {
+                                                backgroundColor: "transparent",
+                                                border: '1px solid white',
+                                                borderRadius: 0,
+                                                justifySelf: "flex-end",
+                                                marginRight: "10px",
+                                                padding: "5px"
+                                            }}>
+
+                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger}
+                                                 className={"topNavBar__phoneNumber"}>
+                                            909-528-5364
+                                        </PopText>
+                                    </Button>
+
 
                                 <div key={"right"} style={{justifySelf: "flex-end", marginLeft: "10px"}}>
                                     <IconButton onClick={toggleDrawer(true)} edge="start" style={{}}
