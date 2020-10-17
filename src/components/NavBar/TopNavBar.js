@@ -33,6 +33,7 @@ import {useTheme} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {FaPhoneAlt} from "react-icons/fa";
 import Fab from '@material-ui/core/Fab';
+import { useLocation } from 'react-router-dom'
 
 function ElevationScroll({window, children, setTrigger}) {
     //const {children, window, setTrigger} = props;
@@ -83,15 +84,24 @@ const useStyles = makeStyles({
 });
 
 
-const TopNavBar = (props) => {
+const TopNavBar = ({children, window} ) => {
     const styles = useStyles();
-
-    const {children, window} = props;
+ const location = useLocation();
+  console.log(location.pathname);
+    //const {children, window} = props;
     const [isDrawerOpen, setDrawerOpen] = useState(false);
     const [trigger, setTrigger] = useState(false);
     const ref = useRef();
 
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
+
+    useEffect(()=>{
+            // eslint-disable-next-line eqeqeq
+        if (location.pathname === pageToPathName["ContactUsPage"]){
+
+        }
+        },
+        [location.pathname]);
 
     useEffect(() => {
         console.log(mobileBreak)
@@ -174,14 +184,14 @@ const TopNavBar = (props) => {
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
                                 {mobileBreak ?
-                                    <Fab color={"default"} aria-label="add" style={{position: 'fixed',bottom:15,right:10, color:colorScheme.primary.primary}} href={pageToPathName["ContactUsPage"]}>
+                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab color={"default"} aria-label="add" style={{position: 'fixed',bottom:15,right:10, color:colorScheme.primary.primary}} href={pageToPathName["ContactUsPage"]}>
                                         <FaPhoneAlt/>
                                     </Fab>
                                     //<IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%", padding:0,position: 'fixed',bottom:0}} aria-label="add to shopping cart">
                                     //  <FaPhoneAlt size={14}/>
                                     //</IconButton>
                                     :
-                                    <Button
+                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Button
                                         href={pageToPathName["ContactUsPage"]}
                                         size={"small"}
                                         variant="contained"
