@@ -12,6 +12,7 @@ import {FittedText, StyledText} from "../../components/Text";
 import { useTheme } from '@material-ui/core/styles';
 import {useWindowSize} from "../../components/useWindowSize";
 import {colorScheme} from "../../constants";
+import HomePageBottomHalfInfo from "./HomePageBottomHalfInfo";
 
 function ProfilePicture({mobileBreak}) {
 
@@ -62,36 +63,8 @@ const HomePage = () => {
             <HomePageTopHalfInfo/>
             <DownArrow posnOfContainter={topHalf_bottomPosn}/>
         </div>
-        <div style={{paddingTop: mobileBreak? "45px": "90px", paddingBottom: mobileBreak? "45px": "90px"}} className={"homepage_generalInfo__container_bottom"}>
-           <div style={{
-                width: mobileBreak?"95%": (tabletBreak? "90%":"75%"),
-                display: "flex",
-                justifyContent:'space-between',
-                flexDirection: mobileBreak?"column-reverse":"row",
-
-            }}>
-                <div style={{ width:mobileBreak?"100%":"49%" , color:theme.palette.text.primary,fontFamily: "'scope-one-regular', serif", fontSize:"16px", alignSelf:"flex-start"}}>
-                    {!mobileBreak&&<NameHeading mobileBreak={mobileBreak}/>}
-                    <StyledText mode={"multi"}>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                        fugit,
-                        sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                        quisquam
-                        est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-                        eius
-                        modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-                        veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-                        commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
-                        nihil
-                        molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                    </StyledText>
-                </div>
-               {mobileBreak&&<NameHeading mobileBreak={mobileBreak}/>}
-                <ProfilePicture mobileBreak={mobileBreak}/>
-            </div>
+        <div style={{paddingTop: mobileBreak? "45px": "50px", paddingBottom: mobileBreak? "45px": "50px"}} className={"homepage_generalInfo__container_bottom"}>
+        <HomePageBottomHalfInfo/>
         </div>
     </div>
 
