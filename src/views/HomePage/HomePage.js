@@ -11,21 +11,38 @@ import {useMediaQuery} from "@material-ui/core";
 import {FittedText, StyledText} from "../../components/Text";
 import { useTheme } from '@material-ui/core/styles';
 import {useWindowSize} from "../../components/useWindowSize";
+import {colorScheme} from "../../constants";
 
 function ProfilePicture({mobileBreak}) {
 
-    return <div style={{width: mobileBreak ? "100%" : "50%",height:mobileBreak ? "40%": "50%"}} className={"homepage__img_container"}><img
-        className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/></div>
+    return <div style={{width: mobileBreak ? "100%" : "49%",height:mobileBreak ? "50%": "100%", borderRadius:'1%'}} className={"homepage__img_container"}><img
+        style={{borderRadius:'1%'}} className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/></div>
 
 
 }
 
 
+const NameHeading = ({mobileBreak})=>{
+        const theme = useTheme();
 
+    return (
+        <div style={{width:'100%',marginTop:mobileBreak?'45px':'10px',marginBottom:'12.5px',fontFamily: "'raleway-regular', serif", fontSize:"16px", paddingTop:"12.5px", borderTop:`1px solid ${theme.palette.text.secondary}`}}>
+            <StyledText style={{fontSize:"25px",fontWeight:'bold',fontFamily: "'raleway-regular', serif",color:colorScheme.primary.dark}}>
+                Aaron Malki
+            </StyledText>
+            <StyledText style={{fontFamily: "'raleway-thin', serif",color:colorScheme.primary.primary, marginTop:"3px"}}>
+                CEO, Founder
+            </StyledText>
+        </div>
+    )
+
+};
 const HomePage = () => {
     const id = "id123";
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
+    const tabletBreak = useMediaQuery("only screen and (max-width: 1050px)");
+
     const theme = useTheme();
 
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
@@ -45,15 +62,16 @@ const HomePage = () => {
             <HomePageTopHalfInfo/>
             <DownArrow posnOfContainter={topHalf_bottomPosn}/>
         </div>
-        <div className={"homepage_generalInfo__container_bottom"}>
+        <div style={{paddingTop: mobileBreak? "45px": "90px", paddingBottom: mobileBreak? "45px": "90px"}} className={"homepage_generalInfo__container_bottom"}>
            <div style={{
-                border: '1px solid',
-                width: mobileBreak?"95%": "75%",
-                marginTop: mobileBreak? "45px": "90px",
+                width: mobileBreak?"95%": (tabletBreak? "90%":"75%"),
                 display: "flex",
-                flexDirection: mobileBreak?"column-reverse":"row"
+                justifyContent:'space-between',
+                flexDirection: mobileBreak?"column-reverse":"row",
+
             }}>
-                <div style={{ width:mobileBreak?"100%":"50%" ,border: '1px solid yellow', color:theme.palette.text.secondary,fontFamily: "'raleway-regular', serif", fontSize:"16px", alignSelf:"flex-start"}}>
+                <div style={{ width:mobileBreak?"100%":"49%" , color:theme.palette.text.primary,fontFamily: "'scope-one-regular', serif", fontSize:"16px", alignSelf:"flex-start"}}>
+                    {!mobileBreak&&<NameHeading mobileBreak={mobileBreak}/>}
                     <StyledText mode={"multi"}>
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                         laudantium,
@@ -71,6 +89,7 @@ const HomePage = () => {
                         molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
                     </StyledText>
                 </div>
+               {mobileBreak&&<NameHeading mobileBreak={mobileBreak}/>}
                 <ProfilePicture mobileBreak={mobileBreak}/>
             </div>
         </div>
