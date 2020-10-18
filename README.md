@@ -38,6 +38,28 @@ Next
     - [ ] The divider between name and logo is gone now figure out why. 
 - [ ] Set up firebase including hosting s.t can share progress
 
+### 10.16.2020 -9hrs
+- [x] Set up firebase including hosting s.t can share progress
+- [ ] On Navbar - drawer add some highlighting for page currently on, (can get this info easily from work identiy path of route)
+    - [x] The divider between name and logo is gone now figure out why. 
+- [x] Add the down arrow for more content like -> https://www.yourmyrtlebeachproperty.com
+- [ ] Add social media link like -> http://www.pogofskygroup.com/
+    - Think i want the actual colors: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwebdesign.tutsplus.com%2Ftutorials%2Ftwitter-facebook-instagram-adding-social-media-icons-to-wordpress--cms-34471&psig=AOvVaw0R8_1p7ZHvrAJZRIFcuqVb&ust=1603020734609000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjDo-HDu-wCFQAAAAAdAAAAABAD
+    - Top right format? https://coschedule.com/blog/social-media-buttons/
+    - https://www.google.com/url?sa=i&url=https%3A%2F%2Ffreshdesignweb.com%2Fcss3-social-media-buttons%2F&psig=AOvVaw0j-DsdPD62NVco5zsYyAiz&ust=1603021216281000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiA-9PFu-wCFQAAAAAdAAAAABAE
+    - Reading material: https://ux.stackexchange.com/questions/24828/suitable-positions-for-social-links-on-a-website
+- [x] Get weird effect where background stays same but everything else moves its from http://www.theaverygroupwinecountry.com
+- [x] Navbar pops when scrolling - from http://www.theaverygroupwinecountry.com
+- [x] Make top part of group home mobile friendly, disable contact when on contacts page
+
+Next 
+- Do unchekced from previous
+- Finish off homepage
+    - Add bio page in HomePage 
+    - Add Footer part
+
+Notes:
+Started the social media but couldnt fix it quick enout
 # Firebase
 
 **Adding Project**
