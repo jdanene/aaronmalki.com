@@ -8,13 +8,13 @@ import {CardMedia} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Image from 'react-image-resizer';
 import {useMediaQuery} from "@material-ui/core";
-import {FittedText} from "../../components/Text";
+import {FittedText, StyledText} from "../../components/Text";
 import { useTheme } from '@material-ui/core/styles';
 import {useWindowSize} from "../../components/useWindowSize";
 
 function ProfilePicture({mobileBreak}) {
 
-    return <div style={{width: mobileBreak ? "100%" : "50%",height:mobileBreak ? "50%": "50%"}} className={"homepage__img_container"}><img
+    return <div style={{width: mobileBreak ? "100%" : "50%",height:mobileBreak ? "40%": "50%"}} className={"homepage__img_container"}><img
         className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/></div>
 
 
@@ -47,14 +47,14 @@ const HomePage = () => {
         </div>
         <div className={"homepage_generalInfo__container_bottom"}>
            <div style={{
-                border: '1px solid blue',
+                border: '1px solid',
                 width: mobileBreak?"95%": "75%",
                 marginTop: mobileBreak? "45px": "90px",
                 display: "flex",
                 flexDirection: mobileBreak?"column-reverse":"row"
             }}>
-                <div style={{width:mobileBreak?"100%":"50%" ,border: '1px solid yellow', color:theme.palette.text.secondary,fontFamily: "'raleway-regular', serif", fontSize:"16px"}}>
-                    <FittedText mode={"multi"}>
+                <div style={{ width:mobileBreak?"100%":"50%" ,border: '1px solid yellow', color:theme.palette.text.secondary,fontFamily: "'raleway-regular', serif", fontSize:"16px", alignSelf:"flex-start"}}>
+                    <StyledText mode={"multi"}>
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                         laudantium,
                         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -69,7 +69,7 @@ const HomePage = () => {
                         commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
                         nihil
                         molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                    </FittedText>
+                    </StyledText>
                 </div>
                 <ProfilePicture mobileBreak={mobileBreak}/>
             </div>
