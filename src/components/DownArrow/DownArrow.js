@@ -21,12 +21,14 @@ import {Button, ButtonBase} from "@material-ui/core";
 import * as Scroll from 'react-scroll';
 import {Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
 import {useMediaQuery} from "@material-ui/core";
+
+
 //https://react-icons.github.io/search
 
 const useStyles = makeStyles({
     downArrow_container: {
         position: "absolute",
-        bottom: 5,
+        bottom: 10,
         justifySelf: "flex-end",
         borderRadius: "50%",
         width: "65px",

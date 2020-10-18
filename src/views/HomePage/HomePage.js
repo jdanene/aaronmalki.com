@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Image from 'react-image-resizer';
 import {useMediaQuery} from "@material-ui/core";
 import {FittedText} from "../../components/Text";
-
+import { useTheme } from '@material-ui/core/styles';
 
 function ProfilePicture({mobileBreak}) {
 
@@ -26,6 +26,7 @@ const HomePage = () => {
     const inputRef = useRef();
     const switchCount = useWindowDimensions("id123");
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
+    const theme = useTheme();
 
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
 
@@ -56,7 +57,7 @@ const HomePage = () => {
                 display: "flex",
                 flexDirection: mobileBreak?"column-reverse":"row"
             }}>
-                <div style={{width:mobileBreak?"100%":"50%" ,border: '1px solid yellow'}}>
+                <div style={{width:mobileBreak?"100%":"50%" ,border: '1px solid yellow', color:theme.palette.text.secondary,fontFamily: "'raleway-regular', serif", fontSize:"16px"}}>
                     <FittedText mode={"multi"}>
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                         laudantium,
