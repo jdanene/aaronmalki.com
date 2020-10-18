@@ -10,10 +10,11 @@ import Image from 'react-image-resizer';
 import {useMediaQuery} from "@material-ui/core";
 import {FittedText} from "../../components/Text";
 import { useTheme } from '@material-ui/core/styles';
+import {useWindowSize} from "../../components/useWindowSize";
 
 function ProfilePicture({mobileBreak}) {
 
-    return <div style={{width: mobileBreak ? "100%" : "50%",height:mobileBreak ? "50%": "100vh"}} className={"homepage__img_container"}><img
+    return <div style={{width: mobileBreak ? "100%" : "50%",height:mobileBreak ? "50%": "50%"}} className={"homepage__img_container"}><img
         className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/></div>
 
 
@@ -24,16 +25,11 @@ function ProfilePicture({mobileBreak}) {
 const HomePage = () => {
     const id = "id123";
     const inputRef = useRef();
-    const switchCount = useWindowDimensions("id123");
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
     const theme = useTheme();
 
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
 
-    useEffect(() => {
-        console.log(switchCount)
-
-    }, [switchCount]);
 
     useEffect(() => {
 

@@ -143,8 +143,8 @@ const TopNavBar = ({children, window} ) => {
                                 <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
 
 
-                                    <PopText endFontSize={!mobileBreak ? "16px" : "10.5px"}
-                                             startFontSize={!mobileBreak ? "18px" : "11px"} trigger={trigger}
+                                    <PopText endFontSize={!mobileBreak ? "16px" : "14px"}
+                                             startFontSize={!mobileBreak ? "18px" : "15px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif", fontWeight: "bold", letterSpacing:"1.5px"}}>
 
                                         Aaron Malki
@@ -166,8 +166,8 @@ const TopNavBar = ({children, window} ) => {
                                     alignContent: 'center',
                                     margin: "0px 0px 0px 5px"
                                 }}>
-                                    <PopText endFontSize={!mobileBreak ? "16px" : "12.5px"}
-                                             startFontSize={!mobileBreak ? "18px" : "12.5px"} trigger={trigger}
+                                    <PopText endFontSize={!mobileBreak ? "16px" : "14px"}
+                                             startFontSize={!mobileBreak ? "18px" : "15px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>

@@ -21,8 +21,9 @@ import {Button, ButtonBase} from "@material-ui/core";
 import * as Scroll from 'react-scroll';
 import {Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
 import {useMediaQuery} from "@material-ui/core";
+import {useWindowSize} from "../useWindowSize";
 
-
+const PAGE_HEIGHT = window.innerHeight;
 //https://react-icons.github.io/search
 
 const useStyles = makeStyles({
@@ -56,6 +57,7 @@ const DownArrow = ({posnOfContainter}) => {
     const [posn, setPosn] = useState(window.pageYOffset);
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
+    const {height} = useWindowSize();
 
     useEffect(() => {
         const invtl = setInterval(() => {
@@ -111,7 +113,7 @@ const DownArrow = ({posnOfContainter}) => {
         // checks if we have a target position to scroll to, otherwise scross to bottom of current container
         //inputRef.current.offsetY
         if (posnOfContainter !== null) {
-            scroll.scrollTo(posnOfContainter);
+            scroll.scrollTo(height -28);
 
         }
 
@@ -125,7 +127,7 @@ const DownArrow = ({posnOfContainter}) => {
             ref={inputRef}
             onClick={onPress}
             focusRipple
-            className={classes.downArrow_container} style={{border: !mobileBreak&&`3px solid rgba(112,134,144,.85)`}}
+            className={classes.downArrow_container} style={{border: !mobileBreak && `3px solid rgba(112,134,144,.85)`}}
         >
             {/*size={30} color='aliceblue' style={{ ... }} (in pixels)*/}
             <animated.div className="script-bf-box" style={{transform: radians.interpolate(interp(0))}}>
