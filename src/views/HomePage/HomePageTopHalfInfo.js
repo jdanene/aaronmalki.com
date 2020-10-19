@@ -15,14 +15,14 @@ const HomePageTopHalfInfo = () => {
 
     return <div style={{
         border: `1px solid grey`,
-        height: "30vh",
+        height: "40vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "5px"
     }}>
 
-        <div style={{bottom: 0, position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
+        <div style={{ bottom: 0, position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
             <div style={{maxWidth:"500px",width: "60vw", justifyContent:"center", alignItems:"center",border: `1px solid grey`}}>
                 <FittedText style={{ fontFamily: "scope-one-regular"}}>
                     Malki Real Estate <br/>
@@ -38,6 +38,7 @@ const HomePageTopHalfInfo = () => {
                     position:"relative",
                     marginTop: "40px",
                     fontFamily: "airbnb-book",
+
                 }}>
                     View Our Open Homes
                 </Button>
