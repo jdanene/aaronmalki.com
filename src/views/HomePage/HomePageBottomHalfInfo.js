@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
             //you want this to be the same as the backgroundColor above
             color: "#0e76a8",
-            backgroundColor: "rgba(112, 134, 144,.05)",
+            backgroundColor: "rgba(112, 134, 144,.1)",
             border: ".1px solid rgba(0,0,0,.1)",
             boxShadow: "1.3px 1.3px rgba(0,0,0,.05)"
 
@@ -35,9 +35,12 @@ const useStyles = makeStyles({
     icon: {
         "&:hover": {
             //you want this to be the same as the backgroundColor above
-            backgroundColor: "white",
+            backgroundColor: "transparent",
         },
-        backgroundColor: "white"
+        backgroundColor: "transparent",
+        position: "absolute",
+        top:6.9,
+        left:7.6
     }
 
 });
@@ -79,8 +82,10 @@ const NameHeading = ({mobileBreak}) => {
 
                 <Link href={"https://www.linkedin.com/in/aaron-malki-761b3165/"}>
                     <Avatar className={classes.icon_container}>
-                        <LinkedIn style={{backgroundColor: 'transparent'}} className={classes.icon}
+                        <div style={{backgroundColor: "white",height:"17.5px", width:"16.3px" }}>
+                        <LinkedIn className={classes.icon}
                                   href={"https://www.linkedin.com/in/aaron-malki-761b3165/"}/>
+                        </div>
                     </Avatar>
                 </Link>
             </div>
