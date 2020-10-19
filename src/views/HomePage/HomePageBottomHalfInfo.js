@@ -20,15 +20,20 @@ function ProfilePicture({mobileBreak}) {
 
 }
 
-
+// Shadows: https://codepen.io/sdthornton/pen/wBZdXq
 const useStyles = makeStyles({
     icon_container: {
+        "&:hover": {
+            //you want this to be the same as the backgroundColor above
+            backgroundColor: "rgba(112, 134, 144,.15)",
+            boxShadow: '0 1.5px 3.5px rgba(0,0,0,0.12), 0 1.5px 2.5px rgba(0,0,0,0.24)'
+
+        },
 
             //you want this to be the same as the backgroundColor above
             color: "#0e76a8",
             backgroundColor: "rgba(112, 134, 144,.1)",
-            border: ".1px solid rgba(0,0,0,.1)",
-            boxShadow: "1.3px 1.3px rgba(0,0,0,.05)"
+              boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 
     },
 
@@ -39,8 +44,8 @@ const useStyles = makeStyles({
         },
         backgroundColor: "transparent",
         position: "absolute",
-        top:6.9,
-        left:7.6
+        top:7.9,
+        left:7.9
     }
 
 });

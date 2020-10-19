@@ -22,7 +22,7 @@ const HomePageTopHalfInfo = () => {
         padding: "5px"
     }}>
 
-        <div style={{display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
+        <div style={{bottom: 0, position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
             <div style={{maxWidth:"500px",width: "60vw", justifyContent:"center", alignItems:"center",border: `1px solid grey`}}>
                 <FittedText style={{ fontFamily: "scope-one-regular"}}>
                     Malki Real Estate <br/>
