@@ -56,12 +56,14 @@ const NameHeading = ({mobileBreak}) => {
             flexDirection: "column",
             display: "flex",
             width: '100%',
-            marginTop: mobileBreak ? '45px' : '10px',
+            marginTop: mobileBreak ? '45px' : '0px',
             marginBottom: '12.5px',
             fontFamily: "'raleway-regular', serif",
             fontSize: "16px",
-            paddingTop: "12.5px",
-            borderTop: `1px solid ${theme.palette.text.secondary}`
+            paddingTop:mobileBreak? "12.5px":"0px",
+            borderTop: `1px solid rgba(27, 48, 57,${mobileBreak? ".25":"0"})`,
+            paddingBottom: "12.5px",
+            borderBottom:  `1px solid rgba(27, 48, 57,${mobileBreak? "0":".25"})`
         }}>
             <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>
                 <StyledText style={{
