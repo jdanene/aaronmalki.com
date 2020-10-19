@@ -23,21 +23,21 @@ function ProfilePicture({mobileBreak}) {
 
 const useStyles = makeStyles({
     icon_container: {
-        "&:hover": {
+
             //you want this to be the same as the backgroundColor above
             color: "#0e76a8",
-            backgroundColor: "rgba(0,0,0,.05)",
+            backgroundColor: "rgba(112, 134, 144,.05)",
             border: ".1px solid rgba(0,0,0,.1)",
             boxShadow: "1.3px 1.3px rgba(0,0,0,.05)"
-        },
-        backgroundColor:"rgba(112,134,144,.40)"
+
     },
 
     icon: {
         "&:hover": {
             //you want this to be the same as the backgroundColor above
             backgroundColor: "white",
-        }
+        },
+        backgroundColor: "white"
     }
 
 });
