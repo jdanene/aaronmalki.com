@@ -24,7 +24,7 @@ const HomePageTopHalfInfo = () => {
 
         <div style={{ bottom: 0, position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
             <div style={{maxWidth:"500px",width: "60vw", justifyContent:"center", alignItems:"center",border: `1px solid grey`}}>
-                <FittedText style={{ fontFamily: "scope-one-regular"}}>
+                <FittedText style={{ fontFamily: "scope-one-regular", display:"flex"}}>
                     Malki Real Estate <br/>
                     Unparalled Success.
                 </FittedText>
