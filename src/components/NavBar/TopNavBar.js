@@ -34,6 +34,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {FaPhoneAlt} from "react-icons/fa";
 import Fab from '@material-ui/core/Fab';
 import { useLocation } from 'react-router-dom'
+import {VerticalDivider} from "../VerticalDivider";
 
 function ElevationScroll({window, children, setTrigger}) {
     //const {children, window, setTrigger} = props;
@@ -143,20 +144,15 @@ const TopNavBar = ({children, window} ) => {
                                 <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
 
 
-                                    <PopText endFontSize={!mobileBreak ? "16px" : "14px"}
-                                             startFontSize={!mobileBreak ? "18px" : "15px"} trigger={trigger}
+                                    <PopText endFontSize={!mobileBreak ? "16px" : "13.5px"}
+                                             startFontSize={!mobileBreak ? "18px" : "14px"} trigger={trigger}
                                              style={{fontFamily: "raleway-thin, serif", fontWeight: "bold", letterSpacing:"1.5px"}}>
 
                                         Aaron Malki
                                     </PopText>
                                 </Button>
 
-                                <div style={{
-                                    height: "100%",
-                                    minHeight: "30px",
-                                    borderLeft: "1px solid white",
-                                    backgroundColor: "white"
-                                }}/>
+                                <VerticalDivider/>
 
                                 <div style={{
                                     height: "100%",

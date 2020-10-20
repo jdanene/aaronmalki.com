@@ -3,6 +3,14 @@ $nav-height: 60px;
 $tablet-break: 960px;
 $large-tablet-break: 1280px;
 
+$primary-primary: "#445963";
+$primary-light: "#708690";
+$primary-dark: "#1b3039";
+$secondary-primary: "#f48fb1";
+$secondary-light: "#ffc1e3";
+$secondary-dark: "#bf5f82";
+
+
 @font-face {
   font-family: "source-sans-pro-regular";
   src: url("./resources/fonts/SourceSansPro-Regular.ttf") format("truetype") ;

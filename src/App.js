@@ -19,6 +19,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import {SocialMediaButtons} from "./components/SocialMediaButtons";
+import {Footer} from "./components/Footer";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyDb3T9-Cd7yQynA_W-mCldk29o7ALEcf2A",
@@ -72,6 +73,8 @@ function App() {
                                 <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
                             </Switch>
                         </div>
+
+                        <Footer/>
                     </div>
 
                 </AppContextProvider>
