@@ -59,9 +59,11 @@ const HomePage = () => {
     //https://www.pluralsight.com/tech-blog/getting-size-and-position-of-an-element-in-react/
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div className={"homepage__container"}>
-        <div id={"id123"} ref={inputRef} className={"homepage_generalInfo__container_top"}>
-            <HomePageTopHalfInfo/>
-            <DownArrow posnOfContainter={topHalf_bottomPosn}/>
+        <div id={"id123"} ref={inputRef} style={{  height: mobileBreak? '60vh': '110vh', minHeight: !mobileBreak&&'500px'}} className={"homepage_generalInfo__container_top"}>
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center',justifyContent:'space-between'}}>
+            <HomePageTopHalfInfo mobileBreak={mobileBreak}/>
+            {!mobileBreak&&<DownArrow posnOfContainter={topHalf_bottomPosn} />}
+            </div>
         </div>
         <div style={{paddingTop: mobileBreak? "45px": "50px", paddingBottom: mobileBreak? "45px": "50px"}} className={"homepage_generalInfo__container_bottom"}>
         <HomePageBottomHalfInfo/>

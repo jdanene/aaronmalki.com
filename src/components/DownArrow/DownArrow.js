@@ -28,8 +28,7 @@ const PAGE_HEIGHT = window.innerHeight;
 
 const useStyles = makeStyles({
     downArrow_container: {
-        position: "absolute",
-        bottom: 10,
+        marginTop: '45px',
         justifySelf: "flex-end",
         borderRadius: "50%",
         width: "65px",
