@@ -81,7 +81,10 @@ const styles = theme => ({
         }
     },
     socialIcon_container:{
-        marginBottom:'10px'
+        marginBottom:'10px',
+        display:'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     link: {
         cursor: "Pointer",
@@ -199,7 +202,7 @@ function Footer(props) {
             />
             <div className={classes.footerInner}>
                 <Grid container spacing={isWidthUp("md", width) ? 10 : 5} style={{ flexShrink:1}}>
-                    <Grid item xs={12} md={5} lg={4}>
+                    <Grid item xs={12} md={4} lg={3} >
                         <form>
                             <Box display="flex" flexDirection="column">
                                 {/*Sociual Media*/}
@@ -216,6 +219,8 @@ function Footer(props) {
                                         </Box>
                                     ))}
                                 </Box>
+
+                                {/*
                                 <Box mb={1}>
                                     <TextField
                                         variant="outlined"
@@ -238,6 +243,7 @@ function Footer(props) {
                                 >
                                     Send Message
                                 </ColoredButton>
+                                */}
                             </Box>
                         </form>
                     </Grid>

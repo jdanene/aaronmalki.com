@@ -21,7 +21,7 @@ const TopItem = ({page, isSelected}) => {
     console.log(`TopItem(page=${page}, selected=${isSelected}`);
 
     return (
-        <Link to={pageToPathName[page]} className={"drawer_link_container"}>
+        <Link  key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
             <ListItem
                 style={{display: "flex"}}
                 key={page}
@@ -48,7 +48,7 @@ TopItem.propTypes = {
 
 const BottomItem = ({page, isSelected = false}) => {
     return (
-        <Link to={pageToPathName[page]} className={"drawer_link_container"}>
+        <Link key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
             <ListItem key={page}>
                 <ListItemIcon> <MailIcon/> </ListItemIcon>
                 {isSelected ?

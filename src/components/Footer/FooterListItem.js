@@ -153,7 +153,7 @@ export default function FooterListItem() {
 
     return (
 
-        <Grid item xs={12} sm={12} md={3} lg={2}  key={footer[0].title} >
+        <Grid item xs={12} sm={12} md={4} lg={3}  key={footer[0].title} >
             <div style={{width:'100%', borderTop: `1px solid ${colorScheme.primary.primary}`,marginBottom:'10px'}}>
             </div>
             {/*

@@ -21,7 +21,7 @@ import "firebase/firestore";
 import {SocialMediaButtons} from "./components/SocialMediaButtons";
 import {Footer} from "./components/Footer";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyDb3T9-Cd7yQynA_W-mCldk29o7ALEcf2A",
     authDomain: "the-malki-site.firebaseapp.com",
     databaseURL: "https://the-malki-site.firebaseio.com",
