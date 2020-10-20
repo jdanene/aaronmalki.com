@@ -113,7 +113,7 @@ const footer = [
 
     {
         title: 'Resources',
-        description: [['Listings', "CurrentListingsPage"],['Buyers','BuyersPage'], ['Sellers','SellersPage'], ['Contact Us','ContactUsPage']],
+        description: [['Listings', "CurrentListingsPage"],['Buyers','BuyersPage'], ['Sellers','SellersPage'], ['Contact Us','ContactUsPage'], ['Home','HomePage']],
     }
 ];
 
