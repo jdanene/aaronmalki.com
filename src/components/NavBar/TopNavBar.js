@@ -35,6 +35,7 @@ import {FaPhoneAlt} from "react-icons/fa";
 import Fab from '@material-ui/core/Fab';
 import { useLocation } from 'react-router-dom'
 import {VerticalDivider} from "../VerticalDivider";
+import {pathToPageName} from "../../constants/contants";
 
 function ElevationScroll({window, children, setTrigger}) {
     //const {children, window, setTrigger} = props;
@@ -81,6 +82,9 @@ const useStyles = makeStyles({
     },
     phoneNumber: {
         fontFamily: "raleway-thin, serif"
+    },
+    drawerItem:{
+        background:colorScheme.secondary.primary
     }
 });
 
@@ -98,7 +102,9 @@ const TopNavBar = ({children, window} ) => {
 
     useEffect(()=>{
             // eslint-disable-next-line eqeqeq
+        console.log(`TopNavBar(path=${location.pathname}, page=${pathToPageName[location.pathname]})`)
         if (location.pathname === pageToPathName["ContactUsPage"]){
+
 
         }
         },
@@ -217,12 +223,12 @@ const TopNavBar = ({children, window} ) => {
                                     </IconButton>
 
                                     <Drawer
-
+                                        classes={{ paper: styles.drawerItem}}
                                         anchor={"right"}
                                         open={isDrawerOpen}
                                         onClose={toggleDrawer(false)}
                                     >
-                                        {DrawerNavOptions({toggleDrawerCallback: toggleDrawer})}
+                                        <DrawerNavOptions toggleDrawerCallback={toggleDrawer} pageSelected={pathToPageName[location.pathname]}/>
                                     </Drawer>
                                 </div>
                             </div>

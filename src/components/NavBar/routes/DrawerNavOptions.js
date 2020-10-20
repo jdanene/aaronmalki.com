@@ -13,14 +13,29 @@ import List from '@material-ui/core/List';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import PropTypes from "prop-types";
-import {pageToPathName, pageToPageName} from "../../../constants";
+import {pageToPathName, pageToPageName, colorScheme} from "../../../constants";
+import "./DrawerNavOptions.scss"
 
-const TopItem = ({page, isSelected = false}) => {
+
+const TopItem = ({page, isSelected}) => {
+    console.log(`TopItem(page=${page}, selected=${isSelected}`);
+
     return (
-        <Link to={pageToPathName[page]}>
-            <ListItem button key={page} selected={isSelected}>
-                <ListItemText primary={pageToPageName[page]}/>
+        <Link to={pageToPathName[page]} className={"drawer_link_container"}>
+            <ListItem
+                style={{display: "flex"}}
+                key={page}
+
+            >
+                {isSelected ?
+                    <ListItemText primary={pageToPageName[page]} className={"drawer_link"}
+                                  style={{color: colorScheme.primary.dark}}/>
+
+                    :
+
+                    <ListItemText primary={pageToPageName[page]} className={"drawer_link"}/>}
             </ListItem>
+
         </Link>
     )
 };
@@ -33,10 +48,16 @@ TopItem.propTypes = {
 
 const BottomItem = ({page, isSelected = false}) => {
     return (
-        <Link to={pageToPathName[page]}>
-            <ListItem button key={page} selected={isSelected}>
+        <Link to={pageToPathName[page]} className={"drawer_link_container"}>
+            <ListItem key={page}>
                 <ListItemIcon> <MailIcon/> </ListItemIcon>
-                <ListItemText primary={pageToPageName[page]}/>
+                {isSelected ?
+                    <ListItemText primary={pageToPageName[page]} className={"drawer_link"}
+                                  style={{color: colorScheme.primary.dark, marginLeft: "-15px"}}/>
+
+                    :
+                    <ListItemText primary={pageToPageName[page]} className={"drawer_link"}
+                                  style={{marginLeft: "-15px"}}/>}
             </ListItem>
         </Link>
     )
@@ -53,20 +74,20 @@ const DrawerNavOptions = ({toggleDrawerCallback, pageSelected}) => {
     const bottomRouteTitles = ['ContactUsPage'];
 
     return (
-            <div
-                style={{width: 'auto'}}
-                role="presentation"
-                onClick={toggleDrawerCallback(false)}
-                onKeyDown={toggleDrawerCallback(false)}
-            >
-                <List>
-                    {topRouteTitles.map((page) => (<TopItem page={page} isSelected={page === pageSelected}/>))}
-                </List>
-                <Divider/>
-                <List>
-                    {bottomRouteTitles.map((page) => (<BottomItem page={page} isSelected={page === pageSelected}/>))}
-                </List>
-            </div>
+        <div
+            style={{width: 'auto'}}
+            role="presentation"
+            onClick={toggleDrawerCallback(false)}
+            onKeyDown={toggleDrawerCallback(false)}
+        >
+            <List>
+                {topRouteTitles.map((page) => (<TopItem page={page} isSelected={page === pageSelected}/>))}
+            </List>
+            <Divider/>
+            <List>
+                {bottomRouteTitles.map((page) => (<BottomItem page={page} isSelected={page === pageSelected}/>))}
+            </List>
+        </div>
     )
 };
 

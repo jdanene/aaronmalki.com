@@ -8,9 +8,9 @@ export const colorScheme = {
         dark: "#1b3039"
     },
     secondary: {
-        primary: "#f48fb1",
-        light: "#ffc1e3",
-        dark: "#bf5f82"
+        primary: "#fafafa",
+        light: "#ffffff",
+        dark: "#c7c7c7"
     }
 
 };

@@ -1,0 +1,99 @@
+@import "../../../variables";
+
+//$primary-primary: "#445963";
+//$primary-light: "#708690";
+//$primary-dark: "#1b3039";
+//$secondary-primary: "#f48fb1";
+//$secondary-light: "#ffc1e3";
+//$secondary-dark: "#bf5f82";
+
+.drawer_link_container{
+    font-family: "raleway-regular", serif;
+    text-decoration: none;
+
+}
+
+.drawer_link {
+  font-family: "raleway-regular", serif;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  display: block;
+  padding: 5px 0;
+  margin: 0 12px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.1s, background-color 0.1s;
+  color: rgba(112,134,144,.5);
+}
+.drawer_link:hover {
+  color: #1b3039;
+}
+.drawer_link:focus, .drawer_link:active {
+  color: #1b3039;
+}
+
+.drawer_link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100%;
+  height: 3px;
+  width: 100%;
+  background-color: rgba(112,134,144,.85);
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: scale(0, 1);
+          transform: scale(0, 1);
+  transition: color 0.1s, -webkit-transform 0.2s ease-out;
+  transition: color 0.1s, transform 0.2s ease-out;
+  transition: color 0.1s, transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+}
+
+.drawer_link:active::before {
+  background-color: rgba(112,134,144,.85);
+}
+
+.drawer_link:hover::before,
+.drawer_link:focus::before {
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+
+
+.drawer_link_selected{
+  color: #1b3039;
+}
+
+.drawer_link_selected::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100%;
+  height: 3px;
+  width: 100%;
+  background-color: rgba(112,134,144,.85);
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: scale(0, 1);
+          transform: scale(0, 1);
+  transition: color 0.1s, -webkit-transform 0.2s ease-out;
+  transition: color 0.1s, transform 0.2s ease-out;
+  transition: color 0.1s, transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+}
+
+.drawer_link_selected:active::before {
+  background-color: rgba(112,134,144,.85);
+}
+
+.drawer_link_selected:hover::before,
+.drawer_link_selected:focus::before {
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+
+

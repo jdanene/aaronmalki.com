@@ -16,6 +16,17 @@ export const pageToPageName = {
     'ContactUsPage': 'Contact Us'
 };
 
+export const pathToPageName = {
+    "/": 'HomePage',
+    "/listings": 'CurrentListingsPage',
+    '/buy': 'BuyersPage',
+    '/sell': 'SellersPage',
+    '/contact': 'ContactUsPage'
+};
+
+
+
+
 export const navBarParams = {
     innerNavbarHeight: "45px"
 }
