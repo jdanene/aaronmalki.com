@@ -20,6 +20,10 @@ import "firebase/auth";
 import "firebase/firestore";
 import {SocialMediaButtons} from "./components/SocialMediaButtons";
 import {Footer} from "./components/Footer";
+import {TransitionGroup, CSSTransition} from "react-transition-group";
+import {useLocation} from 'react-router-dom'
+
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
     apiKey: "AIzaSyDb3T9-Cd7yQynA_W-mCldk29o7ALEcf2A",
@@ -33,7 +37,10 @@ export const firebaseConfig = {
 };
 
 
-function App() {
+function App({location}) {
+
+
+    // const location = useLocation();
 
     const theme = createMuiTheme({
         palette: {
@@ -42,7 +49,7 @@ function App() {
                 light: colorScheme.primary.light,
                 dark: colorScheme.primary.dark
             },
-            secondary: {main:"#634459"}
+            secondary: {main: "#634459"}
         }
     });
 
@@ -64,14 +71,20 @@ function App() {
 
                         <div className={"app_container_main_body"}>
                             {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
-                            <Switch>
-                                <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
-                                <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
-                                <Route path={pageToPathName["CurrentListingsPage"]} exact
-                                       component={CurrentListingsPage}/>
-                                <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
-                                <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
-                            </Switch>
+                            <TransitionGroup>
+                                <CSSTransition
+                                    timeout={{enter: 300, exit: 300}}
+                                >
+                                    <Switch>
+                                        <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
+                                        <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
+                                        <Route path={pageToPathName["CurrentListingsPage"]} exact
+                                               component={CurrentListingsPage}/>
+                                        <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
+                                        <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
+                                    </Switch>
+                                </CSSTransition>
+                            </TransitionGroup>
                         </div>
 
                         <Footer/>
