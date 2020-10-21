@@ -77,7 +77,7 @@ const styles = theme => ({
         backgroundColor: "#33383b",
         borderRadius: theme.shape.borderRadius,
         "&:hover": {
-            backgroundColor: theme.palette.primary.light
+            backgroundColor: theme.palette.primary.main,
         }
     },
     socialIcon_container:{
@@ -193,11 +193,11 @@ const socialIcons = [
 ];
 
 function Footer(props) {
-        const mobileBreak = useMediaQuery("only screen and (max-width: 960px)");
+    const mobileBreak = useMediaQuery("only screen and (max-width: 960px)");
 
     const {classes, theme, width} = props;
     return (
-        <footer className="lg-p-top">
+        <footer style={{backgroundColor: theme.palette.primary.light}} >
             <div
             />
             <div className={classes.footerInner}>

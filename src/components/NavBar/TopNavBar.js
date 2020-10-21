@@ -37,7 +37,7 @@ import { useLocation } from 'react-router-dom'
 import {VerticalDivider} from "../VerticalDivider";
 import {pathToPageName} from "../../constants/contants";
 
-function ElevationScroll({window, children, setTrigger}) {
+function ElevationScroll({window, children, setTrigger, triggerActive}) {
     //const {children, window, setTrigger} = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger
     // will default to window.
@@ -54,8 +54,8 @@ function ElevationScroll({window, children, setTrigger}) {
     }, [trigger]);
 
     return React.cloneElement(children, {
-        elevation: trigger ? 4 : 0,
-        style: trigger ? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
+        elevation: triggerActive||trigger ? 4 : 0,
+        style: (triggerActive||trigger )? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
     });
 }
 
@@ -103,7 +103,7 @@ const TopNavBar = ({children, window} ) => {
     useEffect(()=>{
             // eslint-disable-next-line eqeqeq
         console.log(`TopNavBar(path=${location.pathname}, page=${pathToPageName[location.pathname]})`)
-        if (location.pathname === pageToPathName["ContactUsPage"]){
+        if (!(location.pathname === pageToPathName["HomePage"])){
 
 
         }
@@ -125,7 +125,7 @@ const TopNavBar = ({children, window} ) => {
     return (
         <div className={"topNavBar__container"}>
             <CssBaseline/>
-            <ElevationScroll children={children} window={window} setTrigger={setTrigger}>
+            <ElevationScroll children={children} window={window} setTrigger={setTrigger} triggerActive={(!(location.pathname === pageToPathName["HomePage"]))}>
                 <AppBar>
                     <Toolbar style={{/*border: '1px solid yellow'*/}}>
 
@@ -151,7 +151,7 @@ const TopNavBar = ({children, window} ) => {
 
 
                                     <PopText endFontSize={!mobileBreak ? "16px" : "13.5px"}
-                                             startFontSize={!mobileBreak ? "18px" : "14px"} trigger={trigger}
+                                             startFontSize={!mobileBreak ? "18px" : "14px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
                                              style={{fontFamily: "raleway-thin, serif", fontWeight: "bold", letterSpacing:"1.5px"}}>
 
                                         Aaron Malki
@@ -169,7 +169,7 @@ const TopNavBar = ({children, window} ) => {
                                     margin: "0px 0px 0px 5px"
                                 }}>
                                     <PopText endFontSize={!mobileBreak ? "16px" : "14px"}
-                                             startFontSize={!mobileBreak ? "18px" : "15px"} trigger={trigger}
+                                             startFontSize={!mobileBreak ? "18px" : "15px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
                                              style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>
@@ -208,7 +208,7 @@ const TopNavBar = ({children, window} ) => {
                                                 padding: "5px"
                                             }}>
 
-                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={trigger}
+                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
                                                  className={"topNavBar__phoneNumber"}>
                                             909-528-5364
                                         </PopText>

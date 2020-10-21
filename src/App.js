@@ -49,7 +49,11 @@ function App({location}) {
                 light: colorScheme.primary.light,
                 dark: colorScheme.primary.dark
             },
-            secondary: {main: "#634459"}
+            secondary: {
+                main: colorScheme.secondary.primary,
+                light:colorScheme.secondary.light ,
+                dark: colorScheme.secondary.dark
+            }
         }
     });
 
@@ -71,10 +75,7 @@ function App({location}) {
 
                         <div className={"app_container_main_body"}>
                             {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
-                            <TransitionGroup>
-                                <CSSTransition
-                                    timeout={{enter: 300, exit: 300}}
-                                >
+
                                     <Switch>
                                         <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
                                         <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
@@ -83,8 +84,7 @@ function App({location}) {
                                         <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
                                         <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
                                     </Switch>
-                                </CSSTransition>
-                            </TransitionGroup>
+
                         </div>
 
                         <Footer/>

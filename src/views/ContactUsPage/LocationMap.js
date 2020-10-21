@@ -21,58 +21,7 @@ import {VscLocation} from "react-icons/vsc";
 import {BiPhone} from "react-icons/bi";
 import {useMediaQuery} from "@material-ui/core";
 import ColoredButton from "../../components/Button/ColoredButton";
-import {FittedText, StyledText} from "../../components/Text";
-import LocationMap from "./LocationMap";
-import SendMessage from "./SendMessage";
-
-const getInfoWindowString = (place) => `
-    <div>
-      <div style="font-size: 16px;">
-        ${place.name}
-      </div>
-      <div style="font-size: 14px;">
-        <span style="color: grey;">
-        ${place.rating}
-        </span>
-        <span style="color: orange;">${String.fromCharCode(9733).repeat(Math.floor(place.rating))}</span><span style="color: lightgrey;">${String.fromCharCode(9733).repeat(5 - Math.floor(place.rating))}</span>
-      </div>
-      <div style="font-size: 14px; color: grey;">
-        ${place.types[0]}
-      </div>
-      <div style="font-size: 14px; color: grey;">
-        ${'$'.repeat(place.price_level)}
-      </div>
-      <div style="font-size: 14px; color: green;">
-        ${place.opening_hours.open_now ? 'Open' : 'Closed'}
-      </div>
-    </div>`;
-
-// Refer to https://github.com/google-map-react/google-map-react#use-google-maps-api
-const handleApiLoaded = (map, maps, places) => {
-  const markers = [];
-  const infowindows = [];
-
-  places.forEach((place) => {
-    markers.push(new maps.Marker({
-      position: {
-        lat: place.geometry.location.lat,
-        lng: place.geometry.location.lng,
-      },
-      map,
-    }));
-
-    infowindows.push(new maps.InfoWindow({
-      content: getInfoWindowString(place),
-    }));
-  });
-
-  markers.forEach((marker, i) => {
-    marker.addListener('click', () => {
-      infowindows[i].open(map, marker);
-    });
-  });
-};
-
+import {FittedText} from "../../components/Text";
 
 const styles = theme => ({
     footerInner: {
@@ -229,86 +178,60 @@ const styles = theme => ({
     },
 });
 
-
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
 
-const LOS_ANGELES_CENTER = [37.806279, -122.423516];
-const DEFAULT_ZOOM = 13;
-const ContactUsPage = ({classes, theme, width, center, zoom}) => {
-
+const LocationMap = ({classes, theme, width, center, zoom}) => {
     return (
-        <div className={classes.main_container}>
-            <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
-                {/* The map and Location*/}
-                <Grid item
-                      md={4} lg={4} xl={5} sm={5} xs={12}
-                      className={classes.map_container}
-                      direction={"row"}
+        <Grid item
+              md={4} lg={4} xl={5} sm={5} xs={12}
+              className={classes.map_container}
+              direction={"row"}
+        >
+            {/*The Map*/}
+            <Grid item lg={12} md={12} sm={12} xs={12} style={{border: '1px solid green', height: '75%'}}>
+                <GoogleMapReact
+                    bootstrapURLKeys={{key: firebaseConfig.apiKey}}
+                    defaultCenter={center}
+                    defaultZoom={zoom}
                 >
-                    {/*The Map*/}
-                    <Grid item lg={12} md={12} sm={12} xs={12} style={{border: '1px solid green', height: '75%'}}>
-                        <GoogleMapReact
-                            yesIWantToUseGoogleMapApiInternals
-                            defaultCenter={LOS_ANGELES_CENTER}
-                            bootstrapURLKeys={{key: firebaseConfig.apiKey}}
-                            defaultZoom={DEFAULT_ZOOM}
-                        >
-                            <StyledText style={{postion: "absolute", left: 0, top: 0}}>
-                                Do Something here
-                            </StyledText>
-                            <AnyReactComponent
-                                lat={59.955413}
-                                lng={30.337844}
-                                text="My Marker"
-                            />
-                        </GoogleMapReact>
-                    </Grid>
-
-                    {/*The Location*/}
-                    <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
-
-                        <div style={{
-                            border: '1px solid yellow',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            height: "100%",
-                            marginTop: "5%",
-                            marginBottom: "5%"
-
-                        }}>
-                            <div className={classes.credential_container}>
-                                <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
-                            </div>
-
-                            <FittedText className={classes.address}>
-                                891 Beach Steet <br/>
-                                San Francisco CA 94109 <br/>
-                                415.710.5014 <br/>
-                                <a href={"mailto:aaronmalki@malki.com"}
-                                   className={classes.email}> aaronmalki@malki.com </a>
-                            </FittedText>
-                        </div>
-                    </Grid>
-                </Grid>
-
-
-                <SendMessage/>
-
-
+                    <AnyReactComponent
+                        lat={59.955413}
+                        lng={30.337844}
+                        text="My Marker"
+                    />
+                </GoogleMapReact>
             </Grid>
-        </div>)
 
-};
+            {/*The Location*/}
+            <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
 
-ContactUsPage.defaultProps = {
-    center: {
-        lat: 59.95,
-        lng: 30.33
-    },
-    zoom: 11
-};
+                <div style={{
+                    border: '1px solid yellow',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    height: "100%",
+                    marginTop: "5%",
+                    marginBottom: "5%"
 
+                }}>
+                    <div className={classes.credential_container}>
+                        <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
+                    </div>
 
-export default withWidth()(withStyles(styles, {withTheme: true})(ContactUsPage));
+                    <FittedText className={classes.address}>
+                        891 Beach Steet <br/>
+                        San Francisco CA 94109 <br/>
+                        415.710.5014 <br/>
+                        <a href={"mailto:aaronmalki@malki.com"}
+                           className={classes.email}> aaronmalki@malki.com </a>
+                    </FittedText>
+                </div>
+            </Grid>
+        </Grid>
+
+    )
+}
+
+export default withWidth()(withStyles(styles, {withTheme: true})(LocationMap));
