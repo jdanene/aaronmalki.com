@@ -1,38 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import {firebaseConfig} from "../../App";
+import GoogleMapReact from 'google-map-react';
 
-const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 18px;
-  height: 18px;
-  background-color: #000;
-  border: 2px solid #fff;
-  border-radius: 100%;
-  user-select: none;
-  transform: translate(-50%, -50%);
-  cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
-  &:hover {
-    z-index: 1;
-  }
-`;
-
-const Marker = ({ text, onClick }) => (
-  <Wrapper
-    alt={text}
-    onClick={onClick}
-  />
-);
-
-Marker.defaultProps = {
-  onClick: null,
+const position = {
+  lat: 37.772,
+  lng:-122.42351
 };
 
-Marker.propTypes = {
-  onClick: PropTypes.func,
-  text: PropTypes.string.isRequired,
-};
+const Map = props => {
+  return (
+      <div style={{height: '600px', width:'600px'}}>
+    <GoogleMapReact
+     bootstrapURLKeys={firebaseConfig.apiKey }
+     defaultCenter={{lat: position.lat, lng: position.lng}}
+     defaultZoom={18}>
 
-export default Marker;
+       {/* This is the missing part in docs:
+         *
+         * Basically, you only need to add a Child Component that
+         * takes 'lat' and 'lng' Props. And that Component should
+         * returns a text, image, super-awesome-pin (aka, your marker).
+         *
+         */}
+    </GoogleMapReact>
+        </div>
+  )
+}
+
+const Marker3 = props => {
+  return <div className="SuperAwesomePin"></div>
+}
+
+export default Map

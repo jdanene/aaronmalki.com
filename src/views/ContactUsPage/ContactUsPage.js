@@ -24,6 +24,47 @@ import ColoredButton from "../../components/Button/ColoredButton";
 import {FittedText, StyledText} from "../../components/Text";
 import LocationMap from "./LocationMap";
 import SendMessage from "./SendMessage";
+import Marker from "./Marker";
+import Map from "./LocationMap";
+import IntroSection from "../../components/intro/Intro"
+import ContactSection from '../../components/contact-section/ContactSection'
+import MapSection from '../../components/map/Map' // import the map here
+import DisclaimerSection from '../../components/disclaimer/Disclaimer'
+import FooterSection from '../../components/footer2/Footer'
+import MapWithAMakredInfoWindow from "./LocationMap";
+import ExampleOverlayView from "./newmap"
+import mad2 from "./Marker"
+// Return map bounds based on list of places
+const getMapBounds = (map, maps, places) => {
+  const bounds = new maps.LatLngBounds();
+
+  places.forEach((place) => {
+    bounds.extend(new maps.LatLng(
+      place.geometry.location.lat,
+      place.geometry.location.lng,
+    ));
+  });
+  return bounds;
+};
+
+// Re-center map when resizing the window
+const bindResizeListener = (map, maps, bounds) => {
+  maps.event.addDomListenerOnce(map, 'idle', () => {
+    maps.event.addDomListener(window, 'resize', () => {
+      map.fitBounds(bounds);
+    });
+  });
+};
+
+// Fit map to its bounds after the api is loaded
+const apiIsLoaded = (map, maps, places) => {
+  // Get bounds by our places
+  const bounds = getMapBounds(map, maps, places);
+  // Fit map to bounds
+  map.fitBounds(bounds);
+  // Bind the resize listener
+  bindResizeListener(map, maps, bounds);
+};
 
 const styles = theme => ({
     footerInner: {
@@ -134,7 +175,7 @@ const styles = theme => ({
     },
     main_container: {
         width: '100%',
-        display: 'flex',
+        height: '100%',
         flexGrow: 1,
         flexShrink: 1,
         alignItems: 'center',
@@ -180,6 +221,11 @@ const styles = theme => ({
     },
 });
 
+const location = {
+  address: '1600 Amphitheatre Parkway, Mountain View, california.',
+  lat: 37.42216,
+  lng: -122.08427,
+} // our location object from earlier
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
@@ -187,68 +233,25 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
 
+
+
     return (
         <div className={classes.main_container}>
-            <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
-                {/* The map and Location*/}
-                <Grid item
-                      md={4} lg={4} xl={5} sm={5} xs={12}
-                      className={classes.map_container}
+            <div style={{marginTop:"100px"}}/>
 
-                >
-                    {/*The Map*/}
-                    <Grid item lg={12} md={12} sm={12} xs={12} style={{border: '1px solid green', height: '75%'}}>
-                        <GoogleMapReact
-                            bootstrapURLKeys={{key: firebaseConfig.apiKey}}
-                            defaultCenter={LOS_ANGELES_CENTER}
-                            defaultZoom={DEFAULT_ZOOM}
-                        >
+<ExampleOverlayView
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${firebaseConfig.apiKey}&v=3.exp&libraries=geometry,drawing,places`}
 
-                            <AnyReactComponent
-                                lat={59.955413}
-                                lng={30.337844}
-                                text="My Marker"
-                            />
-                        </GoogleMapReact>
-                    </Grid>
-
-                    {/*The Location*/}
-                    <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
-
-                        <div style={{
-                            border: '1px solid yellow',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            height: "100%",
-                            marginTop: "5%",
-                            marginBottom: "5%"
-
-                        }}>
-                            <div className={classes.credential_container}>
-                                <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
-                            </div>
-
-                            <FittedText className={classes.address}>
-                                891 Beach Steet <br/>
-                                San Francisco CA 94109 <br/>
-                                415.710.5014 <br/>
-                                <a href={"mailto:aaronmalki@malki.com"}
-                                   className={classes.email}> aaronmalki@malki.com </a>
-                            </FittedText>
-                        </div>
-                    </Grid>
-                </Grid>
+  loadingElement={<div style={{ height: `100%` }} />}
+  containerElement={<div style={{ height: `400px` }} />}
+  mapElement={<div style={{ height: `100%` }} />}
+/>
 
 
-                <SendMessage/>
-
-
-            </Grid>
         </div>)
 
 };
-
+//https://github.com/ovieokeh/contact-page-with-google-maps/blob/add-map/src/App.jsx
 ContactUsPage.defaultProps = {
     center: {
         lat: 59.95,
