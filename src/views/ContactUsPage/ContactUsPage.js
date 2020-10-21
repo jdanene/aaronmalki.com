@@ -25,55 +25,6 @@ import {FittedText, StyledText} from "../../components/Text";
 import LocationMap from "./LocationMap";
 import SendMessage from "./SendMessage";
 
-const getInfoWindowString = (place) => `
-    <div>
-      <div style="font-size: 16px;">
-        ${place.name}
-      </div>
-      <div style="font-size: 14px;">
-        <span style="color: grey;">
-        ${place.rating}
-        </span>
-        <span style="color: orange;">${String.fromCharCode(9733).repeat(Math.floor(place.rating))}</span><span style="color: lightgrey;">${String.fromCharCode(9733).repeat(5 - Math.floor(place.rating))}</span>
-      </div>
-      <div style="font-size: 14px; color: grey;">
-        ${place.types[0]}
-      </div>
-      <div style="font-size: 14px; color: grey;">
-        ${'$'.repeat(place.price_level)}
-      </div>
-      <div style="font-size: 14px; color: green;">
-        ${place.opening_hours.open_now ? 'Open' : 'Closed'}
-      </div>
-    </div>`;
-
-// Refer to https://github.com/google-map-react/google-map-react#use-google-maps-api
-const handleApiLoaded = (map, maps, places) => {
-  const markers = [];
-  const infowindows = [];
-
-  places.forEach((place) => {
-    markers.push(new maps.Marker({
-      position: {
-        lat: place.geometry.location.lat,
-        lng: place.geometry.location.lng,
-      },
-      map,
-    }));
-
-    infowindows.push(new maps.InfoWindow({
-      content: getInfoWindowString(place),
-    }));
-  });
-
-  markers.forEach((marker, i) => {
-    marker.addListener('click', () => {
-      infowindows[i].open(map, marker);
-    });
-  });
-};
-
-
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -232,8 +183,7 @@ const styles = theme => ({
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
-
-const LOS_ANGELES_CENTER = [37.806279, -122.423516];
+    const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
 
@@ -244,19 +194,16 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                 <Grid item
                       md={4} lg={4} xl={5} sm={5} xs={12}
                       className={classes.map_container}
-                      direction={"row"}
+
                 >
                     {/*The Map*/}
                     <Grid item lg={12} md={12} sm={12} xs={12} style={{border: '1px solid green', height: '75%'}}>
                         <GoogleMapReact
-                            yesIWantToUseGoogleMapApiInternals
-                            defaultCenter={LOS_ANGELES_CENTER}
                             bootstrapURLKeys={{key: firebaseConfig.apiKey}}
+                            defaultCenter={LOS_ANGELES_CENTER}
                             defaultZoom={DEFAULT_ZOOM}
                         >
-                            <StyledText style={{postion: "absolute", left: 0, top: 0}}>
-                                Do Something here
-                            </StyledText>
+
                             <AnyReactComponent
                                 lat={59.955413}
                                 lng={30.337844}
