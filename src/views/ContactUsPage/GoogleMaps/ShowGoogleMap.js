@@ -13,8 +13,8 @@ const centerOverlayView = (width, height) => ({
 });
 
 const mapContainerStyle = {
-    height: "400px",
-    width: "800px",
+    height: "100%",
+    width: "100%",
 };
 
 

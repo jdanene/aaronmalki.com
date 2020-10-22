@@ -11,6 +11,18 @@ export const colorScheme = {
         primary: "#fafafa",
         light: "#ffffff",
         dark: "#c7c7c7"
+    },
+    general:{
+        hot_purple: '#990000',
+        earth_green: '#59713F',
+        blue: '#27288E',
+        red: '#AF3F3F',
+        other_blue: '#1C73F4',
+        another_blue: '#7085D8',
+        oneMore_blue: '#405EBE',
+        light_blue: '#6096F8',
+        light_blue0: '#2196F3',
     }
+
 
 };
