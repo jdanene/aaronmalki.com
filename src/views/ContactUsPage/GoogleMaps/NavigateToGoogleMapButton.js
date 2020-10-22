@@ -7,10 +7,9 @@ import {
     withWidth,
 } from "@material-ui/core";
 
-import {AppContext} from "../../context";
-
-import {StyledText} from "../../components/Text";
-import {colorScheme} from "../../constants";
+import {AppContext} from "../../../context";
+import {StyledText} from "../../../components/Text";
+import {colorScheme} from "../../../constants";
 import {FaDirections} from "react-icons/fa";
 import Tooltip from '@material-ui/core/Tooltip';
 

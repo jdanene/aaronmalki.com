@@ -24,7 +24,7 @@ import ColoredButton from "../../components/Button/ColoredButton";
 import {FittedText, StyledText} from "../../components/Text";
 import LocationMap from "./LocationMap";
 import SendMessage from "./SendMessage";
-
+import ShowGoogleMap from "./GoogleMaps/ShowGoogleMap";
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -198,18 +198,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                 >
                     {/*The Map*/}
                     <Grid item lg={12} md={12} sm={12} xs={12} style={{border: '1px solid green', height: '75%'}}>
-                        <GoogleMapReact
-                            bootstrapURLKeys={{key: firebaseConfig.apiKey}}
-                            defaultCenter={LOS_ANGELES_CENTER}
-                            defaultZoom={DEFAULT_ZOOM}
-                        >
-
-                            <AnyReactComponent
-                                lat={59.955413}
-                                lng={30.337844}
-                                text="My Marker"
-                            />
-                        </GoogleMapReact>
+                        <ShowGoogleMap/>
                     </Grid>
 
                     {/*The Location*/}
