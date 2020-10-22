@@ -251,6 +251,8 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
         </div>)
 
 };
+
+
 //https://github.com/ovieokeh/contact-page-with-google-maps/blob/add-map/src/App.jsx
 ContactUsPage.defaultProps = {
     center: {
