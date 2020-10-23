@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
 import {
     Grid,
@@ -25,6 +25,7 @@ import FooterListItem from "./FooterListItem";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {VerticalDivider} from "../VerticalDivider";
 import {useTheme} from "@material-ui/core";
+import {AppContext} from "../../context";
 
 const useStyles = makeStyles((theme) => ({
     credentialsTitle_container: {
@@ -69,7 +70,8 @@ const useStyles = makeStyles((theme) => ({
     address_container:{
         color:  theme.palette.text.secondary,
         textAlign:'left',
-        maxWidth: '180px'
+        maxWidth: '180px',
+        textDecoration:'none'
     },
     email:{
         color:  theme.palette.text.secondary
@@ -97,6 +99,7 @@ const infos = [
 
 // {theme.palette.common.white}
 const FooterLocationAndInfo = () => {
+    const {phoneNumber} = useContext(AppContext);
     const classes = useStyles();
     const theme = useTheme();
 
@@ -123,7 +126,7 @@ const FooterLocationAndInfo = () => {
                 <FittedText className={classes.address_container}>
                     891 Beach Steet <br/>
                     San Francisco CA 94109 <br/>
-                    415.710.5014 <br/>
+                    <a  className={classes.address_container} href={`tel:${phoneNumber.tel}`}>{phoneNumber.dot}</a>  <br/>
                     <a href={"mailto:aaronmalki@malki.com"} className={classes.email}> aaronmalki@malki.com </a>
                 </FittedText>
             </div>

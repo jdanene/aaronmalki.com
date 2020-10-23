@@ -7,18 +7,20 @@ const AppContext = createContext();
 // PlaceId Finder: https://jsfiddle.net/api/post/library/pure/
 const initial = {
             address: {
-                line1: "891 Beech Street",
+                line1: "891 Beach Street",
                 line2: "San Francisco CA 94109",
                 position:
                     {
-                        lat: 37.806279,
-                        lng: -122.423516,
-                        place_id:"ChIJGYoj1CSq3IAR4O_Npf_PZTY"
+                        lat: 37.806296,
+                        lng: -122.423543,
+                        place_id:"ChIJ5_wWhOCAhYARQhCFs7MqvmQ"
                     }
             },
             phoneNumber: {
                 dash: "(909) 771-6881",
-                dot: "909.771.6881"
+                dot: "909.771.6881",
+                tel: "+19097716881",
+                all_dash: "909-771-6881"
             },
             email: "aaronmalki@malki.com"
         };

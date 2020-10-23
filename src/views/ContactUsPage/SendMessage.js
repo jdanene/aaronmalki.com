@@ -13,7 +13,7 @@ import {
     isWidthUp,
     TextField
 } from "@material-ui/core";
-
+import {colorScheme} from "../../constants";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import transitions from "@material-ui/core/styles/transitions";
@@ -21,9 +21,44 @@ import {VscLocation} from "react-icons/vsc";
 import {BiPhone} from "react-icons/bi";
 import {useMediaQuery} from "@material-ui/core";
 import ColoredButton from "../../components/Button/ColoredButton";
-import {FittedText} from "../../components/Text";
+import {FittedText, StyledText} from "../../components/Text";
+import {Button} from "@material-ui/core";
+import * as EmailValidator from 'email-validator';
+import {Alert} from '@material-ui/lab';
+import Collapse from '@material-ui/core/Collapse';
+import Fade from '@material-ui/core/Fade';
+import CloseIcon from '@material-ui/icons/Close';
+
+
+const CssTextField = withStyles({
+    root: {
+        fontFamily: "scope-one-regular",
+        '& label.Mui-focused': {
+            color: 'green',
+            fontFamily: "scope-one-regular"
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: 'green',
+            fontFamily: "scope-one-regular"
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: 'red',
+            },
+            '&:hover fieldset': {
+                borderColor: 'yellow',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: 'green',
+            },
+            fontFamily: "scope-one-regular"
+        },
+    },
+})(TextField);
+
 
 const styles = theme => ({
+
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
         paddingTop: theme.spacing(8),
@@ -42,6 +77,25 @@ const styles = theme => ({
             paddingRight: theme.spacing(10),
             paddingBottom: theme.spacing(10)
         }
+    },
+    root0: {
+        '& label.Mui-focused': {
+            color: colorScheme.other.analogous0Dark,
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: colorScheme.other.analogous0Dark,
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: colorScheme.other.analogous0,
+            },
+            '&:hover fieldset': {
+                borderColor: colorScheme.other.analogous0Medium,
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: colorScheme.other.analogous0Dark,
+            },
+        },
     },
     brandText: {
         fontFamily: "'Baloo Bhaijaan', cursive",
@@ -67,7 +121,6 @@ const styles = theme => ({
     },
     credential_container: {
         display: 'flex',
-        border: '1px solid red',
         height: '40%',
         fontSize: '20px',
         flexDirection: 'row'
@@ -90,16 +143,32 @@ const styles = theme => ({
             color: theme.palette.primary.light
         }
     },
-    whiteBg: {
-        backgroundColor: theme.palette.common.white
+    cssLabel: {
+        '&$cssFocused': {
+            color: 'red',
+        },
     },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: 'orange',
+        },
+    },
+    root: {
+        "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+            borderColor: 'pink'
+        }
+    },
+    cssFocused: {},
+    notchedOutline: {},
+    disabled: {},
+    focused: {},
+    error: {},
     credentialsTitle_container: {
         display: "flex",
         flexDirection: "column"
     },
     mapAndForm_container: {
         justifyContent: 'center',
-        border: '1px solid blue',
         flexGrow: 1,
         flexShrink: 1,
         marginTop: '90px',
@@ -107,7 +176,6 @@ const styles = theme => ({
     },
 
     map_container: {
-        border: '1px solid pink',
         flexShrink: 1,
         flexGrow: 1,
         [theme.breakpoints.up("xs")]: {
@@ -131,14 +199,12 @@ const styles = theme => ({
         height: '75%'
     },
     main_container: {
-        width: '100%',
-        display: 'flex',
-        flexGrow: 1,
-        flexShrink: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: theme.palette.secondary.dark,
+        height: '100%',
+        [theme.breakpoints.down("sm")]: {
+            marginTop:-25,
+            borderBottom: `1px solid rgba(27, 48, 57, .25)`,
 
+        }
     },
     contact_container: {
         display: 'flex',
@@ -151,13 +217,11 @@ const styles = theme => ({
     credentialname: {
         textAlign: 'left',
         color: theme.palette.common.white,
-        border: '1px solid purple',
 
     },
     address: {
         color: theme.palette.common.white,
         textAlign: 'left',
-        border: '1px solid orange',
         width: '100%',
         height: '100%',
         margin: 0,
@@ -166,7 +230,6 @@ const styles = theme => ({
     },
     address_container: {
         backgroundColor: theme.palette.primary.main,
-        border: '1px solid purple',
         height: '30%',
         display: 'flex',
         alignItems: 'center',
@@ -176,36 +239,171 @@ const styles = theme => ({
     email: {
         color: theme.palette.common.white
     },
+
+    getInTouchText: {
+
+        marginBottom: 10,
+        fontFamily: 'airbnb-light',
+        fontWeight: 'bold',
+        letterSpacing: 1,
+        color: theme.palette.primary.dark,
+        [theme.breakpoints.up("xs")]: {
+            marginTop: 10,
+            fontSize: '40px'
+        },
+        [theme.breakpoints.up("sm")]: {
+            fontSize: '40px'
+        },
+        [theme.breakpoints.up("md")]: {
+            fontSize: '40px'
+        },
+        [theme.breakpoints.up("lg")]: {
+            fontSize: '40px'
+        },
+        [theme.breakpoints.up("xl")]: {
+            fontSize: '40px'
+        }
+    },
 });
 
-const SendMessage = ({classes, theme, width, center, zoom, md=4, lg=4, xl=4, sm=5, xs=12}) => {
+const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState({name: false, email: false, message: false, helperTxt: ''});
+    const [isMessageSent, setMessageSent] = useState(false);
+
+    const handleText = (type) => (e) => {
+        setError({...error, [type]: false});
+        if (type === "name") {
+            setName(e.target.value);
+        } else if (type === "email") {
+            setEmail(e.target.value)
+
+        } else if (type === "message") {
+            setMessage(e.target.value)
+
+        }
+    };
+
+    const handleMessage = () => {
+
+        if (name === '') {
+            setError({...error, name: true, helperTxt: 'Please include your name.'});
+        } else if (email === '') {
+            setError({...error, email: true, helperTxt: 'Please include your email.'});
+        } else if (message === '') {
+            setError({...error, message: true, helperTxt: 'Please include a message.'});
+
+        } else if (!(EmailValidator.validate(email))) {
+            setError({...error, email: true, helperTxt: 'Please include a valid email.'});
+        } else {
+            // ToDo: Hook up with email sender, and maybe firebase
+            setMessageSent(true);
+        }
+    };
+
+    const handleSuccessClose = () => {
+        setName('');
+        setEmail('');
+        setMessage('');
+        setMessageSent(false);
+    };
 
     return (
         <Grid item md={md} lg={lg} xl={xl} sm={sm} xs={xs}
-              style={{
-                  border: '1px solid pink', height: '100%'
-              }}>
+              className={classes.main_container}>
+
+
+            <StyledText className={classes.getInTouchText}>
+                Get In Touch
+            </StyledText>
+
             <Box mb={1}>
                 <TextField
                     variant="outlined"
+                    id={"name"}
+                    error={error.name}
+                    rows={1}
+                    fullWidth
+                    required
+                    disabled={isMessageSent}
+                    label={"Name"}
+                    autoComplete={"name"}
+                    color={'primary'}
+                    value={name}
+                    onChange={handleText('name')}
+                    helperText={error.name ? error.helperTxt : ''}
+                />
+            </Box>
+
+            <Box mb={1}>
+                <TextField
+                    error={error.email}
+
+                    variant="outlined"
+                    id={"email"}
+                    rows={1}
+                    fullWidth
+                    required
+                    disabled={isMessageSent}
+                    label={"Email Address"}
+                    autoComplete={"email"}
+                    color={'primary'}
+                    value={email}
+                    onChange={handleText('email')}
+                    helperText={error.email ? error.helperTxt : ''}
+                />
+            </Box>
+
+            <Box mb={1}>
+                <TextField
+                    error={error.message}
+                    variant="outlined"
                     multiline
-                    placeholder="Get in touch with Aaron!"
-                    inputProps={{"aria-label": "Get in Touch"}}
-                    InputProps={{
-                        className: classes.whiteBg
-                    }}
+                    id={"message"}
                     rows={4}
                     fullWidth
                     required
+                    disabled={isMessageSent}
+                    label={"Message"}
+                    autoComplete={"message"}
+                    color={'primary'}
+                    value={message}
+                    onChange={handleText('message')}
+                    helperText={error.message ? error.helperTxt : ''}
                 />
             </Box>
-            <ColoredButton
-                color={theme.palette.common.white}
+            <Button
+                style={{width: '75%', marginTop: 10}}
+                color={"secondary"}
                 variant="outlined"
-                type="submit"
+                onClick={handleMessage}
+                disabled={isMessageSent}
+
             >
                 Send Message
-            </ColoredButton>
+            </Button>
+
+            <Fade in={isMessageSent}>
+                <Alert color={"success"} variant="filled"
+                       style={{marginTop: 15, backgroundColor: "#36B37E"}}
+                       action={
+                           <IconButton
+                               aria-label="close"
+                               color="inherit"
+                               size="small"
+                               onClick={handleSuccessClose}
+                           >
+                               <CloseIcon fontSize="inherit"/>
+                           </IconButton>
+                       }
+                >
+                    Thank you! We will get in contact with you shortly.
+                </Alert>
+            </Fade>
+
+
         </Grid>
     )
 };

@@ -25,6 +25,8 @@ import {FittedText, StyledText} from "../../components/Text";
 import LocationMap from "./LocationMap";
 import SendMessage from "./SendMessage";
 import ShowGoogleMap from "./GoogleMaps/ShowGoogleMap";
+import {colorScheme} from "../../constants";
+import {AppContext} from "../../context";
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -69,7 +71,6 @@ const styles = theme => ({
     },
     credential_container: {
         display: 'flex',
-        border: '1px solid red',
         height: '40%',
         fontSize: '20px',
         flexDirection: 'row'
@@ -101,7 +102,6 @@ const styles = theme => ({
     },
     mapAndForm_container: {
         justifyContent: 'center',
-        border: '1px solid blue',
         flexGrow: 1,
         flexShrink: 1,
         marginTop: '90px',
@@ -109,7 +109,6 @@ const styles = theme => ({
     },
 
     map_container: {
-        border: '1px solid pink',
         flexShrink: 1,
         flexGrow: 1,
         [theme.breakpoints.up("xs")]: {
@@ -139,7 +138,7 @@ const styles = theme => ({
         flexShrink: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.palette.secondary.dark,
+        backgroundColor: colorScheme.other.backgroundComplementary,
 
     },
     contact_container: {
@@ -153,22 +152,23 @@ const styles = theme => ({
     credentialname: {
         textAlign: 'left',
         color: theme.palette.common.white,
-        border: '1px solid purple',
+        fontFamily: 'scope-one-regular',
+        fontWeight: 'bold',
+        fontSize: '20px'
 
     },
     address: {
         color: theme.palette.common.white,
         textAlign: 'left',
-        border: '1px solid orange',
         width: '100%',
         height: '100%',
         margin: 0,
+        fontFamily: 'scope-one-regular'
 
 
     },
     address_container: {
         backgroundColor: theme.palette.primary.main,
-        border: '1px solid purple',
         height: '30%',
         minHeight: '150px',
         display: 'flex',
@@ -179,6 +179,10 @@ const styles = theme => ({
     email: {
         color: theme.palette.common.white
     },
+    phone:{
+        textDecoration:'none',
+        color: theme.palette.common.white
+    }
 });
 
 
@@ -187,10 +191,13 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
     const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
+    const {phoneNumber} = useContext(AppContext);
 
     return (
         <div className={classes.main_container}>
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
+                <SendMessage  md={5} lg={5} xl={5}/>
+
                 {/* The map and Location*/}
                 <Grid item
                       md={5} lg={5} xl={5} sm={5} xs={12}
@@ -198,7 +205,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
 
                 >
                     {/*The Map*/}
-                    <Grid item lg={12} md={12} sm={12} xs={12} style={{border: '1px solid green', height: '75%'}}>
+                    <Grid item lg={12} md={12} sm={12} xs={12} style={{ height: '75%'}}>
                         <ShowGoogleMap/>
                     </Grid>
 
@@ -206,7 +213,6 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                     <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
 
                         <div style={{
-                            border: '1px solid yellow',
                             display: 'flex',
                             justifyContent: 'center',
                             flexDirection: 'column',
@@ -215,14 +221,12 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                             marginBottom: "5%"
 
                         }}>
-                            <div className={classes.credential_container}>
-                                <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
-                            </div>
+                                <StyledText className={classes.credentialname}>Aaron Malki</StyledText>
 
                             <FittedText className={classes.address}>
                                 891 Beach Steet <br/>
                                 San Francisco CA 94109 <br/>
-                                415.710.5014 <br/>
+                                <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a> <br/>
                                 <a href={"mailto:aaronmalki@malki.com"}
                                    className={classes.email}> aaronmalki@malki.com </a>
                             </FittedText>
@@ -231,7 +235,6 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                 </Grid>
 
 
-                <SendMessage  md={5} lg={5} xl={5}/>
 
 
             </Grid>

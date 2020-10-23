@@ -36,6 +36,7 @@ import Fab from '@material-ui/core/Fab';
 import { useLocation } from 'react-router-dom'
 import {VerticalDivider} from "../VerticalDivider";
 import {pathToPageName} from "../../constants/contants";
+import {AppContext} from "../../context";
 
 function ElevationScroll({window, children, setTrigger, triggerActive}) {
     //const {children, window, setTrigger} = props;
@@ -90,6 +91,7 @@ const useStyles = makeStyles({
 
 
 const TopNavBar = ({children, window} ) => {
+    const {phoneNumber} = useContext(AppContext);
     const styles = useStyles();
  const location = useLocation();
   console.log(location.pathname);
@@ -193,8 +195,8 @@ const TopNavBar = ({children, window} ) => {
                                     //  <FaPhoneAlt size={14}/>
                                     //</IconButton>
                                     :
-                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Button
-                                        href={pageToPathName["ContactUsPage"]}
+                                    <Button
+                                        href={(location.pathname !== pageToPathName["ContactUsPage"]) ? pageToPathName["ContactUsPage"]: `tel:${phoneNumber.tel}`}
                                         size={"small"}
                                         variant="contained"
                                         className={"topNavBar__phoneNumber"}
@@ -210,7 +212,7 @@ const TopNavBar = ({children, window} ) => {
 
                                         <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
                                                  className={"topNavBar__phoneNumber"}>
-                                            909-528-5364
+                                            {phoneNumber.all_dash}
                                         </PopText>
                                     </Button>
                                 }
