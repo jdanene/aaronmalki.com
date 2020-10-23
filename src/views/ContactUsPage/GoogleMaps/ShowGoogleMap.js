@@ -50,9 +50,12 @@ const exampleMapStyles = [
 //https://developers.google.com/maps/documentation/javascript/reference?csw=1#MapOptions
 const defaultMapOptions = {
   fullscreenControl: false,
+    clickableIcons:false
 };
 
 const ShowGoogleMap = ({styles}) => {
+
+
     const {address,phoneNumber,email} = useContext(AppContext);
 
     const [overlayPane, setOverlayPane] = React.useState(
@@ -83,8 +86,10 @@ const ShowGoogleMap = ({styles}) => {
                 id='traffic-example'
                 mapContainerStyle={mapContainerStyle}
                 zoom={13}
-                center={address.position}
+                center={{lat:address.position.lat+.004,lng:address.position.lng }}
             >
+
+
                     <NavigateToGoogleMapButton/>
 
 
@@ -104,7 +109,6 @@ const ShowGoogleMap = ({styles}) => {
                             left: 70,
                             paddingLeft:'2px',
                             fontWeight:'bold',
-                            border: '1px solid yellow',
                             textAlign:'left'
                         }}
                         onClick={clickHandler}
@@ -146,12 +150,5 @@ absolute
 sticky
 */
 
-const ExampleOverlayViewPropTypes = {
-    styles: PropTypes.shape({
-        container: PropTypes.object.isRequired,
-    }).isRequired,
-};
-
-ShowGoogleMap.propTypes = ExampleOverlayViewPropTypes;
 
 export default React.memo(ShowGoogleMap)
