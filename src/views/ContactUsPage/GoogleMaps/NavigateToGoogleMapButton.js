@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 
 import {AppContext} from "../../../context";
-import {StyledText} from "../../../components/Text";
+import {FittedText, StyledText} from "../../../components/Text";
 import {colorScheme} from "../../../constants";
 import {FaDirections} from "react-icons/fa";
 import Tooltip from '@material-ui/core/Tooltip';
@@ -19,13 +19,29 @@ const styles = theme => ({
         position: "relative",
         left: 5,
         top: 5,
-        maxWidth: 300,
-        maxHeight: 200
+        width: 230,
+        height: 90
+
+
+    },
+    addressHeader: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+        fontSize: 14
+
+
+    },
+    addressMain: {
+        textAlign: 'left',
+        fontSize: 12
+
     },
     directionButton: {
-        padding:0,
-        display:'flex',
-        border: '1px solid yellow',
+        flexDirection: 'column',
+        display: 'flex',
+        padding: 0,
+        marginRight: 5,
+        marginTop: 5,
         color: colorScheme.general.light_blue0,
         "&:hover": {
             //you want this to be the same as the backgroundColor above
@@ -33,6 +49,7 @@ const styles = theme => ({
         }
     },
     directionIcon: {
+
         color: colorScheme.general.light_blue0,
         "&:hover": {
             //you want this to be the same as the backgroundColor above
@@ -40,11 +57,20 @@ const styles = theme => ({
         }
     },
     largerMapButton: {
+        textDecoration: 'none',
+        textAlign: 'left',
+        marginLeft: 5,
         color: colorScheme.general.light_blue0,
         "&:hover": {
             //you want this to be the same as the backgroundColor above
-            color: colorScheme.general.other_blue
-        }
+            color: colorScheme.general.other_blue,
+            textDecoration: "underline"
+        },
+        fontSize: 12
+
+    },
+    directionText: {
+        fontSize: 12,
     }
 });
 
@@ -74,40 +100,48 @@ const NavigateToGoogleMapButton = ({classes, theme, width, center, zoom}) => {
         <Card className={classes.container}>
 
 
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <CardContent>
-                    <StyledText gutterBottom variant="h5" component="h5"
-                                style={{textAlign: 'left', fontWeight: 'bold', fontSize: 16}}>
-                        {address.line1}
-                    </StyledText>
-                    <StyledText variant="body2" color="textSecondary" component="p" style={{textAlign: 'left'}}>
-                        {address.line1} <br/>
-                        {address.line2} <br/>
-                    </StyledText>
-                </CardContent>
+            <CardContent style={{padding: 0, margin: 0, height: '100%'}}>
 
-                <Button size="small" disableRipple className={classes.directionButton}>
-                    <Tooltip title="Get directions on Google Map">
+                <div style={{
+                    height: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}>
 
-                        <div style={{flexDirection: 'column', display: 'flex'}}>
+                    <div style={{display: "flex", flexDirection: 'column', justifyContent: 'space-between'}}>
 
-                            <div aria-label="direction">
-                                <FaDirections size={24}/>
-                            </div>
+                        <div style={{display: "flex", flexDirection: 'column', marginLeft: 5, marginTop: 5}}>
 
+                            <StyledText className={classes.addressHeader}>
+                                {address.line1}
+                            </StyledText>
 
-                            <StyledText>
-                                Directions
+                            <StyledText className={classes.addressMain}>
+                                {address.line1} <br/>
+                                {address.line2}
                             </StyledText>
                         </div>
-                    </Tooltip>
 
-                </Button>
-            </div>
+                        <a href="#" className={classes.largerMapButton}>
+                            View Larger Map
+                        </a>
 
-            <Button style={{float: 'left', marginLeft: 3}} size="small" className={classes.largerMapButton}>
-                View Larger Map
-            </Button>
+                    </div>
+
+                    <div className={classes.directionButton}>
+                        <div aria-label="direction">
+                            <FaDirections size={24}/>
+                        </div>
+
+                        <StyledText className={classes.directionText}>
+                            Directions
+                        </StyledText>
+                    </div>
+
+                </div>
+
+            </CardContent>
+
 
         </Card>
 

@@ -170,6 +170,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.primary.main,
         border: '1px solid purple',
         height: '30%',
+        minHeight: '150px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -192,7 +193,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
                 {/* The map and Location*/}
                 <Grid item
-                      md={4} lg={4} xl={5} sm={5} xs={12}
+                      md={5} lg={5} xl={5} sm={5} xs={12}
                       className={classes.map_container}
 
                 >
@@ -230,7 +231,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                 </Grid>
 
 
-                <SendMessage/>
+                <SendMessage  md={5} lg={5} xl={5}/>
 
 
             </Grid>

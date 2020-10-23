@@ -17,6 +17,40 @@ const mapContainerStyle = {
     width: "100%",
 };
 
+const exampleMapStyles = [
+    {
+        featureType: "poi",
+        elementType: "geometry",
+        stylers: [
+            {
+                color: "#eeeeee",
+            },
+        ],
+    },
+    {
+        featureType: "poi",
+        elementType: "labels.text",
+        stylers: [
+            {
+                visibility: "off",
+            },
+        ],
+    },
+    {
+        featureType: "water",
+        elementType: "labels.text.fill",
+        stylers: [
+            {
+                color: "#9e9e9e",
+            },
+        ],
+    },
+];
+
+//https://developers.google.com/maps/documentation/javascript/reference?csw=1#MapOptions
+const defaultMapOptions = {
+  fullscreenControl: false,
+};
 
 const ShowGoogleMap = ({styles}) => {
     const {address,phoneNumber,email} = useContext(AppContext);
@@ -45,6 +79,7 @@ const ShowGoogleMap = ({styles}) => {
             googleMapsApiKey={firebaseConfig.apiKey}
         >
             <GoogleMap
+                options={defaultMapOptions}
                 id='traffic-example'
                 mapContainerStyle={mapContainerStyle}
                 zoom={13}

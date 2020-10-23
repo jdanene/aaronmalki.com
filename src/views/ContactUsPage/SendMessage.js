@@ -178,10 +178,10 @@ const styles = theme => ({
     },
 });
 
-const SendMessage = ({classes, theme, width, center, zoom}) => {
+const SendMessage = ({classes, theme, width, center, zoom, md=4, lg=4, xl=4, sm=5, xs=12}) => {
 
     return (
-        <Grid item md={4} lg={4} xl={5} sm={5} xs={12}
+        <Grid item md={md} lg={lg} xl={xl} sm={sm} xs={xs}
               style={{
                   border: '1px solid pink', height: '100%'
               }}>
