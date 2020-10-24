@@ -13,7 +13,6 @@ import {
     isWidthUp,
     TextField
 } from "@material-ui/core";
-
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import transitions from "@material-ui/core/styles/transitions";

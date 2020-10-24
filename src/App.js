@@ -36,6 +36,12 @@ export const firebaseConfig = {
     measurementId: "G-T7SZTH3QFR"
 };
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the database service
+export const FIREBASE_DB = firebase.database();
+
 
 function App({location}) {
 
@@ -58,8 +64,7 @@ function App({location}) {
     });
 
     useEffect(() => {
-// Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+
 
     }, []);
 

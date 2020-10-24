@@ -13,6 +13,7 @@ import {
     isWidthUp,
     TextField
 } from "@material-ui/core";
+import SendEmailToAaron from "../../components/Database/SendEmailToAaron";
 import {colorScheme} from "../../constants";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
@@ -299,7 +300,9 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
             setError({...error, email: true, helperTxt: 'Please include a valid email.'});
         } else {
             // ToDo: Hook up with email sender, and maybe firebase
-            setMessageSent(true);
+            SendEmailToAaron({name,email,message})
+                .then(()=>setMessageSent(true))
+                .catch(()=>console.error(`[SendMessage.js] failed to send message:${JSON.stringify({email,message,name})}`))
         }
     };
 

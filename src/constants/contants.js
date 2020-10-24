@@ -26,8 +26,7 @@ export const pathToPageName = {
 
 
 
-
 export const navBarParams = {
     innerNavbarHeight: "45px"
-}
+};
 
