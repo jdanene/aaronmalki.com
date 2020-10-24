@@ -1,7 +1,6 @@
 const sendInquiryToAaron = async (mailTransport, {email, message, name, timeCreated}) => {
 
-    const formattedTime = new Date(timeCreated)
-        .toLocaleString('en-US', { timeZone: '"America/Los_Angeles"' }) + " [America/Los_Angeles]";
+    const formattedTime = new Date(timeCreated).toString();
 
 
     const htmlMessage = `
