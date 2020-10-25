@@ -54,8 +54,6 @@ const getCSSstyle = (obj) => {
     return str;
 };
 
-console.log(getCSSstyle(styles.header));
-
 
 const sendConfirmEmailToUser = async (mailTransport, {email, name}) => {
     const confirmEmailTemplate = `<div style=style=${getCSSstyle(styles.container)}">
