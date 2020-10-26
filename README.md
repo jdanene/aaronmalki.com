@@ -60,6 +60,12 @@ Next
 
 Notes:
 Started the social media but couldnt fix it quick enout
+
+### 10.25.20
+- Form background a bit iffy especially on drop down. Borders not well defined on drop down, when overlap w/ text box cant really see. 
+- Font is solid except for text box which is inconsistent.
+- Moving on tho. Next finish page and hook up to firebase (put UI changes in docket just like contact page"
+
 # Firebase
 
 **Adding Project**
