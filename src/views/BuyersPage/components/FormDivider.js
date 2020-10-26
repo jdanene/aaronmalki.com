@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'raleway-regular',
         letterSpacing: 1,
         fontWeight:'bold',
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
         [theme.breakpoints.only("xs")]: {
             marginTop: 10,
             fontSize: '20px'
