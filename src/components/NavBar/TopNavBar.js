@@ -188,8 +188,8 @@ const TopNavBar = ({children, window} ) => {
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
                                 {mobileBreak ?
-                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab color={"default"} aria-label="add" style={{position: 'fixed',bottom:15,right:10, color:colorScheme.primary.primary}} href={pageToPathName["ContactUsPage"]}>
-                                        <FaPhoneAlt/>
+                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab color={"blue"} aria-label="add" style={{position: 'fixed',bottom:15,right:10, color:colorScheme.primary.primary}} href={pageToPathName["ContactUsPage"]}>
+                                        <FaPhoneAlt color={colorScheme.other.analogous1}/>
                                     </Fab>
                                     //<IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%", padding:0,position: 'fixed',bottom:0}} aria-label="add to shopping cart">
                                     //  <FaPhoneAlt size={14}/>
