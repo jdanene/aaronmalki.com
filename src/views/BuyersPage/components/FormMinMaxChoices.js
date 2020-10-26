@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     divider: {
-        border: '1px solid black',
+        border: '1px solid rgba(27, 48, 57, .5)',
         width: '10px',
         marginLeft: '10px',
         marginRight: '10px'
