@@ -13,9 +13,10 @@
 
 .app_container_main_body {
     display: flex;
-    width: 100vw;
+    width: 100%;
     flex-grow: 1;
     flex-shrink: 1;
+    
     /*height: 200vh;*/
 
 }
