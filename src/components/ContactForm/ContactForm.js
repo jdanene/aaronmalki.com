@@ -22,7 +22,7 @@ const styles = theme => ({
     },
     textField:{
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgba(27, 48, 57, .55)"
+      borderColor: "rgba(27, 48, 57, .30)"
     },    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
       borderColor: colorScheme.primary.primary
     },
@@ -106,7 +106,7 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
                     multiline
                     id={"message"}
                     className={classes.textField}
-                    rows={4}
+                    rows={5}
                     fullWidth
                     required
                     disabled={isMessageSent}

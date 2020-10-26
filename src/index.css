@@ -44,6 +44,11 @@ code {
 }
 
 @font-face {
+  font-family: "airbnb-bold";
+  src: url("./resources/fonts/AirbnbCereal-Bold.ttf") format("truetype") ;
+}
+
+@font-face {
   font-family: "raleway-thin";
   src: url("./resources/fonts/Raleway-Light.ttf") format("truetype") ;
 }

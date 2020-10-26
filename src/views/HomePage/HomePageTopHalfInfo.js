@@ -23,13 +23,13 @@ const HomePageTopHalfInfo = ({mobileBreak}) => {
 
         <div style={{ bottom: 0, position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
             <div style={{maxWidth:"500px",width: "60vw", justifyContent:"center", alignItems:"center",/*border: `1px solid grey`*/}}>
-                <FittedText style={{ fontFamily: "scope-one-regular", display:"flex"}}>
+                <FittedText style={{ fontFamily: "airbnb-bold", display:"flex"}}>
                     Malki Real Estate <br/>
-                    Unparalled Success.
+                    Welcome Home.
                 </FittedText>
             </div>
 
-                <Button size={"small"} variant="contained" href={pageToPathName["CurrentListingsPage"]}
+            {/*<Button size={"small"} variant="contained" href={pageToPathName["CurrentListingsPage"]}
                         style={{
                     border: `2px solid ${colorScheme.primary.light}`,
                     color: colorScheme.primary.dark,
@@ -40,7 +40,7 @@ const HomePageTopHalfInfo = ({mobileBreak}) => {
 
                 }}>
                     View Our Open Homes
-                </Button>
+                </Button>*/}
 
         </div>
     </div>

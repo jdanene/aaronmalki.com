@@ -191,7 +191,7 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
-    const {phoneNumber} = useContext(AppContext);
+    const {phoneNumber,email} = useContext(AppContext);
 
     return (
         <div className={classes.main_container}>
@@ -228,8 +228,8 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                                 San Francisco CA 94109 <br/>
                                 <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a>
                                 <br/>
-                                <a href={"mailto:aaronmalki@malki.com"}
-                                   className={classes.email}> aaronmalki@malki.com </a>
+                                <a href={`mailto:${email}`}
+                                   className={classes.email}>{email} </a>
                             </FittedText>
                         </div>
                     </Grid>

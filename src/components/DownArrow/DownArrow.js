@@ -126,7 +126,7 @@ const DownArrow = ({posnOfContainter}) => {
             ref={inputRef}
             onClick={onPress}
             focusRipple
-            className={classes.downArrow_container} style={{border: !mobileBreak && `3px solid rgba(112,134,144,.85)`}}
+            className={classes.downArrow_container} style={{border:false && `3px solid rgba(112,134,144,.85)`}}
         >
             {/*size={30} color='aliceblue' style={{ ... }} (in pixels)*/}
             <animated.div className="script-bf-box" style={{transform: radians.interpolate(interp(0))}}>

@@ -9,14 +9,13 @@ import {IconButton} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import Link from "@material-ui/core/Link";
 import Avatar from "@material-ui/core/Avatar";
-
+import Typography from "@material-ui/core/Typography";
 function ProfilePicture({mobileBreak}) {
 
     return <div style={{width: mobileBreak ? "100%" : "49%", height: mobileBreak ? "50%" : "100%", borderRadius: '1%'}}
                 className={"homepage__img_container"}><img
         style={{borderRadius: '1%'}} className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/>
     </div>
-
 
 }
 
@@ -105,7 +104,7 @@ const NameHeading = ({mobileBreak}) => {
 
             }}>
                 <StyledText /*style={{border: "1px solid black" }}*/>
-                    CEO, Founder
+                    Real Estate Agent
                 </StyledText>
 
 
@@ -144,27 +143,27 @@ const HomePageBottomHalfInfo = () => {
     }}>
         <div style={{
             width: mobileBreak ? "100%" : "49%",
-            color: theme.palette.text.primary,
-            fontFamily: "'scope-one-regular', serif",
+            color: theme.palette.text.secondary,
+            fontFamily: "'airbnb-book', serif",
             fontSize: "16px",
-            alignSelf: "flex-start"
+            alignSelf: "flex-start",
+
+            textAlign: "left"
         }}>
             {!mobileBreak && <NameHeading mobileBreak={mobileBreak}/>}
             <StyledText mode={"multi"}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                fugit,
-                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                quisquam
-                est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-                eius
-                modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-                veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-                commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
-                nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                As a registered real estate agent in California, Aaron provides a personal
+                connection with every client he meets. His vision is built on: dedication, trust,
+                determination and unwavering support. A Californian native for over 20 years, Aaron’s
+                knowledge and expertise of the Bay Area’s geography can assist you with all aspects
+                revolving around residential real estate. What separates Aaron from his competitors is
+                the profound level of trust he maintains to ensure you feel confident in your decision.
+                He holds a degree in political science from the University of Oregon and he is an active
+                contributor to organizations such as Hillel, AEPi, and Keshet. When Aaron isn't at the office,
+                he enjoys hiking, Shabbat dinners, cycling, watching the University of Oregon beat the
+                University of Washington, yoga, camping and enjoying a delicious croissant from Tartine bakery.
+                <br/> <br/>
+                <b>Favorite restaurant:</b> Brenda’s French Soul Food.
             </StyledText>
         </div>
         {mobileBreak && <NameHeading mobileBreak={mobileBreak}/>}

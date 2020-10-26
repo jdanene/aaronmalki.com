@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from "react"
 import PropTypes from 'prop-types';
-import {Button} from "../../../components/Button";
+import {Button} from "../../../../components/Button";
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import {makeStyles} from '@material-ui/core/styles';
-import {StyledText} from "../../../components/Text";
+import {StyledText} from "../../../../components/Text";
 import FormDropDownChoices from "./FormDropDownChoices";
 import {Collapse} from '@material-ui/core';
 import clsx from "clsx";

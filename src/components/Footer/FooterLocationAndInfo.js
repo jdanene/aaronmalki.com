@@ -99,7 +99,7 @@ const infos = [
 
 // {theme.palette.common.white}
 const FooterLocationAndInfo = () => {
-    const {phoneNumber} = useContext(AppContext);
+    const {phoneNumber,email,address} = useContext(AppContext);
     const classes = useStyles();
     const theme = useTheme();
 
@@ -118,22 +118,22 @@ const FooterLocationAndInfo = () => {
 
             <div className={classes.credential_container}>
                 <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
-                <FittedText className={classes.credential}>CalBRE LICENSE# 01704234</FittedText>
+                <FittedText className={classes.credential}>CalBRE LICENSE# 02128632</FittedText>
             </div>
 
             <div style={{height:'20px'}}/>
             <div>
                 <FittedText className={classes.address_container}>
-                    891 Beach Steet <br/>
-                    San Francisco CA 94109 <br/>
+                    {address.line1} <br/>
+                     {address.line2} <br/>
                     <a  className={classes.address_container} href={`tel:${phoneNumber.tel}`}>{phoneNumber.dot}</a>  <br/>
-                    <a href={"mailto:aaronmalki@malki.com"} className={classes.email}> aaronmalki@malki.com </a>
+                    <a href={`mailto:${email}`} className={classes.email}> {email} </a>
                 </FittedText>
             </div>
             <div style={{height:'20px'}}/>
 
             <StyledText className={classes.bio}>
-                Compass is a licensed real estate brokerage firm in California and abides by Equal Housing Opportunity laws. License #01991628.
+                Aaron is a licensed real broker in the state of California and abides by Equal Housing Opportunity laws. License #02128632.
             </StyledText>
         </Grid>
     )

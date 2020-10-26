@@ -81,7 +81,7 @@ const DrawerNavOptions = ({toggleDrawerCallback, pageSelected}) => {
             onKeyDown={toggleDrawerCallback(false)}
         >
             <List>
-                {topRouteTitles.map((page) => (<TopItem page={page} isSelected={page === pageSelected}/>))}
+                {topRouteTitles.map((page) => (<TopItem  page={page} isSelected={page === pageSelected}/>))}
             </List>
             <Divider/>
             <List>

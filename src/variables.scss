@@ -17,6 +17,12 @@ $secondary-dark: "#bf5f82";
 }
 
 @font-face {
+  font-family: "airbnb-bold";
+  src: url("./resources/fonts/AirbnbCereal-Bold.ttf") format("truetype") ;
+}
+
+
+@font-face {
   font-family: "source-sans-pro-bold";
   src: url("./resources/fonts/SourceSansPro-Bold.ttf") format("truetype") ;
 }

@@ -49,6 +49,7 @@ export const colorScheme = {
         analogous0Medium:'#3D435A',
         analogous0Dark:'#1A2237',
         analogous1: '#70908A',
+        analogous1Light:'#9fc0ba',
         triadic0: '#7A7090',
         triadic1: '#907086',
         dark:'#303030',

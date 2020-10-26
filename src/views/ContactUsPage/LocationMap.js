@@ -22,6 +22,7 @@ import {BiPhone} from "react-icons/bi";
 import {useMediaQuery} from "@material-ui/core";
 import ColoredButton from "../../components/Button/ColoredButton";
 import {FittedText} from "../../components/Text";
+import {AppContext} from "../../context";
 
 const styles = theme => ({
     footerInner: {
@@ -182,6 +183,7 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 
 
 const LocationMap = ({classes, theme, width, center, zoom}) => {
+    const {email,address,phoneNumber} = useContext(AppContext);
     return (
         <Grid item
               md={4} lg={4} xl={5} sm={5} xs={12}
@@ -221,11 +223,11 @@ const LocationMap = ({classes, theme, width, center, zoom}) => {
                     </div>
 
                     <FittedText className={classes.address}>
-                        891 Beach Steet <br/>
-                        San Francisco CA 94109 <br/>
-                        415.710.5014 <br/>
-                        <a href={"mailto:aaronmalki@malki.com"}
-                           className={classes.email}> aaronmalki@malki.com </a>
+                        {address.line1} <br/>
+                        {address.line2} <br/>
+                        <a className={classes.email} href={`tel:${phoneNumber.tel}`} > {phoneNumber.dot}</a> <br/>
+                        <a href={`mailto:${email}`}
+                           className={classes.email}> {email} </a>
                     </FittedText>
                 </div>
             </Grid>

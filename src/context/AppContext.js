@@ -4,16 +4,16 @@ import React, {createContext, useState, useEffect} from "react"
 const AppContext = createContext();
 
 
-// PlaceId Finder: https://jsfiddle.net/api/post/library/pure/
+// PlaceId Finder: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
 const initial = {
             address: {
-                line1: "891 Beach Street",
-                line2: "San Francisco CA 94109",
+                line1: "3222 25th Street",
+                line2: "San Francisco, CA 94110",
                 position:
                     {
-                        lat: 37.806296,
-                        lng: -122.423543,
-                        place_id:"ChIJ5_wWhOCAhYARQhCFs7MqvmQ"
+                        lat: 37.751161,
+                        lng: -122.414495,
+                        place_id:"ChIJ6wUPakZ-j4AR1i8kOrVZqUk"
                     }
             },
             phoneNumber: {
@@ -22,7 +22,12 @@ const initial = {
                 tel: "+19097716881",
                 all_dash: "909-771-6881"
             },
-            email: "aaronmalki@malki.com"
+            email: "acmalki19@gmail.com",
+            socialMedia:{
+                instagram:"https://www.instagram.com/aaron.malki/",
+                linkedin:"https://www.linkedin.com/in/aaron-malki-761b3165/",
+                facebook:"https://www.facebook.com/aaron.malki/"
+            }
         };
 
 const useApp = () => {

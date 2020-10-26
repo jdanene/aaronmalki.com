@@ -1,15 +1,13 @@
 import React, {useContext, useEffect, useState} from "react"
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import {makeStyles} from '@material-ui/core/styles';
-import {StyledText} from "../../../components/Text";
 import FormDropDownChoices from "./FormDropDownChoices";
 import FormStaticChoices from "./FormStaticChoices";
 import FormMinMaxChoices from "./FormMinMaxChoices";
-import {ContactForm} from "../../../components/ContactForm";
+import {ContactForm} from "../../../../components/ContactForm";
 import FormDivider from "./FormDivider";
 import Grid from "@material-ui/core/Grid";
+import Paper from '@material-ui/core/Paper';
+import {colorScheme} from "../../../../constants";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent:'center',
+        padding: theme.spacing(2),
     },
     minMaxChoices:{
         width: '335px'
@@ -113,7 +112,7 @@ const BuyerForm = () => {
     // Contact
     // Property Type
 
-    return <div className={classes.root}>
+    return <Paper className={classes.root}>
         <FormDivider title={"Property Type"}/>
         <Grid container direction={'column'} spacing={1}>
             <Grid item>
@@ -135,9 +134,10 @@ const BuyerForm = () => {
         </Grid>
         <FormDivider title={"Contact"}/>
         <ContactForm/>
-    </div>
+    </Paper>
 
 };
 
-
+// https://material-ui.com/components/selects/
+// ui this way
 export default BuyerForm;

@@ -33,7 +33,7 @@ import {useTheme} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {FaPhoneAlt} from "react-icons/fa";
 import Fab from '@material-ui/core/Fab';
-import { useLocation } from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import {VerticalDivider} from "../VerticalDivider";
 import {pathToPageName} from "../../constants/contants";
 import {AppContext} from "../../context";
@@ -55,8 +55,8 @@ function ElevationScroll({window, children, setTrigger, triggerActive}) {
     }, [trigger]);
 
     return React.cloneElement(children, {
-        elevation: triggerActive||trigger ? 4 : 0,
-        style: (triggerActive||trigger )? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
+        elevation:  !triggerActive || trigger ? 4 : 0,
+        style: (!triggerActive ||  trigger) ? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
     });
 }
 
@@ -84,31 +84,36 @@ const useStyles = makeStyles({
     phoneNumber: {
         fontFamily: "raleway-thin, serif"
     },
-    drawerItem:{
-        background:'#FAFBFC'
+    drawerItem: {
+        background: '#FAFBFC'
     }
 });
 
+const shouldNavBarTrigger=(pathname)=>{
+    return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"])
+};
 
-const TopNavBar = ({children, window} ) => {
+const TopNavBar = ({children, window}) => {
     const {phoneNumber} = useContext(AppContext);
     const styles = useStyles();
- const location = useLocation();
-  console.log(location.pathname);
+    const location = useLocation();
+    console.log(location.pathname);
     //const {children, window} = props;
     const [isDrawerOpen, setDrawerOpen] = useState(false);
     const [trigger, setTrigger] = useState(false);
+    const [isTriggerActive, setTriggerActive] = useState(false);
     const ref = useRef();
 
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
 
-    useEffect(()=>{
+    useEffect(() => {
             // eslint-disable-next-line eqeqeq
-        console.log(`TopNavBar(path=${location.pathname}, page=${pathToPageName[location.pathname]})`)
-        if (!(location.pathname === pageToPathName["HomePage"])){
+            console.log(`TopNavBar(path=${location.pathname}, page=${pathToPageName[location.pathname]})`)
+
+            // Determines if we want fancy effects on navbar
+            setTriggerActive(shouldNavBarTrigger(location.pathname));
 
 
-        }
         },
         [location.pathname]);
 
@@ -127,7 +132,9 @@ const TopNavBar = ({children, window} ) => {
     return (
         <div className={"topNavBar__container"}>
             <CssBaseline/>
-            <ElevationScroll children={children} window={window} setTrigger={setTrigger} triggerActive={(!(location.pathname === pageToPathName["HomePage"]))}>
+            {/*triggerActive determins which page we have the fade in and fade out on scroll behavior*/}
+            <ElevationScroll children={children} window={window} setTrigger={setTrigger}
+                             triggerActive={isTriggerActive}>
                 <AppBar>
                     <Toolbar style={{/*border: '1px solid yellow'*/}}>
 
@@ -153,8 +160,13 @@ const TopNavBar = ({children, window} ) => {
 
 
                                     <PopText endFontSize={!mobileBreak ? "16px" : "13.5px"}
-                                             startFontSize={!mobileBreak ? "18px" : "14px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
-                                             style={{fontFamily: "raleway-thin, serif", fontWeight: "bold", letterSpacing:"1.5px"}}>
+                                             startFontSize={!mobileBreak ? "18px" : "14px"}
+                                             trigger={!isTriggerActive || trigger}
+                                             style={{
+                                                 fontFamily: "raleway-thin, serif",
+                                                 fontWeight: "bold",
+                                                 letterSpacing: "1.5px"
+                                             }}>
 
                                         Aaron Malki
                                     </PopText>
@@ -171,7 +183,8 @@ const TopNavBar = ({children, window} ) => {
                                     margin: "0px 0px 0px 5px"
                                 }}>
                                     <PopText endFontSize={!mobileBreak ? "16px" : "14px"}
-                                             startFontSize={!mobileBreak ? "18px" : "15px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
+                                             startFontSize={!mobileBreak ? "18px" : "15px"}
+                                             trigger={!isTriggerActive || trigger}
                                              style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>
@@ -188,15 +201,22 @@ const TopNavBar = ({children, window} ) => {
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
                                 {mobileBreak ?
-                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab color={"blue"} aria-label="add" style={{position: 'fixed',bottom:15,right:10, color:colorScheme.primary.primary}} href={pageToPathName["ContactUsPage"]}>
-                                        <FaPhoneAlt color={colorScheme.other.analogous1}/>
+                                    (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab aria-label="add"
+                                                                                                    style={{
+                                                                                                        position: 'fixed',
+                                                                                                        bottom: 15,
+                                                                                                        right: 10,
+                                                                                                        color: colorScheme.primary.primary
+                                                                                                    }}
+                                                                                                    href={pageToPathName["ContactUsPage"]}>
+                                        <FaPhoneAlt size={22}  color={colorScheme.other.analogous1}/>
                                     </Fab>
                                     //<IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%", padding:0,position: 'fixed',bottom:0}} aria-label="add to shopping cart">
                                     //  <FaPhoneAlt size={14}/>
                                     //</IconButton>
                                     :
                                     <Button
-                                        href={(location.pathname !== pageToPathName["ContactUsPage"]) ? pageToPathName["ContactUsPage"]: `tel:${phoneNumber.tel}`}
+                                        href={(location.pathname !== pageToPathName["ContactUsPage"]) ? pageToPathName["ContactUsPage"] : `tel:${phoneNumber.tel}`}
                                         size={"small"}
                                         variant="contained"
                                         className={"topNavBar__phoneNumber"}
@@ -210,7 +230,8 @@ const TopNavBar = ({children, window} ) => {
                                                 padding: "5px"
                                             }}>
 
-                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"} trigger={(!(location.pathname === pageToPathName["HomePage"]))||trigger}
+                                        <PopText endFontSize={"15px"} startFontSize={"15.5px"}
+                                                 trigger={!isTriggerActive || trigger}
                                                  className={"topNavBar__phoneNumber"}>
                                             {phoneNumber.all_dash}
                                         </PopText>
@@ -225,12 +246,13 @@ const TopNavBar = ({children, window} ) => {
                                     </IconButton>
 
                                     <Drawer
-                                        classes={{ paper: styles.drawerItem}}
+                                        classes={{paper: styles.drawerItem}}
                                         anchor={"right"}
                                         open={isDrawerOpen}
                                         onClose={toggleDrawer(false)}
                                     >
-                                        <DrawerNavOptions toggleDrawerCallback={toggleDrawer} pageSelected={pathToPageName[location.pathname]}/>
+                                        <DrawerNavOptions toggleDrawerCallback={toggleDrawer}
+                                                          pageSelected={pathToPageName[location.pathname]}/>
                                     </Drawer>
                                 </div>
                             </div>
