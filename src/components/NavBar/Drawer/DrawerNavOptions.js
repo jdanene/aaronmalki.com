@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import PropTypes from "prop-types";
 import {pageToPathName, pageToPageName, colorScheme} from "../../../constants";
 import "./DrawerNavOptions.scss"
-
+import { SiMicroDotBlog } from "react-icons/si";
 
 const TopItem = ({page, isSelected}) => {
     console.log(`TopItem(page=${page}, selected=${isSelected}`);
@@ -50,7 +50,10 @@ const BottomItem = ({page, isSelected = false}) => {
     return (
         <Link key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
             <ListItem key={page}>
-                <ListItemIcon> <MailIcon/> </ListItemIcon>
+                <ListItemIcon>
+                    {page==="BlogPage"? <SiMicroDotBlog size={25}/> :<MailIcon /> }
+                </ListItemIcon>
+
                 {isSelected ?
                     <ListItemText primary={pageToPageName[page]} className={"drawer_link"}
                                   style={{color: colorScheme.primary.dark, marginLeft: "-15px"}}/>
@@ -70,8 +73,8 @@ BottomItem.propTypes = {
 
 const DrawerNavOptions = ({toggleDrawerCallback, pageSelected}) => {
 
-    const topRouteTitles = ['HomePage', 'CurrentListingsPage', 'BuyersPage', 'SellersPage'];
-    const bottomRouteTitles = ['ContactUsPage'];
+    const topRouteTitles = ['HomePage', 'BuyersPage', 'SellersPage','LeasePage'];
+    const bottomRouteTitles = ['ContactUsPage','BlogPage'];
 
     return (
         <div

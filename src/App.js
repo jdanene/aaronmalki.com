@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";
-import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage} from "./views";
+import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage, LeasePage, BlogPage} from "./views";
 import {AppContextProvider} from "./context";
 import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import {colorScheme} from "./constants";
@@ -88,6 +88,8 @@ function App({location}) {
                                                component={CurrentListingsPage}/>
                                         <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
                                         <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
+                                        <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}/>
+                                        <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>
                                     </Switch>
 
                         </div>
