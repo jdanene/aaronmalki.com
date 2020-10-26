@@ -26,6 +26,7 @@ import SendMessage from "./SendMessage";
 import ShowGoogleMap from "./GoogleMaps/ShowGoogleMap";
 import {colorScheme} from "../../constants";
 import {AppContext} from "../../context";
+
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -178,8 +179,8 @@ const styles = theme => ({
     email: {
         color: theme.palette.common.white
     },
-    phone:{
-        textDecoration:'none',
+    phone: {
+        textDecoration: 'none',
         color: theme.palette.common.white
     }
 });
@@ -187,7 +188,7 @@ const styles = theme => ({
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
-    const LOS_ANGELES_CENTER = [37.806279, -122.423516];
+const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
     const {phoneNumber} = useContext(AppContext);
@@ -195,7 +196,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
     return (
         <div className={classes.main_container}>
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
-                <SendMessage  md={5} lg={5} xl={5}/>
+                <SendMessage md={5} lg={5} xl={5}/>
 
                 {/* The map and Location*/}
                 <Grid item
@@ -204,7 +205,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
 
                 >
                     {/*The Map*/}
-                    <Grid item lg={12} md={12} sm={12} xs={12} style={{ height: '75%'}}>
+                    <Grid item lg={12} md={12} sm={12} xs={12} style={{height: '75%'}}>
                         <ShowGoogleMap/>
                     </Grid>
 
@@ -220,20 +221,19 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                             marginBottom: "5%"
 
                         }}>
-                                <StyledText className={classes.credentialname}>Aaron Malki</StyledText>
+                            <StyledText className={classes.credentialname}>Aaron Malki</StyledText>
 
                             <FittedText className={classes.address}>
                                 891 Beach Steet <br/>
                                 San Francisco CA 94109 <br/>
-                                <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a> <br/>
+                                <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a>
+                                <br/>
                                 <a href={"mailto:aaronmalki@malki.com"}
                                    className={classes.email}> aaronmalki@malki.com </a>
                             </FittedText>
                         </div>
                     </Grid>
                 </Grid>
-
-
 
 
             </Grid>

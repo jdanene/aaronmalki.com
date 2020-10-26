@@ -296,11 +296,12 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
         } else if (message === '') {
             setError({...error, message: true, helperTxt: 'Please include a message.'});
 
-        } else if (!(EmailValidator.validate(email))) {
+        } else if (!(EmailValidator.validate(email.trim()))) {
+
             setError({...error, email: true, helperTxt: 'Please include a valid email.'});
         } else {
             // ToDo: Hook up with email sender, and maybe firebase
-            SendEmailToAaron({name,email,message})
+            SendEmailToAaron({name,email:email.trim(),message})
                 .then(()=>setMessageSent(true))
                 .catch(()=>console.error(`[SendMessage.js] failed to send message:${JSON.stringify({email,message,name})}`))
         }

@@ -24,6 +24,7 @@ import Link from "@material-ui/core/Link";
 import FooterListItem from "./FooterListItem";
 import FooterLocationAndInfo from "./FooterLocationAndInfo";
 import {useMediaQuery} from "@material-ui/core";
+import { AiFillHeart } from "react-icons/ai";
 
 function Copyright() {
     return (
@@ -38,6 +39,11 @@ function Copyright() {
     );
 }
 
+const ArtistPlug = ()=>{
+    return (
+        <Typography variant="body2" color="textSecondary" style={{position:"static",right:0, bottom:0}} > Made with <AiFillHeart size={22} style={{ fill: colorScheme.general.red, margin:0,padding:0, position:'relative', bottom:-5 }}/> by <a href={"https://www.linkedin.com/in/jide-anene/"}>Jidé</a> for a better web. </Typography>
+    )
+}
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -261,8 +267,9 @@ function Footer(props) {
 
                 </Grid>
             </div>
-            <Box mt={5}>
+            <Box mt={5} >
                 <Copyright/>
+                <ArtistPlug/>
             </Box>
         </footer>
     );

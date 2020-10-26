@@ -53,12 +53,12 @@ function App({location}) {
             primary: {
                 main: colorScheme.primary.primary,
                 light: colorScheme.primary.light,
-                dark: colorScheme.primary.dark
+                dark: colorScheme.primary.dark,
             },
             secondary: {
                 main: colorScheme.secondary.primary,
                 light:colorScheme.secondary.light ,
-                dark: colorScheme.secondary.dark
+                dark: colorScheme.secondary.primary,
             }
         }
     });

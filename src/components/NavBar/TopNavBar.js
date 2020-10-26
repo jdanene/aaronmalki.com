@@ -18,7 +18,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {StyledText, PopText} from "../Text";
 import Grid from '@material-ui/core/Grid';
-import DrawerNavOptions from "./routes/DrawerNavOptions";
+import DrawerNavOptions from "./Drawer/DrawerNavOptions";
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import PropTypes from 'prop-types';
@@ -85,7 +85,7 @@ const useStyles = makeStyles({
         fontFamily: "raleway-thin, serif"
     },
     drawerItem:{
-        background:colorScheme.secondary.primary
+        background:'#FAFBFC'
     }
 });
 

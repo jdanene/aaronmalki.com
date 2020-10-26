@@ -27,9 +27,9 @@ export const colorScheme = {
         dark: "#1b3039"
     },
     secondary: {
-        primary: "#3D435A",
-        light: "#ffffff",
-        dark: "#c7c7c7"
+        primary: "#565b70",
+        light: "#999FBB",
+        dark: "#1A2237"
     },
     general:{
         hot_purple: '#990000',
@@ -50,7 +50,9 @@ export const colorScheme = {
         analogous0Dark:'#1A2237',
         analogous1: '#70908A',
         triadic0: '#7A7090',
-        triadic1: '#907086'
+        triadic1: '#907086',
+        dark:'#303030',
+        black: 'rgba(0, 0, 0, 0.87)'
 
     }
 
