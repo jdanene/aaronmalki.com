@@ -112,7 +112,7 @@ const ShowGoogleMap = ({styles}) => {
                             textAlign:'left',
                             textShadow: "-1px -1px 3px white, 1px 1px 0px white, -1px 1px 0px white, 1px 1px 0px white,1px 1px 0px white,-2px 0px 0px white,2px 0px 0px white,0px 2px 0px white,0px -2px 0px white"
                         }}
-                        onClick={clickHandler}
+                        /*onClick={clickHandler}*/
                     >
                         {address.line1} <br/>
                         {address.line2}
