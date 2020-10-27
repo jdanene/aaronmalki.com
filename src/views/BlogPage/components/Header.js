@@ -18,10 +18,13 @@ const useStyles = makeStyles((theme) => ({
   toolbarSecondary: {
     justifyContent: 'space-between',
     overflowX: 'auto',
+    color:'#44634E',
   },
   toolbarLink: {
     padding: theme.spacing(1),
     flexShrink: 0,
+        fontFamily:'airbnb-medium'
+
   },
 }));
 

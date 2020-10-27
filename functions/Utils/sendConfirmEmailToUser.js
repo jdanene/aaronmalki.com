@@ -1,4 +1,5 @@
 //style = "color:blue;font-size:46px;"
+const CONSTANTS = require('../constants');
 
 const styles = {
     header: {
@@ -73,9 +74,9 @@ const sendConfirmEmailToUser = async (mailTransport, {email, name}) => {
     <div>
     <footer style=style=${getCSSstyle(styles.footer)}>
         <b>Aaron Malki Real Estate</b> <br>
-        891 Beach Street <br>
-        San Francisco CA 94109 <br>
-        <a style=style=${getCSSstyle(styles.link)}  href="tel:+19097716881"> (909) 771-6881</a> <br>
+        ${CONSTANTS.address.line1} <br>
+       ${CONSTANTS.address.line2} <br>
+        <a style=style=${getCSSstyle(styles.link)}  href="tel:${CONSTANTS.phoneNumber.tel}"> ${CONSTANTS.phoneNumber.dash}</a> <br>
         <a style=style=${getCSSstyle(styles.link)} href="https://the-malki-site.web.app/">aaronmalki.com</a>
     </footer>
     </div>

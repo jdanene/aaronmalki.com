@@ -18,8 +18,6 @@ function Main(props) {
   const classes = useStyles();
   const { posts, title } = props;
 
-  console.log("Here")
-    console.log(posts)
   return (
     <Grid item xs={12} md={8}>
       <Typography variant="h6" gutterBottom>
@@ -27,8 +25,8 @@ function Main(props) {
       </Typography>
       <Divider />
 
-      {posts.map((post) => (
-        <Markdown className={classes.markdown} key={post.substring(0, 40)} children={post}/>
+      {Object.keys(posts).map((key) => (
+        <Markdown className={classes.markdown} key={key} children={posts[key].content}/>
       ))}
     </Grid>
   );

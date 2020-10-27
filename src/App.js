@@ -4,7 +4,7 @@ import './App.css';
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
 } from "react-router-dom";
 import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";

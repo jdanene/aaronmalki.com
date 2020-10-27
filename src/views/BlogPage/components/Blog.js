@@ -11,10 +11,12 @@ import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
-
+import useBlogPosts from "../../../context/useBlogPost";
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
+import {StyledText} from "../../../components/Text";
+import {getKeyFromSingelton} from "../../../context/useBlogPost";
 
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -92,38 +94,26 @@ const sidebar = {
 export default function Blog() {
     const [mdFiles, setMdFiles] = useState();
     const classes = useStyles();
-
-    useEffect(() => {
-
-        let files = [];
-        posts.map((post) =>
-            fetch(post)
-                .then((res) => res.text())
-                .then((md) => {
-                    files.push(md);
-                })
-        );
-                          setMdFiles(files)
+    const {featured,main_featured, posts, isLoaded} = useBlogPosts();
 
 
-
-    }, []);
 
     useEffect(()=>{console.log(mdFiles)},[mdFiles])
     return (
         <React.Fragment>
             <CssBaseline/>
+            {isLoaded?
             <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
                 <Header title="Blog" sections={sections}/>
                 <main>
-                    <MainFeaturedPost post={mainFeaturedPost}/>
+                    <MainFeaturedPost post={main_featured}/>
                     <Grid container spacing={4}>
-                        {featuredPosts.map((post) => (
-                            <FeaturedPost key={post.title} post={post}/>
+                        {Object.keys(featured).map((key) => (
+                            <FeaturedPost key={key} post={featured[key]}/>
                         ))}
                     </Grid>
                     <Grid container spacing={5} className={classes.mainGrid}>
-                        {Array.isArray(mdFiles)&&<Main title="From the firehose" posts={mdFiles}/>}
+                        <Main title="From the firehose" posts={posts}/>
                         <Sidebar
                             title={sidebar.title}
                             description={sidebar.description}
@@ -132,7 +122,9 @@ export default function Blog() {
                         />
                     </Grid>
                 </main>
-            </Container>
+            </Container>:
+                <StyledText>Loading ... </StyledText>
+            }
 
         </React.Fragment>
     );

@@ -15,6 +15,7 @@ import "./resources/fonts/Raleway-Italic.ttf"
 import "./resources/fonts/Raleway-BoldItalic.ttf"
 import "./resources/fonts/ScopeOne-Regular.ttf"
 import "./resources/fonts/AirbnbCereal-Bold.ttf"
+import "./resources/fonts/AirbnbCereal-Medium.ttf"
 
 
 

@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import {getKeyFromSingelton} from "../../../context/useBlogPost";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -37,19 +38,20 @@ const useStyles = makeStyles((theme) => ({
 
 function MainFeaturedPost(props) {
   const classes = useStyles();
-  const { post } = props;
+  let { post } = props;
+  let postActual = post[getKeyFromSingelton(post)];
 
   return (
     <Paper
       className={classes.mainFeaturedPost}
-      style={{ backgroundImage: `url(${post.image})` }}
+      style={{ backgroundImage: `url(${postActual.image})` }}
     >
       {/* Increase the priority of the hero background image */}
       {
         <img
           style={{ display: 'none' }}
-          src={post.image}
-          alt={post.imageText}
+          src={postActual.image}
+          alt={postActual.imageText}
         />
       }
 
@@ -63,13 +65,13 @@ function MainFeaturedPost(props) {
               color="inherit"
               gutterBottom
             >
-              {post.title}
+              {postActual.title}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
+              {postActual.description}
             </Typography>
             <Link variant="subtitle1" href="#">
-              {post.linkText}
+              {postActual.linkText}
             </Link>
           </div>
         </Grid>

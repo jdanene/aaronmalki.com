@@ -191,7 +191,7 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
-    const {phoneNumber,email} = useContext(AppContext);
+    const {phoneNumber,email, address} = useContext(AppContext);
 
     return (
         <div className={classes.main_container}>
@@ -224,8 +224,8 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                             <StyledText className={classes.credentialname}>Aaron Malki</StyledText>
 
                             <FittedText className={classes.address}>
-                                891 Beach Steet <br/>
-                                San Francisco CA 94109 <br/>
+                                {address.line1} <br/>
+                                {address.line2} <br/>
                                 <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a>
                                 <br/>
                                 <a href={`mailto:${email}`}

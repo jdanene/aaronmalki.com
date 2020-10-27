@@ -1,6 +1,7 @@
 'use strict';
 const sendInquiryToAaron = require("./Utils/sendInquiryToAaron");
 const sendConfirmEmailToUser = require("./Utils/sendConfirmEmailToUser");
+
 const functions = require('firebase-functions');
 //firebase deploy --only functions
 //firebase functions:config:set gmail.email=aaaronmalki@gmail.com gmail.password=missy13!

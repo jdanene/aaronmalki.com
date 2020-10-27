@@ -44,6 +44,9 @@ export const colorScheme = {
     },
     other:{
         backgroundComplementary: '#EDEDED',
+        complementaryLight:'#917a6f',
+        complementary:"#634e44",
+        complementaryDark:'#38261d',
         analogous0:'#707690',
         analogous0Light:'#999FBB',
         analogous0Medium:'#3D435A',
