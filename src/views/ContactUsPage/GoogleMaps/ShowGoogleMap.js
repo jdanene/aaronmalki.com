@@ -77,7 +77,6 @@ const ShowGoogleMap = ({styles}) => {
     // options for InfoWindow or InfoBox not sure
     const options = {closeBoxURL: '', enableEventPropagation: true, pixelOffset: 5};
 
-
     return (
         <LoadScript
             googleMapsApiKey={API_KEY}
