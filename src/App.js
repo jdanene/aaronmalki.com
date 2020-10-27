@@ -22,11 +22,12 @@ import {SocialMediaButtons} from "./components/SocialMediaButtons";
 import {Footer} from "./components/Footer";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useLocation} from 'react-router-dom'
+const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-    apiKey: "AIzaSyDb3T9-Cd7yQynA_W-mCldk29o7ALEcf2A",
+    apiKey: FIREBASE_KEY,
     authDomain: "the-malki-site.firebaseapp.com",
     databaseURL: "https://the-malki-site.firebaseio.com",
     projectId: "the-malki-site",

@@ -85,8 +85,8 @@ const ShowGoogleMap = ({styles}) => {
                 options={defaultMapOptions}
                 id='traffic-example'
                 mapContainerStyle={mapContainerStyle}
-                zoom={13}
-                center={{lat:address.position.lat+.004,lng:address.position.lng }}
+                zoom={19}
+                center={{lat:address.position.lat,lng:address.position.lng }}
             >
 
 
@@ -102,11 +102,11 @@ const ShowGoogleMap = ({styles}) => {
                 >
                     <StyledText
                         style={{
-                            color: colorScheme.general.red,
+                            color: "#DD4B3E",
                             fontSize: '10px',
                             position: 'relative',
                             top: -20,
-                            left: 70,
+                            left: 75,
                             paddingLeft:'2px',
                             fontWeight:'bold',
                             textAlign:'left'
