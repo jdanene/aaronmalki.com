@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "assert": "^2.0.0",
     "clsx": "^1.1.1",
+    "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
     "firebase": "^7.24.0",
     "google-map-react": "^2.1.8",

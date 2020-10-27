@@ -6,6 +6,7 @@ import {StyledText} from "../../../components/Text";
 import {colorScheme} from "../../../constants";
 import {AppContext} from "../../../context";
 import NavigateToGoogleMapButton from "./NavigateToGoogleMapButton";
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
 const centerOverlayView = (width, height) => ({
     x: -(width / 2),
@@ -79,7 +80,7 @@ const ShowGoogleMap = ({styles}) => {
 
     return (
         <LoadScript
-            googleMapsApiKey={firebaseConfig.apiKey}
+            googleMapsApiKey={API_KEY}
         >
             <GoogleMap
                 options={defaultMapOptions}
