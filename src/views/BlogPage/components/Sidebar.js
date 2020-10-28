@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     listItem:{
       fontFamily:'airbnb-book',
 textAlign:'left'
+    },
+    container:{
+      marginBottom: theme.spacing(2),
     }
 }));
 
@@ -34,7 +37,7 @@ export default function Sidebar(props) {
   const { archives, description, social, title } = props;
 
   return (
-    <Grid item xs={12} md={4} >
+    <Grid item xs={12} md={4}  className={classes.container}>
       <Paper elevation={0} className={classes.sidebarAboutBox}>
         <Typography variant="h6" gutterBottom style={{fontFamily:'airbnb-bold'}}>
           {title}
