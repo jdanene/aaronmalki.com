@@ -14,7 +14,6 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     mainFeaturedPost: {
         position: 'relative',
-        backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
         marginBottom: theme.spacing(4),
         backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 0,
         left: 0,
-        backgroundColor: 'rgba(0,0,0,.3)',
     },
     mainFeaturedPostContent: {
         position: 'relative',
