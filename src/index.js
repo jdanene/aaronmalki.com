@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import dotenv from "dotenv"
 import * as serviceWorker from './serviceWorker';
 import "./resources/fonts/SourceSansPro-Regular.ttf";
 import "./resources/fonts/SourceSansPro-Bold.ttf";
@@ -17,11 +16,14 @@ import "./resources/fonts/Raleway-BoldItalic.ttf"
 import "./resources/fonts/ScopeOne-Regular.ttf"
 import "./resources/fonts/AirbnbCereal-Bold.ttf"
 import "./resources/fonts/AirbnbCereal-Medium.ttf"
-dotenv.config();
+import {AppContextProvider} from "./context";
 
 
 ReactDOM.render(
+    <AppContextProvider>
         <App />
+    </AppContextProvider>
+
     ,
   document.getElementById('root')
 );

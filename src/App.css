@@ -21,6 +21,13 @@
 
 }
 
+.route-wrapper {
+  position: static;
+}
+
+.route-wrapper > div {
+  position: static;
+}
 
 .App {
     text-align: center;

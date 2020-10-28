@@ -1,5 +1,5 @@
 const isObjectEmpty = (obj)=>{
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
+    return (obj == null) || (obj === undefined) || obj.constructor === Object && Object.keys(obj).length === 0
 };
 
 export default isObjectEmpty;

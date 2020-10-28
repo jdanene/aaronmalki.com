@@ -132,7 +132,7 @@ const styles = theme => ({
         height: '75%'
     },
     main_container: {
-        width: '100%',
+        width: '100vw',
         display: 'flex',
         flexGrow: 1,
         flexShrink: 1,

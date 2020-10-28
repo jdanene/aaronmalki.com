@@ -4,12 +4,13 @@ import {blog_states} from "../constants/contants";
 import {v4 as uuidv4} from 'uuid';
 import {  blog_categories} from "../constants/contants";
 import getRandomValueFromObject from "../components/Utility/getRandomValueFromObject";
-
+import {pageToPathName} from "../constants/contants";
+import isObjectEmpty from "../components/Utility/isObjectEmpty";
 // path -> blog/{category}/{name}
 let blog1 = {
     state: blog_states.posts,
     category: blog_categories.news,
-    name: 'blog1',
+    title: 'blog1',
     image: 'https://source.unsplash.com/random',
     description: "Covid rebound in the works for SF",
     date: new Date().toDateString(),
@@ -66,7 +67,7 @@ Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at
 let blog2 = {
     state: blog_states.posts,
     category: blog_categories.lifestyle,
-    name: 'blog2',
+    title: 'blog2',
     image: 'https://source.unsplash.com/random',
 
     description: "Work life balance when working from home",
@@ -325,23 +326,49 @@ const filterPosts = ({posts,featured,main_featured})=>{
         return {[blog_states.posts]:displayPost,[blog_states.featured]:displayFeatured,[blog_states.main_featured]:randomMainFeature}
 };
 
+const blogPostToPath = (posts)=>{
+
+    let paths = {};
+
+    Object.keys(posts).map((key)=>{
+        paths[key] = `${pageToPathName.BlogPage}/${posts[key].category}/${posts[key].title.toLowerCase().replace(/\s/g, '-')}`
+    });
+    return paths;
+};
 
 
 const useBlogPosts = () => {
     const [blogPosts,setBlogPosts] = useState({});
-    const [displayedPost, setDisplayPost] = useState({});
-    const [isLoaded, setLoaded] = useState(false);
+    const [filteredBlogPosts, setFilteredBlogPosts] = useState({});
+    const [isBlogLoaded, setBlogLoaded] = useState(false);
+    const [blogPaths, setBlogPaths] = useState({});
+
     // ToDo: Get blog post from database
     useEffect(()=>{
         setBlogPosts(TEST_POSTS.blogPosts);
-        setDisplayPost(filterPosts(TEST_POSTS.blogPosts));
-        setLoaded(true)
+        setFilteredBlogPosts(filterPosts(TEST_POSTS.blogPosts));
     },[]);
 
+    // If new blog post reset the paths
+    useEffect(()=>{
+        if (!isObjectEmpty(blogPosts)){
+
+            let paths = {};
+            // eslint-disable-next-line array-callback-return
+            Object.keys(blog_states).map((key)=>{
+                if(key in blogPosts){
+                    paths= {...paths,...blogPostToPath(blogPosts[key])}
+                }
+            });
+
+            setBlogPaths(paths);
+            setBlogLoaded(true);
+        }
+    },[blogPosts]);
 
 
 
-    return { ...displayedPost, isLoaded}
+    return { filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths}
 };
 
 

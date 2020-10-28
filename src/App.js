@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
+    Route, Redirect,
 } from "react-router-dom";
 import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";
@@ -22,6 +22,10 @@ import {SocialMediaButtons} from "./components/SocialMediaButtons";
 import {Footer} from "./components/Footer";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useLocation} from 'react-router-dom'
+import {AppContext} from "./context";
+import {blog_category_to_string} from "./constants/contants";
+import {AnimatedSwitch} from 'react-router-transition';
+
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 
@@ -44,8 +48,11 @@ firebase.initializeApp(firebaseConfig);
 export const FIREBASE_DB = firebase.database();
 
 
+
+
 function App({location}) {
 
+    const {blogPaths, isBlogLoaded} = useContext(AppContext);
 
     // const location = useLocation();
 
@@ -58,7 +65,7 @@ function App({location}) {
             },
             secondary: {
                 main: colorScheme.secondary.primary,
-                light:colorScheme.secondary.light ,
+                light: colorScheme.secondary.light,
                 dark: colorScheme.secondary.primary,
             }
         }
@@ -74,31 +81,47 @@ function App({location}) {
 
         <Router>
             <ThemeProvider theme={theme}>
-                <AppContextProvider>
-                    <div className="app_container">
+                <div className="app_container">
 
-                        <TopNavBar/>
+                    <TopNavBar/>
 
-                        <div className={"app_container_main_body"}>
-                            {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
+                    <div className={"app_container_main_body"}>
+                        {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
 
-                                    <Switch>
-                                        <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
-                                        <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
-                                        <Route path={pageToPathName["CurrentListingsPage"]} exact
-                                               component={CurrentListingsPage}/>
-                                        <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
-                                        <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
-                                        <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}/>
-                                        <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>
-                                    </Switch>
+                        <Switch>
+                            <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
+                            <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
+                            <Route path={pageToPathName["CurrentListingsPage"]} exact
+                                   component={CurrentListingsPage}/>
+                            <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
+                            <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
+                            <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>
 
-                        </div>
 
-                        <Footer/>
+                                {/*Blog absolute path*/}
+                                <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>
+                                <Redirect to={blog_category_to_string.news.path}/>
+
+                                </Route>
+
+                                {/*Blog tabs at the top*/}
+                                {Object.keys(blog_category_to_string).map((key) =>
+                                    <Route key={key} path={blog_category_to_string[key].path} exact
+                                           component={BlogPage}/>
+                                )}
+
+                                {/*Individual Blogs*/}
+                                {isBlogLoaded && Object.keys(blogPaths).map((key) =>
+                                    <Route key={key} path={blogPaths[key]} exact component={BlogPage}/>
+                                )}
+
+                        </Switch>
+
                     </div>
 
-                </AppContextProvider>
+                    <Footer/>
+                </div>
+
             </ThemeProvider>
         </Router>
 

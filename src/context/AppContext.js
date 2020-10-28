@@ -1,5 +1,6 @@
 import React, {createContext, useState, useEffect} from "react"
 import {  blog_categories,blog_states} from "../constants/contants";
+import useBlogPosts from "./useBlogPost";
 const AppContext = createContext();
 
 
@@ -35,14 +36,14 @@ const initial = {
 
 const useApp = () => {
     const [state, setState] = useState(initial);
-
-
     return state
 };
 
+
 const AppContextProvider = ({children}) => {
+    const blogs = useBlogPosts();
     const state = useApp();
-    return <AppContext.Provider value={state}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{...state,...blogs}}>{children}</AppContext.Provider>
 };
 
 export {

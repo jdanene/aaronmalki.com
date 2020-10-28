@@ -36,16 +36,16 @@ export const navBarParams = {
 
 export const blog_categories = {
     news: "news",
-    rental_guide: "rental_guide",
-    buying_tips: "buying_tips",
+    rental_guide: "rental-guide",
+    buying_tips: "buying-tips",
     lifestyle: "lifestyle"
 };
 
 export const blog_category_to_string = {
-    news: "In The News",
-    rental_guide: "Rental Guides",
-    buying_tips: "Buying Tips",
-    lifestyle: "Lifestyle & Design"
+    news: {title:"In The News",path:`${pageToPathName.BlogPage}/${blog_categories.news}`},
+    rental_guide: {title:"Rental Guides",path:`${pageToPathName.BlogPage}/${blog_categories.rental_guide}`},
+    buying_tips: {title:"Buying Tips",path:`${pageToPathName.BlogPage}/${blog_categories.buying_tips}`},
+    lifestyle: {title:"Lifestyle & Design",path:`${pageToPathName.BlogPage}/${blog_categories.lifestyle}`}
 };
 
 export const blog_states = {

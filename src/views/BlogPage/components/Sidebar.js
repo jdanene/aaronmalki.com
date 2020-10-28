@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import {colorScheme} from "../../../constants";
+import {AppContext} from "../../../context";
 
 const useStyles = makeStyles((theme) => ({
   sidebarAboutBox: {
@@ -17,12 +18,19 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebarSection: {
     marginTop: theme.spacing(3),
-       textAlign:'left'
+       textAlign:'left',
+      color:'#222D32',
+      fontFamily:'airbnb-bold',
   },
+    listItem:{
+      fontFamily:'airbnb-book',
+textAlign:'left'
+    }
 }));
 
 export default function Sidebar(props) {
-  const classes = useStyles();
+  const {socialMedia} = useContext(AppContext);
+    const classes = useStyles();
   const { archives, description, social, title } = props;
 
   return (
@@ -37,7 +45,7 @@ export default function Sidebar(props) {
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link style={{textAlign:'left'}} display="block" variant="body1" href={archive.url} key={archive.title}>
+        <Link className={classes.listItem}  display="block" variant="body1" href={archive.url} key={archive.title}>
           {archive.title}
         </Link>
       ))}
@@ -45,7 +53,7 @@ export default function Sidebar(props) {
         Social
       </Typography>
       {social.map((network) => (
-        <Link display="block" variant="body1" href="#" key={network}>
+        <Link className={classes.listItem} display="block" variant="body1" href={socialMedia[network.key]} key={network.key}>
           <Grid container direction="row" spacing={1} alignItems="center">
             <Grid item>
               <network.icon />

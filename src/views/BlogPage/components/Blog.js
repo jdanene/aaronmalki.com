@@ -1,11 +1,12 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
@@ -17,7 +18,10 @@ import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 import {StyledText} from "../../../components/Text";
 import {getKeyFromSingelton} from "../../../context/useBlogPost";
+import {AppContext} from "../../../context";
+import {useLocation} from "react-router";
 
+// Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
         marginTop: theme.spacing(3),
@@ -85,35 +89,39 @@ const sidebar = {
         {title: 'April 1999', url: '#'},
     ],
     social: [
-        {name: 'GitHub', icon: GitHubIcon},
-        {name: 'Twitter', icon: TwitterIcon},
-        {name: 'Facebook', icon: FacebookIcon},
+        {name: 'LinkedIn', icon: LinkedInIcon, key:"linkedin"},
+        {name: 'Instagram', icon: InstagramIcon,key:"instagram"},
+        {name: 'Facebook', icon: FacebookIcon,key:"facebook"},
     ],
 };
 
 export default function Blog() {
+    const location = useLocation()
+
     const [mdFiles, setMdFiles] = useState();
     const classes = useStyles();
-    const {featured,main_featured, posts, isLoaded} = useBlogPosts();
+
+    const {filteredBlogPosts,isBlogLoaded,blogPaths} = useContext(AppContext);
+    const {featured,main_featured, posts} = filteredBlogPosts;
 
 
 
-    useEffect(()=>{console.log(mdFiles)},[mdFiles])
+    useEffect(()=>{console.log(mdFiles)},[mdFiles]);
     return (
         <React.Fragment>
             <CssBaseline/>
-            {isLoaded?
+            {isBlogLoaded?
             <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
-                <Header title="Blog" sections={sections}/>
+                <Header location={location} sections={sections}/>
                 <main>
-                    <MainFeaturedPost post={main_featured}/>
+                    <MainFeaturedPost path={blogPaths[getKeyFromSingelton(main_featured)]} post={main_featured}/>
                     <Grid container spacing={4}>
                         {Object.keys(featured).map((key) => (
-                            <FeaturedPost key={key} post={featured[key]}/>
+                            <FeaturedPost key={key} post={featured[key]} path={blogPaths[key]}/>
                         ))}
                     </Grid>
                     <Grid container spacing={5} className={classes.mainGrid}>
-                        <Main title="From the firehose" posts={posts}/>
+                        <Main title="From the firehose" posts={posts} paths={blogPaths}/>
                         <Sidebar
                             title={sidebar.title}
                             description={sidebar.description}
@@ -122,8 +130,10 @@ export default function Blog() {
                         />
                     </Grid>
                 </main>
-            </Container>:
-                <StyledText>Loading ... </StyledText>
+            </Container >:
+                <div style={{height: '100vh', width: '100vw', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                    <StyledText >Loading ... </StyledText>
+                </div>
             }
 
         </React.Fragment>

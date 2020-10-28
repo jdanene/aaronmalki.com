@@ -97,7 +97,6 @@ const TopNavBar = ({children, window}) => {
     const {phoneNumber} = useContext(AppContext);
     const styles = useStyles();
     const location = useLocation();
-    console.log(location.pathname);
     //const {children, window} = props;
     const [isDrawerOpen, setDrawerOpen] = useState(false);
     const [trigger, setTrigger] = useState(false);
@@ -118,7 +117,6 @@ const TopNavBar = ({children, window}) => {
         [location.pathname]);
 
     useEffect(() => {
-        console.log(mobileBreak)
     }, [mobileBreak]);
 
     const toggleDrawer = (open) => (event) => {
@@ -252,7 +250,7 @@ const TopNavBar = ({children, window}) => {
                                         onClose={toggleDrawer(false)}
                                     >
                                         <DrawerNavOptions toggleDrawerCallback={toggleDrawer}
-                                                          pageSelected={pathToPageName[location.pathname]}/>
+                                                          locationPathName={location.pathname}/>
                                     </Drawer>
                                 </div>
                             </div>

@@ -15,13 +15,16 @@ import MailIcon from '@material-ui/icons/Mail';
 import PropTypes from "prop-types";
 import {pageToPathName, pageToPageName, colorScheme} from "../../../constants";
 import "./DrawerNavOptions.scss"
-import { SiMicroDotBlog } from "react-icons/si";
+import {SiMicroDotBlog} from "react-icons/si";
+import isPathMatch from "../../Utility/isPathMatch";
+import matchPath from "react-router/modules/matchPath";
+import isObjectEmpty from "../../Utility/isObjectEmpty";
 
 const TopItem = ({page, isSelected}) => {
     console.log(`TopItem(page=${page}, selected=${isSelected}`);
 
     return (
-        <Link  key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
+        <Link key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
             <ListItem
                 style={{display: "flex"}}
                 key={page}
@@ -51,7 +54,7 @@ const BottomItem = ({page, isSelected = false}) => {
         <Link key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
             <ListItem key={page}>
                 <ListItemIcon>
-                    {page==="BlogPage"? <SiMicroDotBlog size={25}/> :<MailIcon /> }
+                    {page === "BlogPage" ? <SiMicroDotBlog size={25}/> : <MailIcon/>}
                 </ListItemIcon>
 
                 {isSelected ?
@@ -71,10 +74,19 @@ BottomItem.propTypes = {
     isSelected: PropTypes.bool
 };
 
-const DrawerNavOptions = ({toggleDrawerCallback, pageSelected}) => {
+const DrawerNavOptions = ({toggleDrawerCallback, locationPathName}) => {
+    const pathMatcherExact= (targetPath) => {
+        return !isObjectEmpty(matchPath(locationPathName,{path:targetPath,exact:true}))
+    };
 
-    const topRouteTitles = ['HomePage', 'BuyersPage', 'SellersPage','LeasePage'];
-    const bottomRouteTitles = ['ContactUsPage','BlogPage'];
+    const pathMatcherFuzzy= (targetPath) => {
+        return !isObjectEmpty(matchPath(locationPathName,{path:targetPath}))
+    };
+
+
+
+    const topRouteTitles = ['HomePage', 'BuyersPage', 'SellersPage', 'LeasePage'];
+    const bottomRouteTitles = ['ContactUsPage', 'BlogPage'];
 
     return (
         <div
@@ -84,11 +96,12 @@ const DrawerNavOptions = ({toggleDrawerCallback, pageSelected}) => {
             onKeyDown={toggleDrawerCallback(false)}
         >
             <List>
-                {topRouteTitles.map((page) => (<TopItem  page={page} isSelected={page === pageSelected}/>))}
+                {topRouteTitles.map((page) => (<TopItem page={page} isSelected={pathMatcherExact(pageToPathName[page])}/>))}
             </List>
             <Divider/>
             <List>
-                {bottomRouteTitles.map((page) => (<BottomItem page={page} isSelected={page === pageSelected}/>))}
+                {bottomRouteTitles.map((page) => (
+                    <BottomItem page={page} isSelected={pathMatcherFuzzy(pageToPathName[page])}/>))}
             </List>
         </div>
     )

@@ -3,7 +3,7 @@ import Blog from "./components/Blog";
 
 const BlogPage = ()=>{
 
-    return <div style={{display:"flex", alignContent:"center", alignItems:"center", color:"white"}}>
+    return <div style={{display:"flex", alignContent:"center", alignItems:"center",width:'100vw'}}>
         <Blog/>
     </div>
 
