@@ -90,6 +90,8 @@ Aenean lacinia bibendum nulla sed consectetur.
 Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
 Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
 Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+<Video /> 
+
     `
 };
 
@@ -119,6 +121,8 @@ Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus si
 Aenean lacinia bibendum nulla sed consectetur.
 
 Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+    <Video url="https://www.facebook.com/facebook/videos/245453540118461/" />
+
     `
 };
 
@@ -135,6 +139,7 @@ let blog4 = {
 
 #### March 14, 2020 by [Becky](/)
 I should be dead but you may see me
+<Video url="https://www.twitch.tv/x2twins"/>
 `
 };
 
