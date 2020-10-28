@@ -14,10 +14,12 @@ import {useEffect} from "react";
 import clsx from "clsx";
 import isPathMatch from "../../../components/Utility/isPathMatch";
 import {colorScheme} from "../../../constants";
+import {Divider} from "@material-ui/core";
 //blog_category_to_string
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    marginTop:'70px',
   },
   toolbarTitle: {
     flex: 1,
@@ -97,6 +99,7 @@ function Header(props) {
           </Link>
         ))}
       </Toolbar>
+      <Divider/>
     </React.Fragment>
   );
 }
