@@ -39,14 +39,14 @@ const Video = ({url = 'https://www.youtube.com/watch?v=ysz5S6PUM-U'}) => {
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
             {!ready ? <Skeleton variant="rect" component={"video"}>
                     <div style={style} className={classes.root}>
-                        <ReactPlayer onReady={() => setReady(true)}  {...options} className={classes.video} url={url}
+                        <ReactPlayer style={{radius:"1%"}} onReady={() => setReady(true)}  {...options} className={classes.video} url={url}
                                      playing={false} loop={true} controls={true}/>
 
 
                     </div>
                 </Skeleton> :
                 <div style={style} className={classes.root}>
-                    <ReactPlayer onReady={() => setReady(true)}  {...options} className={classes.video} url={url}
+                    <ReactPlayer style={{radius:"1%"}} onReady={() => setReady(true)}  {...options} className={classes.video} url={url}
                                  playing={false} loop={true} controls={true}/>
 
                 </div>
