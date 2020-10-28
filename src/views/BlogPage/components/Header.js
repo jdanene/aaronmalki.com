@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarLink_active:{
     textDecoration:'underline',
-    color:'#800000',
+    color:'#004080',
   },
     toolbarLink_inactive:{
     textDecoration:'none !important',
-      color:'#008080',
+      color:colorScheme.primary.light,
   },
 }));
 
