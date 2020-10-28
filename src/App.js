@@ -112,7 +112,8 @@ function App({location}) {
 
                                 {/*Individual Blogs*/}
                                 {isBlogLoaded && Object.keys(blogPaths).map((key) =>
-                                    <Route key={key} path={blogPaths[key]} exact component={BlogPage}/>
+                                    <Route key={key} path={blogPaths[key]} exact
+                                           render={(props)=><BlogPage {...props} blogUUID={key}/>}/>
                                 )}
 
                         </Switch>

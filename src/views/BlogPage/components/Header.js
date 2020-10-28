@@ -13,6 +13,7 @@ import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import {useEffect} from "react";
 import clsx from "clsx";
 import isPathMatch from "../../../components/Utility/isPathMatch";
+import {colorScheme} from "../../../constants";
 //blog_category_to_string
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarLink_active:{
     textDecoration:'underline',
-    color:'#008080',
+    color:'#800000',
   },
     toolbarLink_inactive:{
     textDecoration:'none !important',
@@ -83,7 +84,6 @@ function Header(props) {
         {Object.keys(blog_category_to_string).map((key) => (
           <Link
             color="inherit"
-            noWrap
             key={key}
             variant="body2"
             to={blog_category_to_string[key].path}
@@ -104,7 +104,6 @@ Header.propTypes = {
       url: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 export default Header;

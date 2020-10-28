@@ -19,6 +19,7 @@ function ProfilePicture({mobileBreak}) {
 
 }
 
+
 // Shadows: https://codepen.io/sdthornton/pen/wBZdXq
 const useStyles = makeStyles({
     icon_container: {

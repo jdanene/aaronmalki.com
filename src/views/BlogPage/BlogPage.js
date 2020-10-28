@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
+import React from "react"
 import Blog from "./components/Blog";
 
-const BlogPage = ()=>{
+const BlogPage = ({blogUUID})=>{
 
     return <div style={{display:"flex", alignContent:"center", alignItems:"center",width:'100vw'}}>
-        <Blog/>
+        <Blog blogUUID={blogUUID}/>
     </div>
 
 };

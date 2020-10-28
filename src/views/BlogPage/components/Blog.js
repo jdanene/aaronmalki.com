@@ -20,7 +20,8 @@ import {StyledText} from "../../../components/Text";
 import {getKeyFromSingelton} from "../../../context/useBlogPost";
 import {AppContext} from "../../../context";
 import {useLocation} from "react-router";
-
+import ActualPost from "./ActualPost";
+import {getPostFromBlogPosts} from "../../../context/useBlogPost";
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -95,18 +96,14 @@ const sidebar = {
     ],
 };
 
-export default function Blog() {
+export default function Blog({blogUUID}) {
     const location = useLocation()
 
-    const [mdFiles, setMdFiles] = useState();
     const classes = useStyles();
 
-    const {filteredBlogPosts,isBlogLoaded,blogPaths} = useContext(AppContext);
+    const {filteredBlogPosts,isBlogLoaded,blogPaths,blogPosts} = useContext(AppContext);
     const {featured,main_featured, posts} = filteredBlogPosts;
 
-
-
-    useEffect(()=>{console.log(mdFiles)},[mdFiles]);
     return (
         <React.Fragment>
             <CssBaseline/>
@@ -114,14 +111,25 @@ export default function Blog() {
             <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
                 <Header location={location} sections={sections}/>
                 <main>
+
+
+                    {!blogUUID&&
+                    <React.Fragment>
                     <MainFeaturedPost path={blogPaths[getKeyFromSingelton(main_featured)]} post={main_featured}/>
                     <Grid container spacing={4}>
                         {Object.keys(featured).map((key) => (
                             <FeaturedPost key={key} post={featured[key]} path={blogPaths[key]}/>
                         ))}
                     </Grid>
+                        </React.Fragment>
+
+                        }
                     <Grid container spacing={5} className={classes.mainGrid}>
-                        <Main title="From the firehose" posts={posts} paths={blogPaths}/>
+                        {!blogUUID?
+                            <Main title="From the firehose" posts={posts} paths={blogPaths}/>
+                            :
+                            <ActualPost key={blogUUID} post={getPostFromBlogPosts({blogUUID,blogPosts})}/>
+                        }
                         <Sidebar
                             title={sidebar.title}
                             description={sidebar.description}
@@ -129,6 +137,8 @@ export default function Blog() {
                             social={sidebar.social}
                         />
                     </Grid>
+
+
                 </main>
             </Container >:
                 <div style={{height: '100vh', width: '100vw', display:'flex', alignItems:'center', justifyContent:'center'}}>

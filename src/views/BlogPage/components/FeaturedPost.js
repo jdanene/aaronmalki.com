@@ -58,6 +58,7 @@ function FeaturedPost(props) {
   );
 }
 
+/*
 FeaturedPost.propTypes = {
   post: PropTypes.shape({
     date: PropTypes.string.isRequired,
@@ -67,5 +68,5 @@ FeaturedPost.propTypes = {
     title: PropTypes.string.isRequired,
   }).isRequired,
 };
-
+*/
 export default FeaturedPost;

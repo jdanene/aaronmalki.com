@@ -3,6 +3,7 @@ import ReactMarkdown from 'markdown-to-jsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Video from "../../../components/Video/Video";
 
 const styles = (theme) => ({
   listItem: {
@@ -12,6 +13,9 @@ const styles = (theme) => ({
 
 const options = {
   overrides: {
+    Video:{
+      component: Video
+    },
     h1: {
       component: Typography,
       props: {

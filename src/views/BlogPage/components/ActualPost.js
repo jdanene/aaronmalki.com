@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
+import {getKeyFromSingelton} from "../../../context/useBlogPost";
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
@@ -14,28 +15,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main(props) {
+function ActualPost(props) {
   const classes = useStyles();
-  const { posts, title} = props;
+  const {key, post} = props;
 
+  console.log(post);
   return (
     <Grid item xs={12} md={8}>
-      <Typography variant="h6" gutterBottom>
-        {title}
-      </Typography>
+
       <Divider />
 
-      {Object.keys(posts).map((key) => (
-        <Markdown className={classes.markdown} key={key} children={posts[key].content}/>
-      ))}
+        <Markdown className={classes.markdown} children={post.content}/>
+
     </Grid>
   );
 }
 
-/*
-Main.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  title: PropTypes.string.isRequired,
-};*/
+ActualPost.propTypes = {
+  post: PropTypes.object.isRequired
+};
 
-export default Main;
+export default ActualPost;

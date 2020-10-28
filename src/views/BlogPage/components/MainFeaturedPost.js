@@ -133,6 +133,7 @@ function MainFeaturedPost(props) {
     );
 }
 
+/*
 MainFeaturedPost.propTypes = {
     post: PropTypes.shape({
         description: PropTypes.string.isRequired,
@@ -141,6 +142,6 @@ MainFeaturedPost.propTypes = {
         linkText: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
     }).isRequired,
-};
+};*/
 
 export default MainFeaturedPost;

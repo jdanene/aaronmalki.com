@@ -152,6 +152,7 @@ let mainFeaturedBlog = {
 
 #### March 14, 2020 by [Becky](/)
 I should be dead but you may see me
+<Video url="https://www.facebook.com/facebook/videos/245453540118461/" />
 `
 };
 
@@ -169,6 +170,7 @@ let mainFeaturedBlog1 = {
 
 #### March 14, 2020 by [Jules](/)
 I should be dead but you may see me whats really good
+<Video url="https://www.twitch.tv/x2twins"/>
 `
 };
 
@@ -188,6 +190,7 @@ let featuredBlog0 = {
 
 #### March 14, 2020 by [Becky](/)
 I should be dead but you may see me
+<Video /> 
 `
 };
 
@@ -219,6 +222,7 @@ Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus si
 Aenean lacinia bibendum nulla sed consectetur.
 
 Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+  <Video url="https://soundcloud.com/glennmorrison/beethoven-moonlight-sonata" />
     `
 };
 
@@ -336,6 +340,14 @@ const blogPostToPath = (posts)=>{
     return paths;
 };
 
+
+export const getPostFromBlogPosts = ({blogUUID,blogPosts}) =>{
+    for (let key of Object.keys(blogPosts)) {
+        if (blogUUID in blogPosts[key]){
+            return blogPosts[key][blogUUID]
+        }
+}
+};
 
 const useBlogPosts = () => {
     const [blogPosts,setBlogPosts] = useState({});
