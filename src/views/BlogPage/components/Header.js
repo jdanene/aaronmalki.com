@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarTitle: {
     flex: 1,
-    color:'black'
+            fontFamily:'airbnb-bold',
+    color:theme.palette.text.primary
+
   },
   toolbarSecondary: {
     justifyContent: 'space-between',
@@ -73,7 +75,7 @@ function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-          {title}
+          {"Malki's Blog"}
         </Typography>
         <IconButton>
           <SearchIcon />
