@@ -8,10 +8,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         overflow: "hidden",
         borderRadius: '1%',
+        width: '100%',
+
     },
     video: {
         borderRadius: '1%',
-        flexShrink: 0,
 
     }
 }));
@@ -24,8 +25,8 @@ const Video = ({url='https://www.youtube.com/watch?v=ysz5S6PUM-U'}) => {
     if (url.includes("www.facebook.com")){
         options.height = "100%";
         options.width = "100%";
-    }else{
-
+        style.maxHeight = "600 !important"
+        style.maxWidth = "600 !important"
     }
 
     return (
