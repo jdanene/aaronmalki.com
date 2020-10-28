@@ -33,8 +33,6 @@ const Video = ({url = 'https://www.youtube.com/watch?v=ysz5S6PUM-U'}) => {
     if (url.includes("www.facebook.com")) {
         options.height = "100%";
         options.width = "100%";
-        style.maxHeight = "600 !important"
-        style.maxWidth = "600 !important"
     }
 
     return (
