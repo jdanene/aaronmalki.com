@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   toolbarLink_active:{
     textDecoration:'underline',
     color:'#004080',
-    fontWeight:'bold',
             fontFamily:'airbnb-medium',
 
   },
