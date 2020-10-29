@@ -37,6 +37,10 @@ import {useLocation} from 'react-router-dom'
 import {VerticalDivider} from "../VerticalDivider";
 import {pathToPageName} from "../../constants/contants";
 import {AppContext} from "../../context";
+import {
+    pageToPageName as adminPageToPageName,
+    pageToPathName as adminPageToPathName
+} from "protected-views/protected-views"
 
 function ElevationScroll({window, children, setTrigger, triggerActive}) {
     //const {children, window, setTrigger} = props;
@@ -55,8 +59,8 @@ function ElevationScroll({window, children, setTrigger, triggerActive}) {
     }, [trigger]);
 
     return React.cloneElement(children, {
-        elevation:  !triggerActive || trigger ? 4 : 0,
-        style: (!triggerActive ||  trigger) ? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
+        elevation: !triggerActive || trigger ? 4 : 0,
+        style: (!triggerActive || trigger) ? {backgroundColor: colorScheme.primary.dark} : {background: 'transparent'}
     });
 }
 
@@ -89,12 +93,38 @@ const useStyles = makeStyles({
     }
 });
 
-const shouldNavBarTrigger=(pathname)=>{
+const shouldNavBarTrigger = (pathname) => {
     return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"])
 };
 
+const AdminLogOut = ({auth}) => {
+
+    const onClick = ()=>{
+        auth.signout()
+    };
+
+    return <Button
+        href={pageToPathName['AdminPage']}
+        size={"small"}
+        variant="filler"
+        onClick={onClick}
+        className={"topNavBar__phoneNumber"}
+        style={
+            {
+
+                backgroundColor: colorScheme.other.backgroundComplementary,
+                border: `2px solid ${colorScheme.general.red}`,
+                borderRadius: 0,
+                justifySelf: "flex-end",
+                marginRight: "10px",
+                padding: "5px",
+                color: colorScheme.general.red
+            }}>
+        Sign Out
+    </Button>
+}
 const TopNavBar = ({children, window}) => {
-    const {phoneNumber} = useContext(AppContext);
+    const {phoneNumber,auth} = useContext(AppContext);
     const styles = useStyles();
     const location = useLocation();
     //const {children, window} = props;
@@ -198,6 +228,8 @@ const TopNavBar = ({children, window}) => {
                             {/*Menu hamburger*/}
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
+                                {auth.user&&<AdminLogOut auth={auth}/>}
+
                                 {mobileBreak ?
                                     (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab aria-label="add"
                                                                                                     style={{
@@ -207,7 +239,7 @@ const TopNavBar = ({children, window}) => {
                                                                                                         color: colorScheme.primary.primary
                                                                                                     }}
                                                                                                     href={pageToPathName["ContactUsPage"]}>
-                                        <FaPhoneAlt size={22}  color={colorScheme.other.analogous1}/>
+                                        <FaPhoneAlt size={22} color={colorScheme.other.analogous1}/>
                                     </Fab>
                                     //<IconButton style={{color:colorScheme.primary.dark, backgroundColor:"#c6c6c6", height:"35px", width:"35px", radius:"50%", padding:0,position: 'fixed',bottom:0}} aria-label="add to shopping cart">
                                     //  <FaPhoneAlt size={14}/>

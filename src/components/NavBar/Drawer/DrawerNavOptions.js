@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,6 +19,11 @@ import {SiMicroDotBlog} from "react-icons/si";
 import isPathMatch from "../../Utility/isPathMatch";
 import matchPath from "react-router/modules/matchPath";
 import isObjectEmpty from "../../Utility/isObjectEmpty";
+import {AppContext} from "../../../context";
+import Button from "../../Button";
+import { RiAdminLine } from "react-icons/ri";
+import {pageToPageName as adminPageToPageName, pageToPathName as adminPageToPathName} from "protected-views/protected-views"
+
 
 const TopItem = ({page, isSelected}) => {
     console.log(`TopItem(page=${page}, selected=${isSelected}`);
@@ -54,7 +59,7 @@ const BottomItem = ({page, isSelected = false}) => {
         <Link key={page} to={pageToPathName[page]} className={"drawer_link_container"}>
             <ListItem key={page}>
                 <ListItemIcon>
-                    {page === "BlogPage" ? <SiMicroDotBlog size={25}/> : <MailIcon/>}
+                    {page === "BlogPage" ? <SiMicroDotBlog size={25}/> : page==="ContactUsPage"? <MailIcon/>:<RiAdminLine size={25}/>}
                 </ListItemIcon>
 
                 {isSelected ?
@@ -69,12 +74,39 @@ const BottomItem = ({page, isSelected = false}) => {
     )
 };
 
+
 BottomItem.propTypes = {
     page: PropTypes.string.isRequired,
     isSelected: PropTypes.bool
 };
 
+const AdminItem = ({isSelected = false}) => {
+
+
+    return (
+        <Link key={adminPageToPageName["AdminPage"]} to={adminPageToPathName["AdminPage"]} className={"drawer_link_container"}>
+            <ListItem key={adminPageToPageName["AdminPage"]}>
+                <ListItemIcon>
+                   <RiAdminLine size={25} color={colorScheme.general.hot_purple}/>
+                </ListItemIcon>
+
+                {isSelected ?
+                    <ListItemText primary={adminPageToPageName["AdminPage"]} className={"drawer_link"}
+                                  style={{color: colorScheme.general.hot_purple, marginLeft: "-15px"}}/>
+
+                    :
+                    <ListItemText primary={adminPageToPageName["AdminPage"]} className={"drawer_link"}
+                                  style={{marginLeft: "-15px"}}/>}
+            </ListItem>
+        </Link>
+    )
+};
+
+
+
 const DrawerNavOptions = ({toggleDrawerCallback, locationPathName}) => {
+    const {auth} = useContext(AppContext);
+
     const pathMatcherExact= (targetPath) => {
         return !isObjectEmpty(matchPath(locationPathName,{path:targetPath,exact:true}))
     };
@@ -103,6 +135,13 @@ const DrawerNavOptions = ({toggleDrawerCallback, locationPathName}) => {
                 {bottomRouteTitles.map((page) => (
                     <BottomItem page={page} isSelected={pathMatcherFuzzy(pageToPathName[page])}/>))}
             </List>
+
+            {/*Admin Page*/}
+            {auth.user&&
+            <React.Fragment>
+                <Divider/>
+                <AdminItem isSelected={pathMatcherExact(adminPageToPathName["AdminPage"])}/>
+            </React.Fragment>}
         </div>
     )
 };

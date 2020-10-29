@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";
+import {pageToPathName as protectedPageToPathName} from "./protected-views/protected-views"
 import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage, LeasePage, BlogPage} from "./views";
 import {AppContextProvider} from "./context";
 import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
@@ -25,7 +26,7 @@ import {useLocation} from 'react-router-dom'
 import {AppContext} from "./context";
 import {blog_category_to_string} from "./constants/contants";
 import {AnimatedSwitch} from 'react-router-transition';
-
+import AdminPage from "./protected-views/AdminPage/AdminPage";
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 
@@ -46,8 +47,6 @@ firebase.initializeApp(firebaseConfig);
 
 // Get a reference to the database service
 export const FIREBASE_DB = firebase.database();
-
-
 
 
 function App({location}) {
@@ -80,51 +79,52 @@ function App({location}) {
 
 
         <Router>
-            <ThemeProvider theme={theme}>
-                <div className="app_container">
+        <ThemeProvider theme={theme}>
+            <div className="app_container">
 
-                    <TopNavBar/>
+                <TopNavBar/>
 
-                    <div className={"app_container_main_body"}>
-                        {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
+                <div className={"app_container_main_body"}>
+                    {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
 
-                        <Switch>
-                            <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
-                            <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
-                            <Route path={pageToPathName["CurrentListingsPage"]} exact
-                                   component={CurrentListingsPage}/>
-                            <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
-                            <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
-                            <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>
+                    <Switch>
+                        <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
+                        <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
+                        <Route path={pageToPathName["CurrentListingsPage"]} exact
+                               component={CurrentListingsPage}/>
+                        <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
+                        <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
+                        <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>
 
+                        {/*Login and Admin*/}
+                        <Route path={protectedPageToPathName["AdminPage"]} exact component={AdminPage}/>
 
-                                {/*Blog absolute path*/}
-                                <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>
-                                <Redirect to={blog_category_to_string.news.path}/>
+                        {/*Blog absolute path*/}
+                        <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>
+                            <Redirect to={blog_category_to_string.news.path}/>
+                        </Route>
 
-                                </Route>
+                        {/*Blog tabs at the top*/}
+                        {Object.keys(blog_category_to_string).map((key) =>
+                            <Route key={key} path={blog_category_to_string[key].path} exact
+                                   component={BlogPage}/>
+                        )}
 
-                                {/*Blog tabs at the top*/}
-                                {Object.keys(blog_category_to_string).map((key) =>
-                                    <Route key={key} path={blog_category_to_string[key].path} exact
-                                           component={BlogPage}/>
-                                )}
+                        {/*Individual Blogs*/}
+                        {isBlogLoaded && Object.keys(blogPaths).map((key) =>
+                            <Route key={key} path={blogPaths[key]} exact
+                                   render={(props) => <BlogPage {...props} blogUUID={key}/>}/>
+                        )}
 
-                                {/*Individual Blogs*/}
-                                {isBlogLoaded && Object.keys(blogPaths).map((key) =>
-                                    <Route key={key} path={blogPaths[key]} exact
-                                           render={(props)=><BlogPage {...props} blogUUID={key}/>}/>
-                                )}
+                    </Switch>
 
-                        </Switch>
-
-                    </div>
-
-                    <Footer/>
                 </div>
 
-            </ThemeProvider>
-        </Router>
+                <Footer/>
+            </div>
+
+        </ThemeProvider>
+            </Router>
 
     );
 }

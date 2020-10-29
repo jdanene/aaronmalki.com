@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -16,6 +16,12 @@ import Box from '@material-ui/core/Box';
 import {colorScheme, pageToPathName} from "../../constants";
 import {Link} from "react-router-dom";
 import "./Footer.scss";
+import {
+    pageToPageName as adminPageToPageName,
+    pageToPathName as adminPageToPathName
+} from "protected-views/protected-views"
+import {AppContext} from "../../context";
+import {Divider} from "@material-ui/core";
 
 function Copyright() {
     return (
@@ -80,7 +86,7 @@ const footer = [
 
     {
         title: 'Resources',
-        description: [['Buy','BuyersPage'], ['Sell','SellersPage'], ['Lease','LeasePage'], ['Blog', "BlogPage"], ['Home','HomePage'],['Contact Us','ContactUsPage']],
+        description: [['Buy', 'BuyersPage'], ['Sell', 'SellersPage'], ['Lease', 'LeasePage'], ['Blog', "BlogPage"], ['Home', 'HomePage'], ['Contact Us', 'ContactUsPage']],
     }
 ];
 
@@ -116,12 +122,13 @@ const useStyles = makeStyles({
 */
 
 export default function FooterListItem() {
+    const {auth} = useContext(AppContext);
     const classes = useStyles();
 
     return (
 
-        <Grid item xs={12} sm={12} md={4} lg={3}  key={footer[0].title} >
-            <div style={{width:'100%', borderTop: `1px solid ${colorScheme.primary.primary}`,marginBottom:'10px'}}>
+        <Grid item xs={12} sm={12} md={4} lg={3} key={footer[0].title}>
+            <div style={{width: '100%', borderTop: `1px solid ${colorScheme.primary.primary}`, marginBottom: '10px'}}>
             </div>
             {/*
             <Typography variant="h6" style={{color:colorScheme.primary.dark}} gutterBottom>
@@ -132,13 +139,28 @@ export default function FooterListItem() {
             <ul>
                 {footer[0].description.map((item) => (
                     <li key={item[1]}>
-                        <div style={{display:"flex", justifyContent:'center', alignItems:'center'}}>
-                        <Link to={pageToPathName[item[1]]} className={"footer_link"}>
-                            {item[0]}
-                        </Link>
+                        <div style={{display: "flex", justifyContent: 'center', alignItems: 'center'}}>
+                            <Link to={pageToPathName[item[1]]} className={"footer_link"}>
+                                {item[0]}
+                            </Link>
                         </div>
                     </li>
                 ))}
+
+
+                {auth.user &&
+                <React.Fragment>
+                    <li key={adminPageToPageName['AdminPage']}>
+                        <div style={{display: "flex", justifyContent: 'center', alignItems: 'center'}}>
+                            <Link to={adminPageToPathName['AdminPage']} className={"footer_link"} style={{color:colorScheme.general.hot_purple}}>
+                                {adminPageToPageName['AdminPage']}
+                            </Link>
+                        </div>
+                    </li>
+                </React.Fragment>
+
+                }
+
             </ul>
         </Grid>
 

@@ -1,6 +1,7 @@
-import React, {createContext, useState, useEffect} from "react"
+import React, {createContext, useState, useEffect,useContext} from "react"
 import {  blog_categories,blog_states} from "../constants/contants";
 import useBlogPosts from "./useBlogPost";
+import useProvideAuth from "./use-auth";
 const AppContext = createContext();
 
 
@@ -43,8 +44,18 @@ const useApp = () => {
 const AppContextProvider = ({children}) => {
     const blogs = useBlogPosts();
     const state = useApp();
-    return <AppContext.Provider value={{...state,...blogs}}>{children}</AppContext.Provider>
+    const auth = useProvideAuth();
+    return <AppContext.Provider value={{...state,...blogs,auth}}>{children}</AppContext.Provider>
 };
+
+// Hook for child components to get the auth object ...
+// ... and re-render when it changes.
+export const useAdminAuth = () => {
+    const {adminAuth} = useContext(AppContext);
+    return adminAuth;
+};
+
+
 
 export {
     AppContext,

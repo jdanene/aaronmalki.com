@@ -5,7 +5,10 @@ export const pageToPathName = {
     'SellersPage': '/sell',
     'ContactUsPage': '/contact',
     'LeasePage': '/lease',
-    'BlogPage': '/blog'
+    'BlogPage': '/blog',
+    'AdminSignUpPage':'/admin/signup',
+    'AdminLoginPage': '/admin/login',
+    'AdminPage':'/admin'
 };
 
 export const pageToPageName = {
@@ -15,7 +18,10 @@ export const pageToPageName = {
     'SellersPage': 'Sell',
     'ContactUsPage': 'Contact Us',
     'LeasePage': 'Lease',
-    'BlogPage': 'Blog'
+    'BlogPage': 'Blog',
+    'AdminSignUp': 'admin-sign-up',
+    'AdminLoginPage': 'admin-login',
+    'Admin': 'admins'
 };
 
 export const pathToPageName = {
@@ -25,8 +31,10 @@ export const pathToPageName = {
     '/sell': 'SellersPage',
     '/contact': 'ContactUsPage',
     '/lease': 'LeasePage',
-    '/blog': 'BlogPage'
-
+    '/blog': 'BlogPage',
+    '/admin/signup': 'AdminSignUpPage',
+    '/admin/login': 'AdminLoginPage',
+    '/admin':'AdminPage'
 };
 
 
