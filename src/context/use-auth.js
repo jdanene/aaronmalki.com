@@ -5,11 +5,15 @@ import "firebase/auth";
 import {
   useHistory
 } from "react-router-dom";
+import {pageToPathName as adminPageToPathName} from "../protected-views/protected-views";
+
 let ADMIN_EMAILS = process.env.REACT_APP_ADMIN_EMAILS;
 ADMIN_EMAILS = new Set(ADMIN_EMAILS.split(","));
 
 // Provider hook that creates auth object and handles state
 function useAuth() {
+
+
   const [user, setUser] = useState(null);
 
   // Wrap any Firebase methods we want to use making sure ...
@@ -69,13 +73,12 @@ function useAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
 
-        console.log(`UserLogin:${ADMIN_EMAILS.has(user.email)}`);
         if (!(ADMIN_EMAILS.has(user.email))){
-          signout().then(console.alert(`Permission Denied: Ask owner to give admin access to email: ${user.email}`));
           return;
         }
+        setUser(user)
 
-        setUser(user);
+        //setUser(user);
       } else {
         setUser(false);
       }

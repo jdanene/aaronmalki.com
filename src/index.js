@@ -17,16 +17,19 @@ import "./resources/fonts/ScopeOne-Regular.ttf"
 import "./resources/fonts/AirbnbCereal-Bold.ttf"
 import "./resources/fonts/AirbnbCereal-Medium.ttf"
 import {AppContextProvider} from "./context";
-
+import {
+    BrowserRouter as Router,
+} from "react-router-dom";
 
 ReactDOM.render(
-
-    <AppContextProvider>
-        <App />
-    </AppContextProvider>
+    <Router>
+        <AppContextProvider>
+            <App/>
+        </AppContextProvider>
+    </Router>
 
     ,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

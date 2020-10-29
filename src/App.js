@@ -78,7 +78,6 @@ function App({location}) {
     return (
 
 
-        <Router>
         <ThemeProvider theme={theme}>
             <div className="app_container">
 
@@ -124,7 +123,6 @@ function App({location}) {
             </div>
 
         </ThemeProvider>
-            </Router>
 
     );
 }

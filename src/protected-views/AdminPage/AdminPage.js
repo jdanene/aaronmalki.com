@@ -32,7 +32,7 @@ const AdminPage = ({location, history, match}) => {
     } else {
         return (
             <MuiThemeProvider theme={darkTheme}>
-                <AdminLoginPage/>
+                <AdminLoginPage auth={auth}/>
             </MuiThemeProvider>
         )
     }
