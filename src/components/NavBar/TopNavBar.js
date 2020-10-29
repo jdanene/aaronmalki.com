@@ -16,7 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import {StyledText, PopText} from "../Text";
+import {StyledText, PopText, FittedText} from "../Text";
 import Grid from '@material-ui/core/Grid';
 import DrawerNavOptions from "./Drawer/DrawerNavOptions";
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -120,7 +120,8 @@ const AdminLogOut = ({auth}) => {
                 padding: "5px",
                 color: colorScheme.general.red
             }}>
-        Sign Out
+        <FittedText> Sign Out</FittedText>
+
     </Button>
 }
 const TopNavBar = ({children, window}) => {
