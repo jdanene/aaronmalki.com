@@ -26,8 +26,9 @@ import SendMessage from "./SendMessage";
 import ShowGoogleMap from "./GoogleMaps/ShowGoogleMap";
 import {colorScheme} from "../../constants";
 import {AppContext} from "../../context";
+import Paper from '@material-ui/core/Paper';
 
-
+import BorderGuard from "../../components/BorderGuard/BorderGuard";
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -103,15 +104,17 @@ const styles = theme => ({
     },
     mapAndForm_container: {
         justifyContent: 'center',
-        flexGrow: 1,
-        flexShrink: 1,
-        marginTop: '90px',
-        marginBottom: '45px'
+        width: '100%',
+       // marginBottom: '45px',
+        //border: `2px solid red`,
+        flexGrow: 1
     },
 
     map_container: {
-        flexShrink: 1,
-        flexGrow: 1,
+        //                 border: `2px solid pink`,
+        width: '100%',
+
+
         [theme.breakpoints.up("xs")]: {
             height: '500px'
         },
@@ -135,8 +138,10 @@ const styles = theme => ({
     main_container: {
         width: '100vw',
         display: 'flex',
-        padding: theme.spacing(1),
-        paddingBottom: theme.spacing(4),
+        flexDirection:'column',
+        padding: theme.spacing(2),
+        paddingBottom: theme.spacing(10),
+        paddingTop: theme.spacing(8),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colorScheme.other.backgroundComplementary,
@@ -144,7 +149,6 @@ const styles = theme => ({
     contact_container: {
         display: 'flex',
         width: '100%',
-        marginTop: '200px',
         height: '100%',
 
 
@@ -154,7 +158,7 @@ const styles = theme => ({
         color: theme.palette.common.white,
         fontFamily: 'scope-one-regular',
         fontWeight: 'bold',
-        fontSize: '20px'
+        fontSize: '25px'
 
     },
     address: {
@@ -163,18 +167,22 @@ const styles = theme => ({
         width: '100%',
         height: '100%',
         margin: 0,
-        fontFamily: 'scope-one-regular'
+        fontFamily: 'scope-one-regular',
+        //border: `2px solid pink`,
 
 
     },
     address_container: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: colorScheme.secondary.dark,
         height: '30%',
         minHeight: '150px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
+        borderBottomRightRadius: 5,
+        borderBottomLeftRadius: 5
+        // border: `2px solid pink`,
     },
     email: {
         color: theme.palette.common.white
@@ -191,49 +199,52 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
-    const {phoneNumber,email, address} = useContext(AppContext);
+    const {phoneNumber, email, address} = useContext(AppContext);
 
     return (
         <div className={classes.main_container}>
+            <BorderGuard/>
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
-                <SendMessage md={5} lg={5} xl={5}/>
+                <SendMessage  md={6} lg={6} xl={6} sm={6} xs={12}/>
 
                 {/* The map and Location*/}
                 <Grid item
-                      md={5} lg={5} xl={5} sm={5} xs={12}
+                      md={6} lg={6} xl={6} sm={6} xs={12}
                       className={classes.map_container}
 
                 >
-                    {/*The Map*/}
-                    <Grid item lg={12} md={12} sm={12} xs={12} style={{height: '75%'}}>
-                        <ShowGoogleMap/>
-                    </Grid>
+                    <Paper style={{height: '100%', width: '100%'}}>
+                        {/*The Map*/}
+                        <Grid item lg={12} md={12} sm={12} xs={12} style={{height: '75%'}}>
+                            <ShowGoogleMap/>
+                        </Grid>
 
-                    {/*The Location*/}
-                    {isWidthUp('sm',width)&&
-                    <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
+                        {/*The Location*/}
 
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            height: "100%",
-                            marginTop: "5%",
-                            marginBottom: "5%"
+                        <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
 
-                        }}>
-                            <StyledText className={classes.credentialname}>Aaron Malki</StyledText>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                flexDirection: 'column',
+                                height: "100%",
+                                marginTop: "5%",
+                                marginBottom: "5%",
 
-                            <FittedText className={classes.address}>
-                                {address.line1} <br/>
-                                {address.line2} <br/>
-                                <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a>
-                                <br/>
-                                <a href={`mailto:${email}`}
-                                   className={classes.email}>{email} </a>
-                            </FittedText>
-                        </div>
-                    </Grid>}
+                            }}>
+                                <StyledText className={classes.credentialname}>Aaron Malki</StyledText>
+
+                                <FittedText className={classes.address}>
+                                    {address.line1} <br/>
+                                    {address.line2} <br/>
+                                    <a className={classes.phone} href={`tel:${phoneNumber.tel}`}> {phoneNumber.dash}</a>
+                                    <br/>
+                                    <a href={`mailto:${email}`}
+                                       className={classes.email}>{email} </a>
+                                </FittedText>
+                            </div>
+                        </Grid>
+                    </Paper>
 
                 </Grid>
 

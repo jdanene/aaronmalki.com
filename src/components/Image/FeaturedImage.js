@@ -18,14 +18,15 @@ const styles = theme => ({
     img: {
         borderRadius: '1%',
         flexShrink: 0,
-        maxWidth: '100%',
-        maxHeight: '100%',
+        width: '100%',
+        height: '100%',
     }
 });
 
 const FeaturedImage = ({classes, theme, width, center, zoom, src, alt}) => {
 
-    return <Paper className={classes.container}><img
+    return <Paper className={classes.container}>
+        <img
         className={classes.img} alt={alt} src={src}/>
     </Paper>
 

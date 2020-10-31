@@ -79,6 +79,21 @@ const styles = theme => ({
             paddingBottom: theme.spacing(10)
         }
     },
+        textField:{
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(27, 48, 57, .30)"
+    },    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: colorScheme.primary.primary
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: colorScheme.other.analogous0,
+    },
+            "& .MuiInputLabel-outlined.Mui-focused": {
+      color: colorScheme.other.analogous0,
+                fontWeight:'bold'
+    }
+
+  },
     root0: {
         '& label.Mui-focused': {
             color: colorScheme.other.analogous0Dark,
@@ -105,7 +120,7 @@ const styles = theme => ({
     },
     footerLinks: {
         marginTop: theme.spacing(2.5),
-        marginBot: theme.spacing(1.5),
+        marginBottom: theme.spacing(1.5),
         color: theme.palette.common.white
     },
     infoIcon: {
@@ -173,7 +188,7 @@ const styles = theme => ({
         flexGrow: 1,
         flexShrink: 1,
         marginTop: '90px',
-        marginBottom: '45px'
+        //marginBottom: '45px'
     },
 
     map_container: {
@@ -208,7 +223,6 @@ const styles = theme => ({
     contact_container: {
         display: 'flex',
         width: '100%',
-        marginTop: '200px',
         height: '100%',
 
     },
@@ -332,6 +346,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                     label={"Name"}
                     autoComplete={"name"}
                     color={'primary'}
+                    className={classes.textField}
                     value={name}
                     onChange={handleText('name')}
                     helperText={error.name ? error.helperTxt : ''}
@@ -351,6 +366,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                     label={"Email Address"}
                     autoComplete={"email"}
                     color={'primary'}
+                    className={classes.textField}
                     value={email}
                     onChange={handleText('email')}
                     helperText={error.email ? error.helperTxt : ''}
@@ -363,9 +379,10 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                     variant="outlined"
                     multiline
                     id={"message"}
-                    rows={4}
+                    rows={7}
                     fullWidth
                     required
+                    className={classes.textField}
                     disabled={isMessageSent}
                     label={"Message"}
                     autoComplete={"message"}

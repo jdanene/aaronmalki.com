@@ -16,6 +16,9 @@ const centerOverlayView = (width, height) => ({
 const mapContainerStyle = {
     height: "100%",
     width: "100%",
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    padding:0
 };
 
 const exampleMapStyles = [
