@@ -4,9 +4,18 @@ import {
 } from "react-router-dom";
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import {makeStyles} from '@material-ui/core/styles';
-import BackgroundGif from "resources/images/90s_kid.gif";
-import BackgroundCrazy from "resources/images/backgroundCrazy.png";
+import BackgroundGif from "resources/images/giphy.gif";
+import BackgroundGif1 from "resources/images/giphy_1.gif";
+import BackgroundGif3 from "resources/images/greengoo.gif";
+import BackgroundGif4 from "resources/images/vibes.dms";
+
+
+
 import Typography from "@material-ui/core/Typography";
+
+const imgs = [BackgroundGif,BackgroundGif1,BackgroundGif3,BackgroundGif3,BackgroundGif4,BackgroundGif3,BackgroundGif4,BackgroundGif3,BackgroundGif4,BackgroundGif3,BackgroundGif4];
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         backgroundSize: '100% 100%',
         backgroundRepeat: "no-repeat",
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${BackgroundCrazy})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${BackgroundGif})`,
 
         //mixBlendMode: 'overlay',
         //background: '#121212'
@@ -50,7 +59,7 @@ const NoMatch = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root} >
+        <div className={classes.root} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${imgs[Math.floor(Math.random() * imgs.length)]})`}}>
 
             <div className={ classes.title}>
                404
