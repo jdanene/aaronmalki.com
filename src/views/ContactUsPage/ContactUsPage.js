@@ -27,6 +27,7 @@ import ShowGoogleMap from "./GoogleMaps/ShowGoogleMap";
 import {colorScheme} from "../../constants";
 import {AppContext} from "../../context";
 
+
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -134,12 +135,11 @@ const styles = theme => ({
     main_container: {
         width: '100vw',
         display: 'flex',
-        flexGrow: 1,
-        flexShrink: 1,
+        padding: theme.spacing(1),
+        paddingBottom: theme.spacing(4),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colorScheme.other.backgroundComplementary,
-
     },
     contact_container: {
         display: 'flex',
@@ -210,6 +210,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                     </Grid>
 
                     {/*The Location*/}
+                    {isWidthUp('sm',width)&&
                     <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
 
                         <div style={{
@@ -232,7 +233,8 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                                    className={classes.email}>{email} </a>
                             </FittedText>
                         </div>
-                    </Grid>
+                    </Grid>}
+
                 </Grid>
 
 

@@ -200,11 +200,9 @@ const styles = theme => ({
         height: '75%'
     },
     main_container: {
-        height: '100%',
         [theme.breakpoints.down("sm")]: {
             marginTop:-25,
-            borderBottom: `1px solid rgba(27, 48, 57, .25)`,
-
+           // borderBottom: `1px solid rgba(27, 48, 57, .25)`,
         }
     },
     contact_container: {
@@ -212,7 +210,6 @@ const styles = theme => ({
         width: '100%',
         marginTop: '200px',
         height: '100%',
-
 
     },
     credentialname: {
@@ -389,7 +386,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                 Send Message
             </Button>
 
-            <Fade in={isMessageSent}>
+            {isMessageSent&&<Fade in={isMessageSent}>
                 <Alert color={"success"} variant="filled"
                        style={{marginTop: 15, backgroundColor: "#36B37E"}}
                        action={
@@ -405,7 +402,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                 >
                     Thank you! We will get in contact with you shortly.
                 </Alert>
-            </Fade>
+            </Fade>}
 
 
         </Grid>

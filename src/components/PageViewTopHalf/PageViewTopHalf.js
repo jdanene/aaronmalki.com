@@ -41,14 +41,18 @@ const Page_View_Top_Half = ({text}) => {
         minHeight: "200px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "center",
         padding: "5px",
+
+        width:'100%',
     }}>
 
         <div style={{
             bottom: 0,
             position: "relative",
             display: "flex",
+            width:'100%',
+
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
@@ -56,7 +60,8 @@ const Page_View_Top_Half = ({text}) => {
         }}>
             <div style={{
                 maxWidth: "500px",
-                width: "60vw",
+                //border: `2px solid pink`,
+                width: "90%",
                 justifyContent: "center",
                 alignItems: "center"
             }}>
@@ -95,14 +100,15 @@ const PageViewTopHalf = ({middleText,className}) => {
         <div ref={inputRef} style={{
             height: mobileBreak ? '60vh' : '100vh',
             minHeight: !mobileBreak && '500px',
-
+width:'100%',
         }}
              className={classes.info}>
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                width:'100%',
             }}>
                 <Page_View_Top_Half mobileBreak={mobileBreak} text={middleText}/>
                 {!mobileBreak && <DownArrow posnOfContainter={topHalf_bottomPosn}/>}
