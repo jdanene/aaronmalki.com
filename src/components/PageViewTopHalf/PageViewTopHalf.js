@@ -49,16 +49,16 @@ const Page_View_Top_Half = ({text}) => {
             bottom: 0,
             position: "relative",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            height: "100%"
+            height: "100%",
         }}>
             <div style={{
                 maxWidth: "500px",
                 width: "60vw",
                 justifyContent: "center",
-                alignItems: "center",/*border: `1px solid grey`*/
+                alignItems: "center"
             }}>
                 <FittedText style={{fontFamily: "airbnb-bold", display: "flex"}}>
                     {text}
