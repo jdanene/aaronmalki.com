@@ -94,6 +94,8 @@ const useStyles = makeStyles({
 });
 
 const shouldNavBarTrigger = (pathname) => {
+   console.log("HAY")
+    console.log(pathname)
     return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"])
 };
 

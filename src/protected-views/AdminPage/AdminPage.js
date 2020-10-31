@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 import {AppContext} from "../../context";
 import Link from "react-router-dom";
 import VirtualAdminPage from "./VirtualAdminPage";
-import AdminLoginPage from "./AdminLoginPage";
+import AdminLoginPage from "../AdminLoginPage/AdminLoginPage";
 import {
     Redirect,
 } from "react-router-dom";
@@ -20,22 +20,8 @@ const darkTheme = createMuiTheme({
 //replace(path, [state]) - (function) Replaces the current entry on the history stack
 // history.push("/home");
 const AdminPage = ({location, history, match}) => {
-    const {auth} = useContext(AppContext);
 
-
-    if (auth.user) {
-        return (
-            <MuiThemeProvider theme={darkTheme}>
-                <VirtualAdminPage/>
-            </MuiThemeProvider>
-        )
-    } else {
-        return (
-            <MuiThemeProvider theme={darkTheme}>
-                <AdminLoginPage auth={auth}/>
-            </MuiThemeProvider>
-        )
-    }
+    return (<VirtualAdminPage/>)
 
 };
 

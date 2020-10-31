@@ -4,7 +4,6 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import {AppContext} from "../../context/AppContext";
 import PropTypes from 'prop-types';
-import {pageToPathName} from "../protected-views";
 import {
     Redirect,
 } from "react-router-dom";
@@ -23,6 +22,17 @@ import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import {pageToPathName} from "../../constants";
+import {createMuiTheme} from "@material-ui/core";
+import {MuiThemeProvider} from '@material-ui/core/styles';
+
+//https://courses.cs.northwestern.edu/394/intro-react.php#authentication
+const darkTheme = createMuiTheme({
+    palette: {
+        type: 'dark',
+    },
+});
+
 
 let ADMIN_EMAILS = process.env.REACT_APP_ADMIN_EMAILS;
 ADMIN_EMAILS = new Set(ADMIN_EMAILS.split(","));
@@ -76,10 +86,9 @@ const AdminLoginPage = ({auth}) => {
             signInSuccessWithAuthResult: (authResult, redirectUrl) => {
                 if (!(ADMIN_EMAILS.has(authResult.user.email))) {
                     auth.signout().then(() => setFailedLogin(authResult.user.email));
-
                 }
-                //
-                //console.log(authResult.user.email);
+                // redirect to the admin page
+                history.replace(pageToPathName['AdminPage']);
                 return false
             }
         }
@@ -87,6 +96,7 @@ const AdminLoginPage = ({auth}) => {
 
 
     return (
+        <MuiThemeProvider theme={darkTheme}>
         <div style={{display: 'flex', height: '100vh', width: '100vw', justifyContent: 'center', alignItems: 'center'}}>
                                 <CssBaseline/>
 
@@ -131,6 +141,7 @@ const AdminLoginPage = ({auth}) => {
             }
 
         </div>
+        </MuiThemeProvider>
     )
 
 

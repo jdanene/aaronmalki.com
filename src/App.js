@@ -13,6 +13,8 @@ import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage, L
 import {AppContextProvider} from "./context";
 import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import {colorScheme} from "./constants";
+import AdminLoginPage from "./protected-views/AdminLoginPage/AdminLoginPage";
+import ProtectedRoute from "./protected-views/ProtectedRoute";
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import * as firebase from "firebase/app";
@@ -27,6 +29,8 @@ import {AppContext} from "./context";
 import {blog_category_to_string} from "./constants/contants";
 import {AnimatedSwitch} from 'react-router-transition';
 import AdminPage from "./protected-views/AdminPage/AdminPage";
+import NoMatch from "./views/NoMatchPage/NoMatchPage";
+
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 
@@ -81,6 +85,7 @@ function App({location}) {
         <ThemeProvider theme={theme}>
             <div className="app_container">
 
+
                 <TopNavBar/>
 
                 <div className={"app_container_main_body"}>
@@ -95,8 +100,11 @@ function App({location}) {
                         <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
                         <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>
 
+                        {/*Admin Login Page*/}
+                        <Route path={pageToPathName["AdminLoginPage"]} exact component={AdminLoginPage}/>
                         {/*Login and Admin*/}
-                        <Route path={protectedPageToPathName["AdminPage"]} exact component={AdminPage}/>
+                        <ProtectedRoute path={protectedPageToPathName["AdminPage"]} exact component={AdminPage}/>
+
 
                         {/*Blog absolute path*/}
                         <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>
@@ -115,12 +123,19 @@ function App({location}) {
                                    render={(props) => <BlogPage {...props} blogUUID={key}/>}/>
                         )}
 
+                        {/*404*/}
+                        <Route path="*">
+                            <NoMatch/>
+                        </Route>
+
                     </Switch>
 
                 </div>
 
                 <Footer/>
             </div>
+
+
 
         </ThemeProvider>
 

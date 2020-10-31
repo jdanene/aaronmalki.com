@@ -66,12 +66,13 @@ const VirtualAdminPage = () => {
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:'100vw'}}>
+            <CssBaseline/>
             <BorderGuard/>
             <Grid container component={'main'} className={classes.root} spacing={5} direction="row"
                   justify="space-evenly"
                   alignItems="center"
             >
-                <CssBaseline/>
+
 
                 <Grid item sm={12} xs={12} md={12}>
                     <div style={{width:'100%', display:'flex',alignItems:'center',justifyContent:'center'}}>
