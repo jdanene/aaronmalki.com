@@ -36,11 +36,28 @@ export const colorScheme = {
         earth_green: '#59713F',
         blue: '#27288E',
         red: '#AF3F3F',
+        light_blue0: '#2196F3',
+        green: '#71B419',
+        orange: '#E9812C',
+        teal: '#288982',
+        light_orange: '#FCAA2C',
+        light_teal: '#00B2AF',
+        pink: '#C14CE8',
+        light_blue: '#6096F8',
+        light_light_teal: '#33C5DE',
+        dark_green: '#109E56',
+        fancy_pink: '#F3548A',
+        dark_purple: '#803EE8',
+        bright_green: '#00CA54',
         other_blue: '#1C73F4',
         another_blue: '#7085D8',
         oneMore_blue: '#405EBE',
-        light_blue: '#6096F8',
-        light_blue0: '#2196F3',
+        shabby_chic: '#008DA6',
+        grey: '#585858',
+        cool_purp:'#634459',
+        pink_red: '#fc3468',
+        punch:'#F25278'
+
     },
     other:{
         backgroundComplementary: '#EDEDED',
@@ -56,8 +73,7 @@ export const colorScheme = {
         triadic0: '#7A7090',
         triadic1: '#907086',
         dark:'#303030',
-        black: 'rgba(0, 0, 0, 0.87)'
-
+        black: 'rgba(0, 0, 0, 0.87)',
     }
 
 };

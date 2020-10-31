@@ -13,7 +13,7 @@ export const pageToPathName = {
 
 export const pageToPageName = {
     'HomePage': 'Home',
-    'CurrentListingsPage': 'Current Listings',
+    'CurrentListingsPage': 'Listings',
     'BuyersPage': 'Buy',
     'SellersPage': 'Sell',
     'ContactUsPage': 'Contact Us',

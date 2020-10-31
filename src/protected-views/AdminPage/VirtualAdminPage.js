@@ -1,11 +1,36 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, {useContext, useEffect, useState} from "react"
 import Container from '@material-ui/core/Container';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import DashboardOption from "./components/DashboardOption";
+import Grid from '@material-ui/core/Grid';
+import BorderGuard from "../../components/BorderGuard/BorderGuard";
+import MalkiBlogImg from "resources/images/malki_blog.jpg"
+import HomeImg from "resources/images/humaans_home.jpg"
+import BuyImg from "resources/images/buyinghouse.jpg"
+import LeaseImg from "resources/images/lease.png"
+import CurrentListingImg from "resources/images/searching.jpg"
+import SellImg from "resources/images/undraw_for_sale_viax.png"
+import {pageToPageName} from "../../constants";
+import {colorScheme} from "../../constants/styles";
+import {StyledText} from "../../components/Text";
+import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
-    root:{
-        backgroundColor: theme.palette.background.default
+    title:{
+        marginLeft:theme.spacing(6.5),
+        marginTop:theme.spacing(2),
+        fontFamily: 'airbnb-medium',
+        color :'aliceblue',
+        fontSize:40,
+        textDecoration:'underline',
+        alignSelf:'center'
+    },
+    root: {
+        backgroundColor: theme.palette.background.default,
+        //border: `2px solid aliceblue`,
+        width: '90%',
+        margin: theme.spacing(10),
+        marginTop:0
     },
     paper: {
         marginTop: theme.spacing(10),
@@ -26,13 +51,44 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const VirtualAdminPage = ()=>{
+/*
+* components
+* */
+const VirtualAdminPage = () => {
     const classes = useStyles();
 
-    return <Container component={'main'} style={{ marginTop:200}}>
-       <CssBaseline/>
-        This is the admin page
-    </Container>
+    const options = [
+        {title: pageToPageName["HomePage"], img: HomeImg, color: colorScheme.general.hot_purple},
+        {title: pageToPageName["BlogPage"], img: MalkiBlogImg, color: colorScheme.general.oneMore_blue},
+        {title: pageToPageName["CurrentListingsPage"], img: CurrentListingImg, color: colorScheme.general.teal},
+        {title: pageToPageName["BuyersPage"], img: BuyImg, color: colorScheme.general.punch},
+        {title: pageToPageName["SellersPage"], img: SellImg, color: colorScheme.general.light_orange},
+        {title: pageToPageName["LeasePage"], img: LeaseImg, color: colorScheme.other.triadic0},
+    ]
+
+    return (
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            <BorderGuard/>
+            <Grid container component={'main'} className={classes.root} spacing={5} direction="row"
+                  justify="space-evenly"
+                  alignItems="center"
+            >
+                <CssBaseline/>
+
+                <Grid item sm={12} xs={12} md={12}>
+                    <div style={{width:'100%'}}>
+                                            <Typography variant="h1" component="h1" gutterBottom className={classes.title}> Manage Views </Typography>
+
+                    </div>
+                </Grid>
+
+                {options.map((value, index) => {
+                    return <DashboardOption {...value} key={index}/>
+                })
+                }
+            </Grid>
+        </div>)
+
 
 };
 
