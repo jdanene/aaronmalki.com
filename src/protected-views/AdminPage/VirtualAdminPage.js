@@ -13,17 +13,15 @@ import CurrentListingImg from "resources/images/searching.jpg"
 import SellImg from "resources/images/undraw_for_sale_viax.png"
 import {pageToPageName} from "../../constants";
 import {colorScheme} from "../../constants/styles";
-import {StyledText} from "../../components/Text";
+import {FittedText, StyledText} from "../../components/Text";
 import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
     title:{
-        marginLeft:theme.spacing(6.5),
         marginTop:theme.spacing(2),
         fontFamily: 'airbnb-medium',
         color :'aliceblue',
         fontSize:40,
         textDecoration:'underline',
-        alignSelf:'center'
     },
     root: {
         backgroundColor: theme.palette.background.default,
@@ -67,7 +65,7 @@ const VirtualAdminPage = () => {
     ]
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:'100vw'}}>
             <BorderGuard/>
             <Grid container component={'main'} className={classes.root} spacing={5} direction="row"
                   justify="space-evenly"
@@ -76,8 +74,8 @@ const VirtualAdminPage = () => {
                 <CssBaseline/>
 
                 <Grid item sm={12} xs={12} md={12}>
-                    <div style={{width:'100%'}}>
-                                            <Typography variant="h1" component="h1" gutterBottom className={classes.title}> Manage Views </Typography>
+                    <div style={{width:'100%', display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                            <FittedText variant="h1" component="h1" gutterBottom className={classes.title}> Manage Views </FittedText>
 
                     </div>
                 </Grid>
