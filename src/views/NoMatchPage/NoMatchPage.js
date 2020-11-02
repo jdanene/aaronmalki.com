@@ -12,7 +12,7 @@ import BackgroundGif4 from "resources/images/vibes.dms";
 
 import Typography from "@material-ui/core/Typography";
 
-const imgs = [BackgroundGif3,BackgroundGif4];
+const imgs = [BackgroundGif3,BackgroundGif4,BackgroundGif4,BackgroundGif4,BackgroundGif4];
 
 
 
