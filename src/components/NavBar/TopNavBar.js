@@ -187,7 +187,7 @@ const TopNavBar = ({children, window}) => {
                                 justifyContent: "center"
                             }}>
 
-                                <Button color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
+                                <Button href={pageToPathName["HomePage"]} color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
 
 
                                     <PopText endFontSize={!mobileBreak ? "16px" : "13.5px"}
