@@ -66,7 +66,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AdminLoginPage = ({auth}) => {
+const AdminLoginPage = () => {
+        const {auth} = useContext(AppContext);
+
     const classes = useStyles();
     const history = useHistory();
     const [failedLogin, setFailedLogin] = useState(false);
@@ -93,6 +95,10 @@ const AdminLoginPage = ({auth}) => {
             }
         }
     };
+
+    if (auth.user){
+        return <Redirect to={pageToPathName["AdminPage"]} />
+    }
 
 
     return (
