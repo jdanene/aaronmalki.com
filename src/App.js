@@ -30,7 +30,7 @@ import {blog_category_to_string} from "./constants/contants";
 import {AnimatedSwitch} from 'react-router-transition';
 import AdminPage from "./protected-views/AdminPage/AdminPage";
 import NoMatch from "./views/NoMatchPage/NoMatchPage";
-
+import ScrollToTop from "./context/ScrollToTop";
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 
@@ -90,7 +90,7 @@ function App({location}) {
 
                 <div className={"app_container_main_body"}>
                     {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
-
+                <ScrollToTop>
                     <Switch>
                         <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
                         <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
@@ -129,6 +129,7 @@ function App({location}) {
                         </Route>
 
                     </Switch>
+                </ScrollToTop>
 
                 </div>
 
