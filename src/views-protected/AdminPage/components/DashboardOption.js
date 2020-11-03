@@ -46,10 +46,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const DashboardOption = ({img, title, color}) => {
+const DashboardOption = ({img, title, color, href='#'}) => {
     const classes = useStyles();
     const theme = useTheme();
 
+    console.log(href)
     return (
         <Grid item xm={12} sm={6} md={5} style={{alignItems:'center', justifyContent:'center', display:'flex'}}>
             <Card className={classes.root}>
@@ -60,7 +61,7 @@ const DashboardOption = ({img, title, color}) => {
                         </Typography>
                     </CardContent>
                     <div className={classes.controls}>
-                        <Button variant="contained" size="medium"
+                        <Button href={href} variant="contained" size="medium"
                                 style={{backgroundColor:color, color: 'white'}}
                                 className={classes.margin}>
                             Manage

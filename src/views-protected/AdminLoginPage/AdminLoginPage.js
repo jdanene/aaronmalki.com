@@ -66,8 +66,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AdminLoginPage = () => {
-        const {auth} = useContext(AppContext);
+const AdminLoginPage = ({location}) => {
+    const {auth} = useContext(AppContext);
+
 
     const classes = useStyles();
     const history = useHistory();
@@ -88,13 +89,19 @@ const AdminLoginPage = () => {
             signInSuccessWithAuthResult: (authResult, redirectUrl) => {
                 if (!(ADMIN_EMAILS.has(authResult.user.email))) {
                     auth.signout().then(() => setFailedLogin(authResult.user.email));
+                    return false;
                 }
+                console.log(`The user her!!!  ${authResult.user}`)
+                auth.setUser(authResult.user);
                 // redirect to the admin page
-                history.replace(pageToPathName['AdminPage']);
+                //history.replace(pageToPathName['AdminPage']);
                 return false
             }
         }
     };
+
+
+
 
     if (auth.user){
         return <Redirect to={pageToPathName["AdminPage"]} />
@@ -102,7 +109,6 @@ const AdminLoginPage = () => {
 
 
     return (
-        <MuiThemeProvider theme={darkTheme}>
         <div style={{display: 'flex', height: '100vh', width: '100vw', justifyContent: 'center', alignItems: 'center'}}>
                                 <CssBaseline/>
 
@@ -147,7 +153,6 @@ const AdminLoginPage = () => {
             }
 
         </div>
-        </MuiThemeProvider>
     )
 
 

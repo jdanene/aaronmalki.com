@@ -5,7 +5,7 @@ import "firebase/auth";
 import {
   useHistory
 } from "react-router-dom";
-import {pageToPathName as adminPageToPathName} from "../protected-views/protected-views";
+import {pageToPathName as adminPageToPathName} from "../views-protected/protected-views";
 
 let ADMIN_EMAILS = process.env.REACT_APP_ADMIN_EMAILS;
 ADMIN_EMAILS = new Set(ADMIN_EMAILS.split(","));
@@ -65,6 +65,7 @@ function useAuth() {
       });
   };
 
+
   // Subscribe to user on mount
   // Because this sets state in the callback it will cause any ...
   // ... component that utilizes this hook to re-render with the ...
@@ -90,6 +91,7 @@ function useAuth() {
 
   // Return the user object and auth methods
   return {
+    setUser,
     user,
     signin,
     signup,

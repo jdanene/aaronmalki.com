@@ -11,7 +11,7 @@ import BuyImg from "resources/images/buyinghouse.jpg"
 import LeaseImg from "resources/images/lease.png"
 import CurrentListingImg from "resources/images/searching.jpg"
 import SellImg from "resources/images/undraw_for_sale_viax.png"
-import {pageToPageName} from "../../constants";
+import {pageToPageName,pageToPathName} from "../../constants";
 import {colorScheme} from "../../constants/styles";
 import {FittedText, StyledText} from "../../components/Text";
 import Typography from "@material-ui/core/Typography";
@@ -57,7 +57,7 @@ const VirtualAdminPage = () => {
 
     const options = [
         {title: pageToPageName["HomePage"], img: HomeImg, color: colorScheme.general.hot_purple},
-        {title: pageToPageName["BlogPage"], img: MalkiBlogImg, color: colorScheme.general.oneMore_blue},
+        {title: pageToPageName["BlogPage"], img: MalkiBlogImg, color: colorScheme.general.oneMore_blue, href:pageToPathName["ManageBlogPage"]},
         {title: pageToPageName["CurrentListingsPage"], img: CurrentListingImg, color: colorScheme.general.teal},
         {title: pageToPageName["BuyersPage"], img: BuyImg, color: colorScheme.general.punch},
         {title: pageToPageName["SellersPage"], img: SellImg, color: colorScheme.general.light_orange},

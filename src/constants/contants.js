@@ -8,7 +8,8 @@ export const pageToPathName = {
     'BlogPage': '/blog',
     'AdminSignUpPage':'/admin/signup',
     'AdminLoginPage': '/admin/login',
-    'AdminPage':'/admin'
+    'AdminPage':'/admin',
+    'ManageBlogPage':'/admin/manage-blog'
 };
 
 export const pageToPageName = {
@@ -21,7 +22,8 @@ export const pageToPageName = {
     'BlogPage': 'Blog',
     'AdminSignUp': 'admin-sign-up',
     'AdminLoginPage': 'admin-login',
-    'Admin': 'admins'
+    'Admin': 'admins',
+    'ManageBlogPage': 'manage-blog'
 };
 
 export const pathToPageName = {
@@ -34,7 +36,8 @@ export const pathToPageName = {
     '/blog': 'BlogPage',
     '/admin/signup': 'AdminSignUpPage',
     '/admin/login': 'AdminLoginPage',
-    '/admin':'AdminPage'
+    '/admin':'AdminPage',
+    '/admin/manage-blog':'ManageBlogPage'
 };
 
 

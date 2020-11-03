@@ -8,13 +8,13 @@ import {
 } from "react-router-dom";
 import {TopNavBar} from "./components/NavBar";
 import {pageToPathName} from "./constants";
-import {pageToPathName as protectedPageToPathName} from "./protected-views/protected-views"
+import {pageToPathName as protectedPageToPathName} from "./views-protected/protected-views"
 import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage, LeasePage, BlogPage} from "./views";
 import {AppContextProvider} from "./context";
 import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import {colorScheme} from "./constants";
-import AdminLoginPage from "./protected-views/AdminLoginPage/AdminLoginPage";
-import ProtectedRoute from "./protected-views/ProtectedRoute";
+import AdminLoginPage from "./views-protected/AdminLoginPage/AdminLoginPage";
+import ProtectedRoute from "./views-protected/ProtectedRoute";
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import * as firebase from "firebase/app";
@@ -28,11 +28,13 @@ import {useLocation} from 'react-router-dom'
 import {AppContext} from "./context";
 import {blog_category_to_string} from "./constants/contants";
 import {AnimatedSwitch} from 'react-router-transition';
-import AdminPage from "./protected-views/AdminPage/AdminPage";
+import AdminPage from "./views-protected/AdminPage/AdminPage";
 import NoMatch from "./views/NoMatchPage/NoMatchPage";
 import ScrollToTop from "./context/ScrollToTop";
-const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
+import ManageBlogPage from "./views-protected/ManageBlogPage/ManageBlogPage";
 
+
+const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
@@ -102,9 +104,12 @@ function App({location}) {
 
                         {/*Admin Login Page*/}
                         <Route path={pageToPathName["AdminLoginPage"]} exact component={AdminLoginPage}/>
+
                         {/*Login and Admin*/}
                         <ProtectedRoute path={protectedPageToPathName["AdminPage"]} exact component={AdminPage}/>
 
+                        {/*Manage Blog Page*/}
+                        <ProtectedRoute path={pageToPathName["ManageBlogPage"]} exact component={ManageBlogPage}/>
 
                         {/*Blog absolute path*/}
                         <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>

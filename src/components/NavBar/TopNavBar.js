@@ -40,7 +40,7 @@ import {AppContext} from "../../context";
 import {
     pageToPageName as adminPageToPageName,
     pageToPathName as adminPageToPathName
-} from "protected-views/protected-views"
+} from "views-protected/protected-views"
 
 function ElevationScroll({window, children, setTrigger, triggerActive}) {
     //const {children, window, setTrigger} = props;
@@ -101,6 +101,8 @@ const shouldNavBarTrigger = (pathname) => {
 
 const AdminLogOut = ({auth}) => {
 
+    console.log("TopNav")
+    console.log(auth.user)
     const onClick = ()=>{
         auth.signout()
     };

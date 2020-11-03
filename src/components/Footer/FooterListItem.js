@@ -19,7 +19,7 @@ import "./Footer.scss";
 import {
     pageToPageName as adminPageToPageName,
     pageToPathName as adminPageToPathName
-} from "protected-views/protected-views"
+} from "views-protected/protected-views"
 import {AppContext} from "../../context";
 import {Divider} from "@material-ui/core";
 

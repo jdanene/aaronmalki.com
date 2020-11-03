@@ -22,7 +22,7 @@ import isObjectEmpty from "../../Utility/isObjectEmpty";
 import {AppContext} from "../../../context";
 import Button from "../../Button";
 import { RiAdminLine } from "react-icons/ri";
-import {pageToPageName as adminPageToPageName, pageToPathName as adminPageToPathName} from "protected-views/protected-views"
+import {pageToPageName as adminPageToPageName, pageToPathName as adminPageToPathName} from "views-protected/protected-views"
 
 
 const TopItem = ({page, isSelected}) => {
