@@ -54,6 +54,9 @@ firebase.initializeApp(firebaseConfig);
 // Get a reference to the database service
 export const FIREBASE_DB = firebase.database();
 
+//Get a reference to the storage service
+export const FIREBASE_STORAGE = firebase.storage();
+
 
 function App({location}) {
 

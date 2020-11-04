@@ -20,12 +20,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OptionsSelect({helperText,label,choices}) {
+export default function OptionsSelect({helperText,label,choices, onChoiceCallback}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(Object.keys(choices)[0]);
+
+  console.log(Object.keys(choices)[0])
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    console.log("OPTIONSELCT",event.target)
+      setValue(event.target.value);
+    onChoiceCallback(event.target.value)
   };
 
   return (

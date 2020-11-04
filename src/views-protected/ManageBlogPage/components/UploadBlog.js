@@ -17,7 +17,7 @@ import DatePicker from "./DatePicker";
 import FileDrop from "../../../components/FileDrop/FileDrop";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
-
+import uploadImgToDb from "../../../components/Database/uploadImgToDb";
 /*
     state: blog_states.posts,
     category: blog_categories.news,
@@ -38,10 +38,43 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [imgFile, setImgFile] = useState([]);
-    const [markdownFile, setMarkdownFile] = useState([]);
-    const [category, setCategory] = useState();
+    const [imgFile, setImgFile] = useState(null);
+    const [markdownFile, setMarkdownFile] = useState('');
+    const [category, setCategory] = useState(null);
     const [date, setDate] = useState(new Date());
+    const [imgUrl, setImgUrl] = useState(null);
+
+    const validateCreate = () => {
+        // eslint-disable-next-line eqeqeq
+        if (title === '') {
+            alert('You forgot to enter the title.');
+            return false
+        }
+
+        if (description === '') {
+            alert('You forgot to enter a description.');
+            return false
+        }
+
+        if (!(category) || category === '') {
+            alert('You forgot to select a category.');
+            return false
+        }
+
+        if (!(imgFile)) {
+            alert('Upload a cover image. (Could be any image but we need it).');
+            return false
+        }
+
+        if (!(markdownFile)) {
+            alert('Upload the markdown file aka the blog content. [filename.md]');
+            return false
+        }
+
+        return true;
+
+
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -51,28 +84,49 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
         setOpen(false);
     };
 
-    const handleCreate = ()=>{
-         setOpen(false);
+    const handleCreate = () => {
 
 
-          //  category:  blog_categories.rental_guide,
-           // image:  (needs a URL)
-          //  content: (needs to be text not file)
+        if (validateCreate()) {
 
-       //  blogUploadCallBack({state:blogState,category,title,image,description,date,content});
+            if (imgFile instanceof File) {
+                uploadImgToDb({
+                    file: imgFile,
+                }).then((url) => {
+                    if (url) {
+                        blogUploadCallBack({
+                            state: blogState,
+                            category,
+                            title,
+                            image: url,
+                            description,
+                            date,
+                            content: markdownFile
+                        });
+                        setOpen(false);
+                    } else {
+                        alert('Could not save image to firebase storage: try again later or contact dev ')
+                    }
+                })
+            }
+
+
+        }
+
+        //
     };
 
-    const handleMarkdown =(file)=>{
-        
-        setMarkdownFile(file)
+    const handleMarkdown = (file) => {
+        file[0].text().then((txt) => setMarkdownFile(txt))
     };
 
-    const handleImage = (file)=>{
-        setImgFile(file)
+    const handleImage = (file) => {
+        setImgFile(file[0])
     };
     return (
         <div>
-            <Button variant="contained" color="secondary" style={color?{backgroundColor:color, color:'white'}:{}} onClick={handleClickOpen}>
+            <Button variant="contained" color="secondary" style={color ? {backgroundColor: color, color: 'white'} : {}}
+                    onClick={handleClickOpen}>
                 ADD {blogState} post
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -87,18 +141,19 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
 
                     <TextInput label={'Blog Title'} max_char={MAX_TITLE_CHARS} textCallback={setTitle}/>
                     <TextInput label={'Blog Description'} max_char={MAX_DESC_CHARS} textCallback={setDescription}/>
-                    <DatePicker date={date} dateCallback={setDate} />
-                    <OptionsSelect helperText={'Category'} label={"Select blog category"} choices={blog_categories}/>
+                    <DatePicker date={date} dateCallback={setDate}/>
+                    <OptionsSelect helperText={'Category'} label={"Select blog category"} choices={blog_categories}
+                                   onChoiceCallback={setCategory}/>
 
                     <Grid container alignContent={'space-between'} style={{width: '100%'}} spacing={3}>
 
                         <Grid item>
-                            <FileDrop fileCallback={setImgFile} acceptedFiles={ACCEPT_IMAGES}
+                            <FileDrop fileCallback={handleImage} acceptedFiles={ACCEPT_IMAGES}
                                       label={'Upload Featured Image'}/>
 
                         </Grid>
                         <Grid item>
-                            <FileDrop fileCallback={setMarkdownFile} acceptedFiles={ACCEPT_MARKDOWNFILE}
+                            <FileDrop fileCallback={handleMarkdown} acceptedFiles={ACCEPT_MARKDOWNFILE}
                                       label={'Upload Markdown Formatted Blog'}/>
 
                         </Grid>
@@ -109,7 +164,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                     <Button onClick={handleClose} color="secondary">
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} color="secondary">
+                    <Button onClick={handleCreate} color="secondary">
                         Create
                     </Button>
 
@@ -123,10 +178,10 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
 // Specifies the default values for props:
 UploadBlog.defaultProps = {
     blogState: blog_states.main_featured,
-    blogUploadCallBack: ()=>{}
+    blogUploadCallBack: (val) =>alert(JSON.stringify(val))
 
 };
 
 UploadBlog.propTypes = {
-  blogUploadCallBack: PropTypes.func.isRequired
+    blogUploadCallBack: PropTypes.func.isRequired
 };
