@@ -22,14 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OptionsSelect({helperText,label,choices, onChoiceCallback}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(Object.keys(choices)[0]);
+  const [value, setValue] = React.useState('');
 
-  console.log(Object.keys(choices)[0])
-
-  const handleChange = (event) => {
-    console.log("OPTIONSELCT",event.target)
-      setValue(event.target.value);
-    onChoiceCallback(event.target.value)
+  const handleChange = ({target: {value}}) => {
+     setValue(value);
+     onChoiceCallback(value);
   };
 
   return (
@@ -43,7 +40,7 @@ export default function OptionsSelect({helperText,label,choices, onChoiceCallbac
         >
             {
                 Object.keys(choices).map((key,index)=>{
-                    return <MenuItem key={key}>{choices[key]}</MenuItem>
+                    return <MenuItem key={key} value={choices[key]}>{choices[key]}</MenuItem>
                 })
             }
         </Select>
