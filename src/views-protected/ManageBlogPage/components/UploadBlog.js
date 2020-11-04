@@ -84,17 +84,8 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
         setOpen(false);
     };
 
-    const handleCreate = () => {
-
-
-        if (validateCreate()) {
-
-            if (imgFile instanceof File) {
-                uploadImgToDb({
-                    file: imgFile,
-                }).then((url) => {
-                    if (url) {
-                        blogUploadCallBack({
+    const uploadFirebaseStorageCallBack = (url)=>{
+        blogUploadCallBack(blogId, {
                             state: blogState,
                             category,
                             title,
@@ -102,11 +93,18 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                             description,
                             date,
                             content: markdownFile
-                        });
-                        setOpen(false);
-                    } else {
-                        alert('Could not save image to firebase storage: try again later or contact dev ')
-                    }
+                        })
+        setOpen(false);
+    };
+
+    const handleCreate = () => {
+
+
+        if (validateCreate()) {
+            if (imgFile instanceof File) {
+                uploadImgToDb({
+                    file: imgFile,
+                    uploadCallback:uploadFirebaseStorageCallBack
                 })
             }
 
@@ -178,7 +176,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
 // Specifies the default values for props:
 UploadBlog.defaultProps = {
     blogState: blog_states.main_featured,
-    blogUploadCallBack: (val) =>alert(JSON.stringify(val))
+    blogUploadCallBack: (val, payload) =>alert(JSON.stringify(payload))
 
 };
 

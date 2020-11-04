@@ -13,7 +13,6 @@ const  uploadImgToDb =async ({file, uploadCallback}) => {
     let uploadTask = ref.put(file);
 
 
-    let URL = null;
     // Register three observers:
     // 1. 'state_changed' observer, called any time the state changes
     // 2. Error observer, called on failure
@@ -29,16 +28,14 @@ const  uploadImgToDb =async ({file, uploadCallback}) => {
         }
     }, function (error) {
         // Handle unsuccessful uploads
-        //uploadCallback(false);
-        URL=false;
+        uploadCallback(false);
     }, function () {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            URL=url
+            uploadCallback(url);
         });
     });
-    return URL
 
 
 };
