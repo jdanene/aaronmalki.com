@@ -60,8 +60,6 @@ export const blog_category_to_string = {
 };
 
 export const blog_states = {
-    delete: "delete",
-    review: "review",
     featured: "featured",
     posts: "posts",
     main_featured: "main_featured"

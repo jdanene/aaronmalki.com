@@ -16,6 +16,8 @@ import TextInput from "./TextInput";
 import DatePicker from "./DatePicker";
 import FileDrop from "../../../components/FileDrop/FileDrop";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from 'prop-types';
+
 /*
     state: blog_states.posts,
     category: blog_categories.news,
@@ -31,13 +33,15 @@ const MAX_TITLE_CHARS = 40;
 const ACCEPT_MARKDOWNFILE = ['text/x-markdown', 'text/markdown'];
 const ACCEPT_IMAGES = ['image/*'];
 
-export default function UploadBlog({blogState}) {
+export default function UploadBlog({blogState, color, blogUploadCallBack}) {
     const blogId = uuidv4();
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [imgFile, setImgFile] = useState([]);
     const [markdownFile, setMarkdownFile] = useState([]);
+    const [category, setCategory] = useState();
+    const [date, setDate] = useState(new Date());
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -47,10 +51,29 @@ export default function UploadBlog({blogState}) {
         setOpen(false);
     };
 
+    const handleCreate = ()=>{
+         setOpen(false);
+
+
+          //  category:  blog_categories.rental_guide,
+           // image:  (needs a URL)
+          //  content: (needs to be text not file)
+
+       //  blogUploadCallBack({state:blogState,category,title,image,description,date,content});
+    };
+
+    const handleMarkdown =(file)=>{
+        
+        setMarkdownFile(file)
+    };
+
+    const handleImage = (file)=>{
+        setImgFile(file)
+    };
     return (
         <div>
-            <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-                Create {blogState} blog post
+            <Button variant="contained" color="secondary" style={color?{backgroundColor:color, color:'white'}:{}} onClick={handleClickOpen}>
+                ADD {blogState} post
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="customized-dialog-title">Create a {blogState} post</DialogTitle>
@@ -64,7 +87,7 @@ export default function UploadBlog({blogState}) {
 
                     <TextInput label={'Blog Title'} max_char={MAX_TITLE_CHARS} textCallback={setTitle}/>
                     <TextInput label={'Blog Description'} max_char={MAX_DESC_CHARS} textCallback={setDescription}/>
-                    <DatePicker/>
+                    <DatePicker date={date} dateCallback={setDate} />
                     <OptionsSelect helperText={'Category'} label={"Select blog category"} choices={blog_categories}/>
 
                     <Grid container alignContent={'space-between'} style={{width: '100%'}} spacing={3}>
@@ -99,5 +122,11 @@ export default function UploadBlog({blogState}) {
 
 // Specifies the default values for props:
 UploadBlog.defaultProps = {
-    blogState: blog_states.main_featured
+    blogState: blog_states.main_featured,
+    blogUploadCallBack: ()=>{}
+
+};
+
+UploadBlog.propTypes = {
+  blogUploadCallBack: PropTypes.func.isRequired
 };

@@ -16,7 +16,6 @@ const TextInput = ({label, textCallback, max_char}) =>{
 
     return (
         <TextField
-            autoFocus
             required
             margin="dense"
             label={label}

@@ -364,6 +364,7 @@ const useBlogPosts = () => {
     useEffect(()=>{
         setBlogPosts(TEST_POSTS.blogPosts);
         setFilteredBlogPosts(filterPosts(TEST_POSTS.blogPosts));
+        setBlogLoaded(true);
     },[]);
 
     // If new blog post reset the paths

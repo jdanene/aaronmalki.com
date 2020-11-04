@@ -21,18 +21,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function DatePicker({label, dateCallback}) {
-    const classes = useStyles();
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
-    
+export default function DatePicker({label, date, dateCallback}) {
+
     const handleDateChange = (date) => {
-        setSelectedDate(date)
+        dateCallback(date)
     };
-
-    useEffect(() => {
-        dateCallback(new Date().toDateString())
-    }, []);
-
 
     return (
         <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -43,7 +36,7 @@ export default function DatePicker({label, dateCallback}) {
                 margin="normal"
                 id="date-picker-inline"
                 label={label}
-                value={selectedDate}
+                value={date}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
                     'aria-label': 'change date',
@@ -56,7 +49,8 @@ export default function DatePicker({label, dateCallback}) {
 
 DatePicker.propTypes = {
     dateCallback: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
 };
 
 // Specifies the default values for props:
