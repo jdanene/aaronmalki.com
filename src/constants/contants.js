@@ -64,3 +64,8 @@ export const blog_states = {
     posts: "posts",
     main_featured: "main_featured"
 };
+
+export const DB_NODES = {
+    inquiries:'inquiries',
+    blogPosts:'blogPosts'
+};

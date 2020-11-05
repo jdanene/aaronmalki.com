@@ -2,10 +2,12 @@ import React, {useState, useEffect, useContext} from 'react';
 import {AppContext} from "./index";
 import {blog_states} from "../constants/contants";
 import {v4 as uuidv4} from 'uuid';
-import {  blog_categories} from "../constants/contants";
+import {blog_categories} from "../constants/contants";
 import getRandomValueFromObject from "../components/Utility/getRandomValueFromObject";
 import {pageToPathName} from "../constants/contants";
 import isObjectEmpty from "../components/Utility/isObjectEmpty";
+import {FIREBASE_DB} from "../App";
+import {DB_NODES} from "../constants/contants";
 // path -> blog/{category}/{name}
 let blog1 = {
     state: blog_states.posts,
@@ -127,7 +129,7 @@ Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a p
 };
 
 let blog4 = {
-    state: blog_states.delete,
+    state: blog_states.posts,
     category: blog_categories.rental_guide,
     title: 'blog4',
     image: 'https://source.unsplash.com/random',
@@ -178,7 +180,6 @@ I should be dead but you may see me whats really good
 <Video url="https://www.twitch.tv/x2twins"/>
 `
 };
-
 
 
 let featuredBlog0 = {
@@ -244,149 +245,159 @@ const _featuredBlogPosts = {
 };
 
 const _mainBlogPosts = {
-        [uuidv4()]: mainFeaturedBlog,
-        [uuidv4()]:mainFeaturedBlog1
+    [uuidv4()]: mainFeaturedBlog,
+    [uuidv4()]: mainFeaturedBlog1
 };
+
+const TEST_POSTS_RAW = {
+    ..._blogPosts, ..._featuredBlogPosts, ..._mainBlogPosts
+};
+
 
 const TEST_POSTS = {
     blogPosts: {
         [blog_states.posts]: _blogPosts,
         [blog_states.featured]: _featuredBlogPosts,
-        [blog_states.main_featured]:_mainBlogPosts
+        [blog_states.main_featured]: _mainBlogPosts
     }
 };
 
 
-
-/**
- * Filter's 'delete' from post and 'review' if the user is not admin
- * @param somePost
- * @param isAdmin
- * @return {Object}
- */
-const filterPost = (somePost, isAdmin=false) =>{
-
-    let ret_obj;
-    for (let [key, value] of somePost) {
-            if (value.state === blog_states.delete ){
-                continue;
-            }
-
-            if (value.state===blog_states.review && !isAdmin){
-                continue;
-            }
-            ret_obj[key]=value;
-    }
-    return ret_obj
-};
-
-export const getKeyFromSingelton = (obj)=>{
+export const getKeyFromSingelton = (obj) => {
     return Object.keys(obj)[0]
 };
 
-    /**
-     * Ensures that MainFeature only has one item.
-     * - 1. First it gets a random item from `main_featured` if a valid feature exits
-     *   - If a valid feature exits, set that feature as the single MainFeature, and
-     *     merge the rest of the features in `main_featured' with  `featured'.
-     *   - If not proceed to step 2
-     * - 2. First it gets a random item from `featured` if a valid feature exits
-     *   - If a valid feature exits, set that feature as the single MainFeature, and
-     *     remove it from  `featured'.
-     *   - If not proceed to step 3
-     * - 3. First it gets a random item from `posts` if a valid post exits
-     *   - If a valid feature exits, set that feature as the single MainFeature, and
-     *     remove it from  `featured'.
-     *   - If not do nothing there are no valid ppost
-     */
-const filterPosts = ({posts,featured,main_featured})=>{
-    let randomMainFeature;
-        let displayFeatured;
-        let displayPost;
+const filterPostToBlogState = (blogPostsRaw) => {
 
-        // If no main features then go
-        if (!(Object.keys(main_featured).length === 0 )){
-            // get a random post form the main_featured to be the singular feature
-            randomMainFeature = getRandomValueFromObject(main_featured);
-            // Merge featured with main_featured and removed the highlighted feature
-            displayFeatured = {...featured,...main_featured};
-            delete displayFeatured[getKeyFromSingelton(randomMainFeature)];
-            // simple copy of post
-            displayPost = {...posts};
+    let blogPost = {[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}};
 
-        }else if (!(Object.keys(featured).length === 0 )){
-            // get a random post form the featured to be the singular feature
-            randomMainFeature = getRandomValueFromObject(featured);
-            displayFeatured = {...featured};
-            delete displayFeatured[getKeyFromSingelton(randomMainFeature)];
-            displayPost = {...posts};
-
-        }else if (!(Object.keys(posts).length === 0 )){
-            randomMainFeature = getRandomValueFromObject(posts);
-            displayFeatured = {};
-            displayPost = {...posts};
-            delete displayPost[getKeyFromSingelton(randomMainFeature)];
-        }else{
-            randomMainFeature={};
-            displayFeatured={};
-            displayPost={};
-        }
-
-        return {[blog_states.posts]:displayPost,[blog_states.featured]:displayFeatured,[blog_states.main_featured]:randomMainFeature}
-};
-
-const blogPostToPath = (posts)=>{
-
-    let paths = {};
-
-    Object.keys(posts).map((key)=>{
-        paths[key] = `${pageToPathName.BlogPage}/${posts[key].category}/${posts[key].title.toLowerCase().replace(/\s/g, '-')}`
+    Object.keys(blogPostsRaw).forEach((key) => {
+        blogPost[blogPostsRaw[key].state][key] = blogPostsRaw[key]
     });
-    return paths;
+    return blogPost;
 };
 
 
-export const getPostFromBlogPosts = ({blogUUID,blogPosts}) =>{
+/**
+ * Ensures that MainFeature only has one item.
+ * - 1. First it gets a random item from `main_featured` if a valid feature exits
+ *   - If a valid feature exits, set that feature as the single MainFeature, and
+ *     merge the rest of the features in `main_featured' with  `featured'.
+ *   - If not proceed to step 2
+ * - 2. First it gets a random item from `featured` if a valid feature exits
+ *   - If a valid feature exits, set that feature as the single MainFeature, and
+ *     remove it from  `featured'.
+ *   - If not proceed to step 3
+ * - 3. First it gets a random item from `posts` if a valid post exits
+ *   - If a valid feature exits, set that feature as the single MainFeature, and
+ *     remove it from  `featured'.
+ *   - If not do nothing there are no valid ppost
+ */
+const filterPosts = ({posts, featured, main_featured}) => {
+    let randomMainFeature;
+    let displayFeatured;
+    let displayPost;
+
+    // If no main features then go
+    if (!(Object.keys(main_featured).length === 0)) {
+        // get a random post form the main_featured to be the singular feature
+        randomMainFeature = getRandomValueFromObject(main_featured);
+        // Merge featured with main_featured and removed the highlighted feature
+        displayFeatured = {...featured, ...main_featured};
+        delete displayFeatured[getKeyFromSingelton(randomMainFeature)];
+        // simple copy of post
+        displayPost = {...posts};
+
+    } else if (!(Object.keys(featured).length === 0)) {
+        // get a random post form the featured to be the singular feature
+        randomMainFeature = getRandomValueFromObject(featured);
+        displayFeatured = {...featured};
+        delete displayFeatured[getKeyFromSingelton(randomMainFeature)];
+        displayPost = {...posts};
+
+    } else if (!(Object.keys(posts).length === 0)) {
+        randomMainFeature = getRandomValueFromObject(posts);
+        displayFeatured = {};
+        displayPost = {...posts};
+        delete displayPost[getKeyFromSingelton(randomMainFeature)];
+    } else {
+        randomMainFeature = {};
+        displayFeatured = {};
+        displayPost = {};
+    }
+
+    return {
+        [blog_states.posts]: displayPost,
+        [blog_states.featured]: displayFeatured,
+        [blog_states.main_featured]: randomMainFeature
+    }
+};
+
+const blogPostToPath = (post) => {
+
+    return `${pageToPathName.BlogPage}/${post.category}/${post.title.toLowerCase().replace(/\s/g, '-')}`
+};
+
+
+export const getPostFromBlogPosts = ({blogUUID, blogPosts}) => {
     for (let key of Object.keys(blogPosts)) {
-        if (blogUUID in blogPosts[key]){
+        if (blogUUID in blogPosts[key]) {
             return blogPosts[key][blogUUID]
         }
-}
+    }
 };
 
 const useBlogPosts = () => {
-    const [blogPosts,setBlogPosts] = useState({});
+    const [blogPostsRaw, setBlogPostsRaw] = useState({});
+    const [blogPosts, setBlogPosts] = useState({});
     const [filteredBlogPosts, setFilteredBlogPosts] = useState({});
     const [isBlogLoaded, setBlogLoaded] = useState(false);
     const [blogPaths, setBlogPaths] = useState({});
 
-    // ToDo: Get blog post from database
-    useEffect(()=>{
-        setBlogPosts(TEST_POSTS.blogPosts);
-        setFilteredBlogPosts(filterPosts(TEST_POSTS.blogPosts));
-        setBlogLoaded(true);
-    },[]);
+    useEffect(() => {
+        // Activate this for testing
+        //setBlogPostsRaw(TEST_POSTS_RAW);
+
+        const db = FIREBASE_DB.ref().child(`${DB_NODES.blogPosts}`);
+        const handleData = snap => {
+            if (snap.val()) setBlogPostsRaw(snap.val());
+        };
+
+        // Listen to Firebase for events
+        db.on('value', handleData, error => alert(error));
+        return () => {
+            db.off('value', handleData);
+        };
+
+    }, []);
+
 
     // If new blog post reset the paths
-    useEffect(()=>{
-        if (!isObjectEmpty(blogPosts)){
+    useEffect(() => {
+        if (!isObjectEmpty(blogPostsRaw)) {
+            // Filter the blog post into the three blog states: main_featured, featured, posts
+            // This is legacy but too hard to change rt
+            let blogPosts = filterPostToBlogState(blogPostsRaw);
+            setBlogPosts(blogPosts);
+            setFilteredBlogPosts(filterPosts(blogPosts));
 
+            // Get the paths
             let paths = {};
-            // eslint-disable-next-line array-callback-return
-            Object.keys(blog_states).map((key)=>{
-                if(key in blogPosts){
-                    paths= {...paths,...blogPostToPath(blogPosts[key])}
-                }
+            Object.keys(blogPostsRaw).forEach((key) => {
+                paths = {...paths, [key]: blogPostToPath(blogPostsRaw[key])}
             });
-
             setBlogPaths(paths);
+
+            // True so now we can start playing
             setBlogLoaded(true);
+        }else{
+            console.log('here .......')
+            setBlogLoaded(false);
         }
-    },[blogPosts]);
+    }, [blogPostsRaw]);
 
 
-
-    return { filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths}
+    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths}
 };
 
 

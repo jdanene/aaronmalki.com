@@ -17,6 +17,9 @@ import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import {theme} from "rich-markdown-editor";
 import {colorScheme} from "../../../constants";
+import Tooltip from '@material-ui/core/Tooltip';
+import ConfFirmActionDiaglog from "./ConfirmActionDialog";
+import {useState} from "react";
 
 const useStyles = makeStyles((theme) =>({
     card: {
@@ -36,18 +39,28 @@ const useStyles = makeStyles((theme) =>({
     },
 }));
 
-function BlogPostItem({post, path}) {
+function BlogPostItem({post, path,deleteCallback}) {
+    const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
+
     const classes = useStyles();
 
     return (
-        <Card className={classes.card}>
+
+            <Card className={classes.card}>
+                            <ConfFirmActionDiaglog open={openConfirmDelete}
+                                   setOpen={setOpenConfirmDelete}
+                                   confirmCallBack={deleteCallback}
+                                   message={"Are you sure you want to delete this blog post? Once it's deleted it's deleted forever 👻!"}
+            />
             <CardHeader
      action={
-          <IconButton aria-label="delete" >
-                      <Avatar aria-label="settings" href={'#'} style={{ backgroundColor: 'white' }}>
+         <Tooltip title={"Delete Blog Post"}>
+          <IconButton aria-label="delete" onClick={()=>setOpenConfirmDelete(true)}>
+                      <Avatar aria-label="delete_avatar"  style={{ backgroundColor: 'white' }}>
             <DeleteForeverIcon  style={{color:colorScheme.general.hot_purple}}/>
           </Avatar>
           </IconButton>
+         </Tooltip>
         }
                 title={post.title}
                 subheader={post.date}
@@ -55,7 +68,7 @@ function BlogPostItem({post, path}) {
             <CardMedia
                 className={classes.cardMedia}
                 image={post.image}
-                title={post.imageText}
+                //title={post.imageText}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -73,15 +86,20 @@ function BlogPostItem({post, path}) {
     );
 }
 
-/*
+
 BlogPostItem.propTypes = {
   post: PropTypes.shape({
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
+    path: PropTypes.string.isRequired,
+    deleteCallback:PropTypes.func.isRequired
 };
-*/
+
+BlogPostItem.propTypes = {
+    deleteCallback: ()=>{}
+};
+
 export default BlogPostItem;

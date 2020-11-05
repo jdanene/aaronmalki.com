@@ -3,6 +3,9 @@
     ".read": "auth != null",
     "inquiries": {
       ".write": true
+    },
+    "blogPosts": {
+      ".write": "auth != null"
     }
   }
 }

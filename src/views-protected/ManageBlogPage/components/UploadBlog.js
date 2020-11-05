@@ -18,6 +18,9 @@ import FileDrop from "../../../components/FileDrop/FileDrop";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import uploadImgToDb from "../../../components/Database/uploadImgToDb";
+import uploadBlogPostToDb from "../../../components/Database/uploadBlogPostToDb";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 /*
     state: blog_states.posts,
     category: blog_categories.news,
@@ -42,7 +45,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
     const [markdownFile, setMarkdownFile] = useState('');
     const [category, setCategory] = useState(null);
     const [date, setDate] = useState(new Date());
-    const [imgUrl, setImgUrl] = useState(null);
+    const [isBlogCreating, setIsBlogCreating] = useState(false);
 
     const validateCreate = () => {
         // eslint-disable-next-line eqeqeq
@@ -85,16 +88,22 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
     };
 
     const uploadFirebaseStorageCallBack = (url)=>{
-        blogUploadCallBack(blogId, {
+        const options = {year: 'numeric', month: 'short', day: 'numeric' };
+
+
+        uploadBlogPostToDb(blogId,{
                             state: blogState,
                             category,
                             title,
                             image: url,
                             description,
-                            date,
+                            date:date.toLocaleDateString("en-US", options),
                             content: markdownFile
-                        })
-        setOpen(false);
+                        }).then(()=>{
+                            setIsBlogCreating(false);
+                            setOpen(false);
+                        }).catch((e)=>alert(`Couldn't upload blog to db, try again or contact dev:\n ${e}`))
+
     };
 
     const handleCreate = () => {
@@ -102,6 +111,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
 
         if (validateCreate()) {
             if (imgFile instanceof File) {
+                setIsBlogCreating(true);
                 uploadImgToDb({
                     file: imgFile,
                     uploadCallback:uploadFirebaseStorageCallBack
@@ -139,7 +149,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
 
                     <TextInput label={'Blog Title'} max_char={MAX_TITLE_CHARS} textCallback={setTitle}/>
                     <TextInput label={'Blog Description'} max_char={MAX_DESC_CHARS} textCallback={setDescription}/>
-                    <DatePicker date={date} dateCallback={setDate}/>
+                    <DatePicker date={date} dateCallback={setDate} label={'Set publish date for blog post'}/>
                     <OptionsSelect helperText={'Category'} label={"Select blog category"} choices={blog_categories}
                                    onChoiceCallback={setCategory}/>
 
@@ -163,7 +173,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                         Cancel
                     </Button>
                     <Button onClick={handleCreate} color="secondary">
-                        Create
+                        {isBlogCreating? <CircularProgress color="secondary" />: "Create"}
                     </Button>
 
                 </DialogActions>

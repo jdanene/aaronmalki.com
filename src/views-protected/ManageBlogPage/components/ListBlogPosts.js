@@ -11,6 +11,12 @@ import UploadBlog from "./UploadBlog";
 import {colorScheme} from "../../../constants";
 import OptionsSelect from "./OptionSelect";
 import {blog_categories} from "../../../constants/contants";
+import deleteBlogPostFromDb from "../../../components/Database/deleteBlogPostFromDb";
+
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -115,31 +121,49 @@ const getListArrayFromPosts = (blogPosts, category = 'all') => {
     let post_array = [[], [], []];
 
     if (COLUMNS_NAMES[0] in blogPosts) {
-        post_array[0] = _getPosts(blogPosts,0,category)
+        post_array[0] = _getPosts(blogPosts, 0, category)
     }
 
     if (COLUMNS_NAMES[1] in blogPosts) {
-        post_array[1] = _getPosts(blogPosts,1,category)
+        post_array[1] = _getPosts(blogPosts, 1, category)
 
     }
 
     if (COLUMNS_NAMES[2] in blogPosts) {
-        post_array[2] = _getPosts(blogPosts,2,category)
+        post_array[2] = _getPosts(blogPosts, 2, category)
     }
 
     return post_array;
 };
 
-
+/**
+ * All based on https://codesandbox.io/s/-w5szl?file=/src/index.js:2799-2802
+ * @return {*}
+ * @constructor
+ */
 function ListBlogPosts() {
     const classes = useStyles();
     const {isBlogLoaded, blogPaths, blogPosts} = useContext(AppContext);
     const [category, setCategory] = useState("all");
     const [state, setState] = useState(getListArrayFromPosts(blogPosts));
 
+    // Subscribe to blogPosts and update the state anytime it happens
     useEffect(()=>{
-        setState(getListArrayFromPosts(blogPosts,category))
-    },[category]);
+        setState(getListArrayFromPosts(blogPosts))
+    },[blogPosts]);
+
+    const deletePostCallback = (topLvlIndex, index,key) => ()=>{
+        const newState = [...state];
+        newState[topLvlIndex].splice(index, 1);
+        setState(newState);
+        deleteBlogPostFromDb(key)
+
+    };
+
+
+    useEffect(() => {
+        setState(getListArrayFromPosts(blogPosts, category))
+    }, [category]);
 
     function onDragEnd(result) {
         const {source, destination} = result;
@@ -162,7 +186,7 @@ function ListBlogPosts() {
             newState[sInd] = result[sInd];
             newState[dInd] = result[dInd];
 
-            setState(newState.filter(group => group.length));
+            setState(newState);
         }
     }
 
@@ -241,7 +265,7 @@ function ListBlogPosts() {
                                                             }}
                                                         >
 
-                                                            <BlogPostItem post={item.post} path={blogPaths[item.key]}/>
+                                                            <BlogPostItem key={`##${item.key}##`} deleteCallback={deletePostCallback(ind,index,item.key)} post={item.post} path={blogPaths[item.key]}/>
 
                                                         </div>
                                                     </div>
