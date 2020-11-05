@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import UploadBlog from "./UploadBlog";
 import {colorScheme} from "../../../constants";
+import OptionsSelect from "./OptionSelect";
+import {blog_categories} from "../../../constants/contants";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -69,17 +71,19 @@ const getListStyle = isDraggingOver => ({
     border: '5 solid green',
     height: '75vh',
     borderRadius: 2,
-    margin: 5
+    margin: 0,
+    marginTop: 5,
+    marginBottom: 5,
 
 });
 
 const COLUMNS_NAMES = [blog_states.main_featured, blog_states.featured, blog_states.posts];
-const COLUMN_COLORS = [colorScheme.general.shabby_chic,colorScheme.general.other_blue,colorScheme.general.dark_purple ]
+const COLUMN_COLORS = [colorScheme.general.shabby_chic, colorScheme.general.other_blue, colorScheme.general.dark_purple]
 const TableHeader = ({colIdx}) => {
     return (
-        <div style={{display: 'flex', flexDirection:'column'}}>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
             <Typography variant="h6" color="textSecondary" component="h6">{COLUMNS_NAMES[colIdx]}</Typography>
-            <Divider style={{margin:5}}/>
+            <Divider style={{margin: 5}}/>
             <UploadBlog blogState={COLUMNS_NAMES[colIdx]} color={COLUMN_COLORS[colIdx]}/>
         </div>
     )
@@ -91,43 +95,51 @@ const TableHeader = ({colIdx}) => {
 
 //BlogPostItem { post,path }
 
+/**
+ *
+ * @param blogPosts
+ * @param blogStateIdx
+ * @param category
+ * @return {{post, key: *}[]}
+ * @private
+ */
+const _getPosts = (blogPosts, blogStateIdx, category = 'all') => {
+    return Object.keys(blogPosts[COLUMNS_NAMES[blogStateIdx]]).map((key) => {
+        return {post: {...blogPosts[COLUMNS_NAMES[blogStateIdx]][key]}, key}
+    }).filter((aPost) => {
+        return category === 'all' || aPost.post.category === category;
+    })
+};
 
-const getListArrayFromPosts = (blogPosts) => {
+const getListArrayFromPosts = (blogPosts, category = 'all') => {
     let post_array = [[], [], []];
 
     if (COLUMNS_NAMES[0] in blogPosts) {
-        post_array[0] = Object.keys(blogPosts[COLUMNS_NAMES[0]]).map((key) => {
-
-            return {post: {...blogPosts[COLUMNS_NAMES[0]][key]}, key}
-        })
-
+        post_array[0] = _getPosts(blogPosts,0,category)
     }
 
     if (COLUMNS_NAMES[1] in blogPosts) {
-        post_array[1] = Object.keys(blogPosts[COLUMNS_NAMES[1]]).map((key) => {
-            return {post: {...blogPosts[COLUMNS_NAMES[1]][key]}, key}
-        })
+        post_array[1] = _getPosts(blogPosts,1,category)
+
     }
 
     if (COLUMNS_NAMES[2] in blogPosts) {
-        post_array[2] = Object.keys(blogPosts[COLUMNS_NAMES[2]]).map((key) => {
-            return {post: {...blogPosts[COLUMNS_NAMES[2]][key]}, key}
-        })
+        post_array[2] = _getPosts(blogPosts,2,category)
     }
 
     return post_array;
-
-
 };
+
 
 function ListBlogPosts() {
     const classes = useStyles();
     const {isBlogLoaded, blogPaths, blogPosts} = useContext(AppContext);
-    // let x = blogPaths[getKeyFromSingelton(main_featured)]
-
-
-    // The indices in the array determine
+    const [category, setCategory] = useState("all");
     const [state, setState] = useState(getListArrayFromPosts(blogPosts));
+
+    useEffect(()=>{
+        setState(getListArrayFromPosts(blogPosts,category))
+    },[category]);
 
     function onDragEnd(result) {
         const {source, destination} = result;
@@ -158,7 +170,8 @@ function ListBlogPosts() {
     return (
         <div>
 
-            <button
+
+            {/*<button
                 type="button"
                 onClick={() => {
                     setState([...state, []]);
@@ -173,13 +186,32 @@ function ListBlogPosts() {
                 }}
             >
                 Add new item
-            </button>
+            </button>*/}
+            <div style={{
+                border: '0.5px solid rgba(255,255,255,.5)',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-around'
+            }}>
+
+                <div style={{display: 'flex', width: 400}}>
+                    <Typography variant="h5" color="textPrimary" component="h5" style={{alignSelf: 'center'}}>Blog
+                        Category Shown: {category}</Typography>
+                </div>
+
+                <OptionsSelect style={{alignSelf: 'flex-end', justifySelf: 'flex-end'}} initial={'all'}
+                               helperText={'Category'} label={"Filter blog category"}
+                               choices={{...blog_categories, all: 'all'}}
+                               onChoiceCallback={setCategory}/>
+            </div>
+            <Divider/>
             <div className={classes.table}>
+
                 <DragDropContext onDragEnd={onDragEnd}>
                     {state.map((el, ind) => (
                         <div style={{display: 'flex', flexDirection: 'column'}}>
                             <TableHeader colIdx={ind}/>
-                          <Droppable key={ind} droppableId={`${ind}`}>
+                            <Droppable key={ind} droppableId={`${ind}`}>
                                 {(provided, snapshot) => (
                                     <div
                                         ref={provided.innerRef}

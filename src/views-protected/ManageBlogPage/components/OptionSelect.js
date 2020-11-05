@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OptionsSelect({helperText,label,choices, onChoiceCallback}) {
+export default function OptionsSelect({initial,helperText,label,choices, onChoiceCallback, className, style}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(initial?initial:'');
 
   const handleChange = ({target: {value}}) => {
      setValue(value);
@@ -30,7 +30,7 @@ export default function OptionsSelect({helperText,label,choices, onChoiceCallbac
   };
 
   return (
-    <div>
+    <div className={className} style={style}>
       <FormControl className={classes.formControl}>
         <Select
           labelId="demo-simple-select-label"
@@ -54,5 +54,6 @@ export default function OptionsSelect({helperText,label,choices, onChoiceCallbac
 OptionsSelect.defaultProps = {
     helperText: "Category",
     label: "Select blog category",
-    choices:blog_categories
+    choices:blog_categories,
+    onChoiceCallback: ()=>{}
 };

@@ -132,9 +132,9 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                 <DialogContent dividers>
                     <DialogContentText>
                         The actual content of the blog is in the markdown file, see (placeholder) for a example markdown
-                        file.
-                        A blog always needs a title, date, and author within the file as per example. All the other
-                        attributes are decorators
+                        file. The the title, date, description, and image are used when showing a blog article preview.
+                        When writing a blog (via markdown) make sure you include a title and author within the file, see [PlaceHolder] for example.
+                        See this [Placeholder] for basic markdown commands to get started.
                     </DialogContentText>
 
                     <TextInput label={'Blog Title'} max_char={MAX_TITLE_CHARS} textCallback={setTitle}/>
@@ -143,18 +143,18 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                     <OptionsSelect helperText={'Category'} label={"Select blog category"} choices={blog_categories}
                                    onChoiceCallback={setCategory}/>
 
-                    <Grid container alignContent={'space-between'} style={{width: '100%'}} spacing={3}>
+                    <Grid container justify={'space-between'} style={{width: '100%'}}>
 
                         <Grid item>
                             <FileDrop fileCallback={handleImage} acceptedFiles={ACCEPT_IMAGES}
                                       label={'Upload Featured Image'}/>
-
                         </Grid>
+
                         <Grid item>
                             <FileDrop fileCallback={handleMarkdown} acceptedFiles={ACCEPT_MARKDOWNFILE}
                                       label={'Upload Markdown Formatted Blog'}/>
-
                         </Grid>
+
                     </Grid>
                 </DialogContent>
                 <DialogActions>
