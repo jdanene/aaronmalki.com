@@ -267,16 +267,6 @@ export const getKeyFromSingelton = (obj) => {
     return Object.keys(obj)[0]
 };
 
-const filterPostToBlogState = (blogPostsRaw) => {
-
-    let blogPost = {[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}};
-
-    Object.keys(blogPostsRaw).forEach((key) => {
-        blogPost[blogPostsRaw[key].state][key] = blogPostsRaw[key]
-    });
-    return blogPost;
-};
-
 
 /**
  * Ensures that MainFeature only has one item.
@@ -293,13 +283,25 @@ const filterPostToBlogState = (blogPostsRaw) => {
  *     remove it from  `featured'.
  *   - If not do nothing there are no valid ppost
  */
-const filterPosts = ({posts, featured, main_featured}) => {
+const filterPosts = (props) => {
+
+    if ((isObjectEmpty(props))) {
+        return {
+            [blog_states.posts]: {},
+            [blog_states.featured]: {},
+            [blog_states.main_featured]: {}
+        }
+    }
+
+    const {posts, featured, main_featured} = props;
+
+
     let randomMainFeature;
     let displayFeatured;
     let displayPost;
 
     // If no main features then go
-    if (!(Object.keys(main_featured).length === 0)) {
+    if (!(isObjectEmpty(main_featured))) {
         // get a random post form the main_featured to be the singular feature
         randomMainFeature = getRandomValueFromObject(main_featured);
         // Merge featured with main_featured and removed the highlighted feature
@@ -308,14 +310,14 @@ const filterPosts = ({posts, featured, main_featured}) => {
         // simple copy of post
         displayPost = {...posts};
 
-    } else if (!(Object.keys(featured).length === 0)) {
+    } else if (!(isObjectEmpty(featured))) {
         // get a random post form the featured to be the singular feature
         randomMainFeature = getRandomValueFromObject(featured);
         displayFeatured = {...featured};
         delete displayFeatured[getKeyFromSingelton(randomMainFeature)];
         displayPost = {...posts};
 
-    } else if (!(Object.keys(posts).length === 0)) {
+    } else if (!(isObjectEmpty(posts))) {
         randomMainFeature = getRandomValueFromObject(posts);
         displayFeatured = {};
         displayPost = {...posts};
@@ -372,6 +374,41 @@ const useBlogPosts = () => {
     }, []);
 
 
+    /**
+     * Filters blogPostsRaw by respective category
+     * @param blogPostsRaw
+     * @param category
+     // @return {{[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}}}
+     */
+    const filterPostToBlogState = (blogPostsRaw)=> (category = blog_categories.news) => {
+
+        let blogPost = {[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}};
+
+        Object.keys(blogPostsRaw).forEach((key) => {
+            if (blogPostsRaw[key].category === category) {
+                blogPost[blogPostsRaw[key].state][key] = blogPostsRaw[key]
+            }
+        });
+        return blogPost;
+    };
+
+
+    /**
+     * Given a category gets the formatted blog posts for that category in the form of
+     *  - {{[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}}}
+     * or returns null indicating that no posts for that blog
+     * @param category
+     */
+    const getFormattedBlogPost = (category = blog_categories.news) => {
+        let posts = filterPostToBlogState(blogPostsRaw)(category);
+        if (Object.keys(posts).every((key) => isObjectEmpty(posts[key]))) {
+            return null;
+        } else {
+            return filterPosts(posts);
+        }
+    };
+
+
     // If new blog post reset the paths
     useEffect(() => {
         if (!isObjectEmpty(blogPostsRaw)) {
@@ -379,7 +416,22 @@ const useBlogPosts = () => {
             // This is legacy but too hard to change rt
             let blogPosts = filterPostToBlogState(blogPostsRaw);
             setBlogPosts(blogPosts);
-            setFilteredBlogPosts(filterPosts(blogPosts));
+
+            // Create a object with each category: news, rental-guides, buying-tips, lifestyle
+            // This object holds post in that category and also contains a boolean indicating if
+            // empty or not. The posts within a category keyed by blog state e.g: main_featured, featured, posts
+
+            //setFilteredBlogPosts(filterPosts(blogPosts));
+
+
+            // console.log(JSON.stringify(blogPostsRaw));
+            let filteredPosts = {};
+            Object.keys(blog_categories).forEach((key) => {
+                filteredPosts[key] = getFormattedBlogPost(blog_categories[key]);
+            });
+            setFilteredBlogPosts(filteredPosts);
+            //console.log(JSON.stringify(filteredPosts));
+
 
             // Get the paths
             let paths = {};
@@ -390,14 +442,13 @@ const useBlogPosts = () => {
 
             // True so now we can start playing
             setBlogLoaded(true);
-        }else{
-            console.log('here .......')
+        } else {
             setBlogLoaded(false);
         }
     }, [blogPostsRaw]);
 
 
-    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths}
+    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, filterPostToBlogState:filterPostToBlogState(blogPostsRaw)}
 };
 
 

@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
-import {blog_category_to_string} from "../../../constants/contants";
+import {blog_category_to_string, blog_categories_keysOnly} from "../../../constants/contants";
 import { matchPath } from "react-router";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import {useEffect} from "react";
@@ -15,6 +15,8 @@ import clsx from "clsx";
 import isPathMatch from "../../../components/Utility/isPathMatch";
 import {colorScheme} from "../../../constants";
 import {Divider} from "@material-ui/core";
+
+import {blog_categories} from "../../../constants/contants";
 //blog_category_to_string
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
-  const {location, sections, title } = props;
+  const {location, sections, title,categoriesActive} = props;
 
 
   const pathMatcher = (targetPath)=>{
@@ -92,17 +94,17 @@ function Header(props) {
         variant="dense"
         className={classes.toolbarSecondary}
       >
-        {Object.keys(blog_category_to_string).map((key) => (
-          <Link
+        {Object.keys(blog_categories_keysOnly).map((key) => {
+            return <Link
             color="inherit"
             key={key}
             variant="body2"
-            to={blog_category_to_string[key].path}
+            to={{pathname: blog_category_to_string[key].path, state:{category:key}}}
             className={clsx(classes.toolbarLink,pathMatcher(blog_category_to_string[key].path)?classes.toolbarLink_active: classes.toolbarLink_inactive)}
           >
             {blog_category_to_string[key].title}
-          </Link>
-        ))}
+          </Link>}
+        )}
       </Toolbar>
       <Divider/>
     </React.Fragment>

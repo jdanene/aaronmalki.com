@@ -7,10 +7,10 @@ import Blog from "./components/Blog";
  * @return {*}
  * @constructor
  */
-const BlogPage = ({blogUUID})=>{
+const BlogPage = ({blogUUID,category})=>{
 
     return <div style={{display:"flex", alignContent:"center", alignItems:"center",width:'100vw'}}>
-        <Blog blogUUID={blogUUID}/>
+        <Blog blogUUID={blogUUID} category={category}/>
     </div>
 
 };

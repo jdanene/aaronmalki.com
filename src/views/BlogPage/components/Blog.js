@@ -22,6 +22,8 @@ import {AppContext} from "../../../context";
 import {useLocation} from "react-router";
 import ActualPost from "./ActualPost";
 import {getPostFromBlogPosts} from "../../../context/useBlogPost";
+import {blog_categories, blog_states} from "../../../constants/contants";
+import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -89,24 +91,52 @@ const sidebar = {
     ],
 };
 
-export default function Blog({blogUUID}) {
-    const location = useLocation()
 
+
+const getPosts = (category,filteredBlogPosts)=>{
+    let featured,main_featured, posts;
+    if (category&&!isObjectEmpty(filteredBlogPosts)&&filteredBlogPosts[category]){
+        featured = filteredBlogPosts[category][blog_states.featured];
+        main_featured = filteredBlogPosts[category][blog_states.main_featured];
+        posts = filteredBlogPosts[category][blog_states.posts];
+    }else{
+        featured={};
+        main_featured={};
+        posts={};
+    }
+    return {featured,main_featured, posts}
+};
+
+const categoriesActive = (filteredBlogPosts) =>{
+    return Object.keys(filteredBlogPosts).filter((key)=>filteredBlogPosts[key]!=null)
+};
+
+export default function Blog({blogUUID, category}) {
+    const location = useLocation();
     const classes = useStyles();
 
+    // This is non null and equal to one of blog_categories then we are in a blog page , not a individual post
+    const main_page_category_key = category?category: (location) && ('state' in location) && ('category' in location.state)? location.state.category: null;
     const {filteredBlogPosts,isBlogLoaded,blogPaths,blogPosts} = useContext(AppContext);
-    const {featured,main_featured, posts} = filteredBlogPosts;
+
+    const {featured,main_featured, posts} = getPosts(main_page_category_key,filteredBlogPosts);
+
+    const hasBlogs = ()=>{
+        return (!isObjectEmpty(filteredBlogPosts)&&filteredBlogPosts[main_page_category_key])
+    };
+
+
 
     return (
         <React.Fragment>
             <CssBaseline/>
             {isBlogLoaded?
             <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
-                <Header location={location} sections={sections}/>
+                <Header location={location} sections={sections} categoriesActive={categoriesActive(filteredBlogPosts)}/>
                 <main>
 
 
-                    {!blogUUID&&
+                    {!blogUUID&&hasBlogs()&&
                     <React.Fragment>
                     <MainFeaturedPost path={blogPaths[getKeyFromSingelton(main_featured)]} post={main_featured}/>
                     <Grid container spacing={4}>
@@ -119,7 +149,7 @@ export default function Blog({blogUUID}) {
                         }
                     <Grid container spacing={5} className={classes.mainGrid}>
                         {!blogUUID?
-                            <Main title="From the firehose" posts={posts} paths={blogPaths}/>
+                            hasBlogs()&&<Main title="From the firehose" posts={posts} paths={blogPaths}/>
                             :
                             <ActualPost key={blogUUID} post={getPostFromBlogPosts({blogUUID,blogPosts})}/>
                         }

@@ -26,7 +26,7 @@ import {Footer} from "./components/Footer";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useLocation} from 'react-router-dom'
 import {AppContext} from "./context";
-import {blog_category_to_string} from "./constants/contants";
+import {blog_categories, blog_category_to_string,blog_categories_keysOnly} from "./constants/contants";
 import {AnimatedSwitch} from 'react-router-transition';
 import AdminPage from "./views-protected/AdminPage/AdminPage";
 import NoMatch from "./views/NoMatchPage/NoMatchPage";
@@ -60,7 +60,7 @@ export const FIREBASE_STORAGE = firebase.storage();
 
 function App({location}) {
 
-    const {blogPaths, isBlogLoaded} = useContext(AppContext);
+    const {blogPaths, filteredBlogPosts,isBlogLoaded} = useContext(AppContext);
 
     // const location = useLocation();
 
@@ -83,6 +83,11 @@ function App({location}) {
 
 
     }, []);
+
+    Object.keys(blog_categories_keysOnly).filter((key)=>{
+        return filteredBlogPosts[key] === null
+    }).map((key)=><Route key={key} path={blog_category_to_string[key].path} exact
+                                   component={BlogPage}/>);
 
     return (
 
@@ -120,10 +125,11 @@ function App({location}) {
                         </Route>
 
                         {/*Blog tabs at the top*/}
-                        {Object.keys(blog_category_to_string).map((key) =>
+                        {Object.keys(blog_categories_keysOnly).map((key) =>
                             <Route key={key} path={blog_category_to_string[key].path} exact
-                                   component={BlogPage}/>
+                                   render={(props) => <BlogPage {...props} category={key}/>}/>
                         )}
+
 
                         {/*Individual Blogs*/}
                         {isBlogLoaded && Object.keys(blogPaths).map((key) =>

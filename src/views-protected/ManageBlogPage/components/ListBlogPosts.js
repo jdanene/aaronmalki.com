@@ -10,8 +10,9 @@ import Divider from '@material-ui/core/Divider';
 import UploadBlog from "./UploadBlog";
 import {colorScheme} from "../../../constants";
 import OptionsSelect from "./OptionSelect";
-import {blog_categories} from "../../../constants/contants";
+import {blog_categories, blog_categories_keysOnly} from "../../../constants/contants";
 import deleteBlogPostFromDb from "../../../components/Database/deleteBlogPostFromDb";
+import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 
 
 
@@ -136,6 +137,21 @@ const getListArrayFromPosts = (blogPosts, category = 'all') => {
     return post_array;
 };
 
+const getPosts = (category,filteredBlogPosts)=>{
+    let featured,main_featured, posts;
+    if (category&&!isObjectEmpty(filteredBlogPosts)&&filteredBlogPosts[category]){
+        featured = filteredBlogPosts[category][blog_states.featured];
+        main_featured = filteredBlogPosts[category][blog_states.main_featured];
+        posts = filteredBlogPosts[category][blog_states.posts];
+    }else{
+        featured={};
+        main_featured={};
+        posts={};
+    }
+    return {featured,main_featured, posts}
+};
+
+
 /**
  * All based on https://codesandbox.io/s/-w5szl?file=/src/index.js:2799-2802
  * @return {*}
@@ -143,14 +159,14 @@ const getListArrayFromPosts = (blogPosts, category = 'all') => {
  */
 function ListBlogPosts() {
     const classes = useStyles();
-    const {isBlogLoaded, blogPaths, blogPosts} = useContext(AppContext);
-    const [category, setCategory] = useState("all");
-    const [state, setState] = useState(getListArrayFromPosts(blogPosts));
+    const {isBlogLoaded, blogPaths,filterPostToBlogState} = useContext(AppContext);
+    const [category, setCategory] = useState(blog_categories.news);
+    const [state, setState] = useState(getListArrayFromPosts(filterPostToBlogState(blog_categories.news)));
 
     // Subscribe to blogPosts and update the state anytime it happens
     useEffect(()=>{
-        setState(getListArrayFromPosts(blogPosts))
-    },[blogPosts]);
+        setState(getListArrayFromPosts(filterPostToBlogState(category)))
+    },[category]);
 
     const deletePostCallback = (topLvlIndex, index,key) => ()=>{
         const newState = [...state];
@@ -160,10 +176,7 @@ function ListBlogPosts() {
 
     };
 
-
-    useEffect(() => {
-        setState(getListArrayFromPosts(blogPosts, category))
-    }, [category]);
+    
 
     function onDragEnd(result) {
         const {source, destination} = result;
@@ -223,9 +236,9 @@ function ListBlogPosts() {
                         Category Shown: {category}</Typography>
                 </div>
 
-                <OptionsSelect style={{alignSelf: 'flex-end', justifySelf: 'flex-end'}} initial={'all'}
+                <OptionsSelect style={{alignSelf: 'flex-end', justifySelf: 'flex-end'}} initial={category}
                                helperText={'Category'} label={"Filter blog category"}
-                               choices={{...blog_categories, all: 'all'}}
+                               choices={blog_categories}
                                onChoiceCallback={setCategory}/>
             </div>
             <Divider/>

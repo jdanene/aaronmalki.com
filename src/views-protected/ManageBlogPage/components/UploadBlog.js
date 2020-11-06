@@ -87,22 +87,22 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
         setOpen(false);
     };
 
-    const uploadFirebaseStorageCallBack = (url)=>{
-        const options = {year: 'numeric', month: 'short', day: 'numeric' };
+    const uploadFirebaseStorageCallBack = (url) => {
+        const options = {year: 'numeric', month: 'short', day: 'numeric'};
 
 
-        uploadBlogPostToDb(blogId,{
-                            state: blogState,
-                            category,
-                            title,
-                            image: url,
-                            description,
-                            date:date.toLocaleDateString("en-US", options),
-                            content: markdownFile
-                        }).then(()=>{
-                            setIsBlogCreating(false);
-                            setOpen(false);
-                        }).catch((e)=>alert(`Couldn't upload blog to db, try again or contact dev:\n ${e}`))
+        uploadBlogPostToDb(blogId, {
+            state: blogState,
+            category,
+            title,
+            image: url,
+            description,
+            date: date.toLocaleDateString("en-US", options),
+            content: markdownFile
+        }).then(() => {
+            setIsBlogCreating(false);
+            setOpen(false);
+        }).catch((e) => alert(`Couldn't upload blog to db, try again or contact dev:\n ${e}`))
 
     };
 
@@ -114,7 +114,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                 setIsBlogCreating(true);
                 uploadImgToDb({
                     file: imgFile,
-                    uploadCallback:uploadFirebaseStorageCallBack
+                    uploadCallback: uploadFirebaseStorageCallBack
                 })
             }
 
@@ -143,7 +143,8 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                     <DialogContentText>
                         The actual content of the blog is in the markdown file, see (placeholder) for a example markdown
                         file. The the title, date, description, and image are used when showing a blog article preview.
-                        When writing a blog (via markdown) make sure you include a title and author within the file, see [PlaceHolder] for example.
+                        When writing a blog (via markdown) make sure you include a title and author within the file, see
+                        [PlaceHolder] for example.
                         See this [Placeholder] for basic markdown commands to get started.
                     </DialogContentText>
 
@@ -173,7 +174,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
                         Cancel
                     </Button>
                     <Button onClick={handleCreate} color="secondary">
-                        {isBlogCreating? <CircularProgress color="secondary" />: "Create"}
+                        {isBlogCreating ? <CircularProgress color="secondary"/> : "Create"}
                     </Button>
 
                 </DialogActions>
@@ -186,7 +187,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack}) {
 // Specifies the default values for props:
 UploadBlog.defaultProps = {
     blogState: blog_states.main_featured,
-    blogUploadCallBack: (val, payload) =>alert(JSON.stringify(payload))
+    blogUploadCallBack: (val, payload) => alert(JSON.stringify(payload))
 
 };
 

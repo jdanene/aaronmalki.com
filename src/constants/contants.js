@@ -52,6 +52,24 @@ export const blog_categories = {
     lifestyle: "lifestyle"
 };
 
+export const blog_categories_reverse = {
+    news: "news",
+    "rental-guide": "rental_guide",
+    "buying-tips": "buying_tips",
+    lifestyle: "lifestyle"
+};
+
+export const blog_categories_keysOnly = {
+    news: "news",
+    rental_guide: "rental_guide",
+    buying_tips: "buying_tips",
+    lifestyle: "lifestyle"
+};
+
+
+
+
+
 export const blog_category_to_string = {
     news: {title:"In The News",path:`${pageToPathName.BlogPage}/${blog_categories.news}`},
     rental_guide: {title:"Rental Guides",path:`${pageToPathName.BlogPage}/${blog_categories.rental_guide}`},
