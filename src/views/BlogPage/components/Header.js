@@ -15,7 +15,7 @@ import clsx from "clsx";
 import isPathMatch from "../../../components/Utility/isPathMatch";
 import {colorScheme} from "../../../constants";
 import {Divider} from "@material-ui/core";
-
+import SearchBar from "../../../components/SearchBar/SearchBar";
 import {blog_categories} from "../../../constants/contants";
 //blog_category_to_string
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   toolbarTitle: {
     flex: 1,
             fontFamily:'airbnb-bold',
-    color:theme.palette.text.primary
+    color:theme.palette.text.primary,
+      zIndex:0
 
   },
   toolbarSecondary: {
@@ -68,7 +69,7 @@ function Header(props) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        <Button size="small">Subscribe</Button>
+        {/*<Button size="small">Subscribe</Button>*/}
         <Typography
           component="h2"
           variant="h5"
@@ -79,9 +80,7 @@ function Header(props) {
         >
           {"Malki's Blog"}
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
+        <SearchBar/>
 
           {/*
           <Button variant="outlined" size="small">

@@ -150,7 +150,7 @@ export default function Blog({blogUUID, category}) {
                         }
                     <Grid container spacing={5} className={classes.mainGrid}>
                         {!blogUUID?
-                            hasBlogs()&&<Main title="From the firehose" posts={posts} paths={blogPaths}/>
+                            hasBlogs()&&<Main title="" posts={posts} paths={blogPaths}/>
                             :
                             <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
                         }
