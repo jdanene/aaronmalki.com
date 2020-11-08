@@ -10,10 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import UploadBlog from "./UploadBlog";
 import {colorScheme} from "../../../constants";
 import OptionsSelect from "./OptionSelect";
-import {blog_categories, blog_categories_keysOnly} from "../../../constants/contants";
+import {blog_categories, blog_categories_keysOnly,blog_categories_reverse} from "../../../constants/contants";
 import deleteBlogPostFromDb from "../../../components/Database/deleteBlogPostFromDb";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
-
+import editBlogPostState from "../../../components/Database/editBlogPostState";
 
 
 
@@ -86,12 +86,12 @@ const getListStyle = isDraggingOver => ({
 
 const COLUMNS_NAMES = [blog_states.main_featured, blog_states.featured, blog_states.posts];
 const COLUMN_COLORS = [colorScheme.general.shabby_chic, colorScheme.general.other_blue, colorScheme.general.dark_purple]
-const TableHeader = ({colIdx}) => {
+const TableHeader = ({colIdx,category}) => {
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
             <Typography variant="h6" color="textSecondary" component="h6">{COLUMNS_NAMES[colIdx]}</Typography>
             <Divider style={{margin: 5}}/>
-            <UploadBlog blogState={COLUMNS_NAMES[colIdx]} color={COLUMN_COLORS[colIdx]}/>
+            <UploadBlog initialCategory={category} blogState={COLUMNS_NAMES[colIdx]} color={COLUMN_COLORS[colIdx]}/>
         </div>
     )
 };
@@ -152,6 +152,7 @@ const getPosts = (category,filteredBlogPosts)=>{
 };
 
 
+
 /**
  * All based on https://codesandbox.io/s/-w5szl?file=/src/index.js:2799-2802
  * @return {*}
@@ -159,14 +160,16 @@ const getPosts = (category,filteredBlogPosts)=>{
  */
 function ListBlogPosts() {
     const classes = useStyles();
-    const {isBlogLoaded, blogPaths,filterPostToBlogState} = useContext(AppContext);
+    const {isBlogLoaded, blogPaths,filterPostToBlogState,blogPostsRaw} = useContext(AppContext);
     const [category, setCategory] = useState(blog_categories.news);
-    const [state, setState] = useState(getListArrayFromPosts(filterPostToBlogState(blog_categories.news)));
+    const [state, setState] = useState(getListArrayFromPosts(filterPostToBlogState(blogPostsRaw,blog_categories.news)));
+
+
 
     // Subscribe to blogPosts and update the state anytime it happens
     useEffect(()=>{
-        setState(getListArrayFromPosts(filterPostToBlogState(category)))
-    },[category]);
+        setState(getListArrayFromPosts(filterPostToBlogState(blogPostsRaw,category)))
+    },[category,blogPostsRaw]);
 
     const deletePostCallback = (topLvlIndex, index,key) => ()=>{
         const newState = [...state];
@@ -194,12 +197,17 @@ function ListBlogPosts() {
             newState[sInd] = items;
             setState(newState);
         } else {
+
             const result = move(state[sInd], state[dInd], source, destination);
+
             const newState = [...state];
             newState[sInd] = result[sInd];
             newState[dInd] = result[dInd];
 
+
+            //editBlogPostState()
             setState(newState);
+            editBlogPostState(newState[dInd][destination.index].key,{state:COLUMNS_NAMES[dInd]}).catch(e=>alert(`[editBlogPostState] firebase to failed update state: ${e}`))
         }
     }
 
@@ -247,7 +255,7 @@ function ListBlogPosts() {
                 <DragDropContext onDragEnd={onDragEnd}>
                     {state.map((el, ind) => (
                         <div style={{display: 'flex', flexDirection: 'column'}}>
-                            <TableHeader colIdx={ind}/>
+                            <TableHeader colIdx={ind} category={category}/>
                             <Droppable key={ind} droppableId={`${ind}`}>
                                 {(provided, snapshot) => (
                                     <div
@@ -278,7 +286,7 @@ function ListBlogPosts() {
                                                             }}
                                                         >
 
-                                                            <BlogPostItem key={`##${item.key}##`} deleteCallback={deletePostCallback(ind,index,item.key)} post={item.post} path={blogPaths[item.key]}/>
+                                                            <BlogPostItem key={`##${item.key}##`} deleteCallback={deletePostCallback(ind,index,item.key)} post={item.post} path={blogPaths[item.key]} postUUID={item.key} />
 
                                                         </div>
                                                     </div>

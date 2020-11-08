@@ -94,15 +94,11 @@ const useStyles = makeStyles({
 });
 
 const shouldNavBarTrigger = (pathname) => {
-   console.log("HAY")
-    console.log(pathname)
     return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"])
 };
 
 const AdminLogOut = ({auth}) => {
 
-    console.log("TopNav")
-    console.log(auth.user)
     const onClick = ()=>{
         auth.signout()
     };
@@ -142,7 +138,7 @@ const TopNavBar = ({children, window}) => {
 
     useEffect(() => {
             // eslint-disable-next-line eqeqeq
-            console.log(`TopNavBar(path=${location.pathname}, page=${pathToPageName[location.pathname]})`)
+            //console.log(`TopNavBar(path=${location.pathname}, page=${pathToPageName[location.pathname]})`)
 
             // Determines if we want fancy effects on navbar
             setTriggerActive(shouldNavBarTrigger(location.pathname));

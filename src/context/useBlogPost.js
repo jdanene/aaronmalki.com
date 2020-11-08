@@ -380,7 +380,7 @@ const useBlogPosts = () => {
      * @param category
      // @return {{[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}}}
      */
-    const filterPostToBlogState = (blogPostsRaw)=> (category = blog_categories.news) => {
+    const filterPostToBlogState = (blogPostsRaw,category = blog_categories.news) => {
 
         let blogPost = {[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}};
 
@@ -400,7 +400,7 @@ const useBlogPosts = () => {
      * @param category
      */
     const getFormattedBlogPost = (category = blog_categories.news) => {
-        let posts = filterPostToBlogState(blogPostsRaw)(category);
+        let posts = filterPostToBlogState(blogPostsRaw,category);
         if (Object.keys(posts).every((key) => isObjectEmpty(posts[key]))) {
             return null;
         } else {
@@ -448,7 +448,7 @@ const useBlogPosts = () => {
     }, [blogPostsRaw]);
 
 
-    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, blogPostsRaw}
+    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, blogPostsRaw, filterPostToBlogState}
 };
 
 

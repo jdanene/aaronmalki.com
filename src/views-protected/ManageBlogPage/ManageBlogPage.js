@@ -43,21 +43,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 const ManageBlogPage = ()=>{
-    const {isBlogLoaded,blogPaths,blogPosts} = useContext(AppContext);
-   const {category,setCategory} = useState('all')
-    // let x = blogPaths[getKeyFromSingelton(main_featured)]
 
-    console.log(blogPosts)
     const classes = useStyles();
 
-    const [file, setFile] = useState(null);
-    const [fileUrl, setFileUrl] = useState("#");
-    useEffect(()=>{
-        if (file){
-            setFileUrl(URL.createObjectURL(file[0]));
-        }
-
-    },[file]);
 
     return <div style={{display:"flex",justifyContent:"center", alignItems:"center", flexDirection:'column', width:'100%'}}>
        <CssBaseline/>

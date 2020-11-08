@@ -34,10 +34,8 @@ const ProtectedRoute = ({component, children, ...rest}) => {
         state: {fromDashboard: true}
     }
 
-    console.log("One piece")
-    console.log(auth.user)
+
     if (auth.user) {
-        console.log('User here')
         return (
             <MuiThemeProvider theme={darkTheme}>
                 <Component {...rest} />

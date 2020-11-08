@@ -1,16 +1,11 @@
 import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-//import {blog_states} from "constants/contants";
 import {blog_states, blog_categories} from "../../../constants/contants";
-import {v4 as uuidv4} from 'uuid';
-import {pageToPageName} from "../../../constants/contants";
-import Divider from "@material-ui/core/Divider";
 import OptionsSelect from "./OptionSelect";
 import TextInput from "./TextInput";
 import DatePicker from "./DatePicker";
@@ -20,55 +15,50 @@ import PropTypes from 'prop-types';
 import uploadImgToDb from "../../../components/Database/uploadImgToDb";
 import uploadBlogPostToDb from "../../../components/Database/uploadBlogPostToDb";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Link from '@material-ui/core/Link';
 
-/*
-    state: blog_states.posts,
-    category: blog_categories.news,
-    title: 'blog1',
-    image: 'https://source.unsplash.com/random',
-    description: "Covid rebound in the works for SF",
-    date: new Date().toDateString(),
-    content: `
-*/
 
 const MAX_DESC_CHARS = 140;
 const MAX_TITLE_CHARS = 40;
 const ACCEPT_MARKDOWNFILE = ['text/x-markdown', 'text/markdown'];
 const ACCEPT_IMAGES = ['image/*'];
 
-export default function UploadBlog({blogState, color, blogUploadCallBack,initialCategory}) {
-    const blogId = uuidv4();
-    const [open, setOpen] = React.useState(false);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+export default function EditBlog({blog, blogUUID, open, setOpenCallback}) {
+
+    const {state, category, title, image: image_url, description, date, content} = blog;
+
+    const [_title, setTitle] = useState(title);
+    const [_description, setDescription] = useState(description);
     const [imgFile, setImgFile] = useState(null);
-    const [markdownFile, setMarkdownFile] = useState('');
-    const [category, setCategory] = useState(initialCategory);
-    const [date, setDate] = useState(new Date());
+    const [markdownFile, setMarkdownFile] = useState(content);
+    const [_category, setCategory] = useState(category);
+    const [_date, setDate] = useState(new Date(date));
     const [isBlogCreating, setIsBlogCreating] = useState(false);
+
 
     const validateCreate = () => {
         // eslint-disable-next-line eqeqeq
-        if (title === '') {
+        if (_title === '') {
             alert('You forgot to enter the title.');
             return false
         }
 
-        if (description === '') {
+        if (_description === '') {
             alert('You forgot to enter a description.');
             return false
         }
 
-        if (!(category) || category === '') {
+        if (!(_category) || _category === '') {
             alert('You forgot to select a category.');
             return false
         }
 
-        if (!(imgFile)) {
-            alert('Upload a cover image. (Could be any image but we need it).');
-            return false
+        if (!(image_url) || image_url === '') {
+            if (!(imgFile)) {
+                alert('Upload a cover image. (Could be any image but we need it).');
+                return false
+            }
         }
+
 
         if (!(markdownFile)) {
             alert('Upload the markdown file aka the blog content. [filename.md]');
@@ -80,29 +70,25 @@ export default function UploadBlog({blogState, color, blogUploadCallBack,initial
 
     };
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
     const handleClose = () => {
-        setOpen(false);
+        setOpenCallback(false);
     };
 
     const uploadFirebaseStorageCallBack = (url) => {
         const options = {year: 'numeric', month: 'short', day: 'numeric'};
 
 
-        uploadBlogPostToDb(blogId, {
-            state: blogState,
-            category,
-            title,
+        uploadBlogPostToDb(blogUUID, {
+            state,
+            category:_category,
+            title:_title,
             image: url,
-            description,
-            date: date.toLocaleDateString("en-US", options),
+            description:_description,
+            date: _date.toLocaleDateString("en-US", options),
             content: markdownFile
         }).then(() => {
             setIsBlogCreating(false);
-            setOpen(false);
+            setOpenCallback(false);
         }).catch((e) => alert(`Couldn't upload blog to db, try again or contact dev:\n ${e}`))
 
     };
@@ -111,12 +97,15 @@ export default function UploadBlog({blogState, color, blogUploadCallBack,initial
 
 
         if (validateCreate()) {
-            if (imgFile instanceof File) {
-                setIsBlogCreating(true);
+            setIsBlogCreating(true);
+
+            if ((imgFile) && (imgFile instanceof File)) {
                 uploadImgToDb({
                     file: imgFile,
                     uploadCallback: uploadFirebaseStorageCallBack
                 })
+            } else {
+                uploadFirebaseStorageCallBack(image_url)
             }
 
 
@@ -134,25 +123,21 @@ export default function UploadBlog({blogState, color, blogUploadCallBack,initial
     };
     return (
         <div>
-            <Button variant="contained" color="secondary" style={color ? {backgroundColor: color, color: 'white'} : {}}
-                    onClick={handleClickOpen}>
-                ADD {blogState} post
-            </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="customized-dialog-title">Create a {blogState} post</DialogTitle>
+                <DialogTitle id="customized-dialog-title">Create a {state} post</DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
-                        The actual content of the blog is in the markdown file, see <Link rel="noopener noreferrer" target="_blank" href={"https://github.com/jdanene/aaronmalki.com/blob/main/example-blogs/blog-post.1.md"}> our example</Link> for a example markdown
-                        file. The title, date, description, and image are used when showing a blog article preview.
-                        When writing a blog (via markdown) make sure you include a <em><b>title, date,</b></em> and <em><b>author</b></em> within the actual file, see
-                         <Link rel="noopener noreferrer" target="_blank" href={"https://github.com/jdanene/aaronmalki.com/blob/main/example-blogs/blog-post.1.md"}> our example</Link> for concrete example.
+                        Edit all attributes of a blog. <b><em> Note:</em></b> To change the actual state of the blog
+                        (e.g if the blog is a main_featured, featured, posts) navigate back and use drag and drop.
                     </DialogContentText>
 
-                    <TextInput label={'Blog Title'} max_char={MAX_TITLE_CHARS} textCallback={setTitle}/>
-                    <TextInput label={'Blog Description'} max_char={MAX_DESC_CHARS} textCallback={setDescription}/>
-                    <DatePicker date={date} dateCallback={setDate} label={'Set publish date for blog post'}/>
+                    <TextInput label={'Blog Title'} max_char={MAX_TITLE_CHARS} textCallback={setTitle}
+                               initial={_title}/>
+                    <TextInput label={'Blog Description'} max_char={MAX_DESC_CHARS} textCallback={setDescription}
+                               initial={_description}/>
+                    <DatePicker date={_date} dateCallback={setDate} label={'Set publish date for blog post'}/>
                     <OptionsSelect helperText={'Category'} label={"Select blog category"} choices={blog_categories}
-                                   onChoiceCallback={setCategory} initial={initialCategory}/>
+                                   onChoiceCallback={setCategory} initial={category}/>
 
                     <Grid container justify={'space-between'} style={{width: '100%'}}>
 
@@ -174,7 +159,7 @@ export default function UploadBlog({blogState, color, blogUploadCallBack,initial
                         Cancel
                     </Button>
                     <Button onClick={handleCreate} color="secondary">
-                        {isBlogCreating ? <CircularProgress color="secondary"/> : "Create"}
+                        {isBlogCreating ? <CircularProgress color="secondary"/> : "Edit"}
                     </Button>
 
                 </DialogActions>
@@ -185,12 +170,16 @@ export default function UploadBlog({blogState, color, blogUploadCallBack,initial
 
 
 // Specifies the default values for props:
-UploadBlog.defaultProps = {
+EditBlog.defaultProps = {
     blogState: blog_states.main_featured,
     blogUploadCallBack: (val, payload) => alert(JSON.stringify(payload))
 
 };
 
-UploadBlog.propTypes = {
-    blogUploadCallBack: PropTypes.func.isRequired
+EditBlog.propTypes = {
+    blogUploadCallBack: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    setOpenCallback: PropTypes.func.isRequired,
+    blog: PropTypes.object.isRequired,
+    blogUUID: PropTypes.string.isRequired,
 };

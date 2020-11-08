@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const MAX_DESC_CHARS = 140;
 const MAX_TITLE_CHARS = 40;
 
-const TextInput = ({label, textCallback, max_char}) =>{
+const TextInput = ({label, textCallback, max_char, initial}) =>{
     const [textFieldChars, setTextFieldChars] = useState(0);
 
     const handleChange = (e)=>{
@@ -21,6 +21,7 @@ const TextInput = ({label, textCallback, max_char}) =>{
             label={label}
             type="text"
             fullWidth
+            value={initial}
             onChange={handleChange}
             inputProps={max_char? {maxLength: max_char}:{}}
             helperText={max_char?`${max_char-textFieldChars}/${max_char} characters left`:''}
