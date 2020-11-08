@@ -93,7 +93,8 @@ function App({location}) {
 
 
         <ThemeProvider theme={theme}>
-            <div className="app_container">
+            {isBlogLoaded?
+                <div className="app_container">
 
 
                 <TopNavBar/>
@@ -149,6 +150,8 @@ function App({location}) {
 
                 <Footer/>
             </div>
+                :
+                <div/>}
 
 
 

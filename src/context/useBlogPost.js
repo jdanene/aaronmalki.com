@@ -448,7 +448,7 @@ const useBlogPosts = () => {
     }, [blogPostsRaw]);
 
 
-    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, filterPostToBlogState:filterPostToBlogState(blogPostsRaw)}
+    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, blogPostsRaw}
 };
 
 

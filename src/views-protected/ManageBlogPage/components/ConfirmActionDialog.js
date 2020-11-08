@@ -34,7 +34,7 @@ const ConfFirmActionDiaglog = ({open, setOpen, message, confirmCallBack}) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                                      <Button variant={'outlined'}  onClick={handleConfirm} style={{borderColor:colorScheme.general.hot_purple}} >
+                                      <Button variant={'text'}  onClick={handleConfirm} >
                         Confirm
                     </Button>
 

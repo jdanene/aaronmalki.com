@@ -116,8 +116,9 @@ export default function Blog({blogUUID, category}) {
     const classes = useStyles();
 
     // This is non null and equal to one of blog_categories then we are in a blog page , not a individual post
-    const main_page_category_key = category?category: (location) && ('state' in location) && ('category' in location.state)? location.state.category: null;
-    const {filteredBlogPosts,isBlogLoaded,blogPaths,blogPosts} = useContext(AppContext);
+    console.log(JSON.stringify(location), 'state' in location,location.state);
+    const main_page_category_key = category?category: ((location) && ('state' in location) && (location.state) && ('category' in location.state))? location.state.category: null;
+    const {filteredBlogPosts,isBlogLoaded,blogPaths,blogPostsRaw} = useContext(AppContext);
 
     const {featured,main_featured, posts} = getPosts(main_page_category_key,filteredBlogPosts);
 
@@ -151,7 +152,7 @@ export default function Blog({blogUUID, category}) {
                         {!blogUUID?
                             hasBlogs()&&<Main title="From the firehose" posts={posts} paths={blogPaths}/>
                             :
-                            <ActualPost key={blogUUID} post={getPostFromBlogPosts({blogUUID,blogPosts})}/>
+                            <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
                         }
                         <Sidebar
                             title={sidebar.title}
