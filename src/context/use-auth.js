@@ -6,7 +6,7 @@ import {
   useHistory
 } from "react-router-dom";
 import {pageToPathName as adminPageToPathName} from "../views-protected/protected-views";
-
+import getSHA from "../components/Utility/getSHA";
 let ADMIN_EMAILS = process.env.REACT_APP_ADMIN_EMAILS;
 ADMIN_EMAILS = new Set(ADMIN_EMAILS.split(","));
 
@@ -74,7 +74,7 @@ function useAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
 
-        if (!(ADMIN_EMAILS.has(user.email))){
+        if (!(ADMIN_EMAILS.has(getSHA(user.email)))){
           return;
         }
         setUser(user)

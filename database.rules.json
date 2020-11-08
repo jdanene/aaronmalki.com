@@ -1,11 +1,12 @@
 {
   "rules": {
-    ".read": "auth != null",
     "inquiries": {
-      ".write": true
+      ".write": true,
+      ".read": "auth != null"
     },
     "blogPosts": {
-      ".write": "auth != null"
+      ".write": "auth != null",
+      ".read": true
     }
   }
 }

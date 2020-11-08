@@ -1,4 +1,4 @@
-const sendInquiryToAaron = async (mailTransport, {email, message, name, timeCreated}) => {
+const sendInquiryToAaron = async (mailTransport, {rootEmail,email, message, name, timeCreated}) => {
 
     const formattedTime = new Date(timeCreated).toString();
 
@@ -18,7 +18,7 @@ const sendInquiryToAaron = async (mailTransport, {email, message, name, timeCrea
     // format email:https://dev.to/tareksalem/send-emails-in-node-js-using-nodemailer-grandjs-and-jsx-components-4k8m
     const email_build = {
         from: `"${name} - aaronmalki.com" <noreply@firebase.com>`, // sender address
-        to: email, // list of receivers
+        to: rootEmail, // list of receivers
         subject: "Inquiry ✔", // Subject line
         html: htmlMessage, // html body
     };

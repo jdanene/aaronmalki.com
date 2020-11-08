@@ -15,6 +15,7 @@
   "main": "index.js",
   "dependencies": {
     "Utils": "^1.0.39",
+    "dotenv": "^8.2.0",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
     "nodemailer": "^2.4.1"

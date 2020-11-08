@@ -25,7 +25,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {pageToPathName} from "../../constants";
 import {createMuiTheme} from "@material-ui/core";
 import {MuiThemeProvider} from '@material-ui/core/styles';
-
+import getSHA from "../../components/Utility/getSHA";
 //https://courses.cs.northwestern.edu/394/intro-react.php#authentication
 const darkTheme = createMuiTheme({
     palette: {
@@ -87,11 +87,11 @@ const AdminLoginPage = ({location}) => {
             // Avoid redirects after sign-in.
             signInFailure: (error) => alert(error),
             signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-                if (!(ADMIN_EMAILS.has(authResult.user.email))) {
+                if (!(ADMIN_EMAILS.has(getSHA(authResult.user.email)))) {
                     auth.signout().then(() => setFailedLogin(authResult.user.email));
                     return false;
                 }
-                console.log(`The user her!!!  ${authResult.user}`)
+                console.log(`The user here!!!  ${authResult.user}`);
                 auth.setUser(authResult.user);
                 // redirect to the admin page
                 //history.replace(pageToPathName['AdminPage']);

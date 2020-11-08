@@ -14,9 +14,14 @@ import {blog_categories, blog_categories_keysOnly,blog_categories_reverse} from 
 import deleteBlogPostFromDb from "../../../components/Database/deleteBlogPostFromDb";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import editBlogPostState from "../../../components/Database/editBlogPostState";
+const hash = require('hash.js');
 
+console.log(hash.sha256().update('abc').digest('hex'))
+console.log(hash.sha256().update('jideanene2020@u.northwestern.edu').digest('hex'))
+let x  = hash.sha256().update('jideanene2020@u.northwestern.edu').digest('hex');
+console.log(hash.sha256().update('jideanene2020@u.northwestern.edu').digest('hex')===x)
 
-
+//496a544968167455e0ebb5112ceeed186bf122e24c891198d50e6a2c5d820299
 
 
 const useStyles = makeStyles((theme) => ({

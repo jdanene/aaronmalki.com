@@ -110,7 +110,7 @@ export default function SearchBar() {
 
         <div className={classes.search}>
             <div className={classes.searchIcon}>
-                <SearchIcon style={{color:'rgba(0,0,0,.75)'}} />
+                <SearchIcon style={{zIndex:2}} />
             </div>
             <InputBase
                 placeholder="Search…"

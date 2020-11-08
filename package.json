@@ -51,13 +51,15 @@
     "react-textfit": "^1.1.0",
     "react-transition-group": "^4.4.1",
     "rich-markdown-editor": "^11.0.3",
+    "sha": "^3.0.0",
     "showdown": "^1.9.1",
     "slate": "^0.59.0",
     "slate-history": "^0.59.0",
     "slate-react": "^0.59.0",
     "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.1",
+    "hash.js": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

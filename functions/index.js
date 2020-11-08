@@ -1,4 +1,6 @@
 'use strict';
+require('dotenv').config()
+
 const sendInquiryToAaron = require("./Utils/sendInquiryToAaron");
 const sendConfirmEmailToUser = require("./Utils/sendConfirmEmailToUser");
 
@@ -16,10 +18,11 @@ const gmailPassword = functions.config().gmail.password;
 const mailTransport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user:  "aaaronmalki@gmail.com",
-        pass: "ejfeffgqhqnzpfbv",
+        user:  gmailEmail,
+        pass: gmailPassword,
     },
 });
+
 
 // If error with deploy use: https://stackoverflow.com/questions/54451457/firebase-cloud-functions-http-error-code-403
 // need node 8 for deployment
@@ -37,7 +40,7 @@ exports.sendEmailConfirmation = functions.database.ref('/inquiries/{email}/{uuid
         await sendConfirmEmailToUser(mailTransport,{email,name});
 
         // Send Email to Aaron
-        await sendInquiryToAaron(mailTransport,{email, message, name, timeCreated});
+        await sendInquiryToAaron(mailTransport,{rootEmail:gmailEmail, email, message, name, timeCreated});
 
         console.log(`New email sent to:`, email);
     } catch (error) {
