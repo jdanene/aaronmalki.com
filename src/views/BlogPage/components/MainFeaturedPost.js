@@ -106,7 +106,6 @@ function MainFeaturedPost(props) {
                         focusVisibleClassName={classes.focusVisible}
                         className={clsx(classes.mainFeaturedPostContent, classes.imageMarked)}>
                         <Typography
-                            component="h1"
                             variant="h3"
                             color="inherit"
                             gutterBottom

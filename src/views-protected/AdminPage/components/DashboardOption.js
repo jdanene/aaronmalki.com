@@ -56,7 +56,7 @@ const DashboardOption = ({img, title, color, href='#'}) => {
             <Card className={classes.root}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
-                        <Typography component="h5" variant="h5">
+                        <Typography variant="h5">
                             {title}
                         </Typography>
                     </CardContent>

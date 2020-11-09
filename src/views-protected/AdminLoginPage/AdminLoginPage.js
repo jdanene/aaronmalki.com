@@ -124,7 +124,7 @@ const AdminLoginPage = ({location}) => {
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon/>
                         </Avatar>
-                        <Typography component="h1" variant="h5">
+                        <Typography variant="h5">
                             Admin Sign in
                         </Typography>
                         <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig}

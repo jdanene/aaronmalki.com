@@ -245,7 +245,7 @@ function ListBlogPosts() {
             }}>
 
                 <div style={{display: 'flex', width: 400}}>
-                    <Typography variant="h5" color="textPrimary" component="h5" style={{alignSelf: 'center'}}>Blog
+                    <Typography variant="h5" color="textPrimary"  style={{alignSelf: 'center'}}>Blog
                         Category Shown: {category}</Typography>
                 </div>
 

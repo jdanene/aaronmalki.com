@@ -27,14 +27,14 @@ const options = {
     h3: { component: Typography, props: { gutterBottom: true, variant: 'subtitle1' } },
     h4: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'caption', paragraph: true },
+      props: { gutterBottom: true, variant: 'caption'},
     },
-    p: { component: Typography, props: { paragraph: true } },
+    p: { component: Typography, props: { variant: 'body1' } },
     a: { component: Link },
     li: {
-      component: withStyles(styles)(({ classes, ...props }) => (
+      component: withStyles(styles)(({ classes, variant, ...props }) => (
         <li className={classes.listItem}>
-          <Typography component="span" {...props} />
+          <Typography  {...props} />
         </li>
       )),
     },

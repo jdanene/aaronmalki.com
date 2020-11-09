@@ -54,10 +54,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header(props) {
+function Header({location,isFocusedCallback,searchResultCallback}) {
   const classes = useStyles();
-  const {location, sections, title,categoriesActive} = props;
-
 
   const pathMatcher = (targetPath)=>{
 
@@ -71,7 +69,6 @@ function Header(props) {
       <Toolbar className={classes.toolbar}>
         {/*<Button size="small">Subscribe</Button>*/}
         <Typography
-          component="h2"
           variant="h5"
           color="inherit"
           align="center"
@@ -80,7 +77,7 @@ function Header(props) {
         >
           {"Malki's Blog"}
         </Typography>
-        <SearchBar/>
+        <SearchBar isFocusedCallback={isFocusedCallback} searchResultCallback={searchResultCallback}/>
 
           {/*
           <Button variant="outlined" size="small">
@@ -111,12 +108,9 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+    location: PropTypes.object.isRequired,
+    isFocusedCallback: PropTypes.func.isRequired,
+    searchResultCallback: PropTypes.func.isRequired
 };
 
 export default Header;

@@ -24,6 +24,7 @@ import ActualPost from "./ActualPost";
 import {getPostFromBlogPosts} from "../../../context/useBlogPost";
 import {blog_categories, blog_states} from "../../../constants/contants";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
+import BlogSearch from "./BlogSearch";
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -85,88 +86,138 @@ const sidebar = {
 
     ],
     social: [
-        {name: 'LinkedIn', icon: LinkedInIcon, key:"linkedin"},
-        {name: 'Instagram', icon: InstagramIcon,key:"instagram"},
-        {name: 'Facebook', icon: FacebookIcon,key:"facebook"},
+        {name: 'LinkedIn', icon: LinkedInIcon, key: "linkedin"},
+        {name: 'Instagram', icon: InstagramIcon, key: "instagram"},
+        {name: 'Facebook', icon: FacebookIcon, key: "facebook"},
     ],
 };
 
 
-
-const getPosts = (category,filteredBlogPosts)=>{
-    let featured,main_featured, posts;
-    if (category&&!isObjectEmpty(filteredBlogPosts)&&filteredBlogPosts[category]){
+const getPosts = (category, filteredBlogPosts) => {
+    let featured, main_featured, posts;
+    if (category && !isObjectEmpty(filteredBlogPosts) && filteredBlogPosts[category]) {
         featured = filteredBlogPosts[category][blog_states.featured];
         main_featured = filteredBlogPosts[category][blog_states.main_featured];
         posts = filteredBlogPosts[category][blog_states.posts];
-    }else{
-        featured={};
-        main_featured={};
-        posts={};
+    } else {
+        featured = {};
+        main_featured = {};
+        posts = {};
     }
-    return {featured,main_featured, posts}
+    return {featured, main_featured, posts}
 };
 
-const categoriesActive = (filteredBlogPosts) =>{
-    return Object.keys(filteredBlogPosts).filter((key)=>filteredBlogPosts[key]!=null)
+const categoriesActive = (filteredBlogPosts) => {
+    return Object.keys(filteredBlogPosts).filter((key) => filteredBlogPosts[key] != null)
 };
 
 export default function Blog({blogUUID, category}) {
     const location = useLocation();
     const classes = useStyles();
 
+    const [searchList, setSearchList] = useState([]);
+    const [isSearching, setSearching] = useState(false);
+
     // This is non null and equal to one of blog_categories then we are in a blog page , not a individual post
-    console.log(JSON.stringify(location), 'state' in location,location.state);
-    const main_page_category_key = category?category: ((location) && ('state' in location) && (location.state) && ('category' in location.state))? location.state.category: null;
-    const {filteredBlogPosts,isBlogLoaded,blogPaths,blogPostsRaw} = useContext(AppContext);
+    console.log(JSON.stringify(location), 'state' in location, location.state);
+    const main_page_category_key = category ? category : ((location) && ('state' in location) && (location.state) && ('category' in location.state)) ? location.state.category : null;
+    const {filteredBlogPosts, isBlogLoaded, blogPaths, blogPostsRaw} = useContext(AppContext);
 
-    const {featured,main_featured, posts} = getPosts(main_page_category_key,filteredBlogPosts);
+    const {featured, main_featured, posts} = getPosts(main_page_category_key, filteredBlogPosts);
 
-    const hasBlogs = ()=>{
-        return (!isObjectEmpty(filteredBlogPosts)&&filteredBlogPosts[main_page_category_key])
+    const hasBlogs = () => {
+        return (!isObjectEmpty(filteredBlogPosts) && filteredBlogPosts[main_page_category_key])
     };
 
+    if (isSearching) {
+        return (
+            <React.Fragment>
+                <CssBaseline/>
+                {isBlogLoaded ?
+                    <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
+                        <Header location={location} searchResultCallback={setSearchList}
+                                isFocusedCallback={setSearching}/>
+                        <main>
+
+
+                            <Grid container spacing={5} className={classes.mainGrid}>
+                                <Grid item xs={12} md={8}>
+                                    <BlogSearch searchList={searchList}/>
+                                </Grid>
+
+                                <Sidebar
+                                    title={sidebar.title}
+                                    description={sidebar.description}
+                                    archives={sidebar.archives}
+                                    social={sidebar.social}
+                                />
+                            </Grid>
+
+
+                        </main>
+                    </Container> :
+                    <div style={{
+                        height: '100vh',
+                        width: '100vw',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <StyledText>Loading ... </StyledText>
+                    </div>
+                }
+
+            </React.Fragment>
+        )
+    }
 
 
     return (
         <React.Fragment>
             <CssBaseline/>
-            {isBlogLoaded?
-            <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
-                <Header location={location} sections={sections} categoriesActive={categoriesActive(filteredBlogPosts)}/>
-                <main>
+            {isBlogLoaded ?
+                <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
+                    <Header location={location} searchResultCallback={setSearchList} isFocusedCallback={setSearching}/>
+                    <main>
 
 
-                    {!blogUUID&&hasBlogs()&&
-                    <React.Fragment>
-                    <MainFeaturedPost path={blogPaths[getKeyFromSingelton(main_featured)]} post={main_featured}/>
-                    <Grid container spacing={4}>
-                        {Object.keys(featured).map((key) => (
-                            <FeaturedPost key={key} post={featured[key]} path={blogPaths[key]}/>
-                        ))}
-                    </Grid>
+                        {!blogUUID && hasBlogs() &&
+                        <React.Fragment>
+                            <MainFeaturedPost path={blogPaths[getKeyFromSingelton(main_featured)]}
+                                              post={main_featured}/>
+                            <Grid container spacing={4}>
+                                {Object.keys(featured).map((key) => (
+                                    <FeaturedPost key={key} post={featured[key]} path={blogPaths[key]}/>
+                                ))}
+                            </Grid>
                         </React.Fragment>
 
                         }
-                    <Grid container spacing={5} className={classes.mainGrid}>
-                        {!blogUUID?
-                            hasBlogs()&&<Main title="" posts={posts} paths={blogPaths}/>
-                            :
-                            <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
-                        }
-                        <Sidebar
-                            title={sidebar.title}
-                            description={sidebar.description}
-                            archives={sidebar.archives}
-                            social={sidebar.social}
-                        />
-                    </Grid>
+                        <Grid container spacing={5} className={classes.mainGrid}>
+                            {!blogUUID ?
+                                hasBlogs() && <Main title="" posts={posts} paths={blogPaths}/>
+                                :
+                                <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
+                            }
+                            <Sidebar
+                                title={sidebar.title}
+                                description={sidebar.description}
+                                archives={sidebar.archives}
+                                social={sidebar.social}
+                            />
+                        </Grid>
 
 
-                </main>
-            </Container >:
-                <div style={{height: '100vh', width: '100vw', display:'flex', alignItems:'center', justifyContent:'center'}}>
-                    <StyledText >Loading ... </StyledText>
+                    </main>
+                </Container> :
+                <div style={{
+                    height: '100vh',
+                    width: '100vw',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    <StyledText>Loading ... </StyledText>
                 </div>
             }
 
