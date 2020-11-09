@@ -32,7 +32,7 @@ import AdminPage from "./views-protected/AdminPage/AdminPage";
 import NoMatch from "./views/NoMatchPage/NoMatchPage";
 import ScrollToTop from "./context/ScrollToTop";
 import ManageBlogPage from "./views-protected/ManageBlogPage/ManageBlogPage";
-
+import {v4 as uuidv4} from 'uuid';
 
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
@@ -128,7 +128,7 @@ function App({location}) {
                         {/*Blog tabs at the top*/}
                         {Object.keys(blog_categories_keysOnly).map((key) =>
                             <Route key={key} path={blog_category_to_string[key].path} exact
-                                   render={(props) => <BlogPage {...props} category={key}/>}/>
+                                   render={(props) => <BlogPage {...props} category={key} key={uuidv4()}/>}/>
                         )}
 
 

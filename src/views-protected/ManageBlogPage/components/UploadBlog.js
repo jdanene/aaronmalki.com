@@ -38,6 +38,7 @@ const ACCEPT_MARKDOWNFILE = ['text/x-markdown', 'text/markdown'];
 const ACCEPT_IMAGES = ['image/*'];
 
 export default function UploadBlog({blogState, color, blogUploadCallBack,initialCategory}) {
+
     const blogId = uuidv4();
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = useState('');

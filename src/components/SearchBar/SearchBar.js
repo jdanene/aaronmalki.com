@@ -168,7 +168,7 @@ export default function SearchBar({isFocusedCallback, searchResultCallback}) {
     };
 
     const handleBlur = (e)=>{
-        isFocusedCallback(false);
+       // isFocusedCallback(false);
     };
 
     //searchData = fuse.current.search(text);
