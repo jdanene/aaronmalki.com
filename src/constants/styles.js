@@ -61,6 +61,7 @@ export const colorScheme = {
     },
     other:{
         backgroundComplementary: '#EDEDED',
+        backgroundComplementaryMedium: '#f5f2f0',
         complementaryLight:'#917a6f',
         complementary:"#634e44",
         complementaryDark:'#38261d',
