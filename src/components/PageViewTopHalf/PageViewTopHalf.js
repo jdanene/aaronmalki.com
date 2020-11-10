@@ -5,6 +5,8 @@ import {FittedText} from "../../components/Text";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import {Parallax, Background } from 'react-parallax';
+
 import BuyerTopImg from "resources/images/buyerpage_top.png"
 import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +46,7 @@ const Page_View_Top_Half = ({text}) => {
         justifyContent: "center",
         padding: "5px",
 
-        width:'100%',
+        width:'60vw',
     }}>
 
         <div style={{
@@ -75,7 +77,7 @@ const Page_View_Top_Half = ({text}) => {
 };
 
 
-const PageViewTopHalf = ({middleText,className}) => {
+const PageViewTopHalf = ({middleText,className,img}) => {
     const id = "id123";
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
@@ -96,11 +98,14 @@ const PageViewTopHalf = ({middleText,className}) => {
 
     //https://www.pluralsight.com/tech-blog/getting-size-and-position-of-an-element-in-react/
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
-    return <div className={className} >
+    return <Parallax
+        strength={300}
+        className={className}
+        bgImage={img}
+    >
         <div ref={inputRef} style={{
             height: mobileBreak ? '60vh' : '100vh',
-            minHeight: !mobileBreak && '500px',
-width:'100%',
+            minHeight: !mobileBreak && '500px', width:'100%',
         }}
              className={classes.info}>
             <div style={{
@@ -115,7 +120,7 @@ width:'100%',
             </div>
         </div>
 
-    </div>
+    </Parallax>
 
 };
 

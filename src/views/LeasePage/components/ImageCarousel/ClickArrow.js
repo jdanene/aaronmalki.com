@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ClickArrow = ({direction, onClickHandler}) => {
+const ClickArrow = ({direction, onClickHandler, className}) => {
 
     if (!(direction === "right" || direction === "left")) {
         alert(`Click arrow needs valid direction, given: ${direction}`)
@@ -40,7 +40,7 @@ const ClickArrow = ({direction, onClickHandler}) => {
     return (
         <Button
             onClick={onClickHandler}
-            className={clsx(classes.root, classes.arrow)}
+            className={clsx(classes.root, classes.arrow, className)}
             variant="contained"
             color="primary"
             style={{[direction]: 0}}
