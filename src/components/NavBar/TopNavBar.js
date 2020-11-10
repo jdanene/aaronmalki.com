@@ -94,7 +94,7 @@ const useStyles = makeStyles({
 });
 
 const shouldNavBarTrigger = (pathname) => {
-    return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"])
+    return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"]) || (pathname === pageToPathName["LeasePage"])
 };
 
 const AdminLogOut = ({auth}) => {

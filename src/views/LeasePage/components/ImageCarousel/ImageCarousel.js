@@ -1,17 +1,19 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import {Carousel} from 'react-responsive-carousel';
 import Typography from "@material-ui/core/Typography";
-import BuyerTopImg from "resources/images/leasePage/leasingpagepic1.png"
-import BuyerTopImg2 from "resources/images/leasePage/leasingpagepic2.png"
+import LeaseImg from "resources/images/leasePage/leasingpagepic2.png"
+import LeaseImg2 from "resources/images/leasePage/leasingpagepic3.png"
+import LeaseImg3 from "resources/images/leasePage/leasingpagepic4.png"
+
 import {makeStyles} from '@material-ui/core/styles';
 import ClickArrow from "./ClickArrow";
-
+import "./ImageCarousel.css"
 //https://www.npmjs.com/package/react-responsive-carousel
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        borderRadius: 2,
+        borderRadius: '2.5px',
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -19,66 +21,94 @@ const useStyles = makeStyles((theme) => ({
         overflow: "hidden"
     },
     img: {
-        borderRadius: 2,
+        borderRadius: '2.5px',
         flexShrink: 0,
         width: '100%',
         height: '100%',
     },
-    thumbImage:{
-        '&:focus':{
-            border:'1px solid red'
-        }
+    thumbImage: {
+
+    },
+    arrowButton:{
+        background: "rgba(0,0,0,.25)",
+        '&:hover': {
+            background: "rgba(0,0,0,.4)",
+    }
     }
 }));
 
+const IMAGES = [LeaseImg, LeaseImg2,LeaseImg3];
 
 const ImageCarousel = () => {
 
     const classes = useStyles();
-    const N = 2;
     const [currentSlide, setCurrentSlide] = useState(0);
-
+    const [isFocused, setIsFocused] = useState(false);
 
     const next = () => {
-        setCurrentSlide((currentSlide + 1) % N);
+        setCurrentSlide((currentSlide + 1) % IMAGES.length);
     };
 
     const prev = () => {
-        setCurrentSlide(Math.abs((currentSlide - 1) % N));
+        setCurrentSlide(Math.abs((currentSlide - 1) % IMAGES.length));
+    };
+
+    //only called when a thumbnail is pressed
+    const updateCurrentSlide = (index) => {
+        setCurrentSlide(index)
+    };
+
+    const onFocus = () => {
+        setIsFocused(true)
+    };
+
+    const onBlur = () => {
+
+        setIsFocused(false)
     };
 
     useEffect(() => {
-        const invtl = setInterval(() => {
-            next();
-        }, 5000);
+        if (!isFocused) {
+            const invtl = setInterval(() => {
+                next();
+            }, 5000);
 
-        return () => clearInterval(invtl)
-    }, [currentSlide]);
+            return () => clearInterval(invtl)
+        }
+
+    }, [currentSlide, isFocused]);
 
     const customRenderThumb = (children) =>
         children.map((item) => {
-            console.log(item.props.src)
-            return <img src={item.props.src} />;
+            return <ThumbImg className={classes.thumbImage} item={item} currentSlide={currentSlide}/>
         });
 
+    const customRenderItem = (item, props) => {
+        console.log(item.type, props)
+        return <item.type style={{borderRadius: '5px'}} {...item.props} {...props} />
+    };
     return (
-        <React.Fragment>
+        <div onFocus={onFocus} onBlur={onBlur} onMouseEnter={onFocus} onMouseLeave={onBlur} onMouseOver={onFocus}
+             onMouseOut={onBlur}>
 
 
             <Carousel
-                selectedItem={currentSlide}
-                style={{borderRadius: 2}}
 
-                 renderThumbs={customRenderThumb}
+
+                renderItem={customRenderItem}
+
+                selectedItem={currentSlide}
+                onChange={updateCurrentSlide}
+                renderThumbs={customRenderThumb}
                 statusFormatter={(current, total) => null}
                 renderArrowPrev={(onClickHandler, hasPrev, label) =>
                     (
-                        <ClickArrow direction={"left"} onClickHandler={prev}/>
+                        <ClickArrow direction={"left"} onClickHandler={prev} className={classes.arrowButton}/>
                     )
                 }
                 renderArrowNext={(onClickHandler, hasPrev, label) =>
                     (
-                        <ClickArrow direction={"right"} onClickHandler={next}/>
+                        <ClickArrow direction={"right"} onClickHandler={next} className={classes.arrowButton}/>
                     )
                 }
 
@@ -87,17 +117,25 @@ const ImageCarousel = () => {
                 }}
 
             >
-                <div className={classes.container} src={BuyerTopImg}>
-                    <img src={BuyerTopImg} className={classes.img}/>
-                </div>
-                <div className={classes.container} src={BuyerTopImg2}>
-                    <img src={BuyerTopImg2} className={classes.img}/>
-                </div>
+                {IMAGES.map((image, index) => <div className={classes.container} src={image} key={index} index={index}>
+                    <img src={image} className={classes.img}/>
+                </div>)
+                }
+
             </Carousel>
-        </React.Fragment>
+        </div>
     );
 
 };
 
+const ThumbImg = ({item, currentSlide, className}) => {
+    const [isHover, setHover] = useState(false);
+    const onHover = () => setHover(true);
+    const onBlur = () => setHover(false);
+
+    return <div onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur} onMouseOver={onHover}> <img
+                onMouseOut={onBlur} className={className} src={item.props.src}
+                style={{opacity: item.props.index === currentSlide || isHover? 1 : 0.5}}/></div>;
+};
 
 export default ImageCarousel;
