@@ -11,15 +11,12 @@ import BuyerTopImg from "resources/images/buyerpage_top.png"
 import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        width: '100vw',
+        height:'100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: 'white',
         flexDirection: 'column',
-        backgroundPosition: "top center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
 
     },
     info: {
@@ -30,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+    },
+    bgContainer:{
+        backgroundColor: 'rgba(0,0,0,1)'
     }
 }));
 
@@ -101,8 +101,12 @@ const PageViewTopHalf = ({middleText,className,img}) => {
     return <Parallax
         strength={300}
         className={className}
-        bgImage={img}
+        bgStyle={{width:'100vw',height:'100vh'}}
     >
+        <Background className={classes.bgContainer}  >
+            <img src={img} style={{width:'100%',height:'100%'}}/>
+        </Background>
+
         <div ref={inputRef} style={{
             height: mobileBreak ? '60vh' : '100vh',
             minHeight: !mobileBreak && '500px', width:'100%',

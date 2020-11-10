@@ -16,16 +16,14 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2)
     },
     topHalfImg: {
-       // background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${LeaseTopImg})`,
+
         width: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
         flexDirection: 'column',
-        backgroundPosition: "top center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+
     },
     root: {
         width: '100%',
