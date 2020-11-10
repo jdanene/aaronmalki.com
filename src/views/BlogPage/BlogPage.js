@@ -10,7 +10,7 @@ import {colorScheme} from "../../constants";
  */
 const BlogPage = ({blogUUID,category})=>{
 
-    return <div style={{display:"flex", alignContent:"center", alignItems:"center",width:'100vw', backgroundColor:colorScheme.other.backgroundComplementaryMedium}}>
+    return <div style={{display:"flex", alignContent:"center", alignItems:"center",width:'100vw', backgroundColor:colorScheme.other.backgroundComplementary}}>
         <Blog blogUUID={blogUUID} category={category}/>
     </div>
 
