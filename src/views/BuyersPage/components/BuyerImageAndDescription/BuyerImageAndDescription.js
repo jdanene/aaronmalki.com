@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {makeStyles} from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
-import TextBlurbWithTitle from "./TextBlurbWithTitle";
+import TextBlurbWithTitle from "../../../../components/TextBlurbWithTitle/TextBlurbWithTitle";
 import FeaturedImage from "../../../../components/Image/FeaturedImage";
 import Photo1 from "resources/images/buyerview_image1.png"
 import Photo2 from "resources/images/buyerview_image2.png"

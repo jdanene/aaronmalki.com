@@ -2,6 +2,8 @@
 .carousel .thumb {
     border-width: 0;
     border-radius: 1.25px;
+    border-color: transparent;
+
 }
 
 .carousel.carousel-slider .control-arrow:hover {
@@ -27,6 +29,9 @@
 
 }
 
+.carousel .control-dots .dot {
+    background: transparent;
+}
 .carousel .thumb:hover {
     border: 2px solid transparent;
 }

@@ -1,6 +1,6 @@
 import React, { useState} from "react"
 import {makeStyles} from '@material-ui/core/styles';
-import {StyledText} from "../../../../components/Text";
+import {StyledText} from "../Text";
 import PropTypes from 'prop-types';
 import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
@@ -24,21 +24,43 @@ const useStyles = makeStyles((theme) => ({
         },
 
     },
+        smallTitle:{
+
+        fontFamily:'airbnb-black',
+        fontSize: 30,
+        color: 'theme.palette.text.primary',
+        letterSpacing:1.5,
+        paddingBottom: theme.spacing(3),
+        textAlign: 'left',
+        [theme.breakpoints.down("sm")]: {
+            fontSize: 25,
+        },
+
+    },
      blurb:{
         fontFamily:'airbnb-book',
         color: theme.palette.text.secondary,
+     },
+     blurb2:{
+        fontFamily:'airbnb-book',
+        color: theme.palette.text.secondary,
+        paddingTop: theme.spacing(3),
 
      }
 }));
 
 
-const TextBlurbWithTitle = ({title,blurb}) =>{
+const TextBlurbWithTitle = ({title,blurb, blurb2, smallTitle, alignLeft}) =>{
     const classes = useStyles();
+
+    const styles={textAlign:alignLeft?'left':null};
 
     return(
         <div className={classes.root}>
-            <StyledText className={classes.title}>{title}</StyledText>
-            <Typography gutterBottom variant={'body1'} className={classes.blurb}>{blurb}</Typography>
+            <StyledText className={smallTitle?classes.smallTitle: classes.title}>{title}</StyledText>
+            <Typography style={styles} gutterBottom variant={'body1'} className={classes.blurb}>{blurb}</Typography>
+
+            {blurb2&&<Typography style={styles} gutterBottom variant={'body1'} className={classes.blurb2}>{blurb}</Typography>}
         </div>
     )
 };

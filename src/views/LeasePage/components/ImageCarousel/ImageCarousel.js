@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import LeaseImg from "resources/images/leasePage/leasingpagepic2.png"
 import LeaseImg2 from "resources/images/leasePage/leasingpagepic3.png"
 import LeaseImg3 from "resources/images/leasePage/leasingpagepic4.png"
+import Paper from '@material-ui/core/Paper';
 
 import {makeStyles} from '@material-ui/core/styles';
 import ClickArrow from "./ClickArrow";
@@ -26,18 +27,16 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '100%',
     },
-    thumbImage: {
-
-    },
-    arrowButton:{
+    thumbImage: {},
+    arrowButton: {
         background: "rgba(0,0,0,.25)",
         '&:hover': {
             background: "rgba(0,0,0,.4)",
-    }
+        }
     }
 }));
 
-const IMAGES = [LeaseImg, LeaseImg2,LeaseImg3];
+const IMAGES = [LeaseImg, LeaseImg2, LeaseImg3];
 
 const ImageCarousel = () => {
 
@@ -133,9 +132,20 @@ const ThumbImg = ({item, currentSlide, className}) => {
     const onHover = () => setHover(true);
     const onBlur = () => setHover(false);
 
-    return <div onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur} onMouseOver={onHover}> <img
-                onMouseOut={onBlur} className={className} src={item.props.src}
-                style={{opacity: item.props.index === currentSlide || isHover? 1 : 0.5}}/></div>;
+    return (item.props.index === currentSlide||isHover ?
+                <Paper style={{borderRadius:'1.25px'}} onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur}
+                     onMouseOver={onHover}><img
+                    onMouseOut={onBlur} className={className} src={item.props.src}
+                    style={{opacity:  1 }}/></Paper>
+                :
+                <div onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur}
+                     onMouseOver={onHover}><img
+                    onMouseOut={onBlur} className={className} src={item.props.src}
+                    style={{opacity:  0.5}}/></div>
+
+    )
+
+        ;
 };
 
 export default ImageCarousel;
