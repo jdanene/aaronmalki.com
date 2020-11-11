@@ -1,5 +1,5 @@
 import React from "react"
-import {StyledText} from "../../../../components/Text";
+import {StyledText} from "../Text";
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 

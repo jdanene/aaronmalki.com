@@ -26,6 +26,7 @@
     "hash.js": "latest",
     "markdown-to-jsx": "^7.0.1",
     "material-ui-dropzone": "^3.5.0",
+    "material-ui-phone-number": "^2.2.6",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "prismjs": "^1.22.0",

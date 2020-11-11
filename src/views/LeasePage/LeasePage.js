@@ -9,6 +9,7 @@ import {colorScheme} from "../../constants";
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import TextBlurbWithTitle from "../../components/TextBlurbWithTitle/TextBlurbWithTitle";
 import TextBlurbWithTitleLevel2 from "../../components/TextBlurbWithTitle/TextBlurbWithTitleLevel2";
+import LeaseForm from "./LeaseForm";
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -46,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         flexDirection: 'column',
         padding: theme.spacing(5),
+    },
+        imgTextContainer:{
+        marginBottom:theme.spacing(3),
     }
 }));
 
@@ -70,7 +74,7 @@ const LeasePage = () => {
     return <div className={classes.root}>
         <PageViewTopHalf middleText={'Stress free leasing.'} className={classes.topHalfImg} img={LeaseTopImg}/>
         <div className={classes.body}>
-            <Grid container spacing={mobileBreak ? 3 : 4}>
+            <Grid className={classes.imgTextContainer} container spacing={mobileBreak ? 3 : 4}>
                 <Grid sm={12} md={6} item>
                    <div style={{display:'flex',flexDirection:'column'}}>
                     <ImageCarousel/>
@@ -84,6 +88,7 @@ const LeasePage = () => {
                     <TextBlurbWithTitle blurb={BLURB_2} title={TITLE_2} smallTitle alignLeft/>
                 </Grid>}
             </Grid>
+            <LeaseForm/>
         </div>
     </div>
 

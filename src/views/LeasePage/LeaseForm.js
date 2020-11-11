@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from "react"
 import {makeStyles} from '@material-ui/core/styles';
-import FormDropDownChoices from "../../../../components/Forms/FormDropDownChoices";
-import FormStaticChoices from "../../../../components/Forms/FormStaticChoices";
-import FormMinMaxChoices from "../../../../components/Forms/FormMinMaxChoices";
-import {ContactForm} from "../../../../components/ContactForm";
-import FormDivider from "../../../../components/Forms/FormDivider";
+import FormDropDownChoices from "../../components/Forms/FormDropDownChoices";
+import FormStaticChoices from "../../components/Forms/FormStaticChoices";
+import FormMinMaxChoices from "../../components/Forms/FormMinMaxChoices";
+import {ContactForm} from "../../components/ContactForm";
+import FormDivider from "../../components/Forms/FormDivider";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import {colorScheme} from "../../../../constants";
+import {colorScheme} from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     },
     minMaxChoices:{
         width: '335px'
+    },
+    imgTextContainer:{
+        marginBottom:theme.spacing(3)
     }
 }));
 
@@ -78,7 +81,7 @@ const priceOptionsHigh = [
     {value: 20000000, text: 'No Max'}];
 
 
-const BuyerForm = () => {
+const LeaseForm = () => {
     const [timeFrameIdx, setTimeFrameIdx] = useState(0);
     const [bedroomsIdx, setBedroomsIdx] = useState(0);
     const [bathroomsIdx, setBathroomsIdx] = useState(0);
@@ -114,7 +117,8 @@ const BuyerForm = () => {
 
     return <Paper className={classes.root}>
         <FormDivider title={"Property Type"}/>
-        <Grid container direction={'column'} spacing={1}>
+
+        <Grid className={classes.imgTextContainer} container direction={'column'} spacing={1}>
             <Grid item>
                 <FormMinMaxChoices className={classes.minMaxChoices} choicesHigh={priceOptionsHigh} choicesLow={priceOptionsLow} title={priceTitle}
                                    selectionCallback={priceSelectionCallback}/>
@@ -127,10 +131,7 @@ const BuyerForm = () => {
                 <FormStaticChoices choices={bedroomOptions} selectionCallback={bedroomSelectionCallback}
                                    title={bedroomTitle}/>
             </Grid>
-            <Grid item>
-                <FormDropDownChoices selectionIdx={timeFrameIdx} choices={timeFrameOptions}
-                                     selectionCallback={timeFrameSelectionCallback} title={timeFrameTitle}/>
-            </Grid>
+
         </Grid>
         <FormDivider title={"Contact"}/>
         <ContactForm/>
@@ -140,4 +141,4 @@ const BuyerForm = () => {
 
 // https://material-ui.com/components/selects/
 // ui this way
-export default BuyerForm;
+export default LeaseForm;

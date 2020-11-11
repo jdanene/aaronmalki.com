@@ -9,36 +9,37 @@ import {
 import {colorScheme} from "../../constants";
 import transitions from "@material-ui/core/styles/transitions";
 import PropTypes from 'prop-types';
+import MaterialUiPhoneNumber from 'material-ui-phone-number';
 
 //https://stackoverflow.com/questions/58963242/change-border-color-on-material-ui-textfield
 const styles = theme => ({
 
     main_container: {
         height: '100%',
-        width:'100%',
+        width: '100%',
     },
-    root:{
-        display:'flex'
+    root: {
+        display: 'flex'
     },
-    textField:{
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgba(27, 48, 57, .30)"
-    },    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: colorScheme.primary.primary
-    },
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: colorScheme.other.analogous0,
-    },
-            "& .MuiInputLabel-outlined.Mui-focused": {
-      color: colorScheme.other.analogous0,
-                fontWeight:'bold'
-    }
+    textField: {
+        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "rgba(27, 48, 57, .30)"
+        }, "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: colorScheme.primary.primary
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: colorScheme.other.analogous0,
+        },
+        "& .MuiInputLabel-outlined.Mui-focused": {
+            color: colorScheme.other.analogous0,
+            fontWeight: 'bold'
+        }
 
-  }
+    }
 
 });
 
-const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
+const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, error, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -46,13 +47,13 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
     const handleText = (type) => (e) => {
         if (type === "name") {
             setName(e.target.value);
-            selectionCallback({email,message,name:e.target.value})
+            selectionCallback({email, message, name: e.target.value})
         } else if (type === "email") {
             setEmail(e.target.value);
-            selectionCallback({email:e.target.value,message,name})
+            selectionCallback({email: e.target.value, message, name})
         } else if (type === "message") {
             setMessage(e.target.value);
-            selectionCallback({email,message:e.target.value,name})
+            selectionCallback({email, message: e.target.value, name})
         }
     };
 
@@ -71,6 +72,9 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
                     className={classes.textField}
                     disabled={isMessageSent}
                     label={"Name"}
+                        InputLabelProps={{
+            shrink: true,
+          }}
                     autoComplete={"name"}
                     color={'primary'}
                     value={name}
@@ -82,7 +86,9 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
             <Box mb={1}>
                 <TextField
                     error={error.email}
-
+    InputLabelProps={{
+            shrink: true,
+          }}
                     variant="outlined"
                     id={"email"}
                     rows={1}
@@ -100,13 +106,37 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
             </Box>
 
             <Box mb={1}>
+                <MaterialUiPhoneNumber
+                    error={error.email}
+                    variant="outlined"
+                    id={"phone"}
+                    rows={1}
+                    disableAreaCodes
+                    onlyCountries={['us', 'mx']}
+                    fullWidth
+                    className={classes.textField}
+                    disabled={isMessageSent}
+                    label={"Phone Number"}
+                    autoComplete={"phone"}
+                    color={'primary'}
+                    value={email}
+                    helperText={error.email ? error.helperTxt : ''}
+                    defaultCountry={'us'}
+                    onChange={() => {
+                    }}/>
+            </Box>
+
+            <Box mb={1}>
                 <TextField
                     error={error.message}
                     variant="outlined"
                     multiline
                     id={"message"}
                     className={classes.textField}
-                    rows={5}
+                    rows={9}
+                        InputLabelProps={{
+            shrink: true,
+          }}
                     fullWidth
                     required
                     disabled={isMessageSent}
@@ -119,6 +149,7 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
                 />
             </Box>
 
+
         </div>
     )
 };
@@ -126,8 +157,9 @@ const ContactForm = ({classes,selectionCallback,isMessageSent, error, theme, wid
 // Specifies the default values for props:
 ContactForm.defaultProps = {
     isMessageSent: false,
-    error:{name: false, email: false, message: false, helperTxt: ''},
-    selectionCallback: ()=>{}
+    error: {name: false, email: false, message: false, helperTxt: ''},
+    selectionCallback: () => {
+    }
 };
 
 ContactForm.propTypes = {

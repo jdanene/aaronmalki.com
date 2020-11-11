@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from "react"
 import PropTypes from 'prop-types';
-import {Button} from "../../../../components/Button";
-import {ButtonGroup} from "../../../../components/Button";
+import {Button} from "../Button";
+import {ButtonGroup} from "../Button";
 import {makeStyles} from '@material-ui/core/styles';
-import {StyledText} from "../../../../components/Text";
-import {colorScheme} from "../../../../constants";
+import {StyledText} from "../Text";
+import {colorScheme} from "../../constants";
 
 const BUTTON_FONTFAMILY = 'airbnb-book';
 
