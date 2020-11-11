@@ -24,11 +24,11 @@ import {useMediaQuery} from "@material-ui/core";
 import ColoredButton from "../../components/Button/ColoredButton";
 import {FittedText, StyledText} from "../../components/Text";
 import {Button} from "@material-ui/core";
-import * as EmailValidator from 'email-validator';
 import {Alert} from '@material-ui/lab';
 import Collapse from '@material-ui/core/Collapse';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
+import validator from 'validator'
 
 
 const CssTextField = withStyles({
@@ -307,7 +307,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
         } else if (message === '') {
             setError({...error, message: true, helperTxt: 'Please include a message.'});
 
-        } else if (!(EmailValidator.validate(email.trim()))) {
+        } else if (!(validator.isEmail(email.trim()))) {
 
             setError({...error, email: true, helperTxt: 'Please include a valid email.'});
         } else {

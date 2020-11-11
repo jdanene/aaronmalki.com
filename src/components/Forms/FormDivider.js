@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start',
         flexGrow: 1,
         flexShrink: 1,
-        marginBottom: 20,
-        marginTop: 20,
+        marginBottom: theme.spacing(2),
+        marginTop: theme.spacing(4),
         padding:0,
         borderBottom: `1px solid rgba(27, 48, 57, .25)`,
         width: '100%'
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
         fontWeight:'bold',
         color: theme.palette.text.primary,
         [theme.breakpoints.only("xs")]: {
-            marginTop: 10,
             fontSize: '20px'
         },
         [theme.breakpoints.only("sm")]: {

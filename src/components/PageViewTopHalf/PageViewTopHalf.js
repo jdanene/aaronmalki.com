@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 // "raleway-italic"
 //"raleway-bold-italic"
 //Buying a home, the easy way.
-const Page_View_Top_Half = ({text}) => {
+const Page_View_Top_Half = ({text, text2}) => {
 
     return <div style={{
         minHeight: "200px",
@@ -68,6 +68,7 @@ const Page_View_Top_Half = ({text}) => {
             }}>
                 <FittedText style={{fontFamily: "airbnb-bold", display: "flex"}}>
                     {text}
+                    {text2&&<React.Fragment><br/>{text2}</React.Fragment>}
                 </FittedText>
             </div>
 
@@ -76,7 +77,7 @@ const Page_View_Top_Half = ({text}) => {
 };
 
 
-const PageViewTopHalf = ({middleText,className,img}) => {
+const PageViewTopHalf = ({middleText,middleText2,className,img}) => {
     const id = "id123";
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
@@ -112,7 +113,7 @@ const PageViewTopHalf = ({middleText,className,img}) => {
                 justifyContent: 'space-between',
                 width:'100%',
             }}>
-                <Page_View_Top_Half mobileBreak={mobileBreak} text={middleText}/>
+                <Page_View_Top_Half mobileBreak={mobileBreak} text={middleText} text2={middleText2}/>
                 {!mobileBreak && <DownArrow posnOfContainter={topHalf_bottomPosn}/>}
             </div>
         </div>

@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from "react"
 import ImageCarousel from "./components/ImageCarousel/ImageCarousel";
-import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import Grid from "@material-ui/core/Grid";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
@@ -10,6 +9,7 @@ import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import TextBlurbWithTitle from "../../components/TextBlurbWithTitle/TextBlurbWithTitle";
 import TextBlurbWithTitleLevel2 from "../../components/TextBlurbWithTitle/TextBlurbWithTitleLevel2";
 import LeaseForm from "./LeaseForm";
+import FormPlug from "../../components/Forms/FormPlug";
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -88,6 +88,7 @@ const LeasePage = () => {
                     <TextBlurbWithTitle blurb={BLURB_2} title={TITLE_2} smallTitle alignLeft/>
                 </Grid>}
             </Grid>
+            <FormPlug message={"Fill out the form below and let the showings begin!"}/>
             <LeaseForm/>
         </div>
     </div>

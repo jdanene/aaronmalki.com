@@ -10,19 +10,10 @@ import {makeStyles} from '@material-ui/core/styles';
 import Link from "@material-ui/core/Link";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-function ProfilePicture({mobileBreak}) {
 
-    return <div style={{width: mobileBreak ? "100%" : "49%", height: mobileBreak ? "50%" : "100%", borderRadius: '1%'}}
-                className={"homepage__img_container"}><img
-        style={{borderRadius: '1%'}} className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/>
-    </div>
+const useStyles = makeStyles((theme) => ({
 
-}
-
-
-// Shadows: https://codepen.io/sdthornton/pen/wBZdXq
-const useStyles = makeStyles({
-    icon_container: {
+        icon_container: {
         "&:hover": {
             //you want this to be the same as the backgroundColor above
             backgroundColor: "rgba(112, 134, 144,.15)",
@@ -48,7 +39,20 @@ const useStyles = makeStyles({
         left:7.9
     }
 
-});
+
+}));
+
+
+function ProfilePicture({mobileBreak}) {
+
+    return <div style={{width: mobileBreak ? "100%" : "48%", height: mobileBreak ? "50%" : "100%", borderRadius: '1%'}}
+                className={"homepage__img_container"}><img
+        style={{borderRadius: '1%'}} className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/>
+    </div>
+
+}
+
+
 
 
 const NameHeading = ({mobileBreak}) => {
@@ -63,6 +67,7 @@ const NameHeading = ({mobileBreak}) => {
         <div style={{
             flexDirection: "column",
             display: "flex",
+
             width: '100%',
             marginTop: mobileBreak ? '45px' : '0px',
             marginBottom: '12.5px',
@@ -136,14 +141,15 @@ const HomePageBottomHalfInfo = () => {
     //https://www.pluralsight.com/tech-blog/getting-size-and-position-of-an-element-in-react/
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div style={{
-        width: mobileBreak ? "95%" : (tabletBreak ? "90%" : "75%"),
+        width: mobileBreak ? "95%" : (tabletBreak ? "90%" : "90%"),
         display: "flex",
         justifyContent: 'space-between',
         flexDirection: mobileBreak ? "column-reverse" : "row",
 
+
     }}>
         <div style={{
-            width: mobileBreak ? "100%" : "49%",
+            width: mobileBreak ? "100%" : "48%",
             color: theme.palette.text.secondary,
             fontFamily: "'airbnb-book', serif",
             fontSize: "16px",

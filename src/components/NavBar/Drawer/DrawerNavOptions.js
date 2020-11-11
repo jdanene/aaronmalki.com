@@ -117,7 +117,7 @@ const DrawerNavOptions = ({toggleDrawerCallback, locationPathName}) => {
 
 
 
-    const topRouteTitles = ['HomePage', 'BuyersPage', 'SellersPage', 'LeasePage'];
+    const topRouteTitles = ['HomePage', 'BuyersPage', 'LeasePage'];
     const bottomRouteTitles = ['ContactUsPage', 'BlogPage'];
 
     return (

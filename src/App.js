@@ -104,9 +104,9 @@ function App({location}) {
                 <ScrollToTop>
                     <Switch>
                         <Route path={pageToPathName["HomePage"]} exact component={HomePage}/>
-                        <Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
+                        {/*<Route path={pageToPathName["SellersPage"]} exact component={SellersPage}/>
                         <Route path={pageToPathName["CurrentListingsPage"]} exact
-                               component={CurrentListingsPage}/>
+                               component={CurrentListingsPage}/>*/}
                         <Route path={pageToPathName["ContactUsPage"]} exact component={ContactUsPage}/>
                         <Route path={pageToPathName["BuyersPage"]} exact component={BuyersPage}/>
                         <Route path={pageToPathName["LeasePage"]} exact component={LeasePage}/>

@@ -4,12 +4,19 @@ import {
     Box,
     withStyles,
     withWidth,
-    TextField
+    TextField,
+    IconButton,
+    Divider
 } from "@material-ui/core";
 import {colorScheme} from "../../constants";
 import transitions from "@material-ui/core/styles/transitions";
 import PropTypes from 'prop-types';
 import MaterialUiPhoneNumber from 'material-ui-phone-number';
+import validator from 'validator'
+import Fade from '@material-ui/core/Fade';
+import CloseIcon from '@material-ui/icons/Close';
+import {Button} from "@material-ui/core";
+import {Alert} from '@material-ui/lab';
 
 //https://stackoverflow.com/questions/58963242/change-border-color-on-material-ui-textfield
 const styles = theme => ({
@@ -39,12 +46,26 @@ const styles = theme => ({
 
 });
 
-const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, error, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
+const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [error, setError] = useState({name: false, email: false, message: false, phoneNumber: false});
+    const [isFormSubmit, setFormSubmit] = useState(false);
+
+    const handleSuccessClose = () => {
+        setName('');
+        setEmail('');
+        setMessage('');
+        setPhoneNumber('');
+        setFormSubmit(false);
+    };
+
 
     const handleText = (type) => (e) => {
+        setError({...error, [type]: false});
+
         if (type === "name") {
             setName(e.target.value);
             selectionCallback({email, message, name: e.target.value})
@@ -54,14 +75,37 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, erro
         } else if (type === "message") {
             setMessage(e.target.value);
             selectionCallback({email, message: e.target.value, name})
+        } else if (type === "phoneNumber") {
+            setPhoneNumber(e);
+            selectionCallback({email, phoneNumber: e, name, message})
         }
     };
 
+    const hasPhone = () => {
+        return phoneNumber !== '' && !(/\+1$|\+52$/g.test(phoneNumber))
+    };
+
+    const submitForm = () => {
+        if (name === '') {
+            setError({...error, name: true, helperTxt: 'Please include your name.'});
+        } else if (email === '') {
+            setError({...error, email: true, helperTxt: 'Please include your email.'});
+        } else if (message === '') {
+            setError({...error, message: true, helperTxt: 'Please include a message.'});
+
+        } else if (!(validator.isEmail(email.trim()))) {
+            setError({...error, email: true, helperTxt: 'Please include a valid email.'});
+        } else if ((hasPhone()) && (!(validator.isMobilePhone(phoneNumber)))) {
+            setError({...error, phoneNumber: true, helperTxt: 'Please enter a valid phone number.'});
+        } else {
+            alert(`Message good: ${name}, ${email}, ${message}, ${phoneNumber}`)
+        }
+    };
 
     return (
         <div className={classes.main_container}>
 
-            <Box mb={1}>
+            <Box mb={3}>
                 <TextField
                     variant="outlined"
                     id={"name"}
@@ -72,9 +116,9 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, erro
                     className={classes.textField}
                     disabled={isMessageSent}
                     label={"Name"}
-                        InputLabelProps={{
-            shrink: true,
-          }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                     autoComplete={"name"}
                     color={'primary'}
                     value={name}
@@ -83,12 +127,12 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, erro
                 />
             </Box>
 
-            <Box mb={1}>
+            <Box mb={3}>
                 <TextField
                     error={error.email}
-    InputLabelProps={{
-            shrink: true,
-          }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                     variant="outlined"
                     id={"email"}
                     rows={1}
@@ -105,38 +149,18 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, erro
                 />
             </Box>
 
-            <Box mb={1}>
-                <MaterialUiPhoneNumber
-                    error={error.email}
-                    variant="outlined"
-                    id={"phone"}
-                    rows={1}
-                    disableAreaCodes
-                    onlyCountries={['us', 'mx']}
-                    fullWidth
-                    className={classes.textField}
-                    disabled={isMessageSent}
-                    label={"Phone Number"}
-                    autoComplete={"phone"}
-                    color={'primary'}
-                    value={email}
-                    helperText={error.email ? error.helperTxt : ''}
-                    defaultCountry={'us'}
-                    onChange={() => {
-                    }}/>
-            </Box>
 
-            <Box mb={1}>
+            <Box mb={3}>
                 <TextField
                     error={error.message}
                     variant="outlined"
                     multiline
                     id={"message"}
                     className={classes.textField}
-                    rows={9}
-                        InputLabelProps={{
-            shrink: true,
-          }}
+                    rows={4}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                     fullWidth
                     required
                     disabled={isMessageSent}
@@ -149,6 +173,56 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, erro
                 />
             </Box>
 
+            <Box mb={3} style={{maxWidth: 250}}>
+                <MaterialUiPhoneNumber
+                    error={error.phoneNumber}
+                    variant="outlined"
+                    id={"phoneNumber"}
+                    rows={1}
+                    disableAreaCodes
+                    onlyCountries={['us', 'mx']}
+                    fullWidth
+                    className={classes.textField}
+                    disabled={isMessageSent}
+                    label={"Phone Number"}
+                    autoComplete={"phoneNumber"}
+                    color={'primary'}
+                    value={email}
+                    helperText={error.phoneNumber ? error.helperTxt : ''}
+                    defaultCountry={'us'}
+                    countryCodeEditable={false}
+                    onChange={handleText('phoneNumber')}/>
+            </Box>
+            <Box mt={5} style={{display: 'flex',width:'100%'}}>
+
+            <Button
+                color={"secondary"}
+                variant="contained"
+                onClick={submitForm}
+                disabled={isFormSubmit}
+                size={"large"}
+            >
+                SUBMIT
+            </Button>
+            </Box>
+
+            {isFormSubmit && <Fade in={isFormSubmit}>
+                <Alert color={"success"} variant="filled"
+                       style={{marginTop: 15, backgroundColor: "#36B37E"}}
+                       action={
+                           <IconButton
+                               aria-label="close"
+                               color="inherit"
+                               size="small"
+                               onClick={handleSuccessClose}
+                           >
+                               <CloseIcon fontSize="inherit"/>
+                           </IconButton>
+                       }
+                >
+                    Thank you! We will get in contact with you shortly.
+                </Alert>
+            </Fade>}
 
         </div>
     )
@@ -157,14 +231,20 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, erro
 // Specifies the default values for props:
 ContactForm.defaultProps = {
     isMessageSent: false,
-    error: {name: false, email: false, message: false, helperTxt: ''},
+    error: {phoneNumber: false, name: false, email: false, message: false, helperTxt: ''},
     selectionCallback: () => {
     }
 };
 
 ContactForm.propTypes = {
     isMessageSent: PropTypes.bool.isRequired,
-    error: PropTypes.object.isRequired,
+    error: PropTypes.shape({
+        phoneNumber: PropTypes.bool,
+        name: PropTypes.bool,
+        email: PropTypes.bool,
+        message: PropTypes.bool,
+        helperTxt: PropTypes.string,
+    }).isRequired,
     selectionCallback: PropTypes.func.isRequired
 };
 

@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from '@material-ui/core/styles';
 import BuyerTopImg from "resources/images/buyerpage_top.png"
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
-
+import FormPlug from "../../components/Forms/FormPlug";
 const useStyles = makeStyles((theme) => ({
     formPlug: {
         fontFamily:'airbnb-bold',
@@ -28,15 +28,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const FormPlug =({message})=>{
-    const classes = useStyles();
-
-    return(
-        <Typography component={'h2'} className={classes.formPlug}>
-            {message}
-        </Typography>
-    )
-};
 
 const BuyersPage = () => {
     const classes = useStyles();
@@ -51,7 +42,7 @@ const BuyersPage = () => {
         backgroundColor: colorScheme.other.backgroundComplementary
     }}>
 
-        <PageViewTopHalf middleText={'Buying a home, the easy way.'} className={classes.topHalfImg} img={BuyerTopImg}/>
+        <PageViewTopHalf middleText2={'the easy way.'} middleText={'Buying a home,'} className={classes.topHalfImg} img={BuyerTopImg}/>
 
 
         <div style={{
