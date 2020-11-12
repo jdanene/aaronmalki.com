@@ -130,7 +130,7 @@ const AdminSettingsPage = () => {
                     <Typography variant="overline" display="block" gutterBottom>Confirm after you finish editing.</Typography>
 
                     <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                        <Button size={'large'} variant={'outlined'} onClick={() => alert('confirm')}>
+                        <Button size={'large'} variant={'outlined'} onClick={() => alert('Confirmed changes: Reload the page to see effects')}>
                             Confirm
                         </Button>
 
