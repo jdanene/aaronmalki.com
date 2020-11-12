@@ -18,7 +18,7 @@ import Divider from '@material-ui/core/Divider';
 import {theme} from "rich-markdown-editor";
 import {colorScheme} from "../../../constants";
 import Tooltip from '@material-ui/core/Tooltip';
-import ConfFirmActionDiaglog from "./ConfirmActionDialog";
+import ConfirmActionDialog from "./ConfirmActionDialog";
 import {useState} from "react";
 import EditBlog from "./EditBlog";
 
@@ -49,7 +49,7 @@ function BlogPostItem({post, path, deleteCallback,postUUID}) {
     return (
 
         <Card className={classes.card}>
-            <ConfFirmActionDiaglog open={openConfirmDelete}
+            <ConfirmActionDialog open={openConfirmDelete}
                                    setOpen={setOpenConfirmDelete}
                                    confirmCallBack={deleteCallback}
                                    message={"Are you sure you want to delete this blog post? Once it's deleted it's deleted forever 👻!"}

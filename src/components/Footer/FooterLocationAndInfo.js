@@ -99,7 +99,7 @@ const infos = [
 
 // {theme.palette.common.white}
 const FooterLocationAndInfo = () => {
-    const {phoneNumber,email,address} = useContext(AppContext);
+    const {phoneNumber,email,address,license} = useContext(AppContext);
     const classes = useStyles();
     const theme = useTheme();
 
@@ -118,7 +118,7 @@ const FooterLocationAndInfo = () => {
 
             <div className={classes.credential_container}>
                 <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
-                <FittedText className={classes.credential}>CalBRE LICENSE# 02128632</FittedText>
+                <FittedText className={classes.credential}>CalBRE LICENSE# {license}</FittedText>
             </div>
 
             <div style={{height:'20px'}}/>
@@ -133,7 +133,7 @@ const FooterLocationAndInfo = () => {
             <div style={{height:'20px'}}/>
 
             <StyledText className={classes.bio}>
-                Aaron is a licensed real broker in the state of California and abides by Equal Housing Opportunity laws. License #02128632.
+                Aaron is a licensed real broker in the state of California and abides by Equal Housing Opportunity laws. License #{license}.
             </StyledText>
         </Grid>
     )

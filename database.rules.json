@@ -10,7 +10,7 @@
     },
     "settings": {
       ".write": "auth != null",
-      ".read": "auth != null"
+      ".read": true
     }
   }
 }

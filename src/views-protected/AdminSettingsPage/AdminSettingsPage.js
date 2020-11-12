@@ -12,12 +12,11 @@ import {Divider} from '@material-ui/core';
 import {PhoneInput} from "../ManageBlogPage/components/TextInput";
 import ModalEditBusinessLocation from "./ModalEditBusinessLocation";
 import Button from '@material-ui/core/Button';
+import ConfirmActionDialog from "../ManageBlogPage/components/ConfirmActionDialog";
+import uploadSettingToDb from "../../components/Database/uploadSettingToDb";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {},
+
     item: {
         paddingBottom: theme.spacing(1),
         display: 'flex'
@@ -67,9 +66,22 @@ SelectionDivider.propTypes = {
     title: PropTypes.string.isRequired,
 };
 
+const parsePhone = (pNumber) => {
+    //input: +19097716881
+    let pat = /^(\+1)?(?<area_code>\d{3})(?<central_code>\d{3})(?<subscribe_code>\d{4})(\d*)$/;
+    const {groups: {area_code, central_code, subscribe_code}} = pat.exec(pNumber);
+
+    let phoneNumber = {};
+    phoneNumber.dash = `(${area_code}) ${central_code}-${subscribe_code}`;
+    phoneNumber.dot = `${area_code}.${central_code}.${subscribe_code}`;
+    phoneNumber.all_dash = `${area_code}-${central_code}-${subscribe_code}`;
+    phoneNumber.tel = pNumber;
+
+    return phoneNumber
+};
 
 const AdminSettingsPage = () => {
-    const {license, address, phoneNumber, email, socialMedia, companyName} = useContext(AppContext);
+    const {license, address, phoneNumber, email, socialMedia, companyName, changeSettings} = useContext(AppContext);
     const classes = useStyles();
 
     const [companyName_, setCompanyName_] = useState(companyName);
@@ -78,9 +90,11 @@ const AdminSettingsPage = () => {
     const [license_, setLicense_] = useState(license);
     const [address_, setAddress_] = useState(address);
     const [socialMedia_, setSocialMedia_] = useState(socialMedia);
-    const [openEditAddress, setOpenEditAddress] = useState(false);
     const [hasEdits, setEdits] = useState(false);
 
+    const [openEditAddress, setOpenEditAddress] = useState(false);
+
+    // notify if user has edited anything
     useEffect(() => {
         if (companyName_ !== companyName) {
             //
@@ -101,12 +115,31 @@ const AdminSettingsPage = () => {
         setEdits(true);
     }, [companyName_, email_, phone_, license_, address_, socialMedia_]);
 
+    // Update AppContext with new state
+    const confirmCallback = () => {
 
+        let payload = {
+            phoneNumber: parsePhone(phone_),
+            companyName: companyName_,
+            email: email_,
+            license: license_,
+            address: address_,
+            socialMedia: socialMedia_
+        };
+
+        changeSettings(payload);
+        uploadSettingToDb(payload).catch((e) => alert(`Could not upload settings to db: ${e}`));
+
+        alert("Settings have changed! Reload if you don't see the effects immediately")
+    };
+
+    // Call back for social media edits
     const handleSocial = (type) => (value) => {
         setSocialMedia_({...socialMedia_, [type]: value})
     };
 
 
+    // Callback for ModalEditBusinessLocation
     const editAddressCreateCallback = (value) => {
         setAddress_(value);
     };
@@ -126,19 +159,20 @@ const AdminSettingsPage = () => {
 
                 <div style={{display: 'flex', flexDirection: 'column', height: 70, width: 270}}>
 
-                    {hasEdits&&<React.Fragment>
-                    <Typography variant="overline" display="block" gutterBottom>Confirm after you finish editing.</Typography>
+                    {hasEdits && <React.Fragment>
+                        <Typography variant="overline" display="block" gutterBottom style={{fontSize: 10}}>Confirm after
+                            you finish all your edits</Typography>
 
-                    <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                        <Button size={'large'} variant={'outlined'} onClick={() => alert('Confirmed changes: Reload the page to see effects')}>
-                            Confirm
-                        </Button>
+                        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                            <Button size={'large'} variant={'outlined'} onClick={confirmCallback}>
+                                Confirm
+                            </Button>
 
-                        <Button size={'large'} variant={'contained'} onClick={() => alert('canceld')}
-                                color={'secondary'}>
-                            Cancel
-                        </Button>
-                    </div>
+                            <Button size={'large'} variant={'contained'} onClick={() => alert('canceld')}
+                                    color={'secondary'}>
+                                Cancel
+                            </Button>
+                        </div>
                     </React.Fragment>}
 
                 </div>

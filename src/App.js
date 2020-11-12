@@ -61,7 +61,7 @@ export const FIREBASE_STORAGE = firebase.storage();
 
 function App({location}) {
 
-    const {blogPaths, filteredBlogPosts,isBlogLoaded} = useContext(AppContext);
+    const {blogPaths, filteredBlogPosts,isBlogLoaded,settingsHasLoaded} = useContext(AppContext);
 
     // const location = useLocation();
 
@@ -94,7 +94,7 @@ function App({location}) {
 
 
         <ThemeProvider theme={theme}>
-            {isBlogLoaded?
+            {isBlogLoaded&&settingsHasLoaded?
                 <div className="app_container">
 
 

@@ -51,7 +51,7 @@ export const PhoneInput = ({label, textCallback, max_char, initial, hasSecondary
             color={hasSecondaryColor ? 'secondary' : 'primary'}
             required
             disableAreaCodes
-            onlyCountries={['us', 'mx']}
+            onlyCountries={['us']}
             defaultCountry={'us'}
             countryCodeEditable={false}
             margin="dense"

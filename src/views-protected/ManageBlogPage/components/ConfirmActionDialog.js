@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import PropTypes from 'prop-types';
 import {colorScheme} from "../../../constants";
 
-const ConfFirmActionDiaglog = ({open, setOpen, message, confirmCallBack}) => {
+const ConfirmActionDialog = ({open, setOpen, message, confirmCallBack}) => {
 
     const handleClose = () => {
         setOpen(false);
@@ -34,11 +34,11 @@ const ConfFirmActionDiaglog = ({open, setOpen, message, confirmCallBack}) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant={'text'} onClick={handleConfirm}>
+                                      <Button variant={'text'}  onClick={handleConfirm} >
                         Confirm
                     </Button>
 
-                    <Button variant={'contained'} onClick={handleClose} color={'secondary'}>
+                                      <Button variant={'contained'} onClick={handleClose} color={'secondary'}>
                         Cancel
                     </Button>
 
@@ -50,17 +50,17 @@ const ConfFirmActionDiaglog = ({open, setOpen, message, confirmCallBack}) => {
 }
 
 // Specifies the default values for props:
-ConfFirmActionDiaglog.defaultProps = {
+ConfirmActionDialog.defaultProps = {
     message: "Are you sure?",
     confirmCallBack: () => {
     }
 };
 
-ConfFirmActionDiaglog.propTypes = {
+ConfirmActionDialog.propTypes = {
     open: PropTypes.bool.isRequired,
     setOpen: PropTypes.func.isRequired,
     message: PropTypes.string,
     confirmCallBack: PropTypes.func.isRequired
 };
 
-export default ConfFirmActionDiaglog;
+export default ConfirmActionDialog;

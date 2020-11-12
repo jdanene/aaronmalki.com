@@ -125,14 +125,13 @@ const AdminLogOut = ({auth}) => {
     </Button>
 }
 const TopNavBar = ({children, window}) => {
-    const {phoneNumber,auth} = useContext(AppContext);
+    const {phoneNumber,auth,companyName} = useContext(AppContext);
     const styles = useStyles();
     const location = useLocation();
     //const {children, window} = props;
     const [isDrawerOpen, setDrawerOpen] = useState(false);
     const [trigger, setTrigger] = useState(false);
     const [isTriggerActive, setTriggerActive] = useState(false);
-    const ref = useRef();
 
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
 
@@ -197,7 +196,7 @@ const TopNavBar = ({children, window}) => {
                                                  letterSpacing: "1.5px"
                                              }}>
 
-                                        Malki Real Estate
+                                        {companyName}
                                     </PopText>
                                 </Button>
 
