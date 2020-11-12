@@ -7,6 +7,10 @@
     "blogPosts": {
       ".write": "auth != null",
       ".read": true
+    },
+    "settings": {
+      ".write": "auth != null",
+      ".read": "auth != null"
     }
   }
 }

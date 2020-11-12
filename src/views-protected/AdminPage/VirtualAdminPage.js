@@ -17,7 +17,7 @@ import {FittedText, StyledText} from "../../components/Text";
 import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
     title:{
-        marginTop:theme.spacing(2),
+        marginTop:theme.spacing(0),
         fontFamily: 'airbnb-medium',
         color :'aliceblue',
         fontSize:40,
@@ -65,9 +65,8 @@ const VirtualAdminPage = () => {
     ]
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:'100vw'}}>
-            <CssBaseline/>
-            <BorderGuard/>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:'100%'}}>
+
             <Grid container component={'main'} className={classes.root} spacing={5} direction="row"
                   justify="space-evenly"
                   alignItems="center"

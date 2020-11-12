@@ -9,7 +9,9 @@ export const pageToPathName = {
     'AdminSignUpPage':'/admin/signup',
     'AdminLoginPage': '/admin/login',
     'AdminPage':'/admin',
-    'ManageBlogPage':'/admin/manage-blog'
+    'ManageBlogPage':'/admin/manage-blog',
+    'AdminSettingsPage':'/admin/settings'
+
 };
 
 export const pageToPageName = {
@@ -23,7 +25,8 @@ export const pageToPageName = {
     'AdminSignUp': 'admin-sign-up',
     'AdminLoginPage': 'admin-login',
     'Admin': 'admins',
-    'ManageBlogPage': 'manage-blog'
+    'ManageBlogPage': 'manage-blog',
+    'AdminSettingsPage':'settings'
 };
 
 export const pathToPageName = {
@@ -37,7 +40,8 @@ export const pathToPageName = {
     '/admin/signup': 'AdminSignUpPage',
     '/admin/login': 'AdminLoginPage',
     '/admin':'AdminPage',
-    '/admin/manage-blog':'ManageBlogPage'
+    '/admin/manage-blog':'ManageBlogPage',
+    '/admin/settings':'AdminSettingsPage'
 };
 
 
@@ -85,5 +89,6 @@ export const blog_states = {
 
 export const DB_NODES = {
     inquiries:'inquiries',
-    blogPosts:'blogPosts'
+    blogPosts:'blogPosts',
+    settings:'settings'
 };

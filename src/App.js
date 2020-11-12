@@ -33,6 +33,7 @@ import NoMatch from "./views/NoMatchPage/NoMatchPage";
 import ScrollToTop from "./context/ScrollToTop";
 import ManageBlogPage from "./views-protected/ManageBlogPage/ManageBlogPage";
 import {v4 as uuidv4} from 'uuid';
+import AdminSettingsPage from "./views-protected/AdminSettingsPage/AdminSettingsPage";
 
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
@@ -119,6 +120,9 @@ function App({location}) {
 
                         {/*Manage Blog Page*/}
                         <ProtectedRoute path={pageToPathName["ManageBlogPage"]} exact component={ManageBlogPage}/>
+
+                        {/*Manage Admin Settings*/}
+                        <ProtectedRoute path={pageToPathName["AdminSettingsPage"]} exact component={AdminSettingsPage}/>
 
                         {/*Blog absolute path*/}
                         <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>

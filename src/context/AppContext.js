@@ -10,6 +10,8 @@ const AppContext = createContext();
 // PlaceId Finder: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
 const initial = {
     isAdmin: false,
+    companyName:'Malki Real Estate',
+    license:'02128632',
     address: {
         line1: "3222 25th Street",
         line2: "San Francisco, CA 94110",

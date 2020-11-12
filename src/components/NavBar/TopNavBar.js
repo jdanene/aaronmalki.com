@@ -197,10 +197,11 @@ const TopNavBar = ({children, window}) => {
                                                  letterSpacing: "1.5px"
                                              }}>
 
-                                        Aaron Malki
+                                        Malki Real Estate
                                     </PopText>
                                 </Button>
 
+                                {/*
                                 <VerticalDivider/>
 
                                 <div style={{
@@ -217,12 +218,12 @@ const TopNavBar = ({children, window}) => {
                                              style={{fontFamily: "raleway-thin, serif"}}>
                                         Compass
                                     </PopText>
-                                </div>
+                                </div>*
 
                                 <div style={{width: "45px", height: "45px", padding: "0px 5px 0px 5px"}}>
                                     <GTranslateIcon
                                         style={{width: "100%", height: "100%", color: "rgba(255, 255, 255,.5)"}}/>
-                                </div>
+                                </div>*/}
 
                             </div>
 

@@ -34,11 +34,11 @@ const ConfFirmActionDiaglog = ({open, setOpen, message, confirmCallBack}) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                                      <Button variant={'text'}  onClick={handleConfirm} >
+                    <Button variant={'text'} onClick={handleConfirm}>
                         Confirm
                     </Button>
 
-                                      <Button variant={'contained'} onClick={handleClose} color={'secondary'}>
+                    <Button variant={'contained'} onClick={handleClose} color={'secondary'}>
                         Cancel
                     </Button>
 
