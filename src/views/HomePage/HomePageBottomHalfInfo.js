@@ -150,7 +150,7 @@ const HomePageBottomHalfInfo = () => {
     }}>
         <div style={{
             width: mobileBreak ? "100%" : "48%",
-            color: theme.palette.text.secondary,
+            color: colorScheme.text.secondary,
             fontFamily: "'airbnb-book', serif",
             fontSize: "16px",
             alignSelf: "flex-start",

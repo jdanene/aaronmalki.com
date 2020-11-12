@@ -12,7 +12,6 @@ import {Divider} from '@material-ui/core';
 import {PhoneInput} from "../ManageBlogPage/components/TextInput";
 import ModalEditBusinessLocation from "./ModalEditBusinessLocation";
 import Button from '@material-ui/core/Button';
-import ConfirmActionDialog from "../ManageBlogPage/components/ConfirmActionDialog";
 import uploadSettingToDb from "../../components/Database/uploadSettingToDb";
 
 const useStyles = makeStyles((theme) => ({

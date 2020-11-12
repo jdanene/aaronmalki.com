@@ -13,6 +13,7 @@ import {useTheme} from '@material-ui/core/styles';
 import {useWindowSize} from "../../components/useWindowSize";
 import {colorScheme} from "../../constants";
 import HomePageBottomHalfInfo from "./HomePageBottomHalfInfo";
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function ProfilePicture({mobileBreak}) {
 
@@ -57,10 +58,6 @@ const NameHeading = ({mobileBreak}) => {
 const HomePage = () => {
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
-    const tabletBreak = useMediaQuery("only screen and (max-width: 1050px)");
-
-    const theme = useTheme();
-
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
 
 
@@ -74,6 +71,7 @@ const HomePage = () => {
     //https://www.pluralsight.com/tech-blog/getting-size-and-position-of-an-element-in-react/
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div className={"homepage__container"}>
+        <CssBaseline/>
         <div id={"id123"} ref={inputRef}
              style={{height: mobileBreak ? '60vh' : '110vh', minHeight: !mobileBreak && '500px'}}
              className={"homepage_generalInfo__container_top"}>
@@ -81,7 +79,8 @@ const HomePage = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                width:'100%'
             }}>
                 <HomePageTopHalfInfo mobileBreak={mobileBreak}/>
                 {!mobileBreak && <DownArrow posnOfContainter={topHalf_bottomPosn}/>}

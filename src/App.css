@@ -13,7 +13,7 @@
 
 .app_container_main_body {
     display: flex;
-    width: 100%;
+    width: 100vw;
     flex-grow: 1;
     flex-shrink: 1;
 

@@ -19,10 +19,11 @@ const HomePageTopHalfInfo = ({mobileBreak}) => {
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "5px",
+        width: "100%"
     }}>
 
-        <div style={{ bottom: 0, position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
-            <div style={{maxWidth:"500px",width: "60vw", justifyContent:"center", alignItems:"center",/*border: `1px solid grey`*/}}>
+        <div style={{ bottom: 0,width: "100%", position:"relative", display:"flex",justifyContent:"space-between", alignItems:"center",flexDirection: "column",height:"100%"}}>
+            <div style={{maxWidth:"500px",width: "60%", justifyContent:"center", alignItems:"center",/*border: `1px solid grey`*/}}>
                 <FittedText style={{ fontFamily: "airbnb-bold", display:"flex"}}>
                     Malki Real Estate <br/>
                     Welcome Home.

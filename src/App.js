@@ -34,7 +34,7 @@ import ScrollToTop from "./context/ScrollToTop";
 import ManageBlogPage from "./views-protected/ManageBlogPage/ManageBlogPage";
 import {v4 as uuidv4} from 'uuid';
 import AdminSettingsPage from "./views-protected/AdminSettingsPage/AdminSettingsPage";
-
+import ManageHomePage from "./views-protected/ManageHomePage/ManageHomePage";
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -123,6 +123,9 @@ function App({location}) {
 
                         {/*Manage Admin Settings*/}
                         <ProtectedRoute path={pageToPathName["AdminSettingsPage"]} exact component={AdminSettingsPage}/>
+
+                        {/*Manage Home Page*/}
+                        <ProtectedRoute path={pageToPathName["ManageHomePage"]} exact component={ManageHomePage}/>
 
                         {/*Blog absolute path*/}
                         <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>

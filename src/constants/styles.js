@@ -56,7 +56,8 @@ export const colorScheme = {
         grey: '#585858',
         cool_purp:'#634459',
         pink_red: '#fc3468',
-        punch:'#F25278'
+        punch:'#F25278',
+        purp_purp:'#B768A2'
 
     },
     other:{
@@ -75,6 +76,10 @@ export const colorScheme = {
         triadic1: '#907086',
         dark:'#303030',
         black: 'rgba(0, 0, 0, 0.87)',
+
+    },
+    text:{
+        secondary:'rgba(0, 0, 0, 0.54)'
     }
 
 };

@@ -56,7 +56,7 @@ const VirtualAdminPage = () => {
     const classes = useStyles();
 
     const options = [
-        {title: pageToPageName["HomePage"], img: HomeImg, color: colorScheme.general.hot_purple},
+        {title: pageToPageName["HomePage"], img: HomeImg, color: colorScheme.general.hot_purple, href:pageToPathName["ManageHomePage"]},
         {title: pageToPageName["BlogPage"], img: MalkiBlogImg, color: colorScheme.general.oneMore_blue, href:pageToPathName["ManageBlogPage"]},
         {title: pageToPageName["CurrentListingsPage"], img: CurrentListingImg, color: colorScheme.general.teal},
         {title: pageToPageName["BuyersPage"], img: BuyImg, color: colorScheme.general.punch},
