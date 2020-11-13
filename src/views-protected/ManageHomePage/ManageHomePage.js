@@ -28,8 +28,15 @@ import {DB_NODES_PAGES} from "../../constants/contants";
 import Button from '@material-ui/core/Button';
 import multiPartTextArrayToDict from "../../components/Utility/multiPartTextArrayToDict";
 import multiPartTextDictToArray from "../../components/Utility/multiPartTextDictToArray";
-import {DB_KEYS_HOME_PAGE} from "../../constants/contants";
-
+import {DB_KEYS_HOME_PAGE, DB_NODES} from "../../constants/contants";
+import uploadPageToDb from "../../components/Database/uploadPageToDb";
+import uploadImgToDbEasy from "../../components/Database/uploadImgToDbEasy";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Dialog from '@material-ui/core/Dialog';
+import Alert from '@material-ui/lab/Alert';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import LoadingModal from "./LoadingModal";
 const useStyles = makeStyles((theme) => ({
     root:
         {
@@ -162,7 +169,12 @@ const ManageHomePage = () => {
     const [openAboutMe, setOpenAboutMe] = useState(false);
     const [openBigMiddleTitle, setOpenBigMiddleTitle] = useState(false);
     const [hasEdits, setEdits] = useState(false);
+    const [uploading, setUploading] = useState({open:false,finished:false})
 
+
+    // Holds Files
+    const backgroundImg = useRef(null);
+    const profileImg = useRef(null);
 
     // notify if user has edited anything
     useEffect(() => {
@@ -171,7 +183,7 @@ const ManageHomePage = () => {
         } else {
             setEdits(false);
         }
-    }, [homePage]);
+    }, [homePage,initialSavedState]);
 
 
     // all functions call this dispatch function
@@ -187,13 +199,65 @@ const ManageHomePage = () => {
             // multipart text
             newState = {...homePage, [key]: multiPartTextDictToArray(value)};
         } else if (key === DB_KEYS_HOME_PAGE.profilePic || key === DB_KEYS_HOME_PAGE.backgroundPic) {
-            // files
+            // files -- save them in case need to upload
+            if (key === DB_KEYS_HOME_PAGE.profilePic) {
+                profileImg.current = value[0];
+            } else {
+                backgroundImg.current = value[0];
+            }
+
             newState = {...homePage, [key]: URL.createObjectURL(value[0])};
         } else {
             // in this case one line text
             newState = {...homePage, [key]: value}
         }
+
+        // let state know about changes
         changeHomePageState(newState);
+    };
+
+    // Confirm & Cancel Button
+    const cancelEdits = () => {
+        changeHomePageState(initialSavedState.current)
+
+    };
+
+    const confirmEdits = () => {
+        //open upload dialog
+        setUploading({...uploading,open:true});
+
+        let _state = {...homePage};
+        _state.aboutMe = multiPartTextArrayToDict(_state.aboutMe);
+        _state.pageTitle = multiPartTextArrayToDict(_state.pageTitle);
+
+
+        if (backgroundImg.current != null && profileImg.current != null) {
+
+            uploadImgToDbEasy(DB_NODES_PAGES.homePage,backgroundImg.current,profileImg.current )
+                .then((urls)=>{
+                    _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
+                    _state[DB_KEYS_HOME_PAGE.profilePic] = urls[1];
+                    uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+                });
+
+        } else if (backgroundImg.current != null) {
+            uploadImgToDbEasy(DB_NODES_PAGES.homePage, backgroundImg.current ).then((urls) => {
+                _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
+                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+            })
+        } else if (profileImg.current != null) {
+            uploadImgToDbEasy(DB_NODES_PAGES.homePage, profileImg.current ).then((urls) => {
+                _state[DB_KEYS_HOME_PAGE.profilePic] = urls[0];
+                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+            })
+        }else{
+            uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+        }
+
+        // set the saved state to new homePageState
+        initialSavedState.current = {...homePage};
+        setEdits(false)
+
     };
 
     return hasSavedState && <div className={classes.root}>
@@ -211,12 +275,11 @@ const ManageHomePage = () => {
                         you finish all your edits</Typography>
 
                     <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                        <Button size={'large'} variant={'outlined'} onClick={() => {
-                        }}>
+                        <Button size={'large'} variant={'outlined'} onClick={confirmEdits}>
                             Confirm
                         </Button>
 
-                        <Button size={'large'} variant={'contained'} onClick={() => alert('canceld')}
+                        <Button size={'large'} variant={'contained'} onClick={cancelEdits}
                                 color={'secondary'}>
                             Cancel
                         </Button>
@@ -299,6 +362,9 @@ const ManageHomePage = () => {
             helperText={`Edit the big middle title in the middle of the background pic. The number of lines determines how big/small letters will be so play around it. So one line with a lot of text will be smaller than one line with barely any text, so in this case you might want to split into two lines.`}
         />
 
+
+        {/*Progress Icon*/}
+        <LoadingModal state={uploading} page={'home page'} setState={setUploading}/>
 
     </div>
 
