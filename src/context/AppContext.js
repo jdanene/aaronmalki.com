@@ -4,7 +4,7 @@ import useBlogPosts from "./useBlogPost";
 import useProvideAuth from "./use-auth";
 import uploadSettingToDb from "../components/Database/uploadSettingToDb";
 import downloadSettingsFromDb from "../components/Database/downloadSettingsFromDb";
-
+import usePages from "./usePages";
 const AppContext = createContext();
 
 
@@ -60,10 +60,11 @@ const useApp = () => {
 
 const AppContextProvider = ({children}) => {
 
+    const pages= usePages();
     const blogs = useBlogPosts();
     const state = useApp();
     const auth = useProvideAuth();
-    return <AppContext.Provider value={{...state, ...blogs, auth}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{...state, ...blogs, auth,...pages}}>{children}</AppContext.Provider>
 };
 
 // Hook for child components to get the auth object ...

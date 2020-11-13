@@ -7,21 +7,28 @@ const uploadSettingToDb = async ({phoneNumber, companyName, email, license, addr
 
     if (!phoneNumber) {
         alert(`[uploadSettingToDb] tried to upload blog w/o required attribute: phoneNumber `)
+        return
     }
     if (!companyName) {
         alert(`[uploadSettingToDb] tried to upload blog w/o required attribute: companyName `)
+        return
     }
     if (!email) {
         alert(`[uploadSettingToDb] tried to upload blog w/o required attribute: email `)
+        return
     }
     if (!license) {
         alert(`[uploadSettingToDb] tried to upload blog w/o required attribute: license `)
+        return
+
     }
     if (!address) {
         alert(`[uploadSettingToDb] tried to upload blog w/o required attribute: address `)
+        return
     }
     if (!socialMedia) {
         alert(`[uploadSettingToDb] tried to upload blog w/o required attribute: socialMedia `)
+        return
     }
 
 

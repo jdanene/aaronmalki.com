@@ -176,6 +176,10 @@ const AdminSettingsPage = () => {
 
                 </div>
             </div>
+
+
+
+
             <Grid container direction={'column'} className={classes.edit_container}>
 
                 <SelectionDivider color={colorScheme.general.shabby_chic} title={'Personal Info'}/>

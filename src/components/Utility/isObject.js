@@ -4,7 +4,7 @@
  * @return {boolean}
  */
 const isObject = (aVar)=>{
-    return typeof aVar === 'object'
+    return (aVar!==null )&&( aVar !== undefined) &&aVar.constructor === Object
 };
 
 export default isObject;

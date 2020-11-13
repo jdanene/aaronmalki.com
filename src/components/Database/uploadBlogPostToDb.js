@@ -7,24 +7,31 @@ const uploadBlogPostToDb = async (key, {state, category, title, image, descripti
 
     if (!state) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: state `)
+        return
     }
     if (!category) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: category `)
+        return
     }
     if (!title) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: title `)
+        return
     }
     if (!image) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: image `)
+        return
     }
     if (!description) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: description `)
+        return
     }
     if (!date) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: date `)
+        return
     }
     if (!content) {
         alert(`[uploadBlogPostToDb] tried to upload blog w/o required attribute: content `)
+        return
     }
 
 

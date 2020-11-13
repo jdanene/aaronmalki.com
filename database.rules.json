@@ -11,6 +11,10 @@
     "settings": {
       ".write": "auth != null",
       ".read": true
+    },
+    "pages": {
+      ".write": "auth != null",
+      ".read": true
     }
   }
 }

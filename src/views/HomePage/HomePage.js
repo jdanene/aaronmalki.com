@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useRef, Suspense} from "react"
+import React, {useContext, useEffect, useState, useRef} from "react"
 import "./HomePage.scss"
 import {DownArrow} from "../../components/DownArrow";
 import useWindowDimensions from "./useWindowDimensions";
@@ -14,6 +14,10 @@ import {useWindowSize} from "../../components/useWindowSize";
 import {colorScheme} from "../../constants";
 import HomePageBottomHalfInfo from "./HomePageBottomHalfInfo";
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {AppContext} from "../../context";
+import {DB_NODES_PAGES} from "../../constants/contants";
+import {makeStyles} from '@material-ui/core/styles';
+
 
 function ProfilePicture({mobileBreak}) {
 
@@ -26,40 +30,58 @@ function ProfilePicture({mobileBreak}) {
 }
 
 
-const NameHeading = ({mobileBreak}) => {
-    const theme = useTheme();
-
-    return (
-        <div style={{
-            width: '100%',
-            marginTop: mobileBreak ? '45px' : '10px',
-            marginBottom: '12.5px',
-            fontFamily: "'raleway-regular', serif",
-            fontSize: "16px",
-            paddingTop: "12.5px",
-            borderTop: `1px solid ${theme.palette.text.secondary}`
-        }}>
-            <StyledText style={{
-                fontSize: "25px",
-                fontWeight: 'bold',
-                fontFamily: "'raleway-regular', serif",
-                color: colorScheme.primary.dark
-            }}>
-                Aaron Malki
-            </StyledText>
-            <StyledText
-                style={{fontFamily: "'raleway-thin', serif", color: colorScheme.primary.primary, marginTop: "3px"}}>
-                CEO, Founder
-            </StyledText>
-        </div>
-    )
-
+const initial = {
+    "homePage": {
+        "backgroundPic": "https://picsum.photos/seed/picsum/400/400",
+        "profilePic": "https://picsum.photos/seed/picsum/400/400",
+        "professionalTitle": "Bitch",
+        "aboutMe": {
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend felis et efficitur vehicula. Vivamus eget est vitae ex mattis aliquet vitae eu ipsum. Nulla sed urna purus. Morbi eu turpis non mauris vestibulum ullamcorper in sed nunc. Duis ut nisi est. Morbi quis efficitur nisi. Etiam libero neque, auctor at congue auctor, blandit non orci. Duis feugiat facilisis libero, ac aliquet libero congue condimentum. Proin volutpat est at nisi sollicitudin consequat. Cras facilisis pharetra finibus. Nullam aliquam in mi et lobortis. Suspendisse at ullamcorper libero. Phasellus aliquet quam tincidunt arcu finibus, quis aliquam nisi imperdiet.",
+            "secondaryValues": {"1": "Favorite Resturaunt: Penis Head"}
+        },
+        "pageTitle": {"value": "Malki Real Estate", "secondaryValues": {"1": "Welcome Home"}}
+    }
 };
+
+
+// Based on: https://stackoverflow.com/questions/56111294/how-to-use-theme-and-props-in-makestyles
+const useStyles = makeStyles((theme) => ({
+    topHalf_container: props => ({
+        //border: 1px solid red;
+        width: "100%",
+        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${props.backgroundPic})`,
+        backgroundPosition: "top center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+    }),
+}));
+
+
 const HomePage = () => {
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
 
+
+    const {
+        pageState: {
+            [DB_NODES_PAGES.homePage]: {
+                backgroundPic, profilePic, professionalTitle, aboutMe, pageTitle
+            },
+            settings: {
+                socialMedia: {
+                    linkedin
+                }
+            }
+        },
+
+    } = useContext(AppContext);
+
+    const classes = useStyles({backgroundPic});
 
     useEffect(() => {
 
@@ -68,31 +90,34 @@ const HomePage = () => {
 
     }, [inputRef.current, topHalf_bottomPosn]);
 
+
     //https://www.pluralsight.com/tech-blog/getting-size-and-position-of-an-element-in-react/
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div className={"homepage__container"}>
         <CssBaseline/>
         <div id={"id123"} ref={inputRef}
              style={{height: mobileBreak ? '60vh' : '110vh', minHeight: !mobileBreak && '500px'}}
-             className={"homepage_generalInfo__container_top"}>
+             className={classes.topHalf_container}>
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width:'100%'
+                width: '100%'
             }}>
-                <HomePageTopHalfInfo mobileBreak={mobileBreak}/>
+                <HomePageTopHalfInfo mobileBreak={mobileBreak}
+                                     pageTitle={pageTitle}/>
                 {!mobileBreak && <DownArrow posnOfContainter={topHalf_bottomPosn}/>}
             </div>
         </div>
         <div style={{
-            border:'0',
+            border: '0',
             paddingTop: mobileBreak ? "45px" : "50px",
             paddingBottom: mobileBreak ? "45px" : "50px",
             backgroundColor: colorScheme.other.backgroundComplementary
         }} className={"homepage_generalInfo__container_bottom"}>
-            <HomePageBottomHalfInfo/>
+            <HomePageBottomHalfInfo profilePic={profilePic} professionalTitle={professionalTitle} aboutMe={aboutMe}
+                                    linkedin={linkedin}/>
         </div>
     </div>
 

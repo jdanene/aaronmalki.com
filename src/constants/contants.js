@@ -93,5 +93,26 @@ export const blog_states = {
 export const DB_NODES = {
     inquiries:'inquiries',
     blogPosts:'blogPosts',
-    settings:'settings'
+    settings:'settings',
+    pages:'pages'
+};
+
+export const DB_NODES_PAGES = {
+    "homePage":"homePage",
+    "leasePage": "leasePage",
+    "buyersPage":"buyersPage",
+    "settings":"settings"
+};
+
+export const DB_KEYS_HOME_PAGE={
+    aboutMe:"aboutMe",
+    pageTitle:"pageTitle",
+    profilePic:"profilePic",
+    backgroundPic:"backgroundPic",
+    professionalTitle:"professionalTitle"
+};
+
+export const DB_MULTIPART_TEXT_KEY={
+    value:"value",
+    secondaryValues:"secondaryValues"
 };

@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from '@material-ui/core/styles';
-
+import {DB_MULTIPART_TEXT_KEY} from "../../constants/contants";
 
 const useStyles = makeStyles((theme) => ({
     addRemove_container:
@@ -180,7 +180,10 @@ MultiParagraphTextDialog.propTypes = {
     label: PropTypes.string,
     setOpen: PropTypes.func.isRequired,
     confirmCallback: PropTypes.func.isRequired,
-    initial: PropTypes.string,
+    initial: PropTypes.shape({
+        [DB_MULTIPART_TEXT_KEY.value]:PropTypes.string,
+        [DB_MULTIPART_TEXT_KEY.secondaryValues]:PropTypes.object
+    }).isRequired
 };
 
 

@@ -10,10 +10,11 @@ import {makeStyles} from '@material-ui/core/styles';
 import Link from "@material-ui/core/Link";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
 
 const useStyles = makeStyles((theme) => ({
 
-        icon_container: {
+    icon_container: {
         "&:hover": {
             //you want this to be the same as the backgroundColor above
             backgroundColor: "rgba(112, 134, 144,.15)",
@@ -21,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
         },
 
-            //you want this to be the same as the backgroundColor above
-            color: "#0e76a8",
-            backgroundColor: "rgba(112, 134, 144,.1)",
-              boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
+        //you want this to be the same as the backgroundColor above
+        color: "#0e76a8",
+        backgroundColor: "rgba(112, 134, 144,.1)",
+        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 
     },
 
@@ -35,27 +36,26 @@ const useStyles = makeStyles((theme) => ({
         },
         backgroundColor: "transparent",
         position: "absolute",
-        top:7.9,
-        left:7.9
+        top: 7.9,
+        left: 7.9
     }
 
 
 }));
 
 
-function ProfilePicture({mobileBreak}) {
+function ProfilePicture({mobileBreak, profilePic}) {
 
     return <div style={{width: mobileBreak ? "100%" : "48%", height: mobileBreak ? "50%" : "100%", borderRadius: '1%'}}
                 className={"homepage__img_container"}><img
-        style={{borderRadius: '1%'}} className={"homepage__img"} alt={"Aaron Malki"} src={require("./headshot.jpg")}/>
+        style={{borderRadius: '1%'}} className={"homepage__img"} alt={"Aaron Malki"} src={profilePic}/>
     </div>
 
 }
 
 
+const NameHeading = ({mobileBreak, linkedin, professionalTitle}) => {
 
-
-const NameHeading = ({mobileBreak}) => {
     const theme = useTheme();
     const classes = useStyles();
     const preventDefault = event => event.preventDefault();
@@ -73,10 +73,10 @@ const NameHeading = ({mobileBreak}) => {
             marginBottom: '12.5px',
             fontFamily: "'raleway-regular', serif",
             fontSize: "16px",
-            paddingTop:mobileBreak? "12.5px":"0px",
-            borderTop: `1px solid rgba(27, 48, 57,${mobileBreak? ".25":"0"})`,
+            paddingTop: mobileBreak ? "12.5px" : "0px",
+            borderTop: `1px solid rgba(27, 48, 57,${mobileBreak ? ".25" : "0"})`,
             paddingBottom: "12.5px",
-            borderBottom:  `1px solid rgba(27, 48, 57,${mobileBreak? "0":".25"})`
+            borderBottom: `1px solid rgba(27, 48, 57,${mobileBreak ? "0" : ".25"})`
         }}>
             <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>
                 <StyledText style={{
@@ -90,11 +90,11 @@ const NameHeading = ({mobileBreak}) => {
                     Aaron Malki
                 </StyledText>
 
-                <Link href={"https://www.linkedin.com/in/aaron-malki-761b3165/"}>
+                <Link href={linkedin}>
                     <Avatar className={classes.icon_container}>
-                        <div style={{backgroundColor: "white",height:"17.5px", width:"16.3px" }}>
-                        <LinkedIn className={classes.icon}
-                                  href={"https://www.linkedin.com/in/aaron-malki-761b3165/"}/>
+                        <div style={{backgroundColor: "white", height: "17.5px", width: "16.3px"}}>
+                            <LinkedIn className={classes.icon}
+                                      href={linkedin}/>
                         </div>
                     </Avatar>
                 </Link>
@@ -110,7 +110,7 @@ const NameHeading = ({mobileBreak}) => {
 
             }}>
                 <StyledText /*style={{border: "1px solid black" }}*/>
-                    Real Estate Agent
+                    {professionalTitle}
                 </StyledText>
 
 
@@ -120,14 +120,23 @@ const NameHeading = ({mobileBreak}) => {
     )
 
 };
-const HomePageBottomHalfInfo = () => {
-    const id = "id123";
+
+
+const getBoldText = (text) => {
+    let pat = /^(?<part1>.*):(?<part2>.*)$/;
+    const {groups: {part1, part2}} = pat.exec(text);
+    return (
+        <React.Fragment>
+            <b>{part1}:</b>{part2}
+        </React.Fragment>
+    )
+};
+
+const HomePageBottomHalfInfo = ({profilePic, professionalTitle, aboutMe, linkedin}) => {
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
     const tabletBreak = useMediaQuery("only screen and (max-width: 1050px)");
-
-    const theme = useTheme();
-
+    const aboutMeTextArray = parseMultiPartTextToArray(aboutMe);
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
 
 
@@ -157,24 +166,28 @@ const HomePageBottomHalfInfo = () => {
 
             textAlign: "left"
         }}>
-            {!mobileBreak && <NameHeading mobileBreak={mobileBreak}/>}
+            {!mobileBreak &&
+            <NameHeading mobileBreak={mobileBreak} linkedin={linkedin} professionalTitle={professionalTitle}/>}
             <StyledText mode={"multi"}>
-                As a registered real estate agent in California, Aaron provides a personal
-                connection with every client he meets. His vision is built on: dedication, trust,
-                determination and unwavering support. A Californian native for over 20 years, Aaron’s
-                knowledge and expertise of the Bay Area’s geography can assist you with all aspects
-                revolving around residential real estate. What separates Aaron from his competitors is
-                the profound level of trust he maintains to ensure you feel confident in your decision.
-                He holds a degree in political science from the University of Oregon and he is an active
-                contributor to organizations such as Hillel, AEPi, and Keshet. When Aaron isn't at the office,
-                he enjoys hiking, Shabbat dinners, cycling, watching the University of Oregon beat the
-                University of Washington, yoga, camping and enjoying a delicious croissant from Tartine bakery.
-                <br/> <br/>
-                <b>Favorite restaurant:</b> Brenda’s French Soul Food.
+
+                {aboutMeTextArray.map((val, idx) => {
+                    if (idx === 0) {
+                        return <React.Fragment key={idx}>
+                            {val}
+                            <br/> <br/>
+                        </React.Fragment>
+                    } else {
+                        return <React.Fragment key={idx}>
+                            {getBoldText(val)} <br/>
+                        </React.Fragment>
+                    }
+                })}
+
             </StyledText>
         </div>
-        {mobileBreak && <NameHeading mobileBreak={mobileBreak}/>}
-        <ProfilePicture mobileBreak={mobileBreak}/>
+        {mobileBreak &&
+        <NameHeading mobileBreak={mobileBreak} linkedin={linkedin} professionalTitle={professionalTitle}/>}
+        <ProfilePicture mobileBreak={mobileBreak} profilePic={profilePic}/>
     </div>
 
 };
