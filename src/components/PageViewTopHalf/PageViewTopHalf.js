@@ -69,11 +69,12 @@ const Page_View_Top_Half = ({text, text2,titleArray}) => {
             }}>
                 <FittedText style={{fontFamily: "airbnb-bold", display: "flex"}}>
                     {titleArray.map((val, idx) => {
-                        if (idx === 0) {
+                        if (!(idx===titleArray.length-1)) {
                             return <React.Fragment key={idx}>
                                 {val} <br/>
                             </React.Fragment>
-                        } else {
+                        }
+                        else {
                             return <React.Fragment key={idx}>
                                 {val}
                             </React.Fragment>

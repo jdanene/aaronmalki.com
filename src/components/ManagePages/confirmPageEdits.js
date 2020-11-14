@@ -36,6 +36,7 @@ const confirmPageEdits = async (state, initialSavedState, uploading, setUploadin
 
     // upload files to db and get urls back so we can save in firebase real time
     const pictureFileKeys = Object.keys(picturesFiles.current);
+
     for (const key of pictureFileKeys) {
         const files = picturesFiles.current[key];
         //DB_NODES_PAGES.buyersPage
