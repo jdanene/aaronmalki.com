@@ -38,33 +38,12 @@ const initial = {
 };
 
 
-const useApp = () => {
-    const [state, setState] = useState({});
-    const [settingsHasLoaded, setSettingsHasLoaded] = useState(false);
-
-
-    useEffect(() => {
-        downloadSettingsFromDb().then((val) => {
-            setState(val);
-            setSettingsHasLoaded(true);
-        }).catch((e) => alert(`Fatal error could not get settings from db: ${e}`))
-    }, []);
-
-    const changeSettings = (newState) => {
-        setState(newState)
-    };
-
-    return {...state, settingsHasLoaded, changeSettings}
-};
-
-
 const AppContextProvider = ({children}) => {
 
     const pages= usePages();
     const blogs = useBlogPosts();
-    const state = useApp();
     const auth = useProvideAuth();
-    return <AppContext.Provider value={{...state, ...blogs, auth,...pages}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{ ...blogs, auth,...pages}}>{children}</AppContext.Provider>
 };
 
 // Hook for child components to get the auth object ...

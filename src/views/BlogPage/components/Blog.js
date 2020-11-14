@@ -25,6 +25,7 @@ import {getPostFromBlogPosts} from "../../../context/useBlogPost";
 import {blog_categories, blog_states} from "../../../constants/contants";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import BlogSearch from "./BlogSearch";
+import {DB_NODES_PAGES} from "../../../constants/contants";
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -121,7 +122,16 @@ export default function Blog({blogUUID, category}) {
     // This is non null and equal to one of blog_categories then we are in a blog page , not a individual post
     console.log(JSON.stringify(location), 'state' in location, location.state);
     const main_page_category_key = category ? category : ((location) && ('state' in location) && (location.state) && ('category' in location.state)) ? location.state.category : null;
-    const {filteredBlogPosts, isBlogLoaded, blogPaths, blogPostsRaw} = useContext(AppContext);
+
+    const {
+        filteredBlogPosts, isBlogLoaded, blogPaths, blogPostsRaw,
+        pageState: {
+            [DB_NODES_PAGES.settings]: {
+                socialMedia
+            }
+        },
+    } = useContext(AppContext);
+
 
     const {featured, main_featured, posts} = getPosts(main_page_category_key, filteredBlogPosts);
 
@@ -146,6 +156,7 @@ export default function Blog({blogUUID, category}) {
                                 </Grid>
 
                                 <Sidebar
+                                    socialMedia={socialMedia}
                                     title={sidebar.title}
                                     description={sidebar.description}
                                     archives={sidebar.archives}
@@ -200,6 +211,7 @@ export default function Blog({blogUUID, category}) {
                                 <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
                             }
                             <Sidebar
+                                socialMedia={socialMedia}
                                 title={sidebar.title}
                                 description={sidebar.description}
                                 archives={sidebar.archives}

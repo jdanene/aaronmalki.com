@@ -32,9 +32,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sidebar(props) {
-    const {socialMedia} = useContext(AppContext);
     const classes = useStyles();
-    const {archives, description, social, title} = props;
+    const {archives, description, social, title,socialMedia} = props;
 
     return (
         <Grid item xs={12} md={4} className={classes.container}>

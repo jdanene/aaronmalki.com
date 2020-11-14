@@ -224,7 +224,7 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
                     <Paper style={{height: '100%', width: '100%'}}>
                         {/*The Map*/}
                         <Grid item lg={12} md={12} sm={12} xs={12} style={{height: '75%'}}>
-                            <ShowGoogleMap/>
+                            <ShowGoogleMap address={address} phoneNumber={phoneNumber} email={email}/>
                         </Grid>
 
                         {/*The Location*/}

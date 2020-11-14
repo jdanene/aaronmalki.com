@@ -98,7 +98,7 @@ function App({location}) {
 
 
         <ThemeProvider theme={theme}>
-            {isBlogLoaded&&settingsHasLoaded&&pageStateHasLoaded?
+            {isBlogLoaded&&pageStateHasLoaded?
                 <div className="app_container">
 
 

@@ -107,8 +107,7 @@ const styles = theme => ({
 
 */
 
-const NavigateToGoogleMapButton = ({classes, theme, width, center, zoom}) => {
-    const {address, phoneNumber, email} = useContext(AppContext);
+const NavigateToGoogleMapButton = ({classes, address, theme, width, center, zoom}) => {
 
     const [googleMapsUrls, setGoogleMapsUrl] = useState({searchUrl: "#", directionUrl: "#"});
 

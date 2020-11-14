@@ -57,10 +57,8 @@ const defaultMapOptions = {
     clickableIcons:false
 };
 
-const ShowGoogleMap = ({styles}) => {
+const ShowGoogleMap = ({phoneNumber, email, address}) => {
 
-
-    const {address,phoneNumber,email} = useContext(AppContext);
 
     const [overlayPane, setOverlayPane] = React.useState(
         OverlayView.FLOAT_PANE
@@ -93,7 +91,7 @@ const ShowGoogleMap = ({styles}) => {
             >
 
 
-                    <NavigateToGoogleMapButton/>
+                    <NavigateToGoogleMapButton address={address}/>
 
 
                 <OverlayView
