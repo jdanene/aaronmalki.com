@@ -53,7 +53,7 @@ const BuyerImageAndDescription = ({leftParagraph, leftPicture, leftTitle, rightP
 
         <Grid container spacing={mobileBreak? 3: 7}>
             <Grid sm={12} md={6} item>
-                <TextBlurbWithTitle title={rightTitle} paragraphArray={rightParagraphArray}/>
+                <TextBlurbWithTitle title={leftTitle} paragraphArray={leftParagraphArray}/>
             </Grid>
             <Grid sm={12} md={6} item>
                 <FeaturedImage src={rightPicture} alt={'house_1'}/>
@@ -65,13 +65,13 @@ const BuyerImageAndDescription = ({leftParagraph, leftPicture, leftTitle, rightP
                 <FeaturedImage src={leftPicture} alt={'house_2'}/>
             </Grid>
             <Grid sm={12} md={6} item>
-                <TextBlurbWithTitle paragraphArray={leftParagraphArray} title={leftTitle}/>
+                <TextBlurbWithTitle paragraphArray={rightParagraphArray} title={rightTitle}/>
             </Grid>
             </React.Fragment>
             :
             <React.Fragment>
             <Grid sm={12} md={6} item>
-                <TextBlurbWithTitle paragraphArray={leftParagraphArray} title={leftTitle}/>
+                <TextBlurbWithTitle paragraphArray={rightParagraphArray} title={rightTitle}/>
             </Grid>
             <Grid sm={12} md={6} item  >
                 <FeaturedImage src={leftPicture} alt={'house_2'}/>

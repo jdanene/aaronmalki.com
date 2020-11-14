@@ -4,6 +4,7 @@ import {StyledText} from "../Text";
 import PropTypes from 'prop-types';
 import Typography from "@material-ui/core/Typography";
 import textArrayToParagraph from "../Utility/textArrayToParagraph";
+import {colorScheme} from "../../constants";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
         fontFamily: 'airbnb-black',
         fontSize: 40,
-        color: 'theme.palette.text.primary',
+        color: colorScheme.text.primary,
         letterSpacing: 1.5,
         paddingBottom: theme.spacing(3),
         textAlign: 'left',
@@ -27,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
     },
     blurb: {
         fontFamily: 'airbnb-book',
-        color: theme.palette.text.secondary,
+        color: colorScheme.text.secondary,
         textAlign: 'left',
     },
     secondaryTitle: {
         fontFamily: 'airbnb-black',
         fontSize: 25,
-        color: 'theme.palette.text.primary',
+        color: colorScheme.text.primary,
         letterSpacing: 1.5,
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(3),
@@ -44,16 +45,17 @@ const useStyles = makeStyles((theme) => ({
     },
     secondaryBlurb: {
         fontFamily: 'airbnb-book',
-        color: theme.palette.text.secondary,
+        color: colorScheme.text.secondary,
         textAlign: 'left',
     },
     secondaryBlurbP2: {
         fontFamily: 'airbnb-book',
-        color: theme.palette.text.secondary,
+        color: colorScheme.text.secondary,
         textAlign: 'left',
         marginTop: theme.spacing(3),
     }
 }));
+
 
 const TextBlurbWithTitleLevel2 = ({mainBlurbArray, mainTitle,secondaryBlurbArray, secondaryTitle}) => {
     const classes = useStyles();

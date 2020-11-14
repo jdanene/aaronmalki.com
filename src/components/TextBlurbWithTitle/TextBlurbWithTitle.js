@@ -4,6 +4,7 @@ import {StyledText} from "../Text";
 import PropTypes from 'prop-types';
 import Typography from "@material-ui/core/Typography";
 import textArrayToParagraph from "../Utility/textArrayToParagraph";
+import {colorScheme} from "../../constants";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
         fontFamily: 'airbnb-black',
         fontSize: 40,
-        color: 'theme.palette.text.primary',
+        color: colorScheme.text.primary,
         letterSpacing: 1.5,
         paddingBottom: theme.spacing(3),
         textAlign: 'left',
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
         fontFamily: 'airbnb-black',
         fontSize: 30,
-        color: 'theme.palette.text.primary',
+        color: colorScheme.text.primary,
         letterSpacing: 1.5,
         paddingBottom: theme.spacing(3),
         textAlign: 'left',
@@ -40,16 +41,15 @@ const useStyles = makeStyles((theme) => ({
     },
     blurb: {
         fontFamily: 'airbnb-book',
-        color: theme.palette.text.secondary,
+        color: colorScheme.text.secondary,
     },
     blurb2: {
         fontFamily: 'airbnb-book',
-        color: theme.palette.text.secondary,
+        color: colorScheme.text.secondary,
         paddingTop: theme.spacing(3),
 
     }
 }));
-
 
 
 const TextBlurbWithTitle = ({title, paragraphArray, smallTitle, alignLeft}) => {

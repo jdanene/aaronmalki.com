@@ -11,7 +11,9 @@ export const pageToPathName = {
     'AdminPage':'/admin',
     'ManageBlogPage':'/admin/manage-blog',
     'AdminSettingsPage':'/admin/settings',
-    'ManageHomePage':'/admin/manage-home'
+    'ManageHomePage':'/admin/manage-home',
+    'ManageLeasePage':'/admin/manage-lease',
+    'ManageBuyersPage':'/admin/manage-buyers'
 
 };
 
@@ -28,7 +30,9 @@ export const pageToPageName = {
     'Admin': 'admins',
     'ManageBlogPage': 'manage-blog',
     'AdminSettingsPage':'settings',
-    'ManageHomePage':'manage-home'
+    'ManageHomePage':'manage-home',
+    'ManageLeasePage':'manage-lease',
+    'ManageBuyersPage':'manage-buyers'
 };
 
 export const pathToPageName = {
@@ -44,7 +48,9 @@ export const pathToPageName = {
     '/admin':'AdminPage',
     '/admin/manage-blog':'ManageBlogPage',
     '/admin/settings':'AdminSettingsPage',
-    '/admin/manage-home':'ManageHomePage'
+    '/admin/manage-home':'ManageHomePage',
+    '/admin/manage-lease':'ManageLeasePage',
+   '/admin/manage-buyers':'ManageBuyersPage'
 };
 
 
@@ -111,6 +117,55 @@ export const DB_KEYS_HOME_PAGE={
     backgroundPic:"backgroundPic",
     professionalTitle:"professionalTitle"
 };
+
+export const DB_KEYS_BUYERS_PAGE={
+    backgroundPic:"backgroundPic",
+    formHeading:"formHeading",
+    leftParagraph:"leftParagraph",
+    leftPicture:"leftPicture",
+    leftTitle:"leftTitle",
+    pageTitle:"pageTitle",
+    rightParagraph:"rightParagraph",
+    rightPicture:"rightPicture",
+    rightTitle:"rightTitle"
+
+};
+
+export const DB_FORMATS = {
+    "multiPartText":"multiPartText",
+    "plainText": "plainText",
+    "file":"file",
+    "fileArray":"fileArray"
+};
+
+// the keys that are multipart text
+export const DB_BUYERS_FORMATS = {
+    backgroundPic:DB_FORMATS.file,
+    formHeading:DB_FORMATS.plainText,
+    leftParagraph:DB_FORMATS.multiPartText,
+    leftPicture:DB_FORMATS.file,
+    leftTitle:DB_FORMATS.plainText,
+    pageTitle:DB_FORMATS.multiPartText,
+    rightParagraph:DB_FORMATS.multiPartText,
+    rightPicture:DB_FORMATS.file,
+    rightTitle:DB_FORMATS.plainText
+};
+
+
+export const DB_KEYS_LEASE_PAGE={
+    pageTitle:"pageTitle",
+    backgroundPic:"backgroundPic",
+    imageCarousel:"imageCarousel",
+    mainRightTitle:"mainRightTitle",
+    mainRightParagraph:"mainRightParagraph",
+    secondaryRightTitle:"secondaryRightTitle",
+    secondaryRightParagraph:"secondaryRightParagraph",
+    mainLeftTitle:"mainLeftTitle",
+    mainLeftParagraph:"mainLeftParagraph",
+    formHeading:"formHeading"
+};
+
+
 
 export const DB_MULTIPART_TEXT_KEY={
     value:"value",

@@ -135,7 +135,7 @@ const usePages = () => {
         pageState: {
             ...pageState,
             changeHomePageState: changePageState(DB_NODES_PAGES.homePage),
-            changeBuyerPageState: changePageState(DB_NODES_PAGES.buyersPage),
+            changeBuyersPageState: changePageState(DB_NODES_PAGES.buyersPage),
             changeLeasePageState: changePageState(DB_NODES_PAGES.leasePage),
             changeSettings: changePageState(DB_NODES_PAGES.settings)
         },

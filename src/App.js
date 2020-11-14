@@ -35,6 +35,9 @@ import ManageBlogPage from "./views-protected/ManageBlogPage/ManageBlogPage";
 import {v4 as uuidv4} from 'uuid';
 import AdminSettingsPage from "./views-protected/AdminSettingsPage/AdminSettingsPage";
 import ManageHomePage from "./views-protected/ManageHomePage/ManageHomePage";
+import ManageBuyersPage from "./views-protected/ManageBuyersPage/ManageBuyersPage";
+import ManageLeasePage from "./views-protected/ManageLeasePage/ManageLeasePage";
+
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -126,6 +129,10 @@ function App({location}) {
 
                         {/*Manage Home Page*/}
                         <ProtectedRoute path={pageToPathName["ManageHomePage"]} exact component={ManageHomePage}/>
+                        {/*Manage Buy Page*/}
+                        <ProtectedRoute path={pageToPathName["ManageBuyersPage"]} exact component={ManageBuyersPage}/>                        {/*Manage Home Page*/}
+                         {/*Manage Lease Page*/}
+                        <ProtectedRoute path={pageToPathName["ManageLeasePage"]} exact component={ManageLeasePage}/>
 
                         {/*Blog absolute path*/}
                         <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>

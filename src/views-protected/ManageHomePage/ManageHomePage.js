@@ -122,21 +122,21 @@ const ManageHomePage = () => {
                 .then((urls)=>{
                     _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
                     _state[DB_KEYS_HOME_PAGE.profilePic] = urls[1];
-                    uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+                    uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]", DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
                 });
 
         } else if (backgroundImg.current != null) {
             uploadImgToDbEasy(DB_NODES_PAGES.homePage, backgroundImg.current ).then((urls) => {
                 _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
-                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]",DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
             })
         } else if (profileImg.current != null) {
             uploadImgToDbEasy(DB_NODES_PAGES.homePage, profileImg.current ).then((urls) => {
                 _state[DB_KEYS_HOME_PAGE.profilePic] = urls[0];
-                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]",DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
             })
         }else{
-            uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
+            uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]",DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
         }
 
         // set the saved state to new homePageState

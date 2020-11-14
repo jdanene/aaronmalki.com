@@ -79,7 +79,8 @@ export const colorScheme = {
 
     },
     text:{
-        secondary:'rgba(0, 0, 0, 0.54)'
+        secondary:'rgba(0, 0, 0, 0.54)',
+        primary:'rgba(0, 0, 0, 0.87)'
     }
 
 };

@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import parseMultiPartTextToArray from "../Utility/parseMultiPartTextToArray";
 import BuyerTopImg from "resources/images/buyerpage_top.png"
 import clsx from "clsx";
+import {DB_MULTIPART_TEXT_KEY} from "../../constants/contants";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -128,9 +130,12 @@ const PageViewTopHalf = ({className,pageTitle}) => {
     </div>
 
 };
-
+//DB_MULTIPART_TEXT_KEY
 PageViewTopHalf.propTypes = {
-    middleText: PropTypes.string.isRequired,
+    pageTitle: PropTypes.shape({
+        [DB_MULTIPART_TEXT_KEY.value]:PropTypes.string,
+        [DB_MULTIPART_TEXT_KEY.secondaryValues]: PropTypes.array
+    }),
     className: PropTypes.string.isRequired
 
 };

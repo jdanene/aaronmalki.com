@@ -20,12 +20,13 @@ const useStyles = makeStyles((theme) => ({
 const ManagePageListOption = ({node, text, callback, color}) => {
     const classes = useStyles();
 
+    const Item = node;
     return (
         <Paper elevation={3} className={classes.options}>
             <ListItem button onClick={callback}>
                 <ListItemAvatar>
                     <Avatar style={{backgroundColor: color}}>
-                        <node.type/>
+                        <Item.type/>
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={text}/>

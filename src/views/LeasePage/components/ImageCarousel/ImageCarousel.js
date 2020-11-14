@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import {Carousel} from 'react-responsive-carousel';
-import Typography from "@material-ui/core/Typography";
-import LeaseImg from "resources/images/leasePage/leasingpagepic2.png"
-import LeaseImg2 from "resources/images/leasePage/leasingpagepic3.png"
-import LeaseImg3 from "resources/images/leasePage/leasingpagepic4.png"
 import Paper from '@material-ui/core/Paper';
 
 import {makeStyles} from '@material-ui/core/styles';

@@ -59,10 +59,10 @@ const VirtualAdminPage = () => {
         {title: pageToPageName["HomePage"], img: HomeImg, color: colorScheme.general.hot_purple, href:pageToPathName["ManageHomePage"]},
         {title: pageToPageName["BlogPage"], img: MalkiBlogImg, color: colorScheme.general.oneMore_blue, href:pageToPathName["ManageBlogPage"]},
         {title: pageToPageName["CurrentListingsPage"], img: CurrentListingImg, color: colorScheme.general.teal},
-        {title: pageToPageName["BuyersPage"], img: BuyImg, color: colorScheme.general.punch},
+        {title: pageToPageName["BuyersPage"], img: BuyImg, color: colorScheme.general.punch, href:pageToPathName["ManageBuyersPage"]},
         {title: pageToPageName["SellersPage"], img: SellImg, color: colorScheme.general.light_orange},
-        {title: pageToPageName["LeasePage"], img: LeaseImg, color: colorScheme.other.triadic0},
-    ]
+        {title: pageToPageName["LeasePage"], img: LeaseImg, color: colorScheme.other.triadic0,href:pageToPathName["ManageLeasePage"]},
+    ];
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:'100%'}}>

@@ -1,16 +1,15 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useState} from "react"
 import {makeStyles} from '@material-ui/core/styles';
-import FormDropDownChoices from "../../components/Forms/FormDropDownChoices";
 import FormStaticChoices from "../../components/Forms/FormStaticChoices";
 import FormMinMaxChoices from "../../components/Forms/FormMinMaxChoices";
 import {ContactForm} from "../../components/ContactForm";
 import FormDivider from "../../components/Forms/FormDivider";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import {colorScheme} from "../../constants";
-import FormPlug from "../../components/Forms/FormPlug";
+import CssBaseline from '@material-ui/core/CssBaseline';
 const useStyles = makeStyles((theme) => ({
     root: {
+
         width: '100%',
         display: 'flex',
         flexDirection: 'column',

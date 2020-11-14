@@ -9,7 +9,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const FileDropDialog = ({open, setOpen, fileCallback, acceptedFiles,filesLimit,dialogTitle}) => {
+const FileDropDialog = ({open, setOpen, fileCallback, acceptedFiles,filesLimit,dialogTitle,initialFiles}) => {
 
     const handleClose = () => {
         setOpen(false);
@@ -18,13 +18,13 @@ const FileDropDialog = ({open, setOpen, fileCallback, acceptedFiles,filesLimit,d
     const handleSave = (files) => {
         //Saving files to state for further use and closing Modal.
         //console.log(URL.createObjectURL(files[0]))
-        console.log('Files:', files, Object.keys(files));
         fileCallback(files);
         setOpen(false);
     };
 
     return (
         <DropzoneDialog
+            initialFiles={initialFiles}
             dialogTitle={ dialogTitle}
             TransitionComponent={Transition}
             color="secondary"

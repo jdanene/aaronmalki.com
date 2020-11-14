@@ -15,13 +15,13 @@ const validateKeys = (props, truth, errorMsg) => {
 };
 
 
-const uploadPageToDb = async (props,truth,errorMsg) => {
+const uploadPageToDb = async (props,truth,errorMsg, path) => {
 
     if (!validateKeys(props,truth,errorMsg)){
         return
     }
 
-    let inquiryRef = FIREBASE_DB.ref(`${DB_NODES.pages}/${DB_NODES_PAGES.homePage}`);
+    let inquiryRef = FIREBASE_DB.ref(`${DB_NODES.pages}/${path}`);
 
     await inquiryRef.update({
         ...props,
