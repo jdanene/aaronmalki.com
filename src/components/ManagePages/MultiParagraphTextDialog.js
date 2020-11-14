@@ -41,7 +41,6 @@ const RawTextField = ({label, value, setValue}) => {
         <TextField
             color={"secondary"}
             multiline
-            autoFocus
             margin="dense"
             id={label}
             label={label}
@@ -81,8 +80,10 @@ const SecondaryTextField = ({label, value, setValue}) => {
 const MultiParagraphTextDialog = ({dialogTitle, open, setOpen, mainLabel, secondaryLabel, secondaryButtonLabel, confirmCallback, initial,helperText}) => {
     const classes = useStyles();
     const [value, setValue] = useState(initial.value);
-    const [secondaryValues, setSecondaryValues] = useState(initial.secondaryValues);
-    const [numberOfXtraFields, setNumberOfXtraFields] = useState(Object.keys(initial.secondaryValues).length);
+    const [secondaryValues, setSecondaryValues] = useState("secondaryValues" in initial? initial.secondaryValues:{});
+    const [numberOfXtraFields, setNumberOfXtraFields] = useState("secondaryValues" in initial? Object.keys(initial.secondaryValues).length:0);
+
+
 
     // Handles the storing of text of extra fields
     const getSecondaryValue = (i) => {

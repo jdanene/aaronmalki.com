@@ -21,7 +21,7 @@ import uploadPageToDb from "../Database/uploadPageToDb";
  */
 const confirmPageEdits = async (state, initialSavedState, uploading, setUploading, setEdits, PAGE_SPECIFIC_FORMATS, picturesFiles, PAGE, PAGE_ATTRIBUTES, errorPrefix) =>{
     //open upload dialog
-    setUploading({...uploading, open: true});
+    setUploading({finished:false, open: true});
 
     // copy state so we don't fuck things up
     let _state = {...state};

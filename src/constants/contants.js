@@ -165,6 +165,19 @@ export const DB_KEYS_LEASE_PAGE={
     formHeading:"formHeading"
 };
 
+export const DB_LEASE_FORMATS = {
+    pageTitle:DB_FORMATS.multiPartText,
+    backgroundPic:DB_FORMATS.file,
+    imageCarousel:DB_FORMATS.fileArray,
+    mainRightTitle:DB_FORMATS.plainText,
+    mainRightParagraph:DB_FORMATS.multiPartText,
+    secondaryRightTitle:DB_FORMATS.plainText,
+    secondaryRightParagraph:DB_FORMATS.multiPartText,
+    mainLeftTitle:DB_FORMATS.plainText,
+    mainLeftParagraph:DB_FORMATS.multiPartText,
+    formHeading:DB_FORMATS.plainText
+};
+
 
 
 export const DB_MULTIPART_TEXT_KEY={

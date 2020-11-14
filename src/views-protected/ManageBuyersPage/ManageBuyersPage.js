@@ -26,7 +26,7 @@ import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import SubjectIcon from '@material-ui/icons/Subject';
 import { ImParagraphRight, ImParagraphLeft } from "react-icons/im";
 import { CgImage } from "react-icons/cg";
-
+import {GiConqueror} from "react-icons/gi"
 
 
 const ManageBuyersPage = () => {
@@ -125,18 +125,14 @@ const ManageBuyersPage = () => {
             color: colorScheme.general.green,
             callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.backgroundPic)(true)
         },
-        formHeading: {
-            text: "Title of Form",
-            node: ContactPhoneIcon,
-            color: colorScheme.general.light_orange,
-            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.formHeading)(true)
+                pageTitle: {
+            text: "Big Title in Middle of Page",
+            node: <GiConqueror/>,
+            color: colorScheme.general.teal,
+            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.pageTitle)(true)
         },
-        leftParagraph: {
-            text: "Left Paragraph",
-            node: <ImParagraphLeft/>,
-            color: colorScheme.general.dark_purple,
-            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.leftParagraph)(true)
-        },
+
+
         leftPicture: {
             text: "Left Picture",
             node: ImageIcon,
@@ -149,17 +145,11 @@ const ManageBuyersPage = () => {
             color: colorScheme.general.light_blue0,
             callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.leftTitle)(true)
         },
-        pageTitle: {
-            text: "Big Title in Middle of Page",
-            node: TitleIcon,
-            color: colorScheme.general.teal,
-            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.pageTitle)(true)
-        },
-        rightParagraph: {
-            text: "Right Paragraph",
-            node: <ImParagraphRight/>,
-            color: colorScheme.general.oneMore_blue,
-            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.rightParagraph)(true)
+        leftParagraph: {
+            text: "Left Paragraph",
+            node: <ImParagraphLeft/>,
+            color: colorScheme.general.dark_purple,
+            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.leftParagraph)(true)
         },
         rightPicture: {
             text: "Right Picture",
@@ -172,7 +162,19 @@ const ManageBuyersPage = () => {
             node: TitleIcon,
             color: colorScheme.general.purp_purp,
             callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.rightTitle)(true)
-        }
+        },
+                rightParagraph: {
+            text: "Right Paragraph",
+            node: <ImParagraphRight/>,
+            color: colorScheme.general.oneMore_blue,
+            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.rightParagraph)(true)
+        },
+        formHeading: {
+            text: "Title of Contact Form",
+            node: ContactPhoneIcon,
+            color: colorScheme.general.light_orange,
+            callback: () => handleOpenUploadDialog(DB_KEYS_BUYERS_PAGE.formHeading)(true)
+        },
     };
 
     const modalEditOptions = {

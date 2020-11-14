@@ -6,144 +6,321 @@ import Grid from "@material-ui/core/Grid";
 import LeasePage from "../../views/LeasePage/LeasePage";
 import Typography from "@material-ui/core/Typography";
 import List from '@material-ui/core/List';
-import ImageIcon from '@material-ui/icons/Image';
-import TextFormatIcon from '@material-ui/icons/TextFormat';
 import TitleIcon from '@material-ui/icons/Title';
-import FaceIcon from '@material-ui/icons/Face';
 import FileDropDialog from "../../components/FileDrop/FileDropDialog";
 import BasicTextDialog from "../../components/ManagePages/BasicTextDialog";
 import MultiParagraphTextDialog from "../../components/ManagePages/MultiParagraphTextDialog";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES_PAGES, DB_LEASE_FORMATS, DB_FORMATS, DB_KEYS_LEASE_PAGE} from "../../constants/contants";
 import Button from '@material-ui/core/Button';
 import multiPartTextArrayToDict from "../../components/Utility/multiPartTextArrayToDict";
-import multiPartTextDictToArray from "../../components/Utility/multiPartTextDictToArray";
-import {DB_KEYS_HOME_PAGE} from "../../constants/contants";
-import uploadPageToDb from "../../components/Database/uploadPageToDb";
-import uploadImgToDbEasy from "../../components/Database/uploadImgToDbEasy";
 import LoadingModal from "../../components/ManagePages/LoadingModal";
 import ManagePageListOption from "../../components/ManagePages/ManagePageListOption";
 import SecondaryHeading from "../../components/ManagePages/SecondaryHeading"
-import isInvalidAboutMe from "../ManageHomePage/isInvalidAboutMe"
 import useStyles from "../../components/ManagePages/pageStyles"
+import updateState from "../../components/ManagePages/updateState";
+import confirmPageEdits from "../../components/ManagePages/confirmPageEdits";
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import {ImParagraphRight, ImParagraphLeft} from "react-icons/im";
+import {CgImage} from "react-icons/cg";
+import {IoIosImages} from "react-icons/io";
+import {MdTextFields} from "react-icons/md"
+import {BsTextRight} from "react-icons/bs"
+import {GiConqueror} from "react-icons/gi"
 
 const ManageLeasePage = () => {
     const {
         pageState: {
-            homePage,
-            changeHomePageState
+            leasePage,
+            changeLeasePageState
 
         },
 
     } = useContext(AppContext);
 
+
     const classes = useStyles();
-    const [hasSavedState, setSavedState] = useState(false);
 
     // Save the initial state so we can go back
+    const [hasSavedState, setSavedState] = useState(false);
     const initialSavedState = useRef({});
     useEffect(() => {
-        initialSavedState.current = {...homePage};
+        initialSavedState.current = {...leasePage};
         setSavedState(true)
     }, []);
 
-    // bools to open respective modulers
-    const [openBackgroundUpload, setOpenBackgroundUpload] = useState(false);
-    const [openProfileUpload, setOpenProfileUpload] = useState(false);
-    const [openProfessionalTitle, setOpenProfessionalTitle] = useState(false);
-    const [openAboutMe, setOpenAboutMe] = useState(false);
-    const [openBigMiddleTitle, setOpenBigMiddleTitle] = useState(false);
+    // Bools to tell if edits have happened or currently uploading
     const [hasEdits, setEdits] = useState(false);
-    const [uploading, setUploading] = useState({open:false,finished:false})
+    const [uploading, setUploading] = useState({open: false, finished: true});
 
+    // bools to open respective dialogs: e.g DB_KEYS_LEASE_PAGE keys
+    const [openUploadDialog, setOpenUploadDialog] = useState({
+        [DB_KEYS_LEASE_PAGE.pageTitle]: false,
+        [DB_KEYS_LEASE_PAGE.backgroundPic]: false,
+        [DB_KEYS_LEASE_PAGE.imageCarousel]: false,
+        [DB_KEYS_LEASE_PAGE.mainRightTitle]: false,
+        [DB_KEYS_LEASE_PAGE.mainRightParagraph]: false,
+        [DB_KEYS_LEASE_PAGE.secondaryRightTitle]: false,
+        [DB_KEYS_LEASE_PAGE.secondaryRightParagraph]: false,
+        [DB_KEYS_LEASE_PAGE.mainLeftTitle]: false,
+        [DB_KEYS_LEASE_PAGE.mainLeftParagraph]: false,
+        [DB_KEYS_LEASE_PAGE.formHeading]: false
+    });
 
-    // Holds Files
-    const backgroundImg = useRef(null);
-    const profileImg = useRef(null);
+    const handleOpenUploadDialog = (leasePageAttribute) => (aBool) => {
+        setOpenUploadDialog({...openUploadDialog, [leasePageAttribute]: aBool})
+    };
+    const getOpenUploadDialog = (leasePageAttribute) => {
+        return openUploadDialog[leasePageAttribute]
+    };
+
+    // Holds Files: uses DB_BUYERS_FORMATS to figure things out which attributes should be saved
+    const picturesFiles = useRef({});
 
     // notify if user has edited anything
     useEffect(() => {
-        if (JSON.stringify(homePage) !== JSON.stringify(initialSavedState.current)) {
+        if (JSON.stringify(leasePage) !== JSON.stringify(initialSavedState.current)) {
             setEdits(true);
         } else {
             setEdits(false);
         }
-    }, [homePage,initialSavedState]);
+    }, [leasePage, initialSavedState]);
 
+    //const updateState = (key) => (value) =>
+    // Updates the state
+    const refreshState = updateState(changeLeasePageState, leasePage, picturesFiles, DB_LEASE_FORMATS);
 
-    // all functions call this dispatch function
-    const updateState = (key) => (value) => {
-
-        if (key === DB_KEYS_HOME_PAGE.aboutMe) {
-            if (isInvalidAboutMe(value))
-                return
-        }
-
-        let newState;
-        if (key === DB_KEYS_HOME_PAGE.aboutMe || key === DB_KEYS_HOME_PAGE.pageTitle) {
-            // multipart text
-            newState = {...homePage, [key]: multiPartTextDictToArray(value)};
-        } else if (key === DB_KEYS_HOME_PAGE.profilePic || key === DB_KEYS_HOME_PAGE.backgroundPic) {
-            // files -- save them in case need to upload
-            if (key === DB_KEYS_HOME_PAGE.profilePic) {
-                profileImg.current = value[0];
-            } else {
-                backgroundImg.current = value[0];
-            }
-
-            newState = {...homePage, [key]: URL.createObjectURL(value[0])};
-        } else {
-            // in this case one line text
-            newState = {...homePage, [key]: value}
-        }
-
-        // let state know about changes
-        changeHomePageState(newState);
+    // returns the key'd state variable
+    const getState = (key) => {
+        return leasePage[key]
     };
 
-    // Confirm & Cancel Button
+    // Cancel Button
     const cancelEdits = () => {
-        changeHomePageState(initialSavedState.current)
+        changeLeasePageState(initialSavedState.current)
 
     };
 
-    const confirmEdits = () => {
-        //open upload dialog
-        setUploading({...uploading,open:true});
+    // Confirm Button
+    const confirmManageBuyerEdits = () => {
+        confirmPageEdits(
+            leasePage,
+            initialSavedState,
+            uploading,
+            setUploading,
+            setEdits,
+            DB_LEASE_FORMATS,
+            picturesFiles,
+            DB_NODES_PAGES.leasePage,
+            DB_KEYS_LEASE_PAGE,
+            "[ManageLeasePage]"
+        ).catch((e) => alert(`Failed to upload edits, sorry! 😞\n${e}`))
+    };
 
-        let _state = {...homePage};
-        _state.aboutMe = multiPartTextArrayToDict(_state.aboutMe);
-        _state.pageTitle = multiPartTextArrayToDict(_state.pageTitle);
+
+    // specifies styling for the edit buttions
+    const listOptions = {
+        [DB_KEYS_LEASE_PAGE.backgroundPic]: {
+            text: "Background Picture",
+            node: <CgImage/>,
+            color: colorScheme.general.light_light_teal,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.backgroundPic)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.pageTitle]: {
+            text: "Big Title in Middle of Page",
+            node: <GiConqueror/>,
+            color: colorScheme.general.punch,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.pageTitle)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.imageCarousel]: {
+            text: "Image Carousel",
+            node: <IoIosImages/>,
+            color: colorScheme.general.bright_green,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.imageCarousel)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.mainRightTitle]: {
+            text: "Main Right Title",
+            node: TitleIcon,
+            color: colorScheme.general.light_orange ,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainRightTitle)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.mainRightParagraph]: {
+            text: "Main Right Paragraph",
+            node: <ImParagraphRight/>,
+            color: colorScheme.general.light_blue0,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainRightParagraph)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.secondaryRightTitle]: {
+            text: "Secondary Right Title",
+            node: <MdTextFields/>,
+            color: colorScheme.general.teal,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.secondaryRightTitle)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.secondaryRightParagraph]: {
+            text: "Secondary Right Paragraph",
+            node: <BsTextRight/>,
+            color: colorScheme.general.shabby_chic,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.secondaryRightParagraph)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.mainLeftTitle]: {
+            text: "Main Left Title",
+            node: TitleIcon,
+            color: colorScheme.general.pink,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainLeftTitle)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.mainLeftParagraph]: {
+            text: "Main Left Paragraph",
+            node: <ImParagraphLeft/>,
+            color: colorScheme.general.dark_purple,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainLeftParagraph)(true)
+        },
+        [DB_KEYS_LEASE_PAGE.formHeading]: {
+            text: "Title of Contact Form",
+            node: ContactPhoneIcon,
+            color: colorScheme.general.coral_orange,
+            callback: () => handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.formHeading)(true)
+        },
+    };
 
 
-        if (backgroundImg.current != null && profileImg.current != null) {
+    const modalEditOptions = {
+        [DB_KEYS_LEASE_PAGE.backgroundPic]: {
+            format: DB_FORMATS.file,
+            node: FileDropDialog,
+            props: {
+                dialogTitle: 'Upload Background Picture',
+                fileCallback: refreshState(DB_KEYS_LEASE_PAGE.backgroundPic),
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.backgroundPic),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.backgroundPic),
+                initialFiles: [getState(DB_KEYS_LEASE_PAGE.backgroundPic)]
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.formHeading]: {
+            format: DB_FORMATS.plainText,
+            node: BasicTextDialog,
+            props: {
+                label: 'Contact Form Title',
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.formHeading),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.formHeading),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.formHeading),
+                dialogTitle: 'The heading on the contact form',
+                initial: getState(DB_KEYS_LEASE_PAGE.formHeading)
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.pageTitle]: {
+            format: DB_FORMATS.multiPartText,
+            node: MultiParagraphTextDialog,
+            props: {
+                initial: multiPartTextArrayToDict(getState(DB_KEYS_LEASE_PAGE.pageTitle)),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.pageTitle),
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.pageTitle),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.pageTitle),
+                dialogTitle: 'Edit Big Text in Middle of Page',
+                mainLabel: 'Line of Text',
+                secondaryLabel: 'Line of Text',
+                secondaryButtonLabel: 'Add New Line of Text',
+                helperText: `Edit the big middle title in the middle of the background pic. The number of lines determines how big/small letters will be so play around it. So one line with a lot of text will be smaller than one line with barely any text, so in this case you might want to split into two lines.`
+            }
+        },
 
-            uploadImgToDbEasy(DB_NODES_PAGES.homePage,backgroundImg.current,profileImg.current )
-                .then((urls)=>{
-                    _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
-                    _state[DB_KEYS_HOME_PAGE.profilePic] = urls[1];
-                    uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
-                });
+        [DB_KEYS_LEASE_PAGE.imageCarousel]: {
+            format: DB_FORMATS.fileArray,
+            node: FileDropDialog,
+            props: {
+                dialogTitle: 'Upload Multiple Pictures for Image Carousel',
+                fileCallback: refreshState(DB_KEYS_LEASE_PAGE.imageCarousel),
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.imageCarousel),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.imageCarousel),
+                initialFiles: [getState(DB_KEYS_LEASE_PAGE.imageCarousel)],
+                filesLimit: 20,
 
-        } else if (backgroundImg.current != null) {
-            uploadImgToDbEasy(DB_NODES_PAGES.homePage, backgroundImg.current ).then((urls) => {
-                _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
-                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
-            })
-        } else if (profileImg.current != null) {
-            uploadImgToDbEasy(DB_NODES_PAGES.homePage, profileImg.current ).then((urls) => {
-                _state[DB_KEYS_HOME_PAGE.profilePic] = urls[0];
-                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
-            })
-        }else{
-            uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]").then(() => setUploading({open:true,finished:true}))
-        }
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.mainRightTitle]: {
+            format: DB_FORMATS.plainText,
+            node: BasicTextDialog,
+            props: {
+                label: 'Main Right  Title',
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainRightTitle),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainRightTitle),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.mainRightTitle),
+                dialogTitle: 'Title on top of main right paragraph',
+                initial: getState(DB_KEYS_LEASE_PAGE.mainRightTitle)
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.mainRightParagraph]: {
+            format: DB_FORMATS.multiPartText,
+            node: MultiParagraphTextDialog,
+            props: {
+                initial: multiPartTextArrayToDict(getState(DB_KEYS_LEASE_PAGE.mainRightParagraph)),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.mainRightParagraph),
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainRightParagraph),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainRightParagraph),
+                dialogTitle: 'Edit  main/primary paragraph on the right',
+                mainLabel: 'Paragraph',
+                secondaryLabel: 'Additional Paragraph',
+                secondaryButtonLabel: 'Additional Paragraph',
+                helperText: `Edit Text for the main/primary paragraph on the right. `
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.secondaryRightTitle]: {
+            format: DB_FORMATS.plainText,
+            node: BasicTextDialog,
+            props: {
+                label: 'Right Secondary Title',
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.secondaryRightTitle),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.secondaryRightTitle),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.secondaryRightTitle),
+                dialogTitle: 'Edit Secondary Title of Right Side Paragraph',
+                initial: getState(DB_KEYS_LEASE_PAGE.secondaryRightTitle)
+            }
+        },
 
-        // set the saved state to new homePageState
-        initialSavedState.current = {...homePage};
-        setEdits(false)
+        [DB_KEYS_LEASE_PAGE.secondaryRightParagraph]: {
+            format: DB_FORMATS.multiPartText,
+            node: MultiParagraphTextDialog,
+            props: {
+                initial: multiPartTextArrayToDict(getState(DB_KEYS_LEASE_PAGE.secondaryRightParagraph)),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.secondaryRightParagraph),
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.secondaryRightParagraph),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.secondaryRightParagraph),
+                dialogTitle: 'Edit the text in the secondary right paragraph',
+                mainLabel: 'Paragraph',
+                secondaryLabel: 'Additional Paragraph',
+                secondaryButtonLabel: "Additional Paragraph",
+                helperText: "Edit text of the secondary paragraph on the right.(The paragraph below the main paragraph on the right) Add additional paragraphs to this paragraph by clicking the add button."
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.mainLeftTitle]: {
+            format: DB_FORMATS.plainText,
+            node: BasicTextDialog,
+            props: {
+                label: 'Main Left Title',
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainLeftTitle),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainLeftTitle),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.mainLeftTitle),
+                dialogTitle: 'Title attached to top of left paragraph',
+                initial: getState(DB_KEYS_LEASE_PAGE.mainLeftTitle)
+            }
+        },
+        [DB_KEYS_LEASE_PAGE.mainLeftParagraph]: {
+            format: DB_FORMATS.multiPartText,
+            node: MultiParagraphTextDialog,
+            props: {
+                initial: multiPartTextArrayToDict(getState(DB_KEYS_LEASE_PAGE.mainLeftParagraph)),
+                confirmCallback: refreshState(DB_KEYS_LEASE_PAGE.mainLeftParagraph),
+                open: getOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainLeftParagraph),
+                setOpen: handleOpenUploadDialog(DB_KEYS_LEASE_PAGE.mainLeftParagraph),
+                dialogTitle: 'Edit the text in the left paragraph',
+                mainLabel: 'Paragraph',
+                secondaryLabel: 'Additional Paragraph',
+                secondaryButtonLabel: "Add Additional Paragraph",
+                helperText: "Add additional paragraphs by clicking the add button."
+            }
+        },
 
     };
+
 
     return hasSavedState && <div className={classes.root}>
         <BorderGuard/>
@@ -160,7 +337,7 @@ const ManageLeasePage = () => {
                         you finish all your edits</Typography>
 
                     <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                        <Button size={'large'} variant={'outlined'} onClick={confirmEdits}>
+                        <Button size={'large'} variant={'outlined'} onClick={confirmManageBuyerEdits}>
                             Confirm
                         </Button>
 
@@ -183,76 +360,35 @@ const ManageLeasePage = () => {
                 </div>
             </Grid>
 
-            {/*The Editing Options*/}
             <Grid xs={3} item className={classes.options_container}>
                 <SecondaryHeading text={'Editing Options'}/>
 
                 <List className={classes.options} spacing={3}>
-                    <ManagePageListOption text={"Big Title in Middle of Page"} node={TitleIcon} color={colorScheme.general.teal}
-                                callback={() => setOpenBigMiddleTitle(true)}/>
-                    <ManagePageListOption text={"Background Picture"} node={ImageIcon} color={colorScheme.general.green}
-                                callback={() => setOpenBackgroundUpload(true)}/>
-                    <ManagePageListOption text={"Face Shot"} node={FaceIcon} color={colorScheme.general.light_orange}
-                                callback={() => setOpenProfileUpload(true)}/>
-                    <ManagePageListOption text={"Professional Title"} node={TitleIcon} color={colorScheme.general.dark_purple}
-                                callback={() => setOpenProfessionalTitle(true)}/>
-                    <ManagePageListOption text={"About Me"} node={TextFormatIcon} color={colorScheme.general.light_blue0}
-                                callback={() => setOpenAboutMe(true)}/>
+                    {/*The Editing Options*/}
+                    {Object.keys(listOptions).map((key) => {
+                        return <ManagePageListOption key={key} {...listOptions[key]}/>
+                    })}
+
                 </List>
             </Grid>
         </Grid>
 
 
-        {/*Background Picture*/}
-        <FileDropDialog setOpen={setOpenBackgroundUpload} open={openBackgroundUpload}
-                        fileCallback={updateState(DB_KEYS_HOME_PAGE.backgroundPic)}
-                        dialogTitle={'Upload Background Picture'}/>
-        {/*Profile Picture*/}
-        <FileDropDialog setOpen={setOpenProfileUpload} open={openProfileUpload}
-                        fileCallback={updateState(DB_KEYS_HOME_PAGE.profilePic)}
-                        dialogTitle={'Upload Face Shot'}/>
-        {/*Profile Professional Title*/}
-        <BasicTextDialog
-            label={'Professional Title'}
-            setOpen={setOpenProfessionalTitle}
-            open={openProfessionalTitle}
-            confirmCallback={updateState(DB_KEYS_HOME_PAGE.professionalTitle)}
-            dialogTitle={'Set Professional Title'}
-            initial={homePage[DB_KEYS_HOME_PAGE.professionalTitle]}
-        />
-        {/*About Me*/}
-        <MultiParagraphTextDialog
-            initial={multiPartTextArrayToDict(homePage.aboutMe)}
-            confirmCallback={updateState(DB_KEYS_HOME_PAGE.aboutMe)}
-            open={openAboutMe}
-            setOpen={setOpenAboutMe}
-            dialogTitle={'Edit About Me'}
-            mainLabel={'Main Paragraph'}
-            secondaryLabel={'Bolded About Me (remember to include 1 semicolon)'}
-            secondaryButtonLabel={'Add Bolded Field'}
-            helperText={`To add extra fields to the about me section click the add button. Automatically the words that precede a semicolon will be bolded.
-                        (e.g  <b>Favorite Restaurant</b>: Zellas on Beech Street!).`}
-        />
-
-        {/*Big MIddle Title*/}
-        <MultiParagraphTextDialog
-            initial={multiPartTextArrayToDict(homePage.pageTitle)}
-            confirmCallback={updateState(DB_KEYS_HOME_PAGE.pageTitle)}
-            open={openBigMiddleTitle}
-            setOpen={setOpenBigMiddleTitle}
-            dialogTitle={'Edit Big Text in Middle of Page'}
-            mainLabel={'Line of Text'}
-            secondaryLabel={'Line of Text'}
-            secondaryButtonLabel={'Add New Line of Text'}
-            helperText={`Edit the big middle title in the middle of the background pic. The number of lines determines how big/small letters will be so play around it. So one line with a lot of text will be smaller than one line with barely any text, so in this case you might want to split into two lines.`}
-        />
-
+        {/*Individual Modals that pop up*/}
+        {Object.keys(modalEditOptions).map((key) => {
+            const Item = modalEditOptions[key].node;
+            const props = modalEditOptions[key].props;
+            return <React.Fragment>
+                {getOpenUploadDialog(key) && <Item key={key} {...props} />}
+            </React.Fragment>
+        })}
 
         {/*Progress Icon*/}
-        <LoadingModal state={uploading} page={'home page'} setState={setUploading}/>
+        <LoadingModal state={uploading} page={'lease page'} setState={setUploading}/>
 
     </div>
 
 };
+
 
 export default ManageLeasePage;

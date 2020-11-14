@@ -22,6 +22,7 @@ const updateState = (setState, state, fileHolderRef, PAGE_SPECIFIC_FORMATS) => (
         // files -- save them in case need to upload
         fileHolderRef.current[key] = value[0];
     } else if (PAGE_SPECIFIC_FORMATS[key] === DB_FORMATS.fileArray) {
+
         newState = {...state, [key]: value.map((blob) => URL.createObjectURL(blob))}
     } else {
         // in this case one line text

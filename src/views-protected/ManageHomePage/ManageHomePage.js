@@ -26,6 +26,7 @@ import ManagePageListOption from "../../components/ManagePages/ManagePageListOpt
 import SecondaryHeading from "../../components/ManagePages/SecondaryHeading"
 import isInvalidAboutMe from "./isInvalidAboutMe"
 import useStyles from "../../components/ManagePages/pageStyles"
+import {GiConqueror} from "react-icons/gi"
 
 const ManageHomePage = () => {
     const {
@@ -54,7 +55,7 @@ const ManageHomePage = () => {
     const [openAboutMe, setOpenAboutMe] = useState(false);
     const [openBigMiddleTitle, setOpenBigMiddleTitle] = useState(false);
     const [hasEdits, setEdits] = useState(false);
-    const [uploading, setUploading] = useState({open:false,finished:false})
+    const [uploading, setUploading] = useState({open:false,finished:true})
 
 
     // Holds Files
@@ -109,7 +110,7 @@ const ManageHomePage = () => {
 
     const confirmEdits = () => {
         //open upload dialog
-        setUploading({...uploading,open:true});
+        setUploading({finished:false,open:true});
 
         let _state = {...homePage};
         _state.aboutMe = multiPartTextArrayToDict(_state.aboutMe);
@@ -188,7 +189,7 @@ const ManageHomePage = () => {
                 <SecondaryHeading text={'Editing Options'}/>
 
                 <List className={classes.options} spacing={3}>
-                    <ManagePageListOption text={"Big Title in Middle of Page"} node={TitleIcon} color={colorScheme.general.teal}
+                    <ManagePageListOption text={"Big Title in Middle of Page"} node={<GiConqueror/>} color={colorScheme.general.teal}
                                 callback={() => setOpenBigMiddleTitle(true)}/>
                     <ManagePageListOption text={"Background Picture"} node={ImageIcon} color={colorScheme.general.green}
                                 callback={() => setOpenBackgroundUpload(true)}/>

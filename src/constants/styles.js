@@ -57,7 +57,8 @@ export const colorScheme = {
         cool_purp:'#634459',
         pink_red: '#fc3468',
         punch:'#F25278',
-        purp_purp:'#B768A2'
+        purp_purp:'#B768A2',
+        coral_orange:'#FF7F50'
 
     },
     other:{

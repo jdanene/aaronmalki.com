@@ -9,7 +9,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const FileDropDialog = ({open, setOpen, fileCallback, acceptedFiles,filesLimit,dialogTitle,initialFiles}) => {
+const FileDropDialog = ({open, setOpen, fileCallback, acceptedFiles,filesLimit,dialogTitle,initialFiles,showFileNamesInPreview}) => {
 
     const handleClose = () => {
         setOpen(false);
@@ -35,6 +35,7 @@ const FileDropDialog = ({open, setOpen, fileCallback, acceptedFiles,filesLimit,d
             maxFileSize={5000000}
             onClose={handleClose}
             filesLimit={filesLimit}
+            showFileNamesInPreview={filesLimit <= 1}
         />
     );
 
@@ -49,7 +50,7 @@ FileDropDialog.propTypes = {
 FileDropDialog.defaultProps = {
     acceptedFiles: ['image/*'],
     filesLimit:1,
-    dialogTitle: 'File Upload'
+    dialogTitle: 'File Upload',
 };
 
 

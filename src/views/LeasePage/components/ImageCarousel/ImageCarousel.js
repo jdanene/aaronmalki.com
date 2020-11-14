@@ -78,7 +78,6 @@ const ImageCarousel = ({imgArray}) => {
         });
 
     const customRenderItem = (item, props) => {
-        console.log(item.type, props)
         return <item.type style={{borderRadius: '5px'}} {...item.props} {...props} />
     };
     return (
@@ -111,7 +110,8 @@ const ImageCarousel = ({imgArray}) => {
                 }}
 
             >
-                {imgArray.map((image, index) => <div className={classes.container} src={image} key={index} index={index}>
+                {imgArray.map((image, index) => <div className={classes.container} src={image} key={index}
+                                                     index={index}>
                     <img src={image} className={classes.img}/>
                 </div>)
                 }
@@ -127,16 +127,17 @@ const ThumbImg = ({item, currentSlide, className}) => {
     const onHover = () => setHover(true);
     const onBlur = () => setHover(false);
 
-    return (item.props.index === currentSlide||isHover ?
-                <Paper style={{borderRadius:'1.25px'}} onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur}
-                     onMouseOver={onHover}><img
-                    onMouseOut={onBlur} className={className} src={item.props.src}
-                    style={{opacity:  1 }}/></Paper>
-                :
-                <div onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur}
-                     onMouseOver={onHover}><img
-                    onMouseOut={onBlur} className={className} src={item.props.src}
-                    style={{opacity:  0.5}}/></div>
+    return (item.props.index === currentSlide || isHover ?
+            <Paper style={{borderRadius: '1.25px'}} onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover}
+                   onMouseLeave={onBlur}
+                   onMouseOver={onHover}><img
+                onMouseOut={onBlur} className={className} src={item.props.src}
+                style={{opacity: 1}}/></Paper>
+            :
+            <div onFocus={onHover} onBlur={onBlur} onMouseEnter={onHover} onMouseLeave={onBlur}
+                 onMouseOver={onHover}><img
+                onMouseOut={onBlur} className={className} src={item.props.src}
+                style={{opacity: 0.5}}/></div>
 
     )
 
