@@ -12,11 +12,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const FormPlug = ({message}) => {
+const FormPlug = ({message,style}) => {
     const classes = useStyles();
 
     return (
-        <Typography component={'h2'} className={classes.formPlug}>
+        <Typography component={'h2'} className={classes.formPlug} style={style}>
             {message}
         </Typography>
     )

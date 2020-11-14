@@ -15,11 +15,11 @@ import "./ImageCarousel.css"
 const useStyles = makeStyles((theme) => ({
     container: {
         borderRadius: '2.5px',
-        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        overflow: "hidden"
+        overflow: "hidden",
+        maxHeight: "450px"
     },
     img: {
         borderRadius: '2.5px',
@@ -36,20 +36,19 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const IMAGES = [LeaseImg, LeaseImg2, LeaseImg3];
 
-const ImageCarousel = () => {
+const ImageCarousel = ({imgArray}) => {
 
     const classes = useStyles();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
 
     const next = () => {
-        setCurrentSlide((currentSlide + 1) % IMAGES.length);
+        setCurrentSlide((currentSlide + 1) % imgArray.length);
     };
 
     const prev = () => {
-        setCurrentSlide(Math.abs((currentSlide - 1) % IMAGES.length));
+        setCurrentSlide(Math.abs((currentSlide - 1) % imgArray.length));
     };
 
     //only called when a thumbnail is pressed
@@ -116,7 +115,7 @@ const ImageCarousel = () => {
                 }}
 
             >
-                {IMAGES.map((image, index) => <div className={classes.container} src={image} key={index} index={index}>
+                {imgArray.map((image, index) => <div className={classes.container} src={image} key={index} index={index}>
                     <img src={image} className={classes.img}/>
                 </div>)
                 }

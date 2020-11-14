@@ -3,7 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {StyledText} from "../Text";
 import PropTypes from 'prop-types';
 import Typography from "@material-ui/core/Typography";
-
+import textArrayToParagraph from "../Utility/textArrayToParagraph";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -55,27 +55,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
-const TextBlurbWithTitleLevel2 = ({mainTitle, mainBlurb, secondaryTitle, secondaryBlurb, secondaryBlurb_p2 }) => {
+const TextBlurbWithTitleLevel2 = ({mainBlurbArray, mainTitle,secondaryBlurbArray, secondaryTitle}) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <StyledText className={classes.title}>{mainTitle}</StyledText>
-            <Typography gutterBottom variant={'body1'} className={classes.blurb}>{mainBlurb}</Typography>
+            {textArrayToParagraph({paragraphArray:mainBlurbArray, alignLeft:true, className:classes.blurb}) }
             <StyledText className={classes.secondaryTitle}>{secondaryTitle}</StyledText>
-            <Typography gutterBottom variant={'body1'} className={classes.secondaryBlurb}>{secondaryBlurb}</Typography>
-            {secondaryBlurb_p2&&<Typography gutterBottom variant={'body1'} className={classes.secondaryBlurbP2}>{secondaryBlurb_p2}</Typography>}
+            {textArrayToParagraph({paragraphArray:secondaryBlurbArray, alignLeft:true, className:classes.blurb}) }
 
         </div>
     )
 };
 
+
+
 TextBlurbWithTitleLevel2.propTypes = {
     mainTitle: PropTypes.string.isRequired,
-    mainBlurb: PropTypes.string.isRequired,
+    mainBlurbArray: PropTypes.array.isRequired,
     secondaryTitle: PropTypes.string.isRequired,
-    secondaryBlurb: PropTypes.string.isRequired
+    secondaryBlurbArray: PropTypes.array.isRequired
 };
 
 

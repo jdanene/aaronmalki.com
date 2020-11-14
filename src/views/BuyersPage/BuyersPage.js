@@ -7,30 +7,44 @@ import {makeStyles} from '@material-ui/core/styles';
 import BuyerTopImg from "resources/images/buyerpage_top.png"
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import FormPlug from "../../components/Forms/FormPlug";
+import {AppContext} from "../../context";
+import {DB_NODES_PAGES} from "../../constants/contants";
+
 const useStyles = makeStyles((theme) => ({
     formPlug: {
-        fontFamily:'airbnb-bold',
-        fontSize:23,
-        marginTop:theme.spacing(6),
+        fontFamily: 'airbnb-bold',
+        fontSize: 23,
+        marginTop: theme.spacing(6),
         marginBottom: theme.spacing(2)
     },
-    topHalfImg:{
-        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${BuyerTopImg})`,
-                width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        flexDirection: 'column',
-        backgroundPosition: "top center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-    }
+    topHalf_container: props => {
+        return {
+            //border: 1px solid red;
+            background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${props.backgroundPic})`,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            flexDirection: 'column',
+            backgroundPosition: "top center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+        }
+    },
 }));
 
 
 const BuyersPage = () => {
-    const classes = useStyles();
+    const {
+        pageState: {
+            [DB_NODES_PAGES.buyersPage]: {
+                backgroundPic, formHeading, leftParagraph, leftPicture, leftTitle, pageTitle, rightParagraph, rightPicture, rightTitle
+            }
+        },
+    } = useContext(AppContext);
+
+    const classes = useStyles({backgroundPic: backgroundPic});
 
     return <div style={{
         display: "flex",
@@ -42,7 +56,7 @@ const BuyersPage = () => {
         backgroundColor: colorScheme.other.backgroundComplementary
     }}>
 
-        <PageViewTopHalf middleText2={'the easy way.'} middleText={'Buying a home,'} className={classes.topHalfImg} img={BuyerTopImg}/>
+        <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalf_container}/>
 
 
         <div style={{
@@ -54,8 +68,15 @@ const BuyersPage = () => {
             alignItems: 'center',
             flexDirection: 'column'
         }}>
-            <BuyerImageAndDescription/>
-            <FormPlug message={'Let us know what you are looking for.'}/>
+            <BuyerImageAndDescription
+                leftParagraph={leftParagraph}
+                leftPicture={leftPicture}
+                leftTitle={leftTitle}
+                rightParagraph={rightParagraph}
+                rightPicture={rightPicture}
+                rightTitle={rightTitle}
+            />
+            <FormPlug message={formHeading} style={{marginTop: "55px"}} />
             <BuyerForm/>
         </div>
     </div>

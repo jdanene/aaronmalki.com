@@ -6,7 +6,7 @@ import FeaturedImage from "../../../../components/Image/FeaturedImage";
 import Photo1 from "resources/images/buyerview_image1.png"
 import Photo2 from "resources/images/buyerview_image2.png"
 import {useMediaQuery} from "@material-ui/core";
-
+import parseMultiPartTextToArray from "../../../../components/Utility/parseMultiPartTextToArray";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -36,11 +36,14 @@ const IMG_2 = "src/resources/images/buyerview_image1.jpg";
 const TITLE_2 = "Where do I Start?";
 const BLURB_2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed leo dapibus, imperdiet tellus vel, tincidunt risus. Phasellus vitae elit in quam rutrum convallis non in ipsum. Phasellus nec justo id magna auctor tincidunt. In orci risus, venenatis a magna facilisis, feugiat mattis mi. Fusce luctus molestie nulla, quis dapibus augue eleifend nec. Cras finibus, est ac porta ultrices, ex odio mattis libero, eu suscipit purus lacus nec augue. Aliquam iaculis tincidunt faucibus. Nulla consequat ornare feugiat. Suspendisse porta dapibus turpis, sagittis vulputate massa maximus et. Pellentesque odio nulla, venenatis eget odio eu, rutrum vehicula ante. Praesent ut tempus lorem. Nullam quis nunc vestib elit at, pellentesque sem. Nulla posuere sit amet nisl at condimentum.";
 
-const BuyerImageAndDescription = () => {
+const BuyerImageAndDescription = ({leftParagraph, leftPicture, leftTitle, rightParagraph, rightPicture, rightTitle}) => {
 
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
 
     const classes = useStyles();
+
+    const leftParagraphArray = parseMultiPartTextToArray(leftParagraph);
+    const rightParagraphArray = parseMultiPartTextToArray(rightParagraph);
 
 
     // Contact
@@ -50,28 +53,28 @@ const BuyerImageAndDescription = () => {
 
         <Grid container spacing={mobileBreak? 3: 7}>
             <Grid sm={12} md={6} item>
-                <TextBlurbWithTitle blurb={BLURB_1} title={TITLE_1}/>
+                <TextBlurbWithTitle title={rightTitle} paragraphArray={rightParagraphArray}/>
             </Grid>
             <Grid sm={12} md={6} item>
-                <FeaturedImage src={Photo1} alt={'house_1'}/>
+                <FeaturedImage src={rightPicture} alt={'house_1'}/>
             </Grid>
 
 
             {!mobileBreak?<React.Fragment>
             <Grid sm={12} md={6} item  >
-                <FeaturedImage src={Photo2} alt={'house_2'}/>
+                <FeaturedImage src={leftPicture} alt={'house_2'}/>
             </Grid>
             <Grid sm={12} md={6} item>
-                <TextBlurbWithTitle blurb={BLURB_2} title={TITLE_2}/>
+                <TextBlurbWithTitle paragraphArray={leftParagraphArray} title={leftTitle}/>
             </Grid>
             </React.Fragment>
             :
             <React.Fragment>
             <Grid sm={12} md={6} item>
-                <TextBlurbWithTitle blurb={BLURB_2} title={TITLE_2}/>
+                <TextBlurbWithTitle paragraphArray={leftParagraphArray} title={leftTitle}/>
             </Grid>
             <Grid sm={12} md={6} item  >
-                <FeaturedImage src={Photo2} alt={'house_2'}/>
+                <FeaturedImage src={leftPicture} alt={'house_2'}/>
             </Grid>
             </React.Fragment>}
 

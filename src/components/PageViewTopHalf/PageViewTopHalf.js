@@ -5,7 +5,7 @@ import {FittedText} from "../../components/Text";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
+import parseMultiPartTextToArray from "../Utility/parseMultiPartTextToArray";
 import BuyerTopImg from "resources/images/buyerpage_top.png"
 import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 // "raleway-italic"
 //"raleway-bold-italic"
 //Buying a home, the easy way.
-const Page_View_Top_Half = ({text, text2}) => {
+const Page_View_Top_Half = ({text, text2,titleArray}) => {
 
     return <div style={{
         minHeight: "200px",
@@ -45,7 +45,7 @@ const Page_View_Top_Half = ({text, text2}) => {
         justifyContent: "center",
         padding: "5px",
 
-        width:'60vw',
+       width: "100%"
     }}>
 
         <div style={{
@@ -61,14 +61,22 @@ const Page_View_Top_Half = ({text, text2}) => {
         }}>
             <div style={{
                 maxWidth: "500px",
-                //border: `2px solid pink`,
-                width: "90%",
+                width: "60%",
                 justifyContent: "center",
                 alignItems: "center"
             }}>
                 <FittedText style={{fontFamily: "airbnb-bold", display: "flex"}}>
-                    {text}
-                    {text2&&<React.Fragment><br/>{text2}</React.Fragment>}
+                    {titleArray.map((val, idx) => {
+                        if (idx === 0) {
+                            return <React.Fragment key={idx}>
+                                {val} <br/>
+                            </React.Fragment>
+                        } else {
+                            return <React.Fragment key={idx}>
+                                {val}
+                            </React.Fragment>
+                        }
+                    })}
                 </FittedText>
             </div>
 
@@ -77,16 +85,15 @@ const Page_View_Top_Half = ({text, text2}) => {
 };
 
 
-const PageViewTopHalf = ({middleText,middleText2,className,img}) => {
-    const id = "id123";
+const PageViewTopHalf = ({className,pageTitle}) => {
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
-    const tabletBreak = useMediaQuery("only screen and (max-width: 1050px)");
 
     const classes = useStyles();
 
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
 
+    const titleArray = parseMultiPartTextToArray(pageTitle);
 
     useEffect(() => {
 
@@ -113,7 +120,7 @@ const PageViewTopHalf = ({middleText,middleText2,className,img}) => {
                 justifyContent: 'space-between',
                 width:'100%',
             }}>
-                <Page_View_Top_Half mobileBreak={mobileBreak} text={middleText} text2={middleText2}/>
+                <Page_View_Top_Half mobileBreak={mobileBreak} titleArray={titleArray}/>
                 {!mobileBreak && <DownArrow posnOfContainter={topHalf_bottomPosn}/>}
             </div>
         </div>
