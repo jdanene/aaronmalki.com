@@ -43,7 +43,7 @@ export const PhoneInput = ({label, textCallback, max_char, initial, hasSecondary
 
     const handleChange = (e) => {
         setTextFieldChars(e.length);
-        textCallback(e)
+        textCallback(e.replace(/[()\s-]*/g,''))
     };
 
     return (

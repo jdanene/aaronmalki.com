@@ -37,6 +37,7 @@ import AdminSettingsPage from "./views-protected/AdminSettingsPage/AdminSettings
 import ManageHomePage from "./views-protected/ManageHomePage/ManageHomePage";
 import ManageBuyersPage from "./views-protected/ManageBuyersPage/ManageBuyersPage";
 import ManageLeasePage from "./views-protected/ManageLeasePage/ManageLeasePage";
+import UnderConstructionPage from "./views/UnderConstructionPage/UnderConstructionPage";
 
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
@@ -133,6 +134,10 @@ function App({location}) {
                         <ProtectedRoute path={pageToPathName["ManageBuyersPage"]} exact component={ManageBuyersPage}/>                        {/*Manage Home Page*/}
                          {/*Manage Lease Page*/}
                         <ProtectedRoute path={pageToPathName["ManageLeasePage"]} exact component={ManageLeasePage}/>
+                        {/*Manage sell page*/}
+                        <ProtectedRoute path={pageToPathName["ManageSellersPage"]} exact component={UnderConstructionPage}/>
+                        {/*Manage listings page*/}
+                        <ProtectedRoute path={pageToPathName["ManageCurrentListingsPage"]} exact component={UnderConstructionPage}/>
 
                         {/*Blog absolute path*/}
                         <Route path={pageToPathName["BlogPage"]} exact component={BlogPage}>

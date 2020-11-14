@@ -60,6 +60,7 @@ const NoMatch = () => {
     return (
         <div className={classes.root} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${imgs[Math.floor(Math.random() * imgs.length)]})`}}>
 
+            <BorderGuard/>
             <div className={ classes.title}>
                404
             </div>

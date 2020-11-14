@@ -14,7 +14,14 @@ const validateKeys = (props, truth, errorMsg) => {
     return true;
 };
 
-
+/**
+ *
+ * @param props: things being uploaded
+ * @param truth
+ * @param errorMsg
+ * @param path
+ * @return {Promise<void>}
+ */
 const uploadPageToDb = async (props,truth,errorMsg, path) => {
 
     if (!validateKeys(props,truth,errorMsg)){

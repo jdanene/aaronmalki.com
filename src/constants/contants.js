@@ -6,14 +6,16 @@ export const pageToPathName = {
     'ContactUsPage': '/contact',
     'LeasePage': '/lease',
     'BlogPage': '/blog',
-    'AdminSignUpPage':'/admin/signup',
+    'AdminSignUpPage': '/admin/signup',
     'AdminLoginPage': '/admin/login',
-    'AdminPage':'/admin',
-    'ManageBlogPage':'/admin/manage-blog',
-    'AdminSettingsPage':'/admin/settings',
-    'ManageHomePage':'/admin/manage-home',
-    'ManageLeasePage':'/admin/manage-lease',
-    'ManageBuyersPage':'/admin/manage-buyers'
+    'AdminPage': '/admin',
+    'ManageBlogPage': '/admin/manage-blog',
+    'AdminSettingsPage': '/admin/settings',
+    'ManageHomePage': '/admin/manage-home',
+    'ManageLeasePage': '/admin/manage-lease',
+    'ManageBuyersPage': '/admin/manage-buyers',
+    'ManageSellersPage': '/admin/manage-sellers',
+    'ManageCurrentListingsPage': '/admin/manage-listings'
 
 };
 
@@ -29,10 +31,13 @@ export const pageToPageName = {
     'AdminLoginPage': 'admin-login',
     'Admin': 'admins',
     'ManageBlogPage': 'manage-blog',
-    'AdminSettingsPage':'settings',
-    'ManageHomePage':'manage-home',
-    'ManageLeasePage':'manage-lease',
-    'ManageBuyersPage':'manage-buyers'
+    'AdminSettingsPage': 'settings',
+    'ManageHomePage': 'manage-home',
+    'ManageLeasePage': 'manage-lease',
+    'ManageBuyersPage': 'manage-buyers',
+    'ManageSellersPage': 'manage-sellers',
+    'ManageCurrentListingsPage': 'manage-listings'
+
 };
 
 export const pathToPageName = {
@@ -45,12 +50,14 @@ export const pathToPageName = {
     '/blog': 'BlogPage',
     '/admin/signup': 'AdminSignUpPage',
     '/admin/login': 'AdminLoginPage',
-    '/admin':'AdminPage',
-    '/admin/manage-blog':'ManageBlogPage',
-    '/admin/settings':'AdminSettingsPage',
-    '/admin/manage-home':'ManageHomePage',
-    '/admin/manage-lease':'ManageLeasePage',
-   '/admin/manage-buyers':'ManageBuyersPage'
+    '/admin': 'AdminPage',
+    '/admin/manage-blog': 'ManageBlogPage',
+    '/admin/settings': 'AdminSettingsPage',
+    '/admin/manage-home': 'ManageHomePage',
+    '/admin/manage-lease': 'ManageLeasePage',
+    '/admin/manage-buyers': 'ManageBuyersPage',
+    '/admin/manage-sellers': 'ManageSellersPage',
+    '/admin/manage-listings': 'ManageCurrentListingsPage'
 };
 
 
@@ -80,14 +87,11 @@ export const blog_categories_keysOnly = {
 };
 
 
-
-
-
 export const blog_category_to_string = {
-    news: {title:"In The News",path:`${pageToPathName.BlogPage}/${blog_categories.news}`},
-    rental_guide: {title:"Rental Guides",path:`${pageToPathName.BlogPage}/${blog_categories.rental_guide}`},
-    buying_tips: {title:"Buying Tips",path:`${pageToPathName.BlogPage}/${blog_categories.buying_tips}`},
-    lifestyle: {title:"Lifestyle & Design",path:`${pageToPathName.BlogPage}/${blog_categories.lifestyle}`}
+    news: {title: "In The News", path: `${pageToPathName.BlogPage}/${blog_categories.news}`},
+    rental_guide: {title: "Rental Guides", path: `${pageToPathName.BlogPage}/${blog_categories.rental_guide}`},
+    buying_tips: {title: "Buying Tips", path: `${pageToPathName.BlogPage}/${blog_categories.buying_tips}`},
+    lifestyle: {title: "Lifestyle & Design", path: `${pageToPathName.BlogPage}/${blog_categories.lifestyle}`}
 };
 
 export const blog_states = {
@@ -97,90 +101,97 @@ export const blog_states = {
 };
 
 export const DB_NODES = {
-    inquiries:'inquiries',
-    blogPosts:'blogPosts',
-    settings:'settings',
-    pages:'pages'
+    inquiries: 'inquiries',
+    blogPosts: 'blogPosts',
+    settings: 'settings',
+    pages: 'pages'
 };
 
 export const DB_NODES_PAGES = {
-    "homePage":"homePage",
+    "homePage": "homePage",
     "leasePage": "leasePage",
-    "buyersPage":"buyersPage",
-    "settings":"settings"
+    "buyersPage": "buyersPage",
+    "settings": "settings"
 };
 
-export const DB_KEYS_HOME_PAGE={
-    aboutMe:"aboutMe",
-    pageTitle:"pageTitle",
-    profilePic:"profilePic",
-    backgroundPic:"backgroundPic",
-    professionalTitle:"professionalTitle"
+export const DB_KEYS_HOME_PAGE = {
+    aboutMe: "aboutMe",
+    pageTitle: "pageTitle",
+    profilePic: "profilePic",
+    backgroundPic: "backgroundPic",
+    professionalTitle: "professionalTitle"
 };
 
-export const DB_KEYS_BUYERS_PAGE={
-    backgroundPic:"backgroundPic",
-    formHeading:"formHeading",
-    leftParagraph:"leftParagraph",
-    leftPicture:"leftPicture",
-    leftTitle:"leftTitle",
-    pageTitle:"pageTitle",
-    rightParagraph:"rightParagraph",
-    rightPicture:"rightPicture",
-    rightTitle:"rightTitle"
+export const DB_KEYS_BUYERS_PAGE = {
+    backgroundPic: "backgroundPic",
+    formHeading: "formHeading",
+    leftParagraph: "leftParagraph",
+    leftPicture: "leftPicture",
+    leftTitle: "leftTitle",
+    pageTitle: "pageTitle",
+    rightParagraph: "rightParagraph",
+    rightPicture: "rightPicture",
+    rightTitle: "rightTitle"
 
 };
 
 export const DB_FORMATS = {
-    "multiPartText":"multiPartText",
+    "multiPartText": "multiPartText",
     "plainText": "plainText",
-    "file":"file",
-    "fileArray":"fileArray"
+    "file": "file",
+    "fileArray": "fileArray"
 };
 
+export const DB_KEYS_SETTINGS_PAGE = {
+    license:'license',
+    address:'address',
+    phoneNumber:'phoneNumber',
+    email:'email',
+    socialMedia:'socialMedia',
+    companyName:'companyName'
+};
 // the keys that are multipart text
 export const DB_BUYERS_FORMATS = {
-    backgroundPic:DB_FORMATS.file,
-    formHeading:DB_FORMATS.plainText,
-    leftParagraph:DB_FORMATS.multiPartText,
-    leftPicture:DB_FORMATS.file,
-    leftTitle:DB_FORMATS.plainText,
-    pageTitle:DB_FORMATS.multiPartText,
-    rightParagraph:DB_FORMATS.multiPartText,
-    rightPicture:DB_FORMATS.file,
-    rightTitle:DB_FORMATS.plainText
+    backgroundPic: DB_FORMATS.file,
+    formHeading: DB_FORMATS.plainText,
+    leftParagraph: DB_FORMATS.multiPartText,
+    leftPicture: DB_FORMATS.file,
+    leftTitle: DB_FORMATS.plainText,
+    pageTitle: DB_FORMATS.multiPartText,
+    rightParagraph: DB_FORMATS.multiPartText,
+    rightPicture: DB_FORMATS.file,
+    rightTitle: DB_FORMATS.plainText
 };
 
 
-export const DB_KEYS_LEASE_PAGE={
-    pageTitle:"pageTitle",
-    backgroundPic:"backgroundPic",
-    imageCarousel:"imageCarousel",
-    mainRightTitle:"mainRightTitle",
-    mainRightParagraph:"mainRightParagraph",
-    secondaryRightTitle:"secondaryRightTitle",
-    secondaryRightParagraph:"secondaryRightParagraph",
-    mainLeftTitle:"mainLeftTitle",
-    mainLeftParagraph:"mainLeftParagraph",
-    formHeading:"formHeading"
+export const DB_KEYS_LEASE_PAGE = {
+    pageTitle: "pageTitle",
+    backgroundPic: "backgroundPic",
+    imageCarousel: "imageCarousel",
+    mainRightTitle: "mainRightTitle",
+    mainRightParagraph: "mainRightParagraph",
+    secondaryRightTitle: "secondaryRightTitle",
+    secondaryRightParagraph: "secondaryRightParagraph",
+    mainLeftTitle: "mainLeftTitle",
+    mainLeftParagraph: "mainLeftParagraph",
+    formHeading: "formHeading"
 };
 
 export const DB_LEASE_FORMATS = {
-    pageTitle:DB_FORMATS.multiPartText,
-    backgroundPic:DB_FORMATS.file,
-    imageCarousel:DB_FORMATS.fileArray,
-    mainRightTitle:DB_FORMATS.plainText,
-    mainRightParagraph:DB_FORMATS.multiPartText,
-    secondaryRightTitle:DB_FORMATS.plainText,
-    secondaryRightParagraph:DB_FORMATS.multiPartText,
-    mainLeftTitle:DB_FORMATS.plainText,
-    mainLeftParagraph:DB_FORMATS.multiPartText,
-    formHeading:DB_FORMATS.plainText
+    pageTitle: DB_FORMATS.multiPartText,
+    backgroundPic: DB_FORMATS.file,
+    imageCarousel: DB_FORMATS.fileArray,
+    mainRightTitle: DB_FORMATS.plainText,
+    mainRightParagraph: DB_FORMATS.multiPartText,
+    secondaryRightTitle: DB_FORMATS.plainText,
+    secondaryRightParagraph: DB_FORMATS.multiPartText,
+    mainLeftTitle: DB_FORMATS.plainText,
+    mainLeftParagraph: DB_FORMATS.multiPartText,
+    formHeading: DB_FORMATS.plainText
 };
 
 
-
-export const DB_MULTIPART_TEXT_KEY={
-    value:"value",
-    secondaryValues:"secondaryValues"
+export const DB_MULTIPART_TEXT_KEY = {
+    value: "value",
+    secondaryValues: "secondaryValues"
 };

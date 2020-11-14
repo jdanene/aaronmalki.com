@@ -35,7 +35,7 @@ import {FaPhoneAlt} from "react-icons/fa";
 import Fab from '@material-ui/core/Fab';
 import {useLocation} from 'react-router-dom'
 import {VerticalDivider} from "../VerticalDivider";
-import {pathToPageName} from "../../constants/contants";
+import {DB_NODES_PAGES, pathToPageName} from "../../constants/contants";
 import {AppContext} from "../../context";
 import {
     pageToPageName as adminPageToPageName,
@@ -99,7 +99,7 @@ const shouldNavBarTrigger = (pathname) => {
 
 const AdminLogOut = ({auth}) => {
 
-    const onClick = ()=>{
+    const onClick = () => {
         auth.signout()
     };
 
@@ -123,9 +123,18 @@ const AdminLogOut = ({auth}) => {
         <FittedText> Sign Out</FittedText>
 
     </Button>
-}
+};
+
 const TopNavBar = ({children, window}) => {
-    const {phoneNumber,auth,companyName} = useContext(AppContext);
+    const {
+        auth,
+        pageState: {
+            [DB_NODES_PAGES.settings]: {
+                phoneNumber, companyName
+            }
+        },
+    } = useContext(AppContext);
+
     const styles = useStyles();
     const location = useLocation();
     //const {children, window} = props;
@@ -184,7 +193,8 @@ const TopNavBar = ({children, window}) => {
                                 justifyContent: "center"
                             }}>
 
-                                <Button href={pageToPathName["HomePage"]} color="inherit" style={{/*border: "1px solid black",*/ height: "100%"}}>
+                                <Button href={pageToPathName["HomePage"]} color="inherit"
+                                        style={{/*border: "1px solid black",*/ height: "100%"}}>
 
 
                                     <PopText endFontSize={!mobileBreak ? "16px" : "13.5px"}
@@ -229,7 +239,7 @@ const TopNavBar = ({children, window}) => {
                             {/*Menu hamburger*/}
                             <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
 
-                                {auth.user&&<AdminLogOut auth={auth}/>}
+                                {auth.user && <AdminLogOut auth={auth}/>}
 
                                 {mobileBreak ?
                                     (location.pathname !== pageToPathName["ContactUsPage"]) && <Fab aria-label="add"

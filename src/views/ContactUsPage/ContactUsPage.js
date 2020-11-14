@@ -29,6 +29,7 @@ import {AppContext} from "../../context";
 import Paper from '@material-ui/core/Paper';
 
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
+import {DB_NODES_PAGES} from "../../constants/contants";
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -199,7 +200,14 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
 const ContactUsPage = ({classes, theme, width, center, zoom}) => {
-    const {phoneNumber, email, address} = useContext(AppContext);
+
+    const {
+        pageState: {
+            [DB_NODES_PAGES.settings]: {
+                phoneNumber, email, address
+            }
+        },
+    } = useContext(AppContext);
 
     return (
         <div className={classes.main_container}>

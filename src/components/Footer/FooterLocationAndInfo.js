@@ -1,31 +1,15 @@
-import React, {useContext} from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import {
     Grid,
-    Typography,
-    Box,
-    IconButton,
-    Hidden,
-    withStyles,
-    withWidth,
-    isWidthUp,
-    TextField
+
 } from "@material-ui/core";
-import {ColoredButton} from "../Button"
-import {WaveBorder} from "../WaveBorder"
+
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
-import transitions from "@material-ui/core/styles/transitions";
 import {FittedText, StyledText} from "../Text";
-import {VscLocation} from "react-icons/vsc";
-import {BiPhone} from "react-icons/bi";
-import {colorScheme} from "../../constants";
-import Link from "@material-ui/core/Link";
-import FooterListItem from "./FooterListItem";
+
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {VerticalDivider} from "../VerticalDivider";
 import {useTheme} from "@material-ui/core";
-import {AppContext} from "../../context";
 
 const useStyles = makeStyles((theme) => ({
     credentialsTitle_container: {
@@ -98,8 +82,10 @@ const infos = [
 ];
 
 // {theme.palette.common.white}
-const FooterLocationAndInfo = () => {
-    const {phoneNumber,email,address,license} = useContext(AppContext);
+const FooterLocationAndInfo = ({phoneNumber,email,address,license}) => {
+
+
+
     const classes = useStyles();
     const theme = useTheme();
 
@@ -133,7 +119,7 @@ const FooterLocationAndInfo = () => {
             <div style={{height:'20px'}}/>
 
             <StyledText className={classes.bio}>
-                Aaron is a licensed real broker in the state of California and abides by Equal Housing Opportunity laws. License #{license}.
+                Aaron is a licensed real estate agent in the state of California and abides by Equal Housing Opportunity laws. License #{license}.
             </StyledText>
         </Grid>
     )

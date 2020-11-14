@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useContext, useEffect, useState, useRef} from "react"
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {makeStyles} from '@material-ui/core/styles';
@@ -13,6 +13,9 @@ import {PhoneInput} from "../ManageBlogPage/components/TextInput";
 import ModalEditBusinessLocation from "./ModalEditBusinessLocation";
 import Button from '@material-ui/core/Button';
 import uploadSettingToDb from "../../components/Database/uploadSettingToDb";
+import {DB_NODES_PAGES, DB_KEYS_SETTINGS_PAGE} from "../../constants/contants";
+import uploadPageToDb from "../../components/Database/uploadPageToDb";
+import isObjectEmpty from "../../components/Utility/isObjectEmpty";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -67,7 +70,7 @@ SelectionDivider.propTypes = {
 
 const parsePhone = (pNumber) => {
     //input: +19097716881
-    let pat = /^(\+1)?(?<area_code>\d{3})(?<central_code>\d{3})(?<subscribe_code>\d{4})(\d*)$/;
+    let pat = /^(\+1)?(?<area_code>\d{0,3})(?<central_code>\d{0,3})(?<subscribe_code>\d{0,4})(\d*)$/;
     const {groups: {area_code, central_code, subscribe_code}} = pat.exec(pNumber);
 
     let phoneNumber = {};
@@ -80,70 +83,93 @@ const parsePhone = (pNumber) => {
 };
 
 const AdminSettingsPage = () => {
-    const {license, address, phoneNumber, email, socialMedia, companyName, changeSettings} = useContext(AppContext);
+
+    const {
+        pageState: {
+            settings,
+            changeSettings
+        },
+    } = useContext(AppContext);
+
     const classes = useStyles();
 
-    const [companyName_, setCompanyName_] = useState(companyName);
-    const [email_, setEmail_] = useState(email);
-    const [phone_, setPhone_] = useState(phoneNumber.tel);
-    const [license_, setLicense_] = useState(license);
-    const [address_, setAddress_] = useState(address);
-    const [socialMedia_, setSocialMedia_] = useState(socialMedia);
+    // Save the initial state so we can go back
+    const [hasSavedState, setSavedState] = useState(false);
+    const initialSavedState = useRef({});
+    useEffect(() => {
+        initialSavedState.current = {...settings};
+        setSavedState(true)
+    }, []);
+
+
+
+    const [companyName_, setCompanyName_] = useState(settings[DB_KEYS_SETTINGS_PAGE.companyName]);
+    const [email_, setEmail_] = useState(settings[DB_KEYS_SETTINGS_PAGE.email]);
+    const [phone_, setPhone_] = useState(settings[DB_KEYS_SETTINGS_PAGE.phoneNumber].tel);
+    const [license_, setLicense_] = useState(settings[DB_KEYS_SETTINGS_PAGE.license]);
+    const [address_, setAddress_] = useState(settings[DB_KEYS_SETTINGS_PAGE.address]);
+    const [socialMedia_, setSocialMedia_] = useState(settings[DB_KEYS_SETTINGS_PAGE.socialMedia]);
     const [hasEdits, setEdits] = useState(false);
+
+    const getState= (key)=>{
+        return settings[key]
+    };
+
+    const setState = (key)=>(value)=>{
+        changeSettings({...settings,[key]:value})
+    };
+
 
     const [openEditAddress, setOpenEditAddress] = useState(false);
 
+    // Cancel Button
+    const cancelEdits = () => {
+        changeSettings(initialSavedState.current);
+    };
+
     // notify if user has edited anything
     useEffect(() => {
-        if (companyName_ !== companyName) {
-            //
-        } else if (email_ !== email) {
-            //
-        } else if (phone_ !== phoneNumber.tel) {
-            //
-        } else if (license_ !== license) {
-            //
-        } else if (address_ !== address) {
-            //
-        } else if (socialMedia_ !== socialMedia) {
-            //
-        } else {
-            setEdits(false);
-            return
+        if (!isObjectEmpty(initialSavedState.current)) {
+            if (JSON.stringify(initialSavedState.current) !== JSON.stringify(settings)){
+                setEdits(true);
+            }else{
+                setEdits(false);
+            }
         }
-        setEdits(true);
-    }, [companyName_, email_, phone_, license_, address_, socialMedia_]);
+
+    }, [settings]);
 
     // Update AppContext with new state
     const confirmCallback = () => {
 
-        let payload = {
-            phoneNumber: parsePhone(phone_),
-            companyName: companyName_,
-            email: email_,
-            license: license_,
-            address: address_,
-            socialMedia: socialMedia_
-        };
 
-        changeSettings(payload);
-        uploadSettingToDb(payload).catch((e) => alert(`Could not upload settings to db: ${e}`));
+        uploadPageToDb(settings, DB_KEYS_SETTINGS_PAGE, "[UploadSettingsToDb]", DB_NODES_PAGES.settings)
+            .catch((e) => alert(`Could not upload settings to db: ${e}`))
+            .then(() => {
+                initialSavedState.current = settings;
+                alert("Settings have changed! Reload if you don't see the effects immediately")
+            });
 
-        alert("Settings have changed! Reload if you don't see the effects immediately")
     };
 
     // Call back for social media edits
     const handleSocial = (type) => (value) => {
-        setSocialMedia_({...socialMedia_, [type]: value})
+        let socialMedia = settings[DB_KEYS_SETTINGS_PAGE.socialMedia];
+        setState(DB_KEYS_SETTINGS_PAGE.socialMedia)({...socialMedia, [type]: value})
     };
 
 
     // Callback for ModalEditBusinessLocation
     const editAddressCreateCallback = (value) => {
-        setAddress_(value);
+        setState(DB_KEYS_SETTINGS_PAGE.address)(value)
     };
 
-    return <div style={{
+
+    const handleTelephone=(val)=>{
+        setState(DB_KEYS_SETTINGS_PAGE.phoneNumber)(parsePhone(val))
+    };
+
+    return hasSavedState && <div style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -167,7 +193,7 @@ const AdminSettingsPage = () => {
                                 Confirm
                             </Button>
 
-                            <Button size={'large'} variant={'contained'} onClick={() => alert('canceld')}
+                            <Button size={'large'} variant={'contained'} onClick={cancelEdits}
                                     color={'secondary'}>
                                 Cancel
                             </Button>
@@ -178,59 +204,57 @@ const AdminSettingsPage = () => {
             </div>
 
 
-
-
             <Grid container direction={'column'} className={classes.edit_container}>
 
                 <SelectionDivider color={colorScheme.general.shabby_chic} title={'Personal Info'}/>
 
                 <Grid item className={classes.item}>
-                    <TextInput hasSecondaryColor label={'Company Name'} textCallback={setCompanyName_}
-                               initial={companyName_}/>
+                    <TextInput hasSecondaryColor label={'Company Name'} textCallback={setState(DB_KEYS_SETTINGS_PAGE.companyName)}
+                               initial={getState(DB_KEYS_SETTINGS_PAGE.companyName)}/>
                 </Grid>
 
                 <Grid item className={classes.item}>
-                    <TextInput hasSecondaryColor label={'Email Address'} textCallback={setEmail_} initial={email_}/>
+                    <TextInput hasSecondaryColor label={'Email Address'} textCallback={setState(DB_KEYS_SETTINGS_PAGE.email)} initial={getState(DB_KEYS_SETTINGS_PAGE.email)}/>
                 </Grid>
 
                 <Grid item className={classes.item}>
-                    <PhoneInput hasSecondaryColor label={'Phone Number'} textCallback={setPhone_} initial={phone_}/>
+                    <PhoneInput hasSecondaryColor label={'Phone Number'} textCallback={handleTelephone} initial={getState(DB_KEYS_SETTINGS_PAGE.phoneNumber).tel}/>
                 </Grid>
 
                 <Grid item className={classes.item}>
-                    <TextInput hasSecondaryColor label={'Calbre License#'} textCallback={setLicense_}
-                               initial={license_}/>
+                    <TextInput hasSecondaryColor label={'Calbre License#'} textCallback={setState(DB_KEYS_SETTINGS_PAGE.license)}
+                               initial={getState(DB_KEYS_SETTINGS_PAGE.license)}/>
                 </Grid>
 
                 <Grid item className={classes.item}>
                     <TextInput onPress={() => setOpenEditAddress(true)} multiline hasSecondaryColor
                                label={'Business Location'} textCallback={() => {
                     }}
-                               initial={`${address_.line1}\n${address_.line2}`}/>
+                               initial={`${getState(DB_KEYS_SETTINGS_PAGE.address).line1}\n${getState(DB_KEYS_SETTINGS_PAGE.address).line2}`}/>
                 </Grid>
 
 
                 <SelectionDivider color={colorScheme.general.fancy_pink} title={'Social Media'}/>
                 <Grid item className={classes.item}>
                     <TextInput hasSecondaryColor label={'Facebook'} textCallback={handleSocial('facebook')}
-                               initial={socialMedia_.facebook}/>
+                               initial={getState(DB_KEYS_SETTINGS_PAGE.socialMedia).facebook}/>
                 </Grid>
 
                 <Grid item className={classes.item}>
                     <TextInput hasSecondaryColor label={'Instagram'} textCallback={handleSocial('instagram')}
-                               initial={socialMedia_.instagram}/>
+                               initial={getState(DB_KEYS_SETTINGS_PAGE.socialMedia).instagram}/>
                 </Grid>
 
                 <Grid item className={classes.item}>
                     <TextInput hasSecondaryColor label={'Linkedin'} textCallback={handleSocial('linkedin')}
-                               initial={socialMedia_.linkedin}/>
+                               initial={getState(DB_KEYS_SETTINGS_PAGE.socialMedia).linkedin}/>
                 </Grid>
             </Grid>
 
         </div>
 
         <ModalEditBusinessLocation createCallback={editAddressCreateCallback} openCallback={setOpenEditAddress}
-                                   open={openEditAddress} address={address_}/>
+                                   open={openEditAddress} address={getState(DB_KEYS_SETTINGS_PAGE.address)}/>
     </div>
 
 };
