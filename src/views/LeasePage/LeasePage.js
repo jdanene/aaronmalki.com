@@ -48,13 +48,21 @@ const useStyles = makeStyles((theme) => ({
 
     },
     body: {
+        width:'100%',
         display: 'flex',
-        alignContent: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        padding: theme.spacing(5),
+                paddingLeft:theme.spacing(3),
+        paddingRight:theme.spacing(3),
+        marginTop: theme.spacing(5),
+        marginBottom: theme.spacing(5),
+
     },
         imgTextContainer:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginBottom:theme.spacing(3),
     }
 }));
@@ -78,17 +86,19 @@ const LeasePage = () => {
     return <div className={classes.root}>
         <PageViewTopHalf pageTitle={pageTitle}  className={classes.topHalfImg}/>
         <div className={classes.body}>
-            <Grid className={classes.imgTextContainer} container spacing={mobileBreak ? 3 : 4}>
-                <Grid sm={12} md={6} item>
-                   <div style={{display:'flex',flexDirection:'column'}}>
+            <Grid className={classes.imgTextContainer} container justify={'center'} alignItems={'center'} spacing={mobileBreak ? 3 : 4}>
+                <Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
+                    <div style={{display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                     <ImageCarousel imgArray={imageCarousel}/>
                     {!mobileBreak&&<TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle alignLeft />}
                    </div>
                 </Grid>
-                <Grid sm={12} md={6} item>
+
+
+                <Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
                     <TextBlurbWithTitleLevel2 mainBlurbArray={mainRightParagraphArray} mainTitle={mainRightTitle} secondaryBlurbArray={secondaryRightParagraphArray} secondaryTitle={secondaryRightTitle}/>
                 </Grid>
-                {mobileBreak &&<Grid sm={12} md={6} item>
+                {mobileBreak &&<Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
                     <TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle alignLeft/>
                 </Grid>}
             </Grid>

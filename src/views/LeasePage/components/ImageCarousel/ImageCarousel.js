@@ -10,12 +10,14 @@ import "./ImageCarousel.css"
 
 const useStyles = makeStyles((theme) => ({
     container: {
+
         borderRadius: '2.5px',
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         overflow: "hidden",
-        maxHeight: "450px"
+        maxHeight: "450px",
+        width:'100%'
     },
     img: {
         borderRadius: '2.5px',
@@ -29,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: "rgba(0,0,0,.4)",
         }
+    },
+    root:{
+        paddingLeft:theme.spacing(1),
+        paddingRight:theme.spacing(1),
+        maxWidth:'100vw',
+        width:'100%'
     }
 }));
 
@@ -82,7 +90,7 @@ const ImageCarousel = ({imgArray}) => {
     };
     return (
         <div onFocus={onFocus} onBlur={onBlur} onMouseEnter={onFocus} onMouseLeave={onBlur} onMouseOver={onFocus}
-             onMouseOut={onBlur}>
+             onMouseOut={onBlur} className={classes.root}>
 
 
             <Carousel
@@ -141,7 +149,7 @@ const ThumbImg = ({item, currentSlide, className}) => {
 
     )
 
-        ;
+
 };
 
 export default ImageCarousel;

@@ -137,15 +137,18 @@ const styles = theme => ({
         height: '75%'
     },
     main_container: {
-        width: '100vw',
+        width: '100%',
         display: 'flex',
         flexDirection:'column',
-        padding: theme.spacing(2),
         paddingBottom: theme.spacing(10),
         paddingTop: theme.spacing(8),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colorScheme.other.backgroundComplementary,
+        [theme.breakpoints.down("md")]: {
+                    paddingLeft:0,
+        paddingRight: 0,
+        },
     },
     contact_container: {
         display: 'flex',

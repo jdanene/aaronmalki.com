@@ -29,6 +29,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import validator from 'validator'
+import Paper from '@material-ui/core/Paper';
 
 
 const CssTextField = withStyles({
@@ -254,14 +255,14 @@ const styles = theme => ({
 
     getInTouchText: {
 
-        marginBottom: 10,
+        marginBottom: theme.spacing(4),
         fontFamily: 'airbnb-light',
         fontWeight: 'bold',
         letterSpacing: 1,
         color: theme.palette.primary.dark,
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.down("xs")]: {
             marginTop: 10,
-            fontSize: '40px'
+            fontSize: '35px'
         },
         [theme.breakpoints.up("sm")]: {
             fontSize: '40px'
@@ -276,6 +277,24 @@ const styles = theme => ({
             fontSize: '40px'
         }
     },
+    paperContainer:{
+        display:'flex',
+        flexGrow:1,
+        flexDirection:'column',
+        width:'100%',
+        alignItems:'center',
+        paddingLeft:theme.spacing(4),
+        paddingRight: theme.spacing(4),
+        paddingBottom: theme.spacing(5),
+        paddingTop: theme.spacing(2),
+        borderRadius: 7,
+        [theme.breakpoints.down("xs")]: {
+            fontSize: '40px',
+                    paddingLeft:theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        },
+
+    }
 });
 
 const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
@@ -311,7 +330,6 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
 
             setError({...error, email: true, helperTxt: 'Please include a valid email.'});
         } else {
-            // ToDo: Hook up with email sender, and maybe firebase
             SendEmailToAaron({name,email:email.trim(),message})
                 .then(()=>setMessageSent(true))
                 .catch(()=>console.error(`[SendMessage.js] failed to send message:${JSON.stringify({email,message,name})}`))
@@ -328,13 +346,15 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
     return (
         <Grid item md={md} lg={lg} xl={xl} sm={sm} xs={xs}
               className={classes.main_container}>
+        <Paper elevation={3} className={classes.paperContainer} >
 
 
             <StyledText className={classes.getInTouchText}>
                 Get In Touch
             </StyledText>
 
-            <Box mb={1}>
+
+            <Box mb={1} style={{width:'100%'}}>
                 <TextField
                     variant="outlined"
                     id={"name"}
@@ -353,7 +373,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                 />
             </Box>
 
-            <Box mb={1}>
+            <Box mb={1} style={{width:'100%'}}>
                 <TextField
                     error={error.email}
 
@@ -373,7 +393,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                 />
             </Box>
 
-            <Box mb={1}>
+            <Box mb={1} style={{width:'100%'}}>
                 <TextField
                     error={error.message}
                     variant="outlined"
@@ -421,6 +441,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                 </Alert>
             </Fade>}
 
+        </Paper>
 
         </Grid>
     )
