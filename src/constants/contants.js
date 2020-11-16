@@ -122,6 +122,7 @@ export const DB_KEYS_HOME_PAGE = {
     professionalTitle: "professionalTitle"
 };
 
+
 export const DB_KEYS_BUYERS_PAGE = {
     backgroundPic: "backgroundPic",
     formHeading: "formHeading",
@@ -141,6 +142,18 @@ export const DB_FORMATS = {
     "file": "file",
     "fileArray": "fileArray"
 };
+
+export const DB_HOME_FORMATS = {
+        aboutMe: DB_FORMATS.multiPartText,
+    pageTitle: DB_FORMATS.multiPartText,
+    profilePic:DB_FORMATS.file,
+    backgroundPic: DB_FORMATS.file,
+    professionalTitle: DB_FORMATS.plainText
+
+};
+
+
+
 
 export const DB_KEYS_SETTINGS_PAGE = {
     license:'license',

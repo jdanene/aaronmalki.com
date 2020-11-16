@@ -14,7 +14,7 @@ import FileDropDialog from "../../components/FileDrop/FileDropDialog";
 import BasicTextDialog from "../../components/ManagePages/BasicTextDialog";
 import MultiParagraphTextDialog from "../../components/ManagePages/MultiParagraphTextDialog";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES_PAGES,DB_HOME_FORMATS} from "../../constants/contants";
 import Button from '@material-ui/core/Button';
 import multiPartTextArrayToDict from "../../components/Utility/multiPartTextArrayToDict";
 import multiPartTextDictToArray from "../../components/Utility/multiPartTextDictToArray";
@@ -27,7 +27,7 @@ import SecondaryHeading from "../../components/ManagePages/SecondaryHeading"
 import isInvalidAboutMe from "./isInvalidAboutMe"
 import useStyles from "../../components/ManagePages/pageStyles"
 import {GiConqueror} from "react-icons/gi"
-
+import confirmPageEdits from "../../components/ManagePages/confirmPageEdits";
 const ManageHomePage = () => {
     const {
         pageState: {
@@ -59,10 +59,8 @@ const ManageHomePage = () => {
 
 
     // Holds Files
-    const backgroundImg = useRef(null);
-    const profileImg = useRef(null);
+    const pictureFiles = useRef({});
 
-    // notify if user has edited anything
     useEffect(() => {
         if (JSON.stringify(homePage) !== JSON.stringify(initialSavedState.current)) {
             setEdits(true);
@@ -87,9 +85,9 @@ const ManageHomePage = () => {
         } else if (key === DB_KEYS_HOME_PAGE.profilePic || key === DB_KEYS_HOME_PAGE.backgroundPic) {
             // files -- save them in case need to upload
             if (key === DB_KEYS_HOME_PAGE.profilePic) {
-                profileImg.current = value[0];
+                pictureFiles.current[DB_KEYS_HOME_PAGE.profilePic]=value[0];
             } else {
-                backgroundImg.current = value[0];
+                pictureFiles.current[DB_KEYS_HOME_PAGE.backgroundPic]=value[0];
             }
 
             newState = {...homePage, [key]: URL.createObjectURL(value[0])};
@@ -108,43 +106,22 @@ const ManageHomePage = () => {
 
     };
 
+        // Confirm Button
     const confirmEdits = () => {
-        //open upload dialog
-        setUploading({finished:false,open:true});
-
-        let _state = {...homePage};
-        _state.aboutMe = multiPartTextArrayToDict(_state.aboutMe);
-        _state.pageTitle = multiPartTextArrayToDict(_state.pageTitle);
-
-
-        if (backgroundImg.current != null && profileImg.current != null) {
-
-            uploadImgToDbEasy(DB_NODES_PAGES.homePage,backgroundImg.current,profileImg.current )
-                .then((urls)=>{
-                    _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
-                    _state[DB_KEYS_HOME_PAGE.profilePic] = urls[1];
-                    uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]", DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
-                });
-
-        } else if (backgroundImg.current != null) {
-            uploadImgToDbEasy(DB_NODES_PAGES.homePage, backgroundImg.current ).then((urls) => {
-                _state[DB_KEYS_HOME_PAGE.backgroundPic] = urls[0];
-                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]",DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
-            })
-        } else if (profileImg.current != null) {
-            uploadImgToDbEasy(DB_NODES_PAGES.homePage, profileImg.current ).then((urls) => {
-                _state[DB_KEYS_HOME_PAGE.profilePic] = urls[0];
-                uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]",DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
-            })
-        }else{
-            uploadPageToDb(_state, DB_KEYS_HOME_PAGE, "[UploadHomeToDb]",DB_NODES_PAGES.buyersPage).then(() => setUploading({open:true,finished:true}))
-        }
-
-        // set the saved state to new homePageState
-        initialSavedState.current = {...homePage};
-        setEdits(false)
-
+        confirmPageEdits(
+            homePage,
+            initialSavedState,
+            uploading,
+            setUploading,
+            setEdits,
+            DB_HOME_FORMATS,
+            pictureFiles,
+            DB_NODES_PAGES.homePage,
+            DB_KEYS_HOME_PAGE,
+            "[ManageHomePage]"
+        ).catch((e) => alert(`Failed to upload edits, sorry! 😞\n${e}`))
     };
+
 
     return hasSavedState && <div className={classes.root}>
         <BorderGuard/>
