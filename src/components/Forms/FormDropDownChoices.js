@@ -94,7 +94,7 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
     const [open, setOpen] = useState(false);
     const classes = useStyles();
     const anchorRef = React.useRef(null);
-    const textWidth = width? width: getMaxTextWidth(choices) * 1.2;
+    const textWidth = width ? width : getMaxTextWidth(choices) * 1.2;
 
 
     const handleClick = (idx) => () => {
@@ -163,13 +163,20 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                             style={{maxHeight: ITEM_HEIGHT * 4.5, overflow: 'auto'}}
                     >
                         {({TransitionProps, placement}) => (
-                            <Grow
-                                {...TransitionProps}
-                                style={{
-                                    transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-                                }}
-                            >
-                                <Paper style={{left: -20, position: "relative"}}>
+                            <Paper style={{
+                                position: "relative",
+                                width: '100%',
+                                border: '1px solid rgba(0,0,0,.25)',
+                                maxHeight: ITEM_HEIGHT * 4,
+                                overflow: 'auto'
+                            }}>
+
+                                <Grow
+                                    {...TransitionProps}
+                                    style={{
+                                        transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                                    }}
+                                >
                                     <ClickAwayListener onClickAway={handleClose}>
                                         <MenuList
                                             id="split-button-menu"
@@ -192,8 +199,9 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                                             ))}
                                         </MenuList>
                                     </ClickAwayListener>
-                                </Paper>
-                            </Grow>
+
+                                </Grow>
+                            </Paper>
                         )}
                     </Popper>
                 </Grid>

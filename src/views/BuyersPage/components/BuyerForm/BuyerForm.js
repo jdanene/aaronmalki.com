@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent:'center',
         padding: theme.spacing(2),
+        paddingTop:0
     },
     minMaxChoices:{
-        width: '335px'
     }
 }));
 

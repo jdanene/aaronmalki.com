@@ -32,17 +32,22 @@ const styles = theme => ({
         display: 'flex'
     },
     textField: {
+        zIndex:0,
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "rgba(27, 48, 57, .30)"
+            borderColor: "rgba(27, 48, 57, .30)",
+            zIndex:0
         }, "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: colorScheme.primary.primary
+            borderColor: colorScheme.primary.primary,
+             zIndex:0
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: colorScheme.other.analogous0,
+             zIndex:0
         },
         "& .MuiInputLabel-outlined.Mui-focused": {
             color: colorScheme.other.analogous0,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+             zIndex:0
         }
 
     }
