@@ -161,10 +161,15 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                     </ButtonGroup>
                     <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition
                             style={{maxHeight: ITEM_HEIGHT * 4.5, overflow: 'auto'}}
+                            modifiers={{
+                                offset: {
+                                    enabled: true,
+                                    offset: '-19, 0'
+                                }
+                            }}
                     >
                         {({TransitionProps, placement}) => (
                             <Paper style={{
-                                position: "relative",
                                 width: '100%',
                                 border: '1px solid rgba(0,0,0,.25)',
                                 maxHeight: ITEM_HEIGHT * 4,
@@ -174,6 +179,7 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                                 <Grow
                                     {...TransitionProps}
                                     style={{
+                                        position: "relative",
                                         transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
                                     }}
                                 >
