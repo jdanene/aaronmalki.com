@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start',
         flexGrow: 1,
         flexShrink: 1,
-        marginBottom: theme.spacing(2),
-        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(1),
+        marginTop: theme.spacing(2),
         padding:0,
         borderBottom: `1px solid rgba(27, 48, 57, .25)`,
         width: '100%'

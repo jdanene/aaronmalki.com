@@ -128,7 +128,7 @@ const BuyerForm = () => {
                                    title={bedroomTitle}/>
             </Grid>
             <Grid item>
-                <FormDropDownChoices selectionIdx={timeFrameIdx} choices={timeFrameOptions}
+                <FormDropDownChoices width={190} selectionIdx={timeFrameIdx} choices={timeFrameOptions}
                                      selectionCallback={timeFrameSelectionCallback} title={timeFrameTitle}/>
             </Grid>
         </Grid>

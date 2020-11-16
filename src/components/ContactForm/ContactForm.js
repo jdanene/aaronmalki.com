@@ -24,6 +24,9 @@ const styles = theme => ({
     main_container: {
         height: '100%',
         width: '100%',
+        flexShrink: 1,
+        display: 'flex',
+        flexDirection: 'column'
     },
     root: {
         display: 'flex'
@@ -157,7 +160,7 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, them
                     multiline
                     id={"message"}
                     className={classes.textField}
-                    rows={4}
+                    rows={3}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -173,7 +176,7 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, them
                 />
             </Box>
 
-            <Box mb={3} style={{maxWidth: 250}}>
+            <Box mb={0} style={{maxWidth: 250}}>
                 <MaterialUiPhoneNumber
                     error={error.phoneNumber}
                     variant="outlined"
@@ -193,17 +196,16 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, them
                     countryCodeEditable={false}
                     onChange={handleText('phoneNumber')}/>
             </Box>
-            <Box mt={5} style={{display: 'flex',width:'100%'}}>
-
-            <Button
-                color={"secondary"}
-                variant="contained"
-                onClick={submitForm}
-                disabled={isFormSubmit}
-                size={"large"}
-            >
-                SUBMIT
-            </Button>
+            <Box mt={2} style={{display: 'flex', width: '100%'}}>
+                <Button
+                    color={"secondary"}
+                    variant="contained"
+                    onClick={submitForm}
+                    disabled={isFormSubmit}
+                    size={"large"}
+                >
+                    SUBMIT
+                </Button>
             </Box>
 
             {isFormSubmit && <Fade in={isFormSubmit}>

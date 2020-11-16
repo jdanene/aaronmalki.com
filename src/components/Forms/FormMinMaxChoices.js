@@ -13,11 +13,14 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        flexShrink: 1
+        flexShrink: 1,
+        width:'100%'
     },
     button_container: {
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'space-between',
+        maxWidth: 275
         // [theme.breakpoints.only("xs")]: {
         //     height: '400px'
         // },

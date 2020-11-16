@@ -28,14 +28,13 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        flexGrow: 1,
-        flexShrink: 1,
+
     },
     buttonText: {
         fontFamily: BUTTON_FONTFAMILY,
         fontSize: 10,
         textAlign: 'center',
-        alignSelf: 'center',
+        //alignSelf: 'center',
 
     },
     buttonIconContainer: {
@@ -44,12 +43,9 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
 
     },
-    buttonContainer: {
-
-
-    },
+    buttonContainer: {},
     title: {
-        fontFamily:  'airbnb-book',
+        fontFamily: 'airbnb-book',
         textAlign: 'left',
         width: '100%',
         color: theme.palette.text.secondary
@@ -79,7 +75,6 @@ const getMaxTextWidth = (aList) => {
     }
 
 
-
     return max
 };
 const ITEM_HEIGHT = 48;
@@ -94,12 +89,12 @@ const ITEM_HEIGHT = 48;
  * @return {*}
  * @constructor
  */
-const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, minIdxToShow}) => {
+const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, minIdxToShow, width}) => {
     //const [selectionIdx, setSelectionIdx] = useState(0);
     const [open, setOpen] = useState(false);
     const classes = useStyles();
     const anchorRef = React.useRef(null);
-    const textWidth = getMaxTextWidth(choices) * 1.75;
+    const textWidth = width? width: getMaxTextWidth(choices) * 1.2;
 
 
     const handleClick = (idx) => () => {
@@ -136,12 +131,13 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                         disableRipple
                         color="secondary"
                         ref={anchorRef}
-                        style={{border:0}}
+                        style={{border: 0}}
                         aria-label="split button">
                         <Button
                             variant={'outlined'}
-                            style={{width: textWidth,   border: '1px solid rgba(27, 48, 57, .40)',
-}}
+                            style={{
+                                width: textWidth, border: '1px solid rgba(27, 48, 57, .40)',
+                            }}
                             className={[classes.buttonText, classes.buttonContainer].join(' ')}
                             onClick={handleClick(selectionIdx)}>
                             {isObject(choices[selectionIdx]) ? choices[selectionIdx].text : choices[selectionIdx]}
@@ -149,7 +145,7 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                         <Button
                             p={0}
                             m={0}
-                             color="secondary"
+                            color="secondary"
                             className={classes.buttonIconContainer}
                             variant={'outlined'}
                             size="small"
@@ -164,7 +160,7 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                         </Button>
                     </ButtonGroup>
                     <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition
-                            style={{maxHeight: ITEM_HEIGHT * 4.5,overflow:'auto'}}
+                            style={{maxHeight: ITEM_HEIGHT * 4.5, overflow: 'auto'}}
                     >
                         {({TransitionProps, placement}) => (
                             <Grow
@@ -181,7 +177,7 @@ const FormDropDownChoices = ({choices, selectionCallback, title, selectionIdx, m
                                             {choices.map((choice, index) => (
 
 
-                                                ((minIdxToShow && index>=minIdxToShow)||!minIdxToShow)&&<MenuItem
+                                                ((minIdxToShow && index >= minIdxToShow) || !minIdxToShow) && <MenuItem
                                                     style={{
                                                         width: textWidth,
                                                         justifyContent: 'center',

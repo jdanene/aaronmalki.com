@@ -9,19 +9,21 @@ import Paper from '@material-ui/core/Paper';
 import CssBaseline from '@material-ui/core/CssBaseline';
 const useStyles = makeStyles((theme) => ({
     root: {
-
+        flexGrow:1,
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent:'center',
         padding: theme.spacing(2),
+        paddingTop:0
     },
     minMaxChoices:{
-        width: '335px'
+        //width: '335px'
     },
     imgTextContainer:{
-        marginBottom:theme.spacing(3)
+        marginBottom:0,
+        width:'100%'
     }
 }));
 
@@ -118,15 +120,15 @@ const LeaseForm = () => {
         <FormDivider title={"Property Type"}/>
 
         <Grid className={classes.imgTextContainer} container direction={'column'} spacing={1}>
-            <Grid item>
+            <Grid xs={12} item >
                 <FormMinMaxChoices className={classes.minMaxChoices} choicesHigh={priceOptionsHigh} choicesLow={priceOptionsLow} title={priceTitle}
                                    selectionCallback={priceSelectionCallback}/>
             </Grid>
-            <Grid item>
+            <Grid xs={12} item style={{width:'100%'}}>
                 <FormStaticChoices choices={bathroomOptions} selectionCallback={bathroomSelectionCallback}
                                    title={bathroomTitle}/>
             </Grid>
-            <Grid item>
+            <Grid xs={12} item style={{width:'100%'}}>
                 <FormStaticChoices choices={bedroomOptions} selectionCallback={bedroomSelectionCallback}
                                    title={bedroomTitle}/>
             </Grid>
