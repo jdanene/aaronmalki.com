@@ -48,7 +48,7 @@ exports.sendEmailConfirmation = functions.database.ref('/inquiries/{email}/{uuid
         await sendConfirmEmailToUser(mailTransport,settings,{email,name});
 
         // Send Email to Aaron
-        await sendInquiryToAaron(mailTransport,email, payload);
+        await sendInquiryToAaron(mailTransport,gmailEmail, payload);
 
         console.log(`New email sent to:`, email);
     } catch (error) {

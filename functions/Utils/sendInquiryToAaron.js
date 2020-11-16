@@ -1,7 +1,7 @@
 const MESSAGE_TYPES = require("../constants");
 
 const getHtmlMessageBody = (payload) => {
-    let str = `<br/><h3> Contact Info</h3>`;
+    let str = `<br/><h3> Contact </h3>`;
     // Basic contact info
     Object.keys(payload).sort().forEach((key) => {
         let value = payload[key];
