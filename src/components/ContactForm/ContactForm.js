@@ -54,7 +54,7 @@ const styles = theme => ({
 
 });
 
-const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
+const ContactForm = ({confirmCallback, showPhone, classes, selectionCallback, isMessageSent, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -106,7 +106,9 @@ const ContactForm = ({showPhone, classes, selectionCallback, isMessageSent, them
         } else if ((hasPhone()) && (!(validator.isMobilePhone(phoneNumber)))) {
             setError({...error, phoneNumber: true, helperTxt: 'Please enter a valid phone number.'});
         } else {
-            alert(`Message good: ${name}, ${email}, ${message}, ${phoneNumber}`)
+            confirmCallback({name,email:email.trim(),message,phoneNumber});
+            setFormSubmit(true);
+            //alert(`Message good: ${name}, ${email}, ${message}, ${phoneNumber}`)
         }
     };
 
@@ -240,7 +242,8 @@ ContactForm.defaultProps = {
     isMessageSent: false,
     error: {phoneNumber: false, name: false, email: false, message: false, helperTxt: ''},
     selectionCallback: () => {
-    }
+    },
+    confirmCallback: (v)=>alert(JSON.stringify(v))
 };
 
 ContactForm.propTypes = {
@@ -252,7 +255,8 @@ ContactForm.propTypes = {
         message: PropTypes.bool,
         helperTxt: PropTypes.string,
     }).isRequired,
-    selectionCallback: PropTypes.func.isRequired
+    selectionCallback: PropTypes.func.isRequired,
+    confirmCallback: PropTypes.func.isRequired
 };
 
 

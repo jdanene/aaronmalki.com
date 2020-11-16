@@ -3,6 +3,7 @@ require('dotenv').config()
 
 const sendInquiryToAaron = require("./Utils/sendInquiryToAaron");
 const sendConfirmEmailToUser = require("./Utils/sendConfirmEmailToUser");
+const admin = require('firebase-admin');
 
 const functions = require('firebase-functions');
 //firebase deploy --only functions
@@ -23,6 +24,7 @@ const mailTransport = nodemailer.createTransport({
     },
 });
 
+admin.initializeApp(functions.config().firebase);
 
 // If error with deploy use: https://stackoverflow.com/questions/54451457/firebase-cloud-functions-http-error-code-403
 // need node 8 for deployment
@@ -32,15 +34,21 @@ exports.sendEmailConfirmation = functions.database.ref('/inquiries/{email}/{uuid
     //Key-value pairs representing state of data after the change.
     const snapshot = change.after;
     //Use Before: Key-value pairs representing state of data before the change.
+    const payload = snapshot.val();
+    const {email, name} = payload;
 
-    const {email, message, name, timeCreated} = snapshot.val();
+    // get settings from db
+    let settingsRef = admin.database().ref(`pages/settings`);
+    const settingsSnapshot = await settingsRef.once('value');
+    const settings = settingsSnapshot.val();
+
 
     try {
         // Send Confirm Email To user
-        await sendConfirmEmailToUser(mailTransport,{email,name});
+        await sendConfirmEmailToUser(mailTransport,settings,{email,name});
 
         // Send Email to Aaron
-        await sendInquiryToAaron(mailTransport,{rootEmail:gmailEmail, email, message, name, timeCreated});
+        await sendInquiryToAaron(mailTransport,email, payload);
 
         console.log(`New email sent to:`, email);
     } catch (error) {

@@ -4,18 +4,22 @@ import firebase from "firebase";
 import {normalEmailToFirebaseEmail} from "../Utility";
 //More abotu firebase list: https://courses.cs.northwestern.edu/394/firebase-notes.php#push
 
-const SendEmailToAaron = async ({email, message,name}) =>{
+const SendEmailToAaron = async (props) =>{
+
+    const {email} = props;
+    if (!(email)){
+        alert('[SendEmailToAaron] missing required attr "email"')
+    }
+
     let inquiryRef= FIREBASE_DB.ref(`inquiries/${normalEmailToFirebaseEmail(email)}`);
 
     await inquiryRef.push().set(
         {
-            email,
-            message,
-            name,
+            ...props,
             timeCreated: firebase.database.ServerValue.TIMESTAMP
         });
 
-    await inquiryRef.update({lastChanged:firebase.database.ServerValue.TIMESTAMP})
+    //await inquiryRef.update({lastChanged:firebase.database.ServerValue.TIMESTAMP})
 
 };
 

@@ -7,94 +7,97 @@ import FormDivider from "../../components/Forms/FormDivider";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import SendEmailToAaron from "../../components/Database/SendEmailToAaron";
+import {MESSAGE_TYPES} from "../../constants/contants";
+
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow:1,
+        flexGrow: 1,
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         padding: theme.spacing(2),
-        paddingTop:0
+        paddingTop: 0
     },
-    minMaxChoices:{
+    minMaxChoices: {
         //width: '335px'
     },
-    imgTextContainer:{
-        marginBottom:0,
-        width:'100%'
+    imgTextContainer: {
+        marginBottom: 0,
+        width: '100%'
     }
 }));
 
 const priceOptionsLow = [
     {value: 0, text: 'No Min'},
-    {value: 100000, text: '100k'},
-    {value: 200000, text: '200k'},
-    {value: 300000, text: '300k'},
-    {value: 400000, text: '400k'},
-    {value: 500000, text: '500k'},
-    {value: 600000, text: '600k'},
-    {value: 700000, text: '700k'},
-    {value: 800000, text: '800k'},
-    {value: 900000, text: '900k'},
-    {value: 1000000, text: '1m'},
-    {value: 1250000, text: '1.25m'},
-    {value: 1500000, text: '1.5m'},
-    {value: 1750000, text: '1.75m'},
-    {value: 2000000, text: '2m'},
-    {value: 2250000, text: '2.25m'},
-    {value: 2500000, text: '2.5m'},
-    {value: 2750000, text: '2.75m'},
-    {value: 3000000, text: '3m'},
-    {value: 3500000, text: '3.5m'},
-    {value: 4000000, text: '4m'},
-    {value: 4500000, text: '4.5m'},
-    {value: 5000000, text: '5m'},
-    {value: 10000000, text: '10m'},
-    {value: 20000000, text: '20m+'}];
+    {value: 500, text: '$500'},
+    {value: 750, text: '$750'},
+    {value: 1000, text: '$1k'},
+    {value: 1250, text: '$1.25k'},
+    {value: 1500, text: '$1.5k'},
+    {value: 1750, text: '$1.75k'},
+    {value: 2000, text: '$2k'},
+    {value: 2250, text: '$2.25k'},
+    {value: 2500, text: '$2.5k'},
+    {value: 2750, text: '$2.75k'},
+    {value: 3000, text: '$3k'},
+    {value: 3250, text: '$3.25'},
+    {value: 3500, text: '$3.5k'},
+    {value: 3750, text: '$3.75k'},
+    {value: 4000, text: '$4k'},
+    {value: 4250, text: '$4.25k'},
+    {value: 4500, text: '$4.5k'},
+    {value: 4750, text: '$4.75k'},
+    {value: 5000, text: '$5k'},
+    {value: 5500, text: '$5.5k'},
+    {value: 6000, text: '$6k'},
+    {value: 6500, text: '$6.5k'},
+    {value: 7000, text: '$7k'},
+    {value: 8000, text: '$8k'},
+    {value: 9000, text: '$9k'},
+    {value: 10000, text: '$10k'},
+    {value: 15000, text: '$15k'}
+];
 
 const priceOptionsHigh = [
-    {value: 0, text: '0'},
-    {value: 100000, text: '100k'},
-    {value: 200000, text: '200k'},
-    {value: 300000, text: '300k'},
-    {value: 400000, text: '400k'},
-    {value: 500000, text: '500k'},
-    {value: 600000, text: '600k'},
-    {value: 700000, text: '700k'},
-    {value: 800000, text: '800k'},
-    {value: 900000, text: '900k'},
-    {value: 1000000, text: '1m'},
-    {value: 1250000, text: '1.25m'},
-    {value: 1500000, text: '1.5m'},
-    {value: 1750000, text: '1.75m'},
-    {value: 2000000, text: '2m'},
-    {value: 2250000, text: '2.25m'},
-    {value: 2500000, text: '2.5m'},
-    {value: 2750000, text: '2.75m'},
-    {value: 3000000, text: '3m'},
-    {value: 3500000, text: '3.5m'},
-    {value: 4000000, text: '4m'},
-    {value: 4500000, text: '4.5m'},
-    {value: 5000000, text: '5m'},
-    {value: 10000000, text: '10m'},
-    {value: 20000000, text: 'No Max'}];
+    {value: 0, text: '$0'},
+    {value: 500, text: '$500'},
+    {value: 750, text: '$750'},
+    {value: 1000, text: '$1k'},
+    {value: 1250, text: '$1.25k'},
+    {value: 1500, text: '$1.5k'},
+    {value: 1750, text: '$1.75k'},
+    {value: 2000, text: '$2k'},
+    {value: 2250, text: '$2.25k'},
+    {value: 2500, text: '$2.5k'},
+    {value: 2750, text: '$2.75k'},
+    {value: 3000, text: '$3k'},
+    {value: 3250, text: '$3.25'},
+    {value: 3500, text: '$3.5k'},
+    {value: 3750, text: '$3.75k'},
+    {value: 4000, text: '$4k'},
+    {value: 4250, text: '$4.25k'},
+    {value: 4500, text: '$4.5k'},
+    {value: 4750, text: '$4.75k'},
+    {value: 5000, text: '$5k'},
+    {value: 5500, text: '$5.5k'},
+    {value: 6000, text: '$6k'},
+    {value: 6500, text: '$6.5k'},
+    {value: 7000, text: '$7k'},
+    {value: 8000, text: '$8k'},
+    {value: 9000, text: '$9k'},
+    {value: 10000, text: '$10k'},
+    {value: 15000, text: 'No Max'}
+];
 
 
 const LeaseForm = () => {
-    const [timeFrameIdx, setTimeFrameIdx] = useState(0);
     const [bedroomsIdx, setBedroomsIdx] = useState(0);
     const [bathroomsIdx, setBathroomsIdx] = useState(0);
     const [priceIndices, setPriceIndices] = useState({low: 0, high: priceOptionsHigh.length - 1});
-
     const classes = useStyles();
-
-    const timeFrameOptions = ["Looking to buy ASAP", "Over the next few months", "Within the year", "Within the next few years"];
-    const timeFrameTitle = "Time Frame";
-    const timeFrameSelectionCallback = (idx) => {
-        setTimeFrameIdx(idx)
-    };
 
     const bedroomOptions = ["Any", "Studio+", "1+", "2+", "3+", "4+", "5+"];
     const bedroomTitle = "Bedrooms";
@@ -113,6 +116,23 @@ const LeaseForm = () => {
         setPriceIndices({high, low})
     };
 
+    //{name,email:email.trim(),message,messageType:MESSAGE_TYPES.general}
+
+    const sendMessage = (props) => {
+        let payload = {
+            messageType: MESSAGE_TYPES.lease,
+            details: {
+                bedrooms: bedroomOptions[bedroomsIdx],
+                bathrooms: bathroomOptions[bathroomsIdx],
+                priceLow: priceOptionsLow[priceIndices.low].text,
+                priceHigh: priceOptionsHigh[priceIndices.high].text,
+            },
+
+            ...props
+        };
+        SendEmailToAaron(payload)
+            .catch(() => console.error(`[SendMessage.js] failed to send message:${JSON.stringify(payload)}`))
+    };
     // Contact
     // Property Type
 
@@ -120,22 +140,23 @@ const LeaseForm = () => {
         <FormDivider title={"Property Type"}/>
 
         <Grid className={classes.imgTextContainer} container direction={'column'} spacing={1}>
-            <Grid xs={12} item >
-                <FormMinMaxChoices className={classes.minMaxChoices} choicesHigh={priceOptionsHigh} choicesLow={priceOptionsLow} title={priceTitle}
+            <Grid xs={12} item>
+                <FormMinMaxChoices className={classes.minMaxChoices} choicesHigh={priceOptionsHigh}
+                                   choicesLow={priceOptionsLow} title={priceTitle}
                                    selectionCallback={priceSelectionCallback}/>
             </Grid>
-            <Grid xs={12} item style={{width:'100%'}}>
+            <Grid xs={12} item style={{width: '100%'}}>
                 <FormStaticChoices choices={bathroomOptions} selectionCallback={bathroomSelectionCallback}
                                    title={bathroomTitle}/>
             </Grid>
-            <Grid xs={12} item style={{width:'100%'}}>
+            <Grid xs={12} item style={{width: '100%'}}>
                 <FormStaticChoices choices={bedroomOptions} selectionCallback={bedroomSelectionCallback}
                                    title={bedroomTitle}/>
             </Grid>
 
         </Grid>
         <FormDivider title={"Contact"}/>
-        <ContactForm/>
+        <ContactForm confirmCallback={sendMessage}/>
     </Paper>
 
 };

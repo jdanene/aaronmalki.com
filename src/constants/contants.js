@@ -208,3 +208,10 @@ export const DB_MULTIPART_TEXT_KEY = {
     value: "value",
     secondaryValues: "secondaryValues"
 };
+
+
+export const MESSAGE_TYPES = {
+    'general':'general',
+    'lease':'lease',
+    'buy':'buy'
+};

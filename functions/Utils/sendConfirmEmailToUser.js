@@ -1,5 +1,4 @@
 //style = "color:blue;font-size:46px;"
-const CONSTANTS = require('../constants');
 
 const styles = {
     header: {
@@ -56,7 +55,9 @@ const getCSSstyle = (obj) => {
 };
 
 
-const sendConfirmEmailToUser = async (mailTransport, {email, name}) => {
+const sendConfirmEmailToUser = async (mailTransport,settings, {email, name}) => {
+    const {address, companyName, phoneNumber} = settings;
+
     const confirmEmailTemplate = `<div style=style=${getCSSstyle(styles.container)}">
     <h2 style=style=${getCSSstyle(styles.header)}>Dear ${name}, thanks for reaching out!</h2>
     <div>
@@ -67,17 +68,18 @@ const sendConfirmEmailToUser = async (mailTransport, {email, name}) => {
         Otherwise, we will reply by email as soon as possible. 
     </p>
     <strong style=style=${getCSSstyle(styles.signature)} >Talk to you soon, <br>
-        Aaron Malki Real Estate
+        Aaron Malki
     </strong>
     </div>
 
     <div>
+    <br>
     <footer style=style=${getCSSstyle(styles.footer)}>
-        <b>Aaron Malki Real Estate</b> <br>
-        ${CONSTANTS.address.line1} <br>
-       ${CONSTANTS.address.line2} <br>
-        <a style=style=${getCSSstyle(styles.link)}  href="tel:${CONSTANTS.phoneNumber.tel}"> ${CONSTANTS.phoneNumber.dash}</a> <br>
-        <a style=style=${getCSSstyle(styles.link)} href="https://the-malki-site.web.app/">aaronmalki.com</a>
+        <b>${companyName}</b> <br>
+        ${address.line1} <br>
+       ${address.line2} <br>
+        <a style=style=${getCSSstyle(styles.link)}  href="tel:${phoneNumber.tel}"> ${phoneNumber.dash}</a> <br>
+        <a style=style=${getCSSstyle(styles.link)} href="https://aaronmalki.com/">aaronmalki.com</a>
     </footer>
     </div>
 </div>`;
@@ -85,7 +87,7 @@ const sendConfirmEmailToUser = async (mailTransport, {email, name}) => {
 
     // format email:https://dev.to/tareksalem/send-emails-in-node-js-using-nodemailer-grandjs-and-jsx-components-4k8m
     const email_build = {
-        from: '"Aaron Malki Real Estate" <noreply@firebase.com>', // sender address
+        from: `${companyName} <noreply@firebase.com>`, // sender address
         to: email, // list of receivers
         subject: "Message Received! 🚀", // Subject line
         html: confirmEmailTemplate, // html body

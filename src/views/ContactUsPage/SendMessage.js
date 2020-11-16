@@ -30,6 +30,8 @@ import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import validator from 'validator'
 import Paper from '@material-ui/core/Paper';
+import {MESSAGE_TYPES} from "../../constants/contants";
+
 
 
 const CssTextField = withStyles({
@@ -330,7 +332,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
 
             setError({...error, email: true, helperTxt: 'Please include a valid email.'});
         } else {
-            SendEmailToAaron({name,email:email.trim(),message})
+            SendEmailToAaron({name,email:email.trim(),message,messageType:MESSAGE_TYPES.general})
                 .then(()=>setMessageSent(true))
                 .catch(()=>console.error(`[SendMessage.js] failed to send message:${JSON.stringify({email,message,name})}`))
         }
