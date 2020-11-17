@@ -38,7 +38,7 @@ import ManageHomePage from "./views-protected/ManageHomePage/ManageHomePage";
 import ManageBuyersPage from "./views-protected/ManageBuyersPage/ManageBuyersPage";
 import ManageLeasePage from "./views-protected/ManageLeasePage/ManageLeasePage";
 import UnderConstructionPage from "./views/UnderConstructionPage/UnderConstructionPage";
-import Spash from "./components/Splash/Spash";
+import Splash from "./components/Splash/Splash";
 import Fade from '@material-ui/core/Fade';
 
 
@@ -184,7 +184,7 @@ function App({location}) {
             </div>
                 </Fade>
                 :
-                <Spash/>}
+                <Splash/>}
 
 
 
