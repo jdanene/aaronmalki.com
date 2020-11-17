@@ -22,12 +22,12 @@ export default class Spash extends React.PureComponent {
             height: radians.interpolate(
               r =>
                 `${400+ 
-                  50*Math.sin(r + (1 * 5 * Math.PI))}px`
+                  30*Math.sin(r + (1 * 5 * Math.PI))}px`
             ),
               width: radians.interpolate(
               r =>
                 `${400+ 
-                  50*Math.sin(r + (1 * 5 * Math.PI))}px`
+                  30*Math.sin(r + (1 * 5 * Math.PI))}px`
             ),
           }}
           src={LeaseTopImg}/>
@@ -46,7 +46,7 @@ export default class Spash extends React.PureComponent {
         <Container
           reset
           native
-          config={{ duration: 2000 }}>
+          config={{ duration: 1200 }}>
           {Content}
         </Container>
       </div>
