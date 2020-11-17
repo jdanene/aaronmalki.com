@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -38,6 +38,9 @@ import ManageHomePage from "./views-protected/ManageHomePage/ManageHomePage";
 import ManageBuyersPage from "./views-protected/ManageBuyersPage/ManageBuyersPage";
 import ManageLeasePage from "./views-protected/ManageLeasePage/ManageLeasePage";
 import UnderConstructionPage from "./views/UnderConstructionPage/UnderConstructionPage";
+import Spash from "./components/Splash/Spash";
+import Fade from '@material-ui/core/Fade';
+
 
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
@@ -84,10 +87,19 @@ function App({location}) {
         }
     });
 
+    const [splashOff, setSplashOff] = useState(false);
+
     useEffect(() => {
 
+        let timeout = setTimeout(()=>{
+        //do what you need here
+            setSplashOff(true);
+        },1000 );
 
+        return ()=>clearTimeout(timeout);
     }, []);
+
+
 
     Object.keys(blog_categories_keysOnly).filter((key)=>{
         return filteredBlogPosts[key] === null
@@ -98,7 +110,8 @@ function App({location}) {
 
 
         <ThemeProvider theme={theme}>
-            {isBlogLoaded&&pageStateHasLoaded?
+            {splashOff&&isBlogLoaded&&pageStateHasLoaded?
+                <Fade in={splashOff&&isBlogLoaded&&pageStateHasLoaded} timeout={1000}>
                 <div className="app_container">
 
 
@@ -169,8 +182,9 @@ function App({location}) {
 
                 <Footer/>
             </div>
+                </Fade>
                 :
-                <div/>}
+                <Spash/>}
 
 
 

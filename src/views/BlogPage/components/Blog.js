@@ -26,6 +26,7 @@ import {blog_categories, blog_states} from "../../../constants/contants";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import BlogSearch from "./BlogSearch";
 import {DB_NODES_PAGES} from "../../../constants/contants";
+import Spash from "../../../components/Splash/Spash";
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -221,16 +222,7 @@ export default function Blog({blogUUID, category}) {
 
 
                     </main>
-                </Container> :
-                <div style={{
-                    height: '100vh',
-                    width: '100vw',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <StyledText>Loading ... </StyledText>
-                </div>
+                </Container> : <Spash/>
             }
 
         </React.Fragment>
