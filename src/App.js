@@ -94,7 +94,7 @@ function App({location}) {
         let timeout = setTimeout(()=>{
         //do what you need here
             setSplashOff(true);
-        },1000 );
+        },650 );
 
         return ()=>clearTimeout(timeout);
     }, []);
