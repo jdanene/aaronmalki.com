@@ -17,8 +17,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import {makeStyles} from '@material-ui/core/styles';
-import {Helmet} from 'react-helmet'
-
+import SeoTags from "../../components/SeoTags/SeoTags";
 
 function ProfilePicture({mobileBreak}) {
 
@@ -62,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const HomePage = () => {
+const HomePage = ({location}) => {
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
@@ -77,6 +76,7 @@ const HomePage = () => {
                 socialMedia: {
                     linkedin
                 },
+                companyName,
                 seo: {
                     [PUBLIC_PAGE_KEYS.HomePage]: {
                         title: googleSerpTitle,
@@ -104,11 +104,12 @@ const HomePage = () => {
     return <div className={"homepage__container"}>
         <CssBaseline/>
         {/*Page content in the Google SERP Listing*/}
-        <Helmet>
-            <title>{googleSerpTitle}</title>
-            <meta name="description"
-                  content={googleSerpDescription}/>
-        </Helmet>
+        <SeoTags description={googleSerpDescription}
+                 companyName={companyName}
+                 title={googleSerpTitle}
+                 path={location.pathname}
+
+        />
 
         <div id={"id123"} ref={inputRef}
              style={{height: mobileBreak ? '60vh' : '110vh', minHeight: !mobileBreak && '500px'}}

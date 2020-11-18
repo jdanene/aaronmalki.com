@@ -125,9 +125,9 @@ const SEO = ({textCallback, payload, _key}) => {
                         className={classes.divider_text}>{_key}: {category}</Typography>
 
             <TextInput hasSecondaryColor label={'Title'} textCallback={(value)=>callbackTitle(value,category)}
-                       initial={payload[category].title}/>
+                       multiline initial={payload[category].title}/>
             <TextInput hasSecondaryColor label={'Description'} textCallback={(value)=>callbackDescription(value,category)}
-                       initial={payload[category].description}/>
+                       multiline initial={payload[category].description}/>
         </Box>
         }))
 
@@ -137,9 +137,9 @@ const SEO = ({textCallback, payload, _key}) => {
                         className={classes.divider_text}>{_key}</Typography>
 
             <TextInput hasSecondaryColor label={'Title'} textCallback={callbackTitle}
-                       initial={payload.title}/>
+                       multiline initial={payload.title}/>
             <TextInput hasSecondaryColor label={'Description'} textCallback={callbackDescription}
-                       initial={payload.description}/>
+                       multiline initial={payload.description}/>
         </Box>
     }
 

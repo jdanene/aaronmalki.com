@@ -1,3 +1,9 @@
+export const OG_TYPE = {
+    website:"website",
+    article:"article",
+    blog:"blog"
+};
+
 export const PUBLIC_PAGE_KEYS = {
     'HomePage': "HomePage",
     'CurrentListingsPage': "CurrentListingsPage",

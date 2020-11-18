@@ -10,6 +10,7 @@ import FormPlug from "../../components/Forms/FormPlug";
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES,PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import {Helmet} from 'react-helmet'
+import SeoTags from "../../components/SeoTags/SeoTags";
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -36,13 +37,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const BuyersPage = () => {
+const BuyersPage = ({location}) => {
     const {
         pageState: {
             [DB_NODES_PAGES.buyersPage]: {
                 backgroundPic, formHeading, leftParagraph, leftPicture, leftTitle, pageTitle, rightParagraph, rightPicture, rightTitle
             },
             [DB_NODES_PAGES.settings]: {
+                companyName,
                 seo: {
                     [PUBLIC_PAGE_KEYS.HomePage]:{
                         title: googleSerpTitle,
@@ -71,6 +73,12 @@ const BuyersPage = () => {
                   content={googleSerpDescription}/>
         </Helmet>
 
+        <SeoTags description={googleSerpDescription}
+                 companyName={companyName}
+                 title={googleSerpTitle}
+                 path={location.pathname}
+
+        />
         <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalf_container}/>
 
 

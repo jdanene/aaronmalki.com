@@ -1,10 +1,10 @@
 import React, {useContext} from "react"
 import Blog from "./components/Blog";
 import {colorScheme} from "../../constants";
-import {Helmet} from 'react-helmet'
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
+import {DB_NODES_PAGES, OG_TYPE, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import {blog_categories_keysOnly} from "../../constants/contants";
+import SeoTags from "../../components/SeoTags/SeoTags";
 
 /**
  *
@@ -12,7 +12,7 @@ import {blog_categories_keysOnly} from "../../constants/contants";
  * @return {*}
  * @constructor
  */
-const BlogPage = ({blogUUID, category}) => {
+const BlogPage = ({blogUUID, category, location}) => {
     const {
         blogPostsRaw,
         pageState: {
@@ -45,6 +45,19 @@ const BlogPage = ({blogUUID, category}) => {
         }
     };
 
+    const getGoogleSerpImg = () => {
+        if (blogUUID && ("image" in blogPostsRaw[blogUUID])) {
+            return  blogPostsRaw[blogUUID].image
+        }
+    };
+
+    const getGoogleSerpType = () => {
+        if (blogUUID) {
+            return OG_TYPE.article
+        } else {
+            return OG_TYPE.blog
+        }
+    };
 
     return <div style={{
         display: "flex",
@@ -54,12 +67,13 @@ const BlogPage = ({blogUUID, category}) => {
         backgroundColor: colorScheme.other.backgroundComplementary
     }}>
         {/*Page content in the Google SERP Listing*/}
-        <Helmet>
-            <title>{getGoogleSerpTitle()}</title>
-            <meta name="description"
-                  content={getGoogleSerpDescription()}/>
-        </Helmet>
-
+        <SeoTags description={getGoogleSerpDescription()}
+                 companyName={companyName}
+                 title={getGoogleSerpTitle()}
+                 path={location.pathname}
+                 img={getGoogleSerpImg()}
+                 type={getGoogleSerpType()}
+        />
 
         <Blog blogUUID={blogUUID} category={category}/>
     </div>

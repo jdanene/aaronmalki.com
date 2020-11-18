@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     useLocation
 } from "react-router-dom";
@@ -7,10 +7,10 @@ import {makeStyles} from '@material-ui/core/styles';
 
 import BackgroundGif3 from "resources/images/greengoo.gif";
 import BackgroundGif4 from "resources/images/vibes.dms";
-
-
-
+import SeoTags from "../../components/SeoTags/SeoTags";
 import Typography from "@material-ui/core/Typography";
+import {AppContext} from "../../context";
+import {DB_NODES_PAGES} from "../../constants/contants";
 
 const imgs = [BackgroundGif3,BackgroundGif4,BackgroundGif4,BackgroundGif4,BackgroundGif4];
 
@@ -53,12 +53,27 @@ const styles = theme => ({
 });
 
 
-const NoMatch = () => {
-    const location = useLocation();
-    const classes = useStyles();
 
+
+const NoMatch = ({location}) => {
+    const classes = useStyles();
+    const {
+        pageState: {
+            [DB_NODES_PAGES.settings]: {
+                companyName
+            }
+        },
+    } = useContext(AppContext);
+    let img = imgs[Math.floor(Math.random() * imgs.length)];
     return (
-        <div className={classes.root} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${imgs[Math.floor(Math.random() * imgs.length)]})`}}>
+        <div className={classes.root} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${img})`}}>
+
+            <SeoTags description={"Page Not Found"}
+                     companyName={companyName}
+                     title={"404"}
+                     path={location.pathname}
+                     img={img}
+            />
 
             <BorderGuard/>
             <div className={ classes.title}>

@@ -13,7 +13,7 @@ import FormPlug from "../../components/Forms/FormPlug";
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
-import {Helmet} from 'react-helmet'
+import SeoTags from "../../components/SeoTags/SeoTags";
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const LeasePage = () => {
+const LeasePage = ({location}) => {
     const mobileBreak = useMediaQuery("only screen and (max-width: 960px)");
     const {
         pageState: {
@@ -80,6 +80,7 @@ const LeasePage = () => {
                 socialMedia: {
                     linkedin
                 },
+                companyName,
                 seo: {
                     [PUBLIC_PAGE_KEYS.HomePage]: {
                         title: googleSerpTitle,
@@ -98,11 +99,12 @@ const LeasePage = () => {
 
     return <div className={classes.root}>
         {/*Page content in the Google SERP Listing*/}
-        <Helmet>
-            <title>{googleSerpTitle}</title>
-            <meta name="description"
-                  content={googleSerpDescription}/>
-        </Helmet>
+        <SeoTags description={googleSerpDescription}
+                 companyName={companyName}
+                 title={googleSerpTitle}
+                 path={location.pathname}
+        />
+
 
         <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalfImg}/>
         <div className={classes.body}>

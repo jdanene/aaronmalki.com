@@ -30,7 +30,7 @@ import Paper from '@material-ui/core/Paper';
 
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
-import {Helmet} from 'react-helmet'
+import SeoTags from "../../components/SeoTags/SeoTags";
 
 const styles = theme => ({
     footerInner: {
@@ -204,12 +204,12 @@ const AnyReactComponent = ({text}) => <div>{text}</div>;
 
 const LOS_ANGELES_CENTER = [37.806279, -122.423516];
 const DEFAULT_ZOOM = 13;
-const ContactUsPage = ({classes, theme, width, center, zoom}) => {
+const ContactUsPage = ({location, classes, theme, width, center, zoom}) => {
 
     const {
         pageState: {
             [DB_NODES_PAGES.settings]: {
-                phoneNumber, email, address,
+                phoneNumber, email, address, companyName,
                 seo: {
                     [PUBLIC_PAGE_KEYS.HomePage]: {
                         title: googleSerpTitle,
@@ -224,11 +224,12 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
     return (
         <div className={classes.main_container}>
             {/*Page content in the Google SERP Listing*/}
-            <Helmet>
-                <title>{googleSerpTitle}</title>
-                <meta name="description"
-                      content={googleSerpDescription}/>
-            </Helmet>
+            <SeoTags description={googleSerpDescription}
+                     companyName={companyName}
+                     title={googleSerpTitle}
+                     path={location.pathname}
+
+            />
 
             <BorderGuard/>
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
