@@ -79,6 +79,7 @@ const ModalEditBusinessLocation = ({open, openCallback, address, createCallback}
 
 
 // Specifies the default values for props:
+
 ModalEditBusinessLocation.propTypes = {
     open: PropTypes.bool.isRequired,
     openCallback: PropTypes.func.isRequired,

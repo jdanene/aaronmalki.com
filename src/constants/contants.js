@@ -1,3 +1,13 @@
+export const PUBLIC_PAGE_KEYS = {
+    'HomePage': "HomePage",
+    'CurrentListingsPage': "CurrentListingsPage",
+    'BuyersPage': 'BuyersPage',
+    'SellersPage': 'SellersPage',
+    'ContactUsPage': 'ContactUsPage',
+    'LeasePage': 'LeasePage',
+    'BlogPage': 'BlogPage',
+};
+
 export const pageToPathName = {
     'HomePage': "/",
     'CurrentListingsPage': "/listings",
@@ -161,7 +171,8 @@ export const DB_KEYS_SETTINGS_PAGE = {
     phoneNumber:'phoneNumber',
     email:'email',
     socialMedia:'socialMedia',
-    companyName:'companyName'
+    companyName:'companyName',
+    seo:'seo'
 };
 // the keys that are multipart text
 export const DB_BUYERS_FORMATS = {

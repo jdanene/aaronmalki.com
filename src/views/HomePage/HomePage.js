@@ -15,8 +15,9 @@ import {colorScheme} from "../../constants";
 import HomePageBottomHalfInfo from "./HomePageBottomHalfInfo";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import {makeStyles} from '@material-ui/core/styles';
+import {Helmet} from 'react-helmet'
 
 
 function ProfilePicture({mobileBreak}) {
@@ -72,14 +73,21 @@ const HomePage = () => {
             [DB_NODES_PAGES.homePage]: {
                 backgroundPic, profilePic, professionalTitle, aboutMe, pageTitle
             },
-            settings: {
+            [DB_NODES_PAGES.settings]: {
                 socialMedia: {
                     linkedin
+                },
+                seo: {
+                    [PUBLIC_PAGE_KEYS.HomePage]: {
+                        title: googleSerpTitle,
+                        description: googleSerpDescription
+                    }
                 }
             }
         },
 
     } = useContext(AppContext);
+
 
     const classes = useStyles({backgroundPic});
 
@@ -95,6 +103,13 @@ const HomePage = () => {
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div className={"homepage__container"}>
         <CssBaseline/>
+        {/*Page content in the Google SERP Listing*/}
+        <Helmet>
+            <title>{googleSerpTitle}</title>
+            <meta name="description"
+                  content={googleSerpDescription}/>
+        </Helmet>
+
         <div id={"id123"} ref={inputRef}
              style={{height: mobileBreak ? '60vh' : '110vh', minHeight: !mobileBreak && '500px'}}
              className={classes.topHalf_container}>

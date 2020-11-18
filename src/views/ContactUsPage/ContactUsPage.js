@@ -29,7 +29,9 @@ import {AppContext} from "../../context";
 import Paper from '@material-ui/core/Paper';
 
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
-import {DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
+import {Helmet} from 'react-helmet'
+
 const styles = theme => ({
     footerInner: {
         backgroundColor: theme.palette.common.darkBlack,
@@ -106,7 +108,7 @@ const styles = theme => ({
     mapAndForm_container: {
         justifyContent: 'center',
         width: '100%',
-       // marginBottom: '45px',
+        // marginBottom: '45px',
         //border: `2px solid red`,
         flexGrow: 1
     },
@@ -139,15 +141,15 @@ const styles = theme => ({
     main_container: {
         width: '100%',
         display: 'flex',
-        flexDirection:'column',
+        flexDirection: 'column',
         paddingBottom: theme.spacing(10),
         paddingTop: theme.spacing(8),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colorScheme.other.backgroundComplementary,
         [theme.breakpoints.down("md")]: {
-                    paddingLeft:0,
-        paddingRight: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
         },
     },
     contact_container: {
@@ -207,16 +209,30 @@ const ContactUsPage = ({classes, theme, width, center, zoom}) => {
     const {
         pageState: {
             [DB_NODES_PAGES.settings]: {
-                phoneNumber, email, address
+                phoneNumber, email, address,
+                seo: {
+                    [PUBLIC_PAGE_KEYS.HomePage]: {
+                        title: googleSerpTitle,
+                        description: googleSerpDescription
+                    }
+                }
             }
         },
     } = useContext(AppContext);
 
+
     return (
         <div className={classes.main_container}>
+            {/*Page content in the Google SERP Listing*/}
+            <Helmet>
+                <title>{googleSerpTitle}</title>
+                <meta name="description"
+                      content={googleSerpDescription}/>
+            </Helmet>
+
             <BorderGuard/>
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
-                <SendMessage  md={6} lg={6} xl={6} sm={6} xs={12}/>
+                <SendMessage md={6} lg={6} xl={6} sm={6} xs={12}/>
 
                 {/* The map and Location*/}
                 <Grid item

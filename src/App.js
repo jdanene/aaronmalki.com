@@ -111,7 +111,7 @@ function App({location}) {
 
         <ThemeProvider theme={theme}>
             {splashOff&&isBlogLoaded&&pageStateHasLoaded?
-                <Fade in={splashOff&&isBlogLoaded&&pageStateHasLoaded} timeout={1000}>
+                <Fade in={splashOff&&isBlogLoaded&&pageStateHasLoaded} timeout={0}>
                 <div className="app_container">
 
 

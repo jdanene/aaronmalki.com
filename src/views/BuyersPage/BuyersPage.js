@@ -8,7 +8,8 @@ import BuyerTopImg from "resources/images/buyerpage_top.png"
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import FormPlug from "../../components/Forms/FormPlug";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES_PAGES,PUBLIC_PAGE_KEYS} from "../../constants/contants";
+import {Helmet} from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -40,6 +41,14 @@ const BuyersPage = () => {
         pageState: {
             [DB_NODES_PAGES.buyersPage]: {
                 backgroundPic, formHeading, leftParagraph, leftPicture, leftTitle, pageTitle, rightParagraph, rightPicture, rightTitle
+            },
+            [DB_NODES_PAGES.settings]: {
+                seo: {
+                    [PUBLIC_PAGE_KEYS.HomePage]:{
+                        title: googleSerpTitle,
+                        description: googleSerpDescription
+                    }
+                }
             }
         },
     } = useContext(AppContext);
@@ -55,6 +64,12 @@ const BuyersPage = () => {
         alignItems: "center",
         backgroundColor: colorScheme.other.backgroundComplementary
     }}>
+        {/*Page content in the Google SERP Listing*/}
+        <Helmet>
+            <title>{googleSerpTitle}</title>
+            <meta name="description"
+                  content={googleSerpDescription}/>
+        </Helmet>
 
         <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalf_container}/>
 

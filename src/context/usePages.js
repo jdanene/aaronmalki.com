@@ -45,16 +45,16 @@ const pages = {
         },
         "secondaryRightTitle": "Not looking to buy just yet",
         "secondaryRightParagraph": {
-                "value": "No sweat! Finding a place you call home can be a daunting task. San Francisco is one of the hottest rental markets (if not the hottest) in the country. With so many moving parts, it can be overwhelming trying to find the perfect fit. Luckily, I have an extensive list of available apartments right at my finger tips.",
-                "secondaryValues": {
-                    "0": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend velit tortor, vitae mollis massa pharetra ut. Maecenas eget facilisis magna, vitae facilisis est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec sapien non velit convallis sagittis. Sed lectus ex, eleifend"
-                }
+            "value": "No sweat! Finding a place you call home can be a daunting task. San Francisco is one of the hottest rental markets (if not the hottest) in the country. With so many moving parts, it can be overwhelming trying to find the perfect fit. Luckily, I have an extensive list of available apartments right at my finger tips.",
+            "secondaryValues": {
+                "0": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend velit tortor, vitae mollis massa pharetra ut. Maecenas eget facilisis magna, vitae facilisis est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec sapien non velit convallis sagittis. Sed lectus ex, eleifend"
+            }
         },
-        "mainLeftTitle":"Where do I begin?",
-        "mainLeftParagraph":{
-            "value":"Asking these questions before you begin your search can be very helpful: Where do I want to move? What’s my realistic budget? Do I need a studio or a 1 bedroom? And what’s the deal with rent control?! How early should I begin my search? There are so many questions to be had! That’s why I’m here to help guide you through your search."
+        "mainLeftTitle": "Where do I begin?",
+        "mainLeftParagraph": {
+            "value": "Asking these questions before you begin your search can be very helpful: Where do I want to move? What’s my realistic budget? Do I need a studio or a 1 bedroom? And what’s the deal with rent control?! How early should I begin my search? There are so many questions to be had! That’s why I’m here to help guide you through your search."
         },
-        "formHeading":"Fill out the form below and let the showings begin!"
+        "formHeading": "Fill out the form below and let the showings begin!"
     },
     "buyersPage": {
         "pageTitle": {
@@ -105,7 +105,47 @@ const pages = {
             "instagram": "https://www.instagram.com/aaron.malki/",
             "linkedin": "https://www.linkedin.com/in/aaron-malki-761b3165/",
             "facebook": "https://www.facebook.com/aaron.malki/"
-        }
+        },
+        "seo": {
+            "HomePage":
+                {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+            "LeasePage":
+                {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+            "BuyersPage":
+                {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+            "ContactUsPage":
+                {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+            "BlogPage": {
+                "news": {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+                "rental_guide": {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+                "buying_tips": {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                },
+                "lifestyle": {
+                    "title": "Malki Real Estate",
+                    "description": "Malki Real Estate Be Best"
+                }
+            }
+        },
     }
 };
 

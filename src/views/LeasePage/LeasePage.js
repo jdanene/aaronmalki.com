@@ -11,8 +11,9 @@ import TextBlurbWithTitleLevel2 from "../../components/TextBlurbWithTitle/TextBl
 import LeaseForm from "./LeaseForm";
 import FormPlug from "../../components/Forms/FormPlug";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
+import {Helmet} from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -48,23 +49,23 @@ const useStyles = makeStyles((theme) => ({
 
     },
     body: {
-        width:'100%',
-        flexGrow:1,
+        width: '100%',
+        flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-                paddingLeft:theme.spacing(3),
-        paddingRight:theme.spacing(3),
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
         marginTop: theme.spacing(5),
         marginBottom: theme.spacing(5),
 
     },
-        imgTextContainer:{
+    imgTextContainer: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        marginBottom:theme.spacing(3),
+        marginBottom: theme.spacing(3),
     }
 }));
 
@@ -74,33 +75,61 @@ const LeasePage = () => {
         pageState: {
             [DB_NODES_PAGES.leasePage]: {
                 pageTitle, backgroundPic, imageCarousel, mainRightTitle, mainRightParagraph, secondaryRightTitle, secondaryRightParagraph, mainLeftTitle, mainLeftParagraph, formHeading
+            },
+            [DB_NODES_PAGES.settings]: {
+                socialMedia: {
+                    linkedin
+                },
+                seo: {
+                    [PUBLIC_PAGE_KEYS.HomePage]: {
+                        title: googleSerpTitle,
+                        description: googleSerpDescription
+                    }
+                }
             }
         },
     } = useContext(AppContext);
     const classes = useStyles({backgroundPic});
 
-     const mainRightParagraphArray = parseMultiPartTextToArray(mainRightParagraph);
-     const secondaryRightParagraphArray = parseMultiPartTextToArray(secondaryRightParagraph);
+    const mainRightParagraphArray = parseMultiPartTextToArray(mainRightParagraph);
+    const secondaryRightParagraphArray = parseMultiPartTextToArray(secondaryRightParagraph);
 
-     const mainLeftParagraphArray = parseMultiPartTextToArray(mainLeftParagraph);
+    const mainLeftParagraphArray = parseMultiPartTextToArray(mainLeftParagraph);
 
     return <div className={classes.root}>
-        <PageViewTopHalf pageTitle={pageTitle}  className={classes.topHalfImg}/>
+        {/*Page content in the Google SERP Listing*/}
+        <Helmet>
+            <title>{googleSerpTitle}</title>
+            <meta name="description"
+                  content={googleSerpDescription}/>
+        </Helmet>
+
+        <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalfImg}/>
         <div className={classes.body}>
-            <Grid className={classes.imgTextContainer} container  spacing={mobileBreak ? 3 : 4} >
-                <Grid sm={12} md={6} item justify={'center'} alignItems={'center'} >
-                    <div style={{display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                    <ImageCarousel imgArray={imageCarousel}/>
-                    {!mobileBreak&&<TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle alignLeft />}
-                   </div>
+            <Grid className={classes.imgTextContainer} container spacing={mobileBreak ? 3 : 4}>
+                <Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <ImageCarousel imgArray={imageCarousel}/>
+                        {!mobileBreak &&
+                        <TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle
+                                            alignLeft/>}
+                    </div>
                 </Grid>
 
 
-                <Grid sm={12} md={6} item >
-                    <TextBlurbWithTitleLevel2 mainBlurbArray={mainRightParagraphArray} mainTitle={mainRightTitle} secondaryBlurbArray={secondaryRightParagraphArray} secondaryTitle={secondaryRightTitle}/>
+                <Grid sm={12} md={6} item>
+                    <TextBlurbWithTitleLevel2 mainBlurbArray={mainRightParagraphArray} mainTitle={mainRightTitle}
+                                              secondaryBlurbArray={secondaryRightParagraphArray}
+                                              secondaryTitle={secondaryRightTitle}/>
                 </Grid>
-                {mobileBreak &&<Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
-                    <TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle alignLeft/>
+                {mobileBreak && <Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
+                    <TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle
+                                        alignLeft/>
                 </Grid>}
             </Grid>
             <FormPlug message={formHeading}/>
