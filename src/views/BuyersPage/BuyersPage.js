@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
 import BuyerForm from "./components/BuyerForm/BuyerForm";
-import {colorScheme} from "../../constants";
+import {colorScheme, pageToPathName} from "../../constants";
 import BuyerImageAndDescription from "./components/BuyerImageAndDescription/BuyerImageAndDescription";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from '@material-ui/core/styles';
@@ -76,7 +76,7 @@ const BuyersPage = ({location}) => {
         <SeoTags description={googleSerpDescription}
                  companyName={companyName}
                  title={googleSerpTitle}
-                 path={location.pathname}
+                 path={pageToPathName.BuyersPage}
 
         />
         <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalf_container}/>

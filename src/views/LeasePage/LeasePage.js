@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import LeaseTopImg from "resources/images/leasePage/leasingpagepic1.png"
-import {colorScheme} from "../../constants";
+import {colorScheme, pageToPathName} from "../../constants";
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import TextBlurbWithTitle from "../../components/TextBlurbWithTitle/TextBlurbWithTitle";
 import TextBlurbWithTitleLevel2 from "../../components/TextBlurbWithTitle/TextBlurbWithTitleLevel2";
@@ -102,7 +102,7 @@ const LeasePage = ({location}) => {
         <SeoTags description={googleSerpDescription}
                  companyName={companyName}
                  title={googleSerpTitle}
-                 path={location.pathname}
+                 path={pageToPathName.LeasePage}
         />
 
 

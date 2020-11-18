@@ -11,7 +11,7 @@ import {useMediaQuery} from "@material-ui/core";
 import {FittedText, StyledText} from "../../components/Text";
 import {useTheme} from '@material-ui/core/styles';
 import {useWindowSize} from "../../components/useWindowSize";
-import {colorScheme} from "../../constants";
+import {colorScheme, pageToPathName} from "../../constants";
 import HomePageBottomHalfInfo from "./HomePageBottomHalfInfo";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppContext} from "../../context";
@@ -107,7 +107,7 @@ const HomePage = ({location}) => {
         <SeoTags description={googleSerpDescription}
                  companyName={companyName}
                  title={googleSerpTitle}
-                 path={location.pathname}
+                 path={pageToPathName.HomePage}
 
         />
 
