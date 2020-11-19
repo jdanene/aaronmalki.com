@@ -1,3 +1,5 @@
+export const SEO_DEFAULT_IMG = "https://firebasestorage.googleapis.com/v0/b/the-malki-site.appspot.com/o/official_logo_white_bg.png?alt=media&token=e9590830-99f3-4831-a9e3-f62de2d90e4d"
+
 export const OG_TYPE = {
     website:"website",
     article:"article",

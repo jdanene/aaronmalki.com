@@ -82,7 +82,7 @@ const LeasePage = ({location}) => {
                 },
                 companyName,
                 seo: {
-                    [PUBLIC_PAGE_KEYS.HomePage]: {
+                    [PUBLIC_PAGE_KEYS.LeasePage]: {
                         title: googleSerpTitle,
                         description: googleSerpDescription
                     }

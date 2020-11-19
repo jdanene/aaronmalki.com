@@ -46,7 +46,7 @@ const BuyersPage = ({location}) => {
             [DB_NODES_PAGES.settings]: {
                 companyName,
                 seo: {
-                    [PUBLIC_PAGE_KEYS.HomePage]:{
+                    [PUBLIC_PAGE_KEYS.BuyersPage]:{
                         title: googleSerpTitle,
                         description: googleSerpDescription
                     }
