@@ -100,5 +100,6 @@
   },
   "reactSnapshot": {
     "snapshotDelay": 3000
-  }
+  },
+  "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]
 }
