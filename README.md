@@ -73,6 +73,10 @@ firebase init
 
         
 # Tips 
+
+### Delopying on Firebase on sep channel
+
+`firebase hosting:channel:deploy seo`
 ### Using Refs
 - https://moduscreate.com/blog/everything-you-need-to-know-about-refs-in-react/
 
