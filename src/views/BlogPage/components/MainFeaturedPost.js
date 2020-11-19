@@ -102,7 +102,8 @@ function MainFeaturedPost(props) {
             <Grid container direction={'column'}>
                 <Grid item md={6}>
                     <ButtonBase
-                        onClick={()=>history.push(path)}
+                        //onClick={()=>history.push(path)}
+                        href={path}
                         focusVisibleClassName={classes.focusVisible}
                         className={clsx(classes.mainFeaturedPostContent, classes.imageMarked)}>
                         <Typography

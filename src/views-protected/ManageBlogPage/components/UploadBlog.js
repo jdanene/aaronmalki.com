@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 //import {blog_states} from "constants/contants";
 import {blog_states, blog_categories} from "../../../constants/contants";
-import {v4 as uuidv4} from 'uuid';
+import generateUUID from "../../../components/Utility/uuid";
 import {pageToPageName} from "../../../constants/contants";
 import Divider from "@material-ui/core/Divider";
 import OptionsSelect from "./OptionSelect";
@@ -39,7 +39,7 @@ const ACCEPT_IMAGES = ['image/*'];
 
 export default function UploadBlog({blogState, color, blogUploadCallBack,initialCategory}) {
 
-    const blogId = uuidv4();
+    const blogId = generateUUID();
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');

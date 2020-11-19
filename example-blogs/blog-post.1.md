@@ -39,10 +39,10 @@ So if you look at a markdown cheatsheet you will probably wonder how to add vide
 I don't know how, but I included a special command so that you can!
 
 Below I add youtube, facebook, twitch, and soundcloud links using a very simple comand!
-<Video url="https://www.youtube.com/watch?v=J3w85C1f81Q&list=FLcz_djlvC9ufzXofNBq9GGQ&index=39" /> 
-<Video url="https://www.facebook.com/facebook/videos/245453540118461/" />
-<Video url="https://www.twitch.tv/x2twins"/>
-<Video url="https://soundcloud.com/glennmorrison/beethoven-moonlight-sonata" />
+<Video url="http://www.youtube.com/watch?v=J3w85C1f81Q&list=FLcz_djlvC9ufzXofNBq9GGQ&index=39" /> 
+<Video url="http://www.facebook.com/facebook/videos/245453540118461/" />
+<Video url="http://www.twitch.tv/x2twins"/>
+<Video url="http://soundcloud.com/glennmorrison/beethoven-moonlight-sonata" />
 
 If you try this command using a online mardown editor it won't work, (** __hint__: this command was specially created for aaronmalki.com, so a run of the mill markdown editor would of course fail**😉)
 I've only tested youtube, facebook, twitch, soundcloud but there are other media formats the `Video` 

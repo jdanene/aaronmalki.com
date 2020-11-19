@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {AppContext} from "./index";
 import {blog_states} from "../constants/contants";
-import {v4 as uuidv4} from 'uuid';
+import generateUUID from "../components/Utility/uuid";
 import {blog_categories} from "../constants/contants";
 import getRandomValueFromObject from "../components/Utility/getRandomValueFromObject";
 import {pageToPathName} from "../constants/contants";
@@ -232,21 +232,22 @@ Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a p
     `
 };
 
+
 const _blogPosts = {
-    [uuidv4()]: blog1,
-    [uuidv4()]: blog2,
-    [uuidv4()]: blog3,
-    [uuidv4()]: blog4,
+    [generateUUID()]: blog1,
+    [generateUUID()]: blog2,
+    [generateUUID()]: blog3,
+    [generateUUID()]: blog4,
 };
 
 const _featuredBlogPosts = {
-    [uuidv4()]: featuredBlog0,
-    [uuidv4()]: featuredBlog1,
+    [generateUUID()]: featuredBlog0,
+    [generateUUID()]: featuredBlog1,
 };
 
 const _mainBlogPosts = {
-    [uuidv4()]: mainFeaturedBlog,
-    [uuidv4()]: mainFeaturedBlog1
+    [generateUUID()]: mainFeaturedBlog,
+    [generateUUID()]: mainFeaturedBlog1
 };
 
 const TEST_POSTS_RAW = {

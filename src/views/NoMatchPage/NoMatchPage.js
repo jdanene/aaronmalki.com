@@ -11,6 +11,7 @@ import SeoTags from "../../components/SeoTags/SeoTags";
 import Typography from "@material-ui/core/Typography";
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES} from "../../constants/contants";
+import { withRouter } from "react-router";
 
 const imgs = [BackgroundGif3,BackgroundGif4,BackgroundGif4,BackgroundGif4,BackgroundGif4];
 
@@ -56,6 +57,7 @@ const styles = theme => ({
 
 
 const NoMatch = ({location}) => {
+
     const classes = useStyles();
     const {
         pageState: {
@@ -86,4 +88,4 @@ const NoMatch = ({location}) => {
     );
 };
 
-export default NoMatch;
+export default withRouter(NoMatch);
