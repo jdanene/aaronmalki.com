@@ -29,19 +29,12 @@ if (global) {
 }
 
 const rootElement = document.getElementById("root");
-if (rootElement.hasChildNodes()) {
-    hydrate(<Router>
-        <AppContextProvider>
-            <App/>
-        </AppContextProvider>
-    </Router>, rootElement);
-} else {
-    render(<Router>
-        <AppContextProvider>
-            <App/>
-        </AppContextProvider>
-    </Router>, rootElement);
-}
+
+render(<Router>
+    <AppContextProvider>
+        <App/>
+    </AppContextProvider>
+</Router>, rootElement);
 
 
 // If you want your app to work offline and load faster, you can change
