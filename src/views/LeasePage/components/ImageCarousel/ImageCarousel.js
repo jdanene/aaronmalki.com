@@ -81,8 +81,8 @@ const ImageCarousel = ({imgArray}) => {
     }, [currentSlide, isFocused]);
 
     const customRenderThumb = (children) =>
-        children.map((item) => {
-            return <ThumbImg className={classes.thumbImage} item={item} currentSlide={currentSlide}/>
+        children.map((item,index) => {
+            return <ThumbImg className={classes.thumbImage} item={item} key={index} currentSlide={currentSlide}/>
         });
 
     const customRenderItem = (item, props) => {

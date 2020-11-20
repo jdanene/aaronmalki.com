@@ -106,7 +106,7 @@ const AdminLogOut = ({auth}) => {
     return <Button
         href={pageToPathName['AdminPage']}
         size={"small"}
-        variant="filler"
+        variant="contained"
         onClick={onClick}
         className={"topNavBar__phoneNumber"}
         style={

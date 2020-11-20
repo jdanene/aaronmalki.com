@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: "hidden",
         borderRadius: '1%',
 
-        width: '100%',
-        height: '100%',
+
         [theme.breakpoints.up("sm")]: {
             maxWidth: 500,
             maxHeight: 500
@@ -39,15 +38,17 @@ const Video = ({url = 'https://www.youtube.com/watch?v=ysz5S6PUM-U'}) => {
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
             {!ready ? <Skeleton variant="rect" component={"video"}>
                     <div style={style} className={classes.root}>
-                        <ReactPlayer style={{radius:"1%"}} onReady={() => setReady(true)}  {...options} className={classes.video} url={url}
+                        <ReactPlayer pip onReady={() => setReady(true)}  {...options}  url={url}
                                      playing={false} loop={true} controls={true}/>
 
 
                     </div>
                 </Skeleton> :
                 <div style={style} className={classes.root}>
-                    <ReactPlayer style={{radius:"1%"}} onReady={() => setReady(true)}  {...options} className={classes.video} url={url}
-                                 playing={false} loop={true} controls={true}/>
+                    <ReactPlayer pip  onReady={() => setReady(true)}  {...options}
+                                 playing={false} loop={true} controls={true}           url={url}
+          width='100%'
+          height='100%'/>
 
                 </div>
             }
