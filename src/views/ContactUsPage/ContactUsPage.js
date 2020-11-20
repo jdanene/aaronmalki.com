@@ -211,7 +211,7 @@ const ContactUsPage = ({location, classes, theme, width, center, zoom}) => {
             [DB_NODES_PAGES.settings]: {
                 phoneNumber, email, address, companyName,
                 seo: {
-                    [PUBLIC_PAGE_KEYS.HomePage]: {
+                    [PUBLIC_PAGE_KEYS.ContactUsPage]: {
                         title: googleSerpTitle,
                         description: googleSerpDescription
                     }

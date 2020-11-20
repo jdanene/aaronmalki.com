@@ -1,0 +1,669 @@
+Setting NODE_PATH to resolve modules absolutely has been deprecated in favor of setting baseUrl in jsconfig.json (or tsconfig.json if you are using TypeScript) and will be removed in a future major release of create-react-app.
+
+Creating an optimized production build...
+Compiled with warnings.
+
+./src/components/ManagePages/MultiParagraphTextDialog.js
+  Line 11:8:  'ButtonGroup' is defined but never used  no-unused-vars
+
+./src/context/ScrollToTop.js
+  Line 12:6:  React Hook useEffect has a missing dependency: 'history'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/views-protected/AdminSettingsPage/ModalEditBusinessLocation.js
+  Line 12:9:  'colorScheme' is defined but never used  no-unused-vars
+
+./src/views-protected/AdminSettingsPage/AdminSettingsPage.js
+  Line 15:8:   'uploadSettingToDb' is defined but never used                                                                no-unused-vars
+  Line 20:8:   'Paper' is defined but never used                                                                            no-unused-vars
+  Line 186:8:  React Hook useEffect has a missing dependency: 'settings'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/views/ContactUsPage/GoogleMaps/ShowGoogleMap.js
+  Line 1:16:   'useCallback' is defined but never used                no-unused-vars
+  Line 1:29:   'useState' is defined but never used                   no-unused-vars
+  Line 1:39:   'useContext' is defined but never used                 no-unused-vars
+  Line 1:51:   'useEffect' is defined but never used                  no-unused-vars
+  Line 2:8:    'PropTypes' is defined but never used                  no-unused-vars
+  Line 3:53:   'InfoBox' is defined but never used                    no-unused-vars
+  Line 3:62:   'Data' is defined but never used                       no-unused-vars
+  Line 3:68:   'InfoWindow' is defined but never used                 no-unused-vars
+  Line 4:9:    'firebaseConfig' is defined but never used             no-unused-vars
+  Line 6:9:    'colorScheme' is defined but never used                no-unused-vars
+  Line 7:9:    'AppContext' is defined but never used                 no-unused-vars
+  Line 24:7:   'exampleMapStyles' is assigned a value but never used  no-unused-vars
+  Line 63:25:  'setOverlayPane' is assigned a value but never used    no-unused-vars
+  Line 67:11:  'clickHandler' is assigned a value but never used      no-unused-vars
+  Line 79:11:  'options' is assigned a value but never used           no-unused-vars
+
+./src/components/Forms/FormMinMaxChoices.js
+  Line 1:16:   'useContext' is defined but never used                                                                                                                                                                                                             no-unused-vars
+  Line 3:9:    'Button' is defined but never used                                                                                                                                                                                                                 no-unused-vars
+  Line 4:8:    'ButtonGroup' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 8:9:    'Collapse' is defined but never used                                                                                                                                                                                                               no-unused-vars
+  Line 64:12:  'internalChoicesLow' is assigned a value but never used                                                                                                                                                                                            no-unused-vars
+  Line 64:32:  'setInternalChoicesLow' is assigned a value but never used                                                                                                                                                                                         no-unused-vars
+  Line 65:12:  'internalChoicesHigh' is assigned a value but never used                                                                                                                                                                                           no-unused-vars
+  Line 65:33:  'setInternalChoicesHigh' is assigned a value but never used                                                                                                                                                                                        no-unused-vars
+  Line 98:7:   React Hook useEffect has a missing dependency: 'selectionCallback'. Either include it or remove the dependency array. If 'selectionCallback' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+
+./src/components/Forms/FormStaticChoices.js
+  Line 1:16:   'useContext' is defined but never used                                                                                                                                                                                                             no-unused-vars
+  Line 7:9:    'colorScheme' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 50:42:  React Hook useEffect has a missing dependency: 'selectionCallback'. Either include it or remove the dependency array. If 'selectionCallback' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+
+./src/views/HomePage/HomePageBottomHalfInfo.js
+  Line 1:16:   'useContext' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 1:57:   'Suspense' is defined but never used                                                                                                                                                                                                              no-unused-vars
+  Line 8:9:    'IconButton' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 12:8:   'Typography' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 59:11:  'theme' is assigned a value but never used                                                                                                                                                                                                        no-unused-vars
+  Line 61:11:  'preventDefault' is assigned a value but never used                                                                                                                                                                                               no-unused-vars
+  Line 63:11:  'handleLinkedin' is assigned a value but never used                                                                                                                                                                                               no-unused-vars
+  Line 148:8:  React Hook useEffect has an unnecessary dependency: 'inputRef.current'. Either exclude it or remove the dependency array. Mutable values like 'inputRef.current' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
+
+./src/views/BlogPage/components/Sidebar.js
+  Line 1:16:   'useContext' is defined but never used         no-unused-vars
+  Line 8:9:    'colorScheme' is defined but never used        no-unused-vars
+  Line 9:9:    'AppContext' is defined but never used         no-unused-vars
+  Line 36:12:  'archives' is assigned a value but never used  no-unused-vars
+
+./src/views-protected/AdminPage/VirtualAdminPage.js
+  Line 1:16:   'useContext' is defined but never used   no-unused-vars
+  Line 1:28:   'useEffect' is defined but never used    no-unused-vars
+  Line 1:39:   'useState' is defined but never used     no-unused-vars
+  Line 2:8:    'Container' is defined but never used    no-unused-vars
+  Line 4:8:    'CssBaseline' is defined but never used  no-unused-vars
+  Line 7:8:    'BorderGuard' is defined but never used  no-unused-vars
+  Line 16:21:  'StyledText' is defined but never used   no-unused-vars
+  Line 17:8:   'Typography' is defined but never used   no-unused-vars
+
+./src/views/ContactUsPage/GoogleMaps/NavigateToGoogleMapButton.js
+  Line 1:16:  'useCallback' is defined but never used  no-unused-vars
+  Line 1:39:  'useContext' is defined but never used   no-unused-vars
+  Line 4:8:   'Button' is defined but never used       no-unused-vars
+  Line 10:9:  'AppContext' is defined but never used   no-unused-vars
+  Line 11:9:  'FittedText' is defined but never used   no-unused-vars
+  Line 14:8:  'Tooltip' is defined but never used      no-unused-vars
+
+./src/views/ContactUsPage/SendMessage.js
+  Line 1:16:  'useContext' is defined but never used             no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used              no-unused-vars
+  Line 2:9:   'firebaseConfig' is defined but never used         no-unused-vars
+  Line 3:8:   'GoogleMapReact' is defined but never used         no-unused-vars
+  Line 4:8:   'PropTypes' is defined but never used              no-unused-vars
+  Line 7:5:   'Typography' is defined but never used             no-unused-vars
+  Line 10:5:  'Hidden' is defined but never used                 no-unused-vars
+  Line 13:5:  'isWidthUp' is defined but never used              no-unused-vars
+  Line 18:8:  'PhoneIcon' is defined but never used              no-unused-vars
+  Line 19:8:  'MailIcon' is defined but never used               no-unused-vars
+  Line 21:9:  'VscLocation' is defined but never used            no-unused-vars
+  Line 22:9:  'BiPhone' is defined but never used                no-unused-vars
+  Line 23:9:  'useMediaQuery' is defined but never used          no-unused-vars
+  Line 24:8:  'ColoredButton' is defined but never used          no-unused-vars
+  Line 25:9:  'FittedText' is defined but never used             no-unused-vars
+  Line 28:8:  'Collapse' is defined but never used               no-unused-vars
+  Line 37:7:  'CssTextField' is assigned a value but never used  no-unused-vars
+
+./src/views/HomePage/HomePageTopHalfInfo.js
+  Line 1:16:  'useContext' is defined but never used           no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used            no-unused-vars
+  Line 1:39:  'useState' is defined but never used             no-unused-vars
+  Line 1:49:  'useRef' is defined but never used               no-unused-vars
+  Line 3:9:   'DownArrow' is defined but never used            no-unused-vars
+  Line 4:8:   'useWindowDimensions' is defined but never used  no-unused-vars
+  Line 5:9:   'StyledText' is defined but never used           no-unused-vars
+  Line 6:8:   'Button' is defined but never used               no-unused-vars
+  Line 7:9:   'colorScheme' is defined but never used          no-unused-vars
+  Line 8:9:   'pageToPathName' is defined but never used       no-unused-vars
+
+./src/views-protected/AdminPage/AdminPage.js
+  Line 1:16:  'useContext' is defined but never used          no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used           no-unused-vars
+  Line 1:39:  'useState' is defined but never used            no-unused-vars
+  Line 2:9:   'AppContext' is defined but never used          no-unused-vars
+  Line 3:8:   'Link' is defined but never used                no-unused-vars
+  Line 5:8:   'AdminLoginPage' is defined but never used      no-unused-vars
+  Line 7:5:   'Redirect' is defined but never used            no-unused-vars
+  Line 11:9:  'MuiThemeProvider' is defined but never used    no-unused-vars
+  Line 17:8:  'MenuIcon' is defined but never used            no-unused-vars
+  Line 33:7:  'darkTheme' is assigned a value but never used  no-unused-vars
+
+./src/components/ManagePages/LoadingModal.js
+  Line 1:16:  'useContext' is defined but never used        no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used         no-unused-vars
+  Line 1:39:  'useRef' is defined but never used            no-unused-vars
+  Line 1:47:  'useState' is defined but never used          no-unused-vars
+  Line 2:8:   'Modal' is defined but never used             no-unused-vars
+  Line 3:8:   'CircularProgress' is defined but never used  no-unused-vars
+  Line 5:8:   'Alert' is defined but never used             no-unused-vars
+
+./src/views/BuyersPage/components/BuyerForm/BuyerForm.js
+  Line 1:16:  'useContext' is defined but never used   no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 10:9:  'colorScheme' is defined but never used  no-unused-vars
+
+./src/components/SocialMediaButtons/SocialMediaButtons.js
+  Line 1:16:  'useContext' is defined but never used   no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 1:39:  'useRef' is defined but never used       no-unused-vars
+  Line 1:47:  'useState' is defined but never used     no-unused-vars
+  Line 2:8:   'ButtonGroup' is defined but never used  no-unused-vars
+  Line 3:8:   'Button' is defined but never used       no-unused-vars
+  Line 4:8:   'IconButton' is defined but never used   no-unused-vars
+
+./src/components/ManagePages/ManagePageListOption.js
+  Line 1:16:  'useContext' is defined but never used   no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 1:39:  'useRef' is defined but never used       no-unused-vars
+  Line 1:47:  'useState' is defined but never used     no-unused-vars
+  Line 4:8:   'List' is defined but never used         no-unused-vars
+  Line 10:9:  'colorScheme' is defined but never used  no-unused-vars
+
+./src/components/ContactForm/ContactForm.js
+  Line 1:16:  'useContext' is defined but never used   no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 3:5:   'Grid' is defined but never used         no-unused-vars
+  Line 9:5:   'Divider' is defined but never used      no-unused-vars
+  Line 12:8:  'transitions' is defined but never used  no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/MardownEditor.js
+  Line 1:16:  'useContext' is defined but never used  no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used   no-unused-vars
+
+./src/components/Forms/FormDropDownChoices.js
+  Line 1:16:  'useContext' is defined but never used  no-unused-vars
+  Line 1:28:  'useEffect' is defined but never used   no-unused-vars
+  Line 12:8:  'Slide' is defined but never used       no-unused-vars
+  Line 18:8:  'Menu' is defined but never used        no-unused-vars
+  Line 19:9:  'IconButton' is defined but never used  no-unused-vars
+  Line 22:9:  'Popover' is defined but never used     no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/DatePicker.js
+  Line 1:16:  'useEffect' is defined but never used           no-unused-vars
+  Line 3:8:   'TextField' is defined but never used           no-unused-vars
+  Line 8:5:   'KeyboardTimePicker' is defined but never used  no-unused-vars
+  Line 12:7:  'useStyles' is assigned a value but never used  no-unused-vars
+
+./src/components/Text/PopText.js
+  Line 1:16:  'useEffect' is defined but never used  no-unused-vars
+  Line 1:27:  'useState' is defined but never used   no-unused-vars
+  Line 2:9:   'Textfit' is defined but never used    no-unused-vars
+
+./src/views/BuyersPage/components/BuyerImageAndDescription/BuyerImageAndDescription.js
+  Line 1:16:  'useState' is defined but never used          no-unused-vars
+  Line 6:8:   'Photo1' is defined but never used            no-unused-vars
+  Line 7:8:   'Photo2' is defined but never used            no-unused-vars
+  Line 25:7:  'IMG_1' is assigned a value but never used    no-unused-vars
+  Line 26:7:  'TITLE_1' is assigned a value but never used  no-unused-vars
+  Line 27:7:  'BLURB_1' is assigned a value but never used  no-unused-vars
+  Line 35:7:  'IMG_2' is assigned a value but never used    no-unused-vars
+  Line 36:7:  'TITLE_2' is assigned a value but never used  no-unused-vars
+  Line 37:7:  'BLURB_2' is assigned a value but never used  no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/ConfirmActionDialog.js
+  Line 1:16:  'useState' is defined but never used     no-unused-vars
+  Line 1:26:  'useEffect' is defined but never used    no-unused-vars
+  Line 1:37:  'useContext' is defined but never used   no-unused-vars
+  Line 9:9:   'colorScheme' is defined but never used  no-unused-vars
+
+./src/components/TextBlurbWithTitle/TextBlurbWithTitle.js
+  Line 1:16:  'useState' is defined but never used    no-unused-vars
+  Line 5:8:   'Typography' is defined but never used  no-unused-vars
+
+./src/components/TextBlurbWithTitle/TextBlurbWithTitleLevel2.js
+  Line 1:16:  'useState' is defined but never used    no-unused-vars
+  Line 5:8:   'Typography' is defined but never used  no-unused-vars
+
+./src/views-protected/ManageBlogPage/ManageBlogPage.js
+  Line 1:17:  'useContext' is defined but never used           no-unused-vars
+  Line 1:29:  'useEffect' is defined but never used            no-unused-vars
+  Line 1:40:  'useState' is defined but never used             no-unused-vars
+  Line 4:8:   'Button' is defined but never used               no-unused-vars
+  Line 5:8:   'FileDrop' is defined but never used             no-unused-vars
+  Line 6:8:   'UploadBlog' is defined but never used           no-unused-vars
+  Line 7:8:   'Grid' is defined but never used                 no-unused-vars
+  Line 9:8:   'MarkDownEditor' is defined but never used       no-unused-vars
+  Line 11:9:  'AppContext' is defined but never used           no-unused-vars
+  Line 12:9:  'getKeyFromSingelton' is defined but never used  no-unused-vars
+  Line 14:9:  'blog_categories' is defined but never used      no-unused-vars
+  Line 15:8:  'OptionsSelect' is defined but never used        no-unused-vars
+  Line 16:8:  'Divider' is defined but never used              no-unused-vars
+
+./src/views/SellersPage/SellersPage.js
+  Line 1:17:  'useContext' is defined but never used  no-unused-vars
+  Line 1:29:  'useEffect' is defined but never used   no-unused-vars
+  Line 1:40:  'useState' is defined but never used    no-unused-vars
+
+./src/views/CurrentListingsPage/CurrentListingsPage.js
+  Line 1:17:  'useContext' is defined but never used  no-unused-vars
+  Line 1:29:  'useEffect' is defined but never used   no-unused-vars
+  Line 1:40:  'useState' is defined but never used    no-unused-vars
+
+./src/views/BlogPage/components/Blog.js
+  Line 1:26:   'useEffect' is defined but never used                  no-unused-vars
+  Line 6:8:    'GitHubIcon' is defined but never used                 no-unused-vars
+  Line 15:8:   'useBlogPosts' is defined but never used               no-unused-vars
+  Line 24:9:   'getPostFromBlogPosts' is defined but never used       no-unused-vars
+  Line 25:9:   'blog_categories' is defined but never used            no-unused-vars
+  Line 37:7:   'sections' is assigned a value but never used          no-unused-vars
+  Line 50:7:   'mainFeaturedPost' is assigned a value but never used  no-unused-vars
+  Line 59:7:   'featuredPosts' is assigned a value but never used     no-unused-vars
+  Line 78:7:   'posts' is assigned a value but never used             no-unused-vars
+  Line 112:7:  'categoriesActive' is assigned a value but never used  no-unused-vars
+
+./src/views/ContactUsPage/ContactUsPage.js
+  Line 1:28:   'useEffect' is defined but never used                    no-unused-vars
+  Line 1:39:   'useState' is defined but never used                     no-unused-vars
+  Line 2:9:    'firebaseConfig' is defined but never used               no-unused-vars
+  Line 3:8:    'GoogleMapReact' is defined but never used               no-unused-vars
+  Line 4:8:    'PropTypes' is defined but never used                    no-unused-vars
+  Line 7:5:    'Typography' is defined but never used                   no-unused-vars
+  Line 8:5:    'Box' is defined but never used                          no-unused-vars
+  Line 9:5:    'IconButton' is defined but never used                   no-unused-vars
+  Line 10:5:   'Hidden' is defined but never used                       no-unused-vars
+  Line 14:5:   'TextField' is defined but never used                    no-unused-vars
+  Line 16:8:   'PhoneIcon' is defined but never used                    no-unused-vars
+  Line 17:8:   'MailIcon' is defined but never used                     no-unused-vars
+  Line 19:9:   'VscLocation' is defined but never used                  no-unused-vars
+  Line 20:9:   'BiPhone' is defined but never used                      no-unused-vars
+  Line 21:9:   'useMediaQuery' is defined but never used                no-unused-vars
+  Line 22:8:   'ColoredButton' is defined but never used                no-unused-vars
+  Line 24:8:   'LocationMap' is defined but never used                  no-unused-vars
+  Line 203:7:  'AnyReactComponent' is assigned a value but never used   no-unused-vars
+  Line 205:7:  'LOS_ANGELES_CENTER' is assigned a value but never used  no-unused-vars
+  Line 206:7:  'DEFAULT_ZOOM' is assigned a value but never used        no-unused-vars
+
+./src/views/LeasePage/LeasePage.js
+  Line 1:28:   'useEffect' is defined but never used          no-unused-vars
+  Line 1:39:   'useState' is defined but never used           no-unused-vars
+  Line 6:8:    'LeaseTopImg' is defined but never used        no-unused-vars
+  Line 81:21:  'linkedin' is assigned a value but never used  no-unused-vars
+
+./src/views/ContactUsPage/LocationMap.js
+  Line 1:28:  'useEffect' is defined but never used      no-unused-vars
+  Line 1:39:  'useState' is defined but never used       no-unused-vars
+  Line 4:8:   'PropTypes' is defined but never used      no-unused-vars
+  Line 7:5:   'Typography' is defined but never used     no-unused-vars
+  Line 8:5:   'Box' is defined but never used            no-unused-vars
+  Line 9:5:   'IconButton' is defined but never used     no-unused-vars
+  Line 10:5:  'Hidden' is defined but never used         no-unused-vars
+  Line 13:5:  'isWidthUp' is defined but never used      no-unused-vars
+  Line 14:5:  'TextField' is defined but never used      no-unused-vars
+  Line 17:8:  'PhoneIcon' is defined but never used      no-unused-vars
+  Line 18:8:  'MailIcon' is defined but never used       no-unused-vars
+  Line 20:9:  'VscLocation' is defined but never used    no-unused-vars
+  Line 21:9:  'BiPhone' is defined but never used        no-unused-vars
+  Line 22:9:  'useMediaQuery' is defined but never used  no-unused-vars
+  Line 23:8:  'ColoredButton' is defined but never used  no-unused-vars
+
+./src/views-protected/ProtectedRoute.js
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 1:39:  'useState' is defined but never used     no-unused-vars
+  Line 2:9:   'Redirect' is defined but never used     no-unused-vars
+  Line 8:9:   'colorScheme' is defined but never used  no-unused-vars
+
+./src/components/NavBar/Drawer/DrawerNavOptions.js
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 1:39:  'useState' is defined but never used     no-unused-vars
+  Line 3:22:  'Router' is defined but never used       no-unused-vars
+  Line 4:5:   'Switch' is defined but never used       no-unused-vars
+  Line 5:5:   'Route' is defined but never used        no-unused-vars
+  Line 13:8:  'InboxIcon' is defined but never used    no-unused-vars
+  Line 19:8:  'isPathMatch' is defined but never used  no-unused-vars
+  Line 23:8:  'Button' is defined but never used       no-unused-vars
+
+./src/views/BuyersPage/BuyersPage.js
+  Line 1:28:  'useEffect' is defined but never used    no-unused-vars
+  Line 1:39:  'useState' is defined but never used     no-unused-vars
+  Line 5:8:   'Typography' is defined but never used   no-unused-vars
+  Line 7:8:   'BuyerTopImg' is defined but never used  no-unused-vars
+
+./src/views/HomePage/useWindowDimensions.js
+  Line 1:30:  'useRef' is defined but never used                                                                                                                                                                                                                              no-unused-vars
+  Line 3:10:  'getWindowDimensions' is defined but never used                                                                                                                                                                                                                 no-unused-vars
+  Line 16:6:  React Hook useEffect has a missing dependency: 'windowDimensions'. Either include it or remove the dependency array. You can also do a functional update 'setWindowDimensions(w => ...)' if you only need 'windowDimensions' in the 'setWindowDimensions' call  react-hooks/exhaustive-deps
+
+./src/context/AppContext.js
+  Line 1:31:  'useState' is defined but never used                no-unused-vars
+  Line 1:41:  'useEffect' is defined but never used               no-unused-vars
+  Line 2:9:   'blog_categories' is defined but never used         no-unused-vars
+  Line 2:26:  'blog_states' is defined but never used             no-unused-vars
+  Line 5:8:   'uploadSettingToDb' is defined but never used       no-unused-vars
+  Line 6:8:   'downloadSettingsFromDb' is defined but never used  no-unused-vars
+  Line 12:7:  'initial' is assigned a value but never used        no-unused-vars
+
+./src/components/SearchBar/SearchBar.js
+  Line 1:47:   'useState' is defined but never used                                                                          no-unused-vars
+  Line 2:8:    'AppBar' is defined but never used                                                                            no-unused-vars
+  Line 3:8:    'Toolbar' is defined but never used                                                                           no-unused-vars
+  Line 4:8:    'IconButton' is defined but never used                                                                        no-unused-vars
+  Line 5:8:    'Typography' is defined but never used                                                                        no-unused-vars
+  Line 7:9:    'fade' is defined but never used                                                                              no-unused-vars
+  Line 8:8:    'MenuIcon' is defined but never used                                                                          no-unused-vars
+  Line 10:9:   'colorScheme' is defined but never used                                                                       no-unused-vars
+  Line 160:7:  React Hook useEffect has a missing dependency: 'blogPaths'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/context/useBlogPost.js
+  Line 1:8:    'React' is defined but never used                                                                                        no-unused-vars
+  Line 1:37:   'useContext' is defined but never used                                                                                   no-unused-vars
+  Line 2:9:    'AppContext' is defined but never used                                                                                   no-unused-vars
+  Line 253:7:  'TEST_POSTS_RAW' is assigned a value but never used                                                                      no-unused-vars
+  Line 258:7:  'TEST_POSTS' is assigned a value but never used                                                                          no-unused-vars
+  Line 449:8:  React Hook useEffect has a missing dependency: 'getFormattedBlogPost'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/context/usePages.js
+  Line 1:8:   'React' is defined but never used              no-unused-vars
+  Line 1:16:  'createContext' is defined but never used      no-unused-vars
+  Line 1:52:  'useContext' is defined but never used         no-unused-vars
+  Line 2:9:   'blog_categories' is defined but never used    no-unused-vars
+  Line 2:26:  'blog_states' is defined but never used        no-unused-vars
+  Line 3:8:   'useBlogPosts' is defined but never used       no-unused-vars
+  Line 4:8:   'useProvideAuth' is defined but never used     no-unused-vars
+  Line 5:8:   'uploadSettingToDb' is defined but never used  no-unused-vars
+  Line 7:9:   'isObject' is defined but never used           no-unused-vars
+  Line 8:8:   'isObjectEmpty' is defined but never used      no-unused-vars
+  Line 11:7:  'pages' is assigned a value but never used     no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/MarkDownTextBox.js
+  Line 20:7:   'deserialize' is assigned a value but never used                                                                                                                                                                                         no-unused-vars
+  Line 46:29:  Unnecessary escape character: \[                                                                                                                                                                                                         no-useless-escape
+  Line 79:8:   React Hook useEffect has a missing dependency: 'onTextChange'. Either include it or remove the dependency array. If 'onTextChange' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+
+./src/views-protected/ManageHomePage/ManageHomePage.js
+  Line 22:8:  'uploadPageToDb' is defined but never used                                                                   no-unused-vars
+  Line 23:8:  'uploadImgToDbEasy' is defined but never used                                                                no-unused-vars
+  Line 49:8:  React Hook useEffect has a missing dependency: 'homePage'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/components/Database/uploadImgToDb.js
+  Line 23:9:  Expected a default case  default-case
+
+./src/views-protected/ManageBuyersPage/ManageBuyersPage.js
+  Line 26:8:  'SubjectIcon' is defined but never used                                                                        no-unused-vars
+  Line 51:8:  React Hook useEffect has a missing dependency: 'buyersPage'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/components/Text/StyledText.js
+  Line 2:10:  'Textfit' is defined but never used  no-unused-vars
+
+./src/components/NavBar/NavBarTransition.js
+  Line 2:16:  'useContext' is defined but never used  no-unused-vars
+  Line 2:28:  'useEffect' is defined but never used   no-unused-vars
+  Line 2:39:  'useRef' is defined but never used      no-unused-vars
+  Line 2:47:  'useState' is defined but never used    no-unused-vars
+
+./src/views-protected/AdminLoginPage/AdminLoginPage.js
+  Line 2:38:   'useEffect' is defined but never used           no-unused-vars
+  Line 6:8:    'PropTypes' is defined but never used           no-unused-vars
+  Line 21:8:   'Collapse' is defined but never used            no-unused-vars
+  Line 22:8:   'Button' is defined but never used              no-unused-vars
+  Line 27:9:   'MuiThemeProvider' is defined but never used    no-unused-vars
+  Line 30:7:   'darkTheme' is assigned a value but never used  no-unused-vars
+  Line 74:11:  'history' is assigned a value but never used    no-unused-vars
+
+./src/components/Footer/FooterListItem.js
+  Line 2:8:     'AppBar' is defined but never used            no-unused-vars
+  Line 3:8:     'Button' is defined but never used            no-unused-vars
+  Line 4:8:     'Card' is defined but never used              no-unused-vars
+  Line 5:8:     'CardActions' is defined but never used       no-unused-vars
+  Line 6:8:     'CardContent' is defined but never used       no-unused-vars
+  Line 7:8:     'CardHeader' is defined but never used        no-unused-vars
+  Line 8:8:     'CssBaseline' is defined but never used       no-unused-vars
+  Line 10:8:    'StarIcon' is defined but never used          no-unused-vars
+  Line 11:8:    'Toolbar' is defined but never used           no-unused-vars
+  Line 14:8:    'Container' is defined but never used         no-unused-vars
+  Line 15:8:    'Box' is defined but never used               no-unused-vars
+  Line 24:9:    'Divider' is defined but never used           no-unused-vars
+  Line 26:10:   'Copyright' is defined but never used         no-unused-vars
+  Line 126:11:  'classes' is assigned a value but never used  no-unused-vars
+
+./src/App.js
+  Line 2:8:    'logo' is defined but never used                        no-unused-vars
+  Line 5:22:   'Router' is defined but never used                      no-unused-vars
+  Line 12:19:  'SellersPage' is defined but never used                 no-unused-vars
+  Line 12:32:  'CurrentListingsPage' is defined but never used         no-unused-vars
+  Line 13:9:   'AppContextProvider' is defined but never used          no-unused-vars
+  Line 14:25:  'makeStyles' is defined but never used                  no-unused-vars
+  Line 24:9:   'SocialMediaButtons' is defined but never used          no-unused-vars
+  Line 26:9:   'TransitionGroup' is defined but never used             no-unused-vars
+  Line 26:26:  'CSSTransition' is defined but never used               no-unused-vars
+  Line 27:9:   'useLocation' is defined but never used                 no-unused-vars
+  Line 29:9:   'blog_categories' is defined but never used             no-unused-vars
+  Line 30:9:   'AnimatedSwitch' is defined but never used              no-unused-vars
+  Line 71:54:  'settingsHasLoaded' is assigned a value but never used  no-unused-vars
+
+./src/context/use-auth.js
+  Line 2:8:   'React' is defined but never used                no-unused-vars
+  Line 2:38:  'useContext' is defined but never used           no-unused-vars
+  Line 2:50:  'createContext' is defined but never used        no-unused-vars
+  Line 6:3:   'useHistory' is defined but never used           no-unused-vars
+  Line 8:27:  'adminPageToPathName' is defined but never used  no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/TextInput.js
+  Line 2:8:  'Button' is defined but never used                    no-unused-vars
+  Line 7:7:  'MAX_DESC_CHARS' is assigned a value but never used   no-unused-vars
+  Line 8:7:  'MAX_TITLE_CHARS' is assigned a value but never used  no-unused-vars
+
+./src/views/BlogPage/components/MainFeaturedPost.js
+  Line 2:8:  'PropTypes' is defined but never used    no-unused-vars
+  Line 7:8:  'Link' is defined but never used         no-unused-vars
+  Line 9:9:  'colorScheme' is defined but never used  no-unused-vars
+
+./src/views/BlogPage/components/Main.js
+  Line 2:8:  'PropTypes' is defined but never used  no-unused-vars
+
+./src/views/BlogPage/components/FeaturedPost.js
+  Line 2:8:  'PropTypes' is defined but never used  no-unused-vars
+
+./src/index.js
+  Line 2:8:  'ReactDOM' is defined but never used  no-unused-vars
+
+./src/components/DownArrow/DownArrow.js
+  Line 3:22:   'Router' is defined but never used                                                                                                                                                                                      no-unused-vars
+  Line 4:5:    'Switch' is defined but never used                                                                                                                                                                                      no-unused-vars
+  Line 5:5:    'Route' is defined but never used                                                                                                                                                                                       no-unused-vars
+  Line 6:5:    'Link' is defined but never used                                                                                                                                                                                        no-unused-vars
+  Line 8:8:    'ListItem' is defined but never used                                                                                                                                                                                    no-unused-vars
+  Line 9:8:    'ListItemIcon' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 10:8:   'ListItemText' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 11:8:   'Divider' is defined but never used                                                                                                                                                                                     no-unused-vars
+  Line 12:8:   'List' is defined but never used                                                                                                                                                                                        no-unused-vars
+  Line 13:8:   'InboxIcon' is defined but never used                                                                                                                                                                                   no-unused-vars
+  Line 14:8:   'MailIcon' is defined but never used                                                                                                                                                                                    no-unused-vars
+  Line 15:8:   'PropTypes' is defined but never used                                                                                                                                                                                   no-unused-vars
+  Line 16:9:   'colorScheme' is defined but never used                                                                                                                                                                                 no-unused-vars
+  Line 20:17:  'ButtonBase' is defined but never used                                                                                                                                                                                  no-unused-vars
+  Line 21:13:  'Scroll' is defined but never used                                                                                                                                                                                      no-unused-vars
+  Line 22:9:   'Element' is defined but never used                                                                                                                                                                                     no-unused-vars
+  Line 22:62:  'scroller' is defined but never used                                                                                                                                                                                    no-unused-vars
+  Line 26:7:   'PAGE_HEIGHT' is assigned a value but never used                                                                                                                                                                        no-unused-vars
+  Line 56:18:  'setPosn' is assigned a value but never used                                                                                                                                                                            no-unused-vars
+  Line 58:11:  'mobileBreak' is assigned a value but never used                                                                                                                                                                        no-unused-vars
+  Line 68:8:   React Hook useEffect has a missing dependency: 'toggle'. Either include it or remove the dependency array. You can also do a functional update 'setToggle(t => ...)' if you only need 'toggle' in the 'setToggle' call  react-hooks/exhaustive-deps
+  Line 96:8:   React Hook useEffect has a missing dependency: 'posn'. Either include it or remove the dependency array                                                                                                                 react-hooks/exhaustive-deps
+  Line 98:21:  'color' is assigned a value but never used                                                                                                                                                                              no-unused-vars
+
+./src/components/NavBar/TopNavBar.js
+  Line 3:39:   'useRef' is defined but never used                                                                                                                                                                                                   no-unused-vars
+  Line 9:8:    'Typography' is defined but never used                                                                                                                                                                                               no-unused-vars
+  Line 10:8:   'SwipeableDrawer' is defined but never used                                                                                                                                                                                          no-unused-vars
+  Line 12:8:   'List' is defined but never used                                                                                                                                                                                                     no-unused-vars
+  Line 13:8:   'Divider' is defined but never used                                                                                                                                                                                                  no-unused-vars
+  Line 14:8:   'ListItem' is defined but never used                                                                                                                                                                                                 no-unused-vars
+  Line 15:8:   'ListItemIcon' is defined but never used                                                                                                                                                                                             no-unused-vars
+  Line 16:8:   'ListItemText' is defined but never used                                                                                                                                                                                             no-unused-vars
+  Line 17:8:   'InboxIcon' is defined but never used                                                                                                                                                                                                no-unused-vars
+  Line 18:8:   'MailIcon' is defined but never used                                                                                                                                                                                                 no-unused-vars
+  Line 19:9:   'StyledText' is defined but never used                                                                                                                                                                                               no-unused-vars
+  Line 20:8:   'Grid' is defined but never used                                                                                                                                                                                                     no-unused-vars
+  Line 23:8:   'Slide' is defined but never used                                                                                                                                                                                                    no-unused-vars
+  Line 26:8:   'Zoom' is defined but never used                                                                                                                                                                                                     no-unused-vars
+  Line 27:8:   'Fade' is defined but never used                                                                                                                                                                                                     no-unused-vars
+  Line 29:9:   'Container' is defined but never used                                                                                                                                                                                                no-unused-vars
+  Line 30:8:   'GTranslateIcon' is defined but never used                                                                                                                                                                                           no-unused-vars
+  Line 32:9:   'useTheme' is defined but never used                                                                                                                                                                                                 no-unused-vars
+  Line 37:9:   'VerticalDivider' is defined but never used                                                                                                                                                                                          no-unused-vars
+  Line 38:25:  'pathToPageName' is defined but never used                                                                                                                                                                                           no-unused-vars
+  Line 41:23:  'adminPageToPageName' is defined but never used                                                                                                                                                                                      no-unused-vars
+  Line 42:23:  'adminPageToPathName' is defined but never used                                                                                                                                                                                      no-unused-vars
+  Line 59:8:   React Hook useEffect has a missing dependency: 'setTrigger'. Either include it or remove the dependency array. If 'setTrigger' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+
+./src/views/NoMatchPage/NoMatchPage.js
+  Line 3:5:   'useLocation' is defined but never used      no-unused-vars
+  Line 51:7:  'styles' is assigned a value but never used  no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/UploadBlog.js
+  Line 3:8:   'TextField' is defined but never used       no-unused-vars
+  Line 12:9:  'pageToPageName' is defined but never used  no-unused-vars
+  Line 13:8:  'Divider' is defined but never used         no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/OptionSelect.js
+  Line 3:8:  'InputLabel' is defined but never used   no-unused-vars
+  Line 8:9:  'blog_states' is defined but never used  no-unused-vars
+
+./src/components/SeoTags/SeoTags.js
+  Line 3:8:  'Logo' is defined but never used  no-unused-vars
+
+./src/components/Database/downloadSettingsFromDb.js
+  Line 3:8:  'firebase' is defined but never used  no-unused-vars
+
+./src/components/Database/uploadPageToDb.js
+  Line 4:19:  'DB_NODES_PAGES' is defined but never used  no-unused-vars
+
+./src/views/HomePage/HomePage.js
+  Line 4:8:    'useWindowDimensions' is defined but never used                                                                                                                                                                                                   no-unused-vars
+  Line 6:9:    'useImage' is defined but never used                                                                                                                                                                                                              no-unused-vars
+  Line 7:9:    'CardMedia' is defined but never used                                                                                                                                                                                                             no-unused-vars
+  Line 8:8:    'Typography' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 9:8:    'Image' is defined but never used                                                                                                                                                                                                                 no-unused-vars
+  Line 11:9:   'FittedText' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 11:21:  'StyledText' is defined but never used                                                                                                                                                                                                            no-unused-vars
+  Line 12:9:   'useTheme' is defined but never used                                                                                                                                                                                                              no-unused-vars
+  Line 13:9:   'useWindowSize' is defined but never used                                                                                                                                                                                                         no-unused-vars
+  Line 22:10:  'ProfilePicture' is defined but never used                                                                                                                                                                                                        no-unused-vars
+  Line 33:7:   'initial' is assigned a value but never used                                                                                                                                                                                                      no-unused-vars
+  Line 99:8:   React Hook useEffect has an unnecessary dependency: 'inputRef.current'. Either exclude it or remove the dependency array. Mutable values like 'inputRef.current' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
+
+./src/views/BlogPage/components/BlogSearch.js
+  Line 4:8:   'Grid' is defined but never used          no-unused-vars
+  Line 7:8:   'Markdown' is defined but never used      no-unused-vars
+  Line 10:8:  'ListItemIcon' is defined but never used  no-unused-vars
+  Line 11:8:  'ListItemText' is defined but never used  no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/ListBlogPosts.js
+  Line 4:9:     'getKeyFromSingelton' is defined but never used                                                                           no-unused-vars
+  Line 13:26:   'blog_categories_keysOnly' is defined but never used                                                                      no-unused-vars
+  Line 13:51:   'blog_categories_reverse' is defined but never used                                                                       no-unused-vars
+  Line 26:7:    'getItems' is assigned a value but never used                                                                             no-unused-vars
+  Line 137:7:   'getPosts' is assigned a value but never used                                                                             no-unused-vars
+  Line 160:12:  'isBlogLoaded' is assigned a value but never used                                                                         no-unused-vars
+  Line 169:7:   React Hook useEffect has a missing dependency: 'filterPostToBlogState'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/components/FileDrop/FileDrop.js
+  Line 4:9:  'DropzoneArea' is defined but never used  no-unused-vars
+
+./src/views-protected/ManageLeasePage/ManageLeasePage.js
+  Line 50:8:  React Hook useEffect has a missing dependency: 'leasePage'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+./src/views/BlogPage/components/Header.js
+  Line 5:8:    'Button' is defined but never used           no-unused-vars
+  Line 6:8:    'IconButton' is defined but never used       no-unused-vars
+  Line 7:8:    'SearchIcon' is defined but never used       no-unused-vars
+  Line 11:10:  'matchPath' is defined but never used        no-unused-vars
+  Line 12:8:   'isObjectEmpty' is defined but never used    no-unused-vars
+  Line 13:9:   'useEffect' is defined but never used        no-unused-vars
+  Line 15:8:   'isPathMatch' is defined but never used      no-unused-vars
+  Line 19:9:   'blog_categories' is defined but never used  no-unused-vars
+
+./src/views/BlogPage/components/ActualPost.js
+  Line 5:8:    'Typography' is defined but never used           no-unused-vars
+  Line 6:8:    'Divider' is defined but never used              no-unused-vars
+  Line 8:9:    'getKeyFromSingelton' is defined but never used  no-unused-vars
+  Line 22:10:  'key' is assigned a value but never used         no-unused-vars
+
+./src/views-protected/ManageBlogPage/components/BlogPostItem.js
+  Line 5:8:   'Grid' is defined but never used            no-unused-vars
+  Line 7:8:   'CardActionArea' is defined but never used  no-unused-vars
+  Line 10:8:  'Hidden' is defined but never used          no-unused-vars
+  Line 13:8:  'CardActions' is defined but never used     no-unused-vars
+  Line 18:9:  'theme' is defined but never used           no-unused-vars
+
+./src/views-protected/AdminPage/components/DashboardOption.js
+  Line 6:8:    'IconButton' is defined but never used        no-unused-vars
+  Line 8:8:    'SkipPreviousIcon' is defined but never used  no-unused-vars
+  Line 9:8:    'PlayArrowIcon' is defined but never used     no-unused-vars
+  Line 10:8:   'SkipNextIcon' is defined but never used      no-unused-vars
+  Line 14:9:   'colorScheme' is defined but never used       no-unused-vars
+  Line 51:11:  'theme' is assigned a value but never used    no-unused-vars
+
+./src/views/LeasePage/components/ImageCarousel/ClickArrow.js
+  Line 6:8:  'IconButton' is defined but never used  no-unused-vars
+
+./src/components/Footer/FooterLocationAndInfo.js
+  Line 73:7:   'infos' is assigned a value but never used  no-unused-vars
+  Line 90:11:  'theme' is assigned a value but never used  no-unused-vars
+
+./src/components/ManagePages/BasicTextDialog.js
+  Line 7:8:  'DialogContentText' is defined but never used  no-unused-vars
+
+./src/views/LeasePage/components/ImageCarousel/ImageCarousel.js
+  Line 81:8:    React Hook useEffect has a missing dependency: 'next'. Either include it or remove the dependency array    react-hooks/exhaustive-deps
+  Line 123:21:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 141:42:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 146:40:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+
+./src/components/Footer/Footer.js
+  Line 8:5:    'Hidden' is defined but never used          no-unused-vars
+  Line 12:5:   'TextField' is defined but never used       no-unused-vars
+  Line 14:9:   'ColoredButton' is defined but never used   no-unused-vars
+  Line 15:9:   'WaveBorder' is defined but never used      no-unused-vars
+  Line 19:9:   'StyledText' is defined but never used      no-unused-vars
+  Line 20:9:   'VscLocation' is defined but never used     no-unused-vars
+  Line 21:9:   'BiPhone' is defined but never used         no-unused-vars
+  Line 128:7:  'infos' is assigned a value but never used  no-unused-vars
+
+./src/components/PageViewTopHalf/PageViewTopHalf.js
+  Line 9:8:     'BuyerTopImg' is defined but never used                                                                                                                                                                                                           no-unused-vars
+  Line 10:8:    'clsx' is defined but never used                                                                                                                                                                                                                  no-unused-vars
+  Line 107:8:   React Hook useEffect has an unnecessary dependency: 'inputRef.current'. Either exclude it or remove the dependency array. Mutable values like 'inputRef.current' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
+  Line 126:17:  Imported JSX component Page_View_Top_Half must be in PascalCase or SCREAMING_SNAKE_CASE                                                                                                                                                           react/jsx-pascal-case
+
+./src/views/LeasePage/LeaseForm.js
+  Line 9:8:  'CssBaseline' is defined but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  964.29 KB  build/static/js/14.55c4ef63.chunk.js
+  52.17 KB   build/static/js/main.cd1efa1e.chunk.js
+  3.37 KB    build/static/js/reactPlayerFilePlayer.4a2e599d.chunk.js
+  2.86 KB    build/static/js/reactPlayerYouTube.73eaaaa6.chunk.js
+  2.38 KB    build/static/js/reactPlayerDailyMotion.73a40ba7.chunk.js
+  2.1 KB     build/static/js/reactPlayerWistia.6072831e.chunk.js
+  2.05 KB    build/static/js/reactPlayerVimeo.677d19f9.chunk.js
+  1.99 KB    build/static/js/reactPlayerPreview.6aed917e.chunk.js
+  1.99 KB    build/static/js/reactPlayerTwitch.dba741ad.chunk.js
+  1.98 KB    build/static/js/reactPlayerSoundCloud.1abb0e04.chunk.js
+  1.95 KB    build/static/js/reactPlayerVidyard.c4e8cab6.chunk.js
+  1.9 KB     build/static/js/reactPlayerMixcloud.56dd17da.chunk.js
+  1.88 KB    build/static/js/reactPlayerFacebook.147b4320.chunk.js
+  1.78 KB    build/static/css/main.acdc62c5.chunk.css
+  1.78 KB    build/static/js/reactPlayerStreamable.0daa7481.chunk.js
+  1.39 KB    build/static/js/runtime-main.ebcf9e2d.js
+  1.08 KB    build/static/css/14.fb346933.chunk.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  bit.ly/CRA-deploy
+
+🕷   Starting crawling http://localhost:63035/
+🔥 'render' from react-snapshot was never called. Did you replace the call to ReactDOM.render()?
+🕸   Finished crawling.

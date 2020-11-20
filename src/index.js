@@ -21,16 +21,28 @@ import {
     BrowserRouter as Router,
 } from "react-router-dom";
 
-ReactDOM.render(
-    <Router>
+import {hydrate, render} from "react-dom";
+
+if (global) {
+    global.fetch = require("node-fetch");
+
+}
+
+const rootElement = document.getElementById("root");
+if (rootElement.hasChildNodes()) {
+    hydrate(<Router>
         <AppContextProvider>
             <App/>
         </AppContextProvider>
-    </Router>
+    </Router>, rootElement);
+} else {
+    render(<Router>
+        <AppContextProvider>
+            <App/>
+        </AppContextProvider>
+    </Router>, rootElement);
+}
 
-    ,
-    document.getElementById('root')
-);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

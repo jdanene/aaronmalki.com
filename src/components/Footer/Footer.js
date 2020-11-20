@@ -224,8 +224,8 @@ function Footer(props) {
             <div
             />
             <div className={classes.footerInner}>
-                <Grid container spacing={isWidthUp("md", width) ? 10 : 5} style={{flexShrink: 1}}>
-                    <Grid item xs={12} md={4} lg={3}>
+                <Grid container spacing={isWidthUp("md", width) ? 10 : 5} style={{flexShrink: 1}} component={'div'}>
+                    <Grid item xs={12} md={4} lg={3} component={'div'}>
                         <form>
                             <Box display="flex" flexDirection="column">
                                 {/*Sociual Media*/}

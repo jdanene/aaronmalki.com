@@ -32,7 +32,7 @@ import AdminPage from "./views-protected/AdminPage/AdminPage";
 import NoMatch from "./views/NoMatchPage/NoMatchPage";
 import ScrollToTop from "./context/ScrollToTop";
 import ManageBlogPage from "./views-protected/ManageBlogPage/ManageBlogPage";
-import {v4 as uuidv4} from 'uuid';
+import generateUUID from "./components/Utility/uuid";
 import AdminSettingsPage from "./views-protected/AdminSettingsPage/AdminSettingsPage";
 import ManageHomePage from "./views-protected/ManageHomePage/ManageHomePage";
 import ManageBuyersPage from "./views-protected/ManageBuyersPage/ManageBuyersPage";
@@ -160,7 +160,7 @@ function App({location}) {
                         {/*Blog tabs at the top*/}
                         {Object.keys(blog_categories_keysOnly).map((key) =>
                             <Route key={key} path={blog_category_to_string[key].path} exact
-                                   render={(props) => <BlogPage {...props} category={key} key={uuidv4()}/>}/>
+                                   render={(props) => <BlogPage {...props} category={key} key={generateUUID()}/>}/>
                         )}
 
 

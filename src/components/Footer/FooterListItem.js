@@ -21,20 +21,7 @@ import {
     pageToPathName as adminPageToPathName
 } from "views-protected/protected-views"
 import {AppContext} from "../../context";
-import {Divider} from "@material-ui/core";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                aaronmalki.com
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -127,7 +114,7 @@ export default function FooterListItem() {
 
     return (
 
-        <Grid item xs={12} sm={12} md={4} lg={3} key={footer[0].title}>
+        <Grid item xs={12} sm={12} md={4} lg={3} key={footer[0].title} component={'div'}>
             <div style={{width: '100%', borderTop: `1px solid ${colorScheme.primary.primary}`, marginBottom: '10px'}}>
             </div>
             {/*

@@ -14,6 +14,7 @@ import {AppContext} from "../../context";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
 import SeoTags from "../../components/SeoTags/SeoTags";
+import Video from "../../components/Video/Video";
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {
@@ -82,7 +83,7 @@ const LeasePage = ({location}) => {
                 },
                 companyName,
                 seo: {
-                    [PUBLIC_PAGE_KEYS.HomePage]: {
+                    [PUBLIC_PAGE_KEYS.LeasePage]: {
                         title: googleSerpTitle,
                         description: googleSerpDescription
                     }
@@ -106,10 +107,14 @@ const LeasePage = ({location}) => {
         />
 
 
+
         <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalfImg}/>
         <div className={classes.body}>
+
+                    <Video/>
+
             <Grid className={classes.imgTextContainer} container spacing={mobileBreak ? 3 : 4}>
-                <Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
+                <Grid sm={12} md={6} item  >
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -129,7 +134,7 @@ const LeasePage = ({location}) => {
                                               secondaryBlurbArray={secondaryRightParagraphArray}
                                               secondaryTitle={secondaryRightTitle}/>
                 </Grid>
-                {mobileBreak && <Grid sm={12} md={6} item justify={'center'} alignItems={'center'}>
+                {mobileBreak && <Grid sm={12} md={6} item >
                     <TextBlurbWithTitle paragraphArray={mainLeftParagraphArray} title={mainLeftTitle} smallTitle
                                         alignLeft/>
                 </Grid>}

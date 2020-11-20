@@ -44,7 +44,7 @@ export default class Splash extends React.PureComponent {
                 style={{
                     width: '100vw',
                     height: '100vh',
-
+                    backgroundColor:'white'
                 }}>
                 <Container
                     reset

@@ -90,7 +90,7 @@ const FooterLocationAndInfo = ({phoneNumber,email,address,license}) => {
     const theme = useTheme();
 
     return (
-        <Grid item xs={12} sm={12} md={4} lg={6}  style={{ flexShrink: 1}}>
+        <Grid item xs={12} sm={12} md={4} lg={6}  style={{ flexShrink: 1}} component={'div'}>
 
             {/*
             <div className={classes.name_container} style={{border: "1px solid black"}}>

@@ -1,20 +1,23 @@
 import React from "react";
 import {Helmet} from 'react-helmet'
 import Logo from "resources/images/official_logo_white_bg.png"
-import {OG_TYPE} from "../../constants/contants";
+import {OG_TYPE,SEO_DEFAULT_IMG} from "../../constants/contants";
 import PropTypes from 'prop-types';
 
-const RenderMeta = ({title, description, companyName, type, img, url}) => {
+const SeoTags = ({companyName, title, description, img, path, type}) => {
 
+    const imgUrl = img ? img : SEO_DEFAULT_IMG;
+    const contentType = type in OG_TYPE ? type : OG_TYPE.website;
+    const url = `http://www.aaronmalki.com${path}`;
 
     let meta = [
         {
             property: `og:image`,
-            content: img,
+            content: imgUrl,
         },
         {
             property: `twitter:image`,
-            content: img,
+            content: imgUrl,
         },
         {
             property: `og:url`,
@@ -34,7 +37,7 @@ const RenderMeta = ({title, description, companyName, type, img, url}) => {
         },
         {
             property: `og:type`,
-            content: type ? type : `website`,
+            content: contentType ? contentType : `website`,
         },
         {
             name: `twitter:creator`,
@@ -49,18 +52,7 @@ const RenderMeta = ({title, description, companyName, type, img, url}) => {
             content: description,
         },
     ];
-    return <React.Fragment>
-        {meta.map((obj) => {
-            return <meta {...obj} key={'property' in obj ? obj['property'] : obj['name']}/>
-        })}
-    </React.Fragment>
-};
 
-const SeoTags = ({companyName, title, description, img, path, type}) => {
-
-    const imgUrl = img ? img : "%PUBLIC_URL%/official_logo_transparent.png";
-    const contentType = type in OG_TYPE ? type : OG_TYPE.website;
-    const url = `http://www.aaronmalki.com${path}`;
 
     return <Helmet>
         <html lang="en"/>
@@ -68,15 +60,11 @@ const SeoTags = ({companyName, title, description, img, path, type}) => {
         <meta property={'og:image'} content={imgUrl}/>
         <link rel={"canonical"} href={url}/>
         <meta content={companyName} property="og:site_name"/>
-        <RenderMeta description={description}
-                    title={title}
-                    type={contentType}
-                    img={imgUrl}
-                    companyName={companyName}
-                    url={url}/>
+        {meta.map((obj,index) => {
+            return <meta {...obj} key={index}/>
+        })}
     </Helmet>
 };
-
 
 
 SeoTags.propTypes = {
