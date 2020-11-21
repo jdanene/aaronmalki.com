@@ -18,6 +18,7 @@ import {AppContext} from "../../context";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import {makeStyles} from '@material-ui/core/styles';
 import SeoTags from "../../components/SeoTags/SeoTags";
+import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 
 function ProfilePicture({mobileBreak}) {
 
@@ -111,21 +112,8 @@ const HomePage = ({location}) => {
 
         />
 
-        <div id={"id123"} ref={inputRef}
-             style={{height: mobileBreak ? '60vh' : '110vh', minHeight: !mobileBreak && '500px'}}
-             className={classes.topHalf_container}>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%'
-            }}>
-                <HomePageTopHalfInfo mobileBreak={mobileBreak}
-                                     pageTitle={pageTitle}/>
-                {!mobileBreak && <DownArrow posnOfContainter={topHalf_bottomPosn}/>}
-            </div>
-        </div>
+   
+        <PageViewTopHalf className={classes.topHalf_container} pageTitle={pageTitle} />
         <div style={{
             border: '0',
             paddingTop: mobileBreak ? "45px" : "50px",
