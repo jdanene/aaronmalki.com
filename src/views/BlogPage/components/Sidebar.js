@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import {colorScheme} from "../../../constants";
 import {AppContext} from "../../../context";
+import {FIREBASE_ANALYTICS} from "../../../App";
 
 const useStyles = makeStyles((theme) => ({
     sidebarAboutBox: {
@@ -33,7 +34,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidebar(props) {
     const classes = useStyles();
-    const {archives, description, social, title,socialMedia} = props;
+    const {archives, description, social, title, socialMedia} = props;
+
+    const handleSocialIconClick = (name, path) => {
+        FIREBASE_ANALYTICS.logEvent('select_content', {
+            content_type: 'socialMedia',
+            content_id: `${name}:blog`,
+            items: [{path}]
+        });
+
+    };
 
     return (
         <Grid item xs={12} md={4} className={classes.container}>
@@ -56,7 +66,8 @@ export default function Sidebar(props) {
                 Social
             </Typography>
             {social.map((network) => (
-                <Link className={classes.listItem} display="block" variant="body1" href={socialMedia[network.key]}
+                <Link onClick={() => handleSocialIconClick(network.key, socialMedia[network.key])}
+                      className={classes.listItem} display="block" variant="body1" href={socialMedia[network.key]}
                       key={network.key}>
                     <Grid container direction="row" spacing={1} alignItems="center">
                         <Grid item>

@@ -11,7 +11,7 @@ import {colorScheme} from "../../constants";
 import Fuse from 'fuse.js'
 import {AppContext} from "../../context";
 import PropTypes from 'prop-types';
-
+import {FIREBASE_ANALYTICS} from "../../App";
 // fuse is a fuzzy search library that ReactSearchBox uses ---these are the parameters.
 const defaultFuseConfigs = {
     /**
@@ -44,7 +44,7 @@ const defaultFuseConfigs = {
      * List of properties that will be searched. This supports nested properties,
      * weighted search, searching in arrays of strings and objects.
      */
-    keys: ['title',  'date','description'],
+    keys: ['title', 'date', 'description'],
 };
 
 
@@ -114,8 +114,8 @@ const useStyles = makeStyles((theme) => ({
             '&:focus': {
                 width: '20ch',
                 border: `1.5px solid rgba(0,0,0,.50)`,
-              borderRadius: 5,
-              backgroundColor: theme.palette.common.white
+                borderRadius: 5,
+                backgroundColor: theme.palette.common.white
 
             },
         },
@@ -124,8 +124,8 @@ const useStyles = makeStyles((theme) => ({
             '&:focus': {
                 width: '80vw',
                 border: `1.5px solid rgba(0,0,0,.50)`,
-              borderRadius: 5,
-              backgroundColor: theme.palette.common.white
+                borderRadius: 5,
+                backgroundColor: theme.palette.common.white
 
             },
         },
@@ -134,16 +134,16 @@ const useStyles = makeStyles((theme) => ({
             '&:focus': {
                 width: '64vw',
                 border: `1.5px solid rgba(0,0,0,.50)`,
-              borderRadius: 5,
-              backgroundColor: theme.palette.common.white
+                borderRadius: 5,
+                backgroundColor: theme.palette.common.white
 
             },
         },
     },
 }));
 
-const postsToList = (blogPostsRaw,blogPaths) =>{
-    return Object.keys(blogPostsRaw).map((key)=>{
+const postsToList = (blogPostsRaw, blogPaths) => {
+    return Object.keys(blogPostsRaw).map((key) => {
         blogPostsRaw[key].key = key;
         blogPostsRaw[key].path = blogPaths[key];
         return blogPostsRaw[key];
@@ -152,23 +152,30 @@ const postsToList = (blogPostsRaw,blogPaths) =>{
 
 export default function SearchBar({isFocusedCallback, searchResultCallback}) {
     const classes = useStyles();
-    const {blogPostsRaw,blogPaths} = useContext(AppContext);
-    const fuse = useRef(new Fuse(postsToList(blogPostsRaw,blogPaths), defaultFuseConfigs));
+    const {blogPostsRaw, blogPaths} = useContext(AppContext);
+    const fuse = useRef(new Fuse(postsToList(blogPostsRaw, blogPaths), defaultFuseConfigs));
 
-    useEffect(()=>{
-         fuse.current = new Fuse(postsToList(blogPostsRaw,blogPaths), defaultFuseConfigs);
-    },[blogPostsRaw]);
+    useEffect(() => {
+        fuse.current = new Fuse(postsToList(blogPostsRaw, blogPaths), defaultFuseConfigs);
+    }, [blogPostsRaw]);
 
-    const handleChange = (e)=>{
+    const handleChange = (e) => {
+
+        FIREBASE_ANALYTICS.logEvent(
+            'search', {
+                search_term: e.target.value
+            });
+
+
         searchResultCallback(fuse.current.search(e.target.value));
     };
 
-    const handleFocus = (e)=>{
+    const handleFocus = (e) => {
         isFocusedCallback(true);
     };
 
-    const handleBlur = (e)=>{
-       // isFocusedCallback(false);
+    const handleBlur = (e) => {
+        // isFocusedCallback(false);
     };
 
     //searchData = fuse.current.search(text);
@@ -176,7 +183,7 @@ export default function SearchBar({isFocusedCallback, searchResultCallback}) {
 
         <div className={classes.search}>
             <div className={classes.searchIcon}>
-                <SearchIcon style={{zIndex:2}} />
+                <SearchIcon style={{zIndex: 2}}/>
             </div>
             <InputBase
                 onFocus={handleFocus}
@@ -200,6 +207,6 @@ SearchBar.propTypes = {
 };
 
 SearchBar.defaultProps = {
-    isFocusedCallback: (isFocused)=>console.log('Search focused: ',isFocused),
-    searchResultCallback: (searchList)=>console.log('Search Results',searchList)
+    isFocusedCallback: (isFocused) => console.log('Search focused: ', isFocused),
+    searchResultCallback: (searchList) => console.log('Search Results', searchList)
 };

@@ -25,7 +25,7 @@
 
 
 .carousel .thumb.selected, .carousel .thumb.selected:hover {
-    border: 2px solid #004080;
+    border: 2px solid #004080 !important;
     opacity: 1
 }
 
@@ -40,6 +40,12 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.20);
 }
 
+@media only screen and (max-width: 600px) {
+    .carousel .thumb:hover {
+        border:transparent;
+        box-shadow: none ;
+    }
+}
 
 .carousel .control-prev.control-arrow {
     left: 0;

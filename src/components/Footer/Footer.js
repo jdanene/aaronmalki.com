@@ -27,6 +27,7 @@ import {useMediaQuery} from "@material-ui/core";
 import {AiFillHeart} from "react-icons/ai";
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES} from "../../constants/contants";
+import {FIREBASE_ANALYTICS} from "../../App";
 
 function Copyright() {
     return (
@@ -42,6 +43,13 @@ function Copyright() {
 }
 
 const ArtistPlug = () => {
+
+    const hasClicked = () => {
+        FIREBASE_ANALYTICS.logEvent('select_content', {
+            content_type: "jideArtistPlug",
+        })
+    };
+
     return (
         <Typography variant="caption" color="textSecondary" style={{position: "static", right: 0, bottom: 0}}> Made
             with <AiFillHeart size={22} style={{
@@ -50,7 +58,8 @@ const ArtistPlug = () => {
                 padding: 0,
                 position: 'relative',
                 bottom: -5
-            }}/> by <a href={"https://www.linkedin.com/in/jide-anene/"}>Jidé</a> for a better web. </Typography>
+            }}/> by <a onClick={hasClicked} href={"https://www.linkedin.com/in/jide-anene/"}>Jidé</a> for a
+            better web. </Typography>
     )
 }
 const styles = theme => ({
@@ -213,10 +222,19 @@ function Footer(props) {
     const {
         pageState: {
             [DB_NODES_PAGES.settings]: {
-                socialMedia, phoneNumber,email,address,license
+                socialMedia, phoneNumber, email, address, license
             }
         },
     } = useContext(AppContext);
+
+    const handleSocialIconClick = (name, path) => {
+        FIREBASE_ANALYTICS.logEvent('select_content', {
+            content_type: 'socialMedia',
+            content_id: `${name}:footer`,
+            items: [{path}]
+        });
+
+    };
 
     const {classes, theme, width} = props;
     return (
@@ -233,6 +251,7 @@ function Footer(props) {
                                     {socialIcons.map((socialIcon, index) => (
                                         <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
                                             <IconButton
+                                                onClick={()=>handleSocialIconClick(socialIcon.label,socialMedia[socialIcon.label])}
                                                 aria-label={socialIcon.label}
                                                 className={classes.socialIcon}
                                                 href={socialMedia[socialIcon.label]}
@@ -274,10 +293,12 @@ function Footer(props) {
                     {!mobileBreak ?
                         <React.Fragment>
                             <FooterListItem/>
-                            <FooterLocationAndInfo phoneNumber={phoneNumber} email={email} address={address} license={license}/>
+                            <FooterLocationAndInfo phoneNumber={phoneNumber} email={email} address={address}
+                                                   license={license}/>
                         </React.Fragment> :
                         <React.Fragment>
-                            <FooterLocationAndInfo phoneNumber={phoneNumber} email={email} address={address} license={license}/>
+                            <FooterLocationAndInfo phoneNumber={phoneNumber} email={email} address={address}
+                                                   license={license}/>
                             <FooterListItem/>
                         </React.Fragment>}
 

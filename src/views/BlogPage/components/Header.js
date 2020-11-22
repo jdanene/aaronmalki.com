@@ -64,6 +64,7 @@ function Header({location,isFocusedCallback,searchResultCallback}) {
 
 
 
+
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>

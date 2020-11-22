@@ -59,6 +59,8 @@ export const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Get a reference to the analytics service
+export const FIREBASE_ANALYTICS = firebase.analytics();
 // Get a reference to the database service
 export const FIREBASE_DB = firebase.database();
 

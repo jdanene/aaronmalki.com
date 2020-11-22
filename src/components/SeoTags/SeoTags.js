@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Helmet} from 'react-helmet'
 import Logo from "resources/images/official_logo_white_bg.png"
-import {OG_TYPE,SEO_DEFAULT_IMG} from "../../constants/contants";
+import {OG_TYPE, SEO_DEFAULT_IMG} from "../../constants/contants";
 import PropTypes from 'prop-types';
+import {FIREBASE_ANALYTICS} from "../../App";
 
 const SeoTags = ({companyName, title, description, img, path, type}) => {
 
@@ -53,6 +54,15 @@ const SeoTags = ({companyName, title, description, img, path, type}) => {
         },
     ];
 
+    useEffect(() => {
+
+        FIREBASE_ANALYTICS.logEvent('page_view', {
+                page_location: url,
+                page_path: path,
+                page_title: title
+            })
+
+    }, [companyName, title, description, img, type]);
 
     return <Helmet>
         <html lang="en"/>
@@ -60,7 +70,7 @@ const SeoTags = ({companyName, title, description, img, path, type}) => {
         <meta property={'og:image'} content={imgUrl}/>
         <link rel={"canonical"} href={url}/>
         <meta content={companyName} property="og:site_name"/>
-        {meta.map((obj,index) => {
+        {meta.map((obj, index) => {
             return <meta {...obj} key={index}/>
         })}
     </Helmet>
