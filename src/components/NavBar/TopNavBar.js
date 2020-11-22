@@ -19,6 +19,8 @@ import Fab from '@material-ui/core/Fab';
 import {useLocation} from 'react-router-dom'
 import {DB_NODES_PAGES} from "../../constants/contants";
 import {AppContext} from "../../context";
+import {ReactComponent as Logo} from "resources/images/official_logo_white_bg.svg";
+import {Link} from "react-router-dom";
 
 function ElevationScroll({window, children, setTrigger, triggerActive}) {
     //const {children, window, setTrigger} = props;
@@ -53,15 +55,18 @@ ElevationScroll.propTypes = {
 };
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     name: {
         fontFamily: "raleway-thin, serif"
     },
-    logo: {
-        fontFamily: "raleway-thin, serif",
-        fontWeight: "lighter",
-        marginLeft: "5px",
-        letterSpacing: "2px"
+    logoContainer: {
+        position: "absolute",
+        left: -1 * theme.spacing(4.5),
+        marginTop: 5,
+        border:'1px solid pink'
+    },
+    logo:{
+        border:'1px solid pink'
     },
     phoneNumber: {
         fontFamily: "raleway-thin, serif"
@@ -69,7 +74,7 @@ const useStyles = makeStyles({
     drawerItem: {
         background: '#FAFBFC'
     }
-});
+}));
 
 const shouldNavBarTrigger = (pathname) => {
     return (pathname === pageToPathName["HomePage"]) || (pathname === pageToPathName["BuyersPage"]) || (pathname === pageToPathName["LeasePage"])
@@ -164,29 +169,19 @@ const TopNavBar = ({children, window}) => {
 
                             <div style={{
                                 height: "100%",
-                                //border: `1px solid ${colorScheme.secondary.light}`,
-                                maxWidth: "75%",
                                 display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center"
+                                minHeight: "45px",
+                                alignItems: 'center',
+                                alignContent: 'center',
+                                margin: "0px 0px 0px 5px"
                             }}>
 
-                                <Button href={pageToPathName["HomePage"]} color="inherit"
-                                        style={{/*border: "1px solid black",*/ height: "100%"}}>
+                                <IconButton href={pageToPathName["HomePage"]} color="inherit" className={styles.logoContainer}>
 
 
-                                    <PopText endFontSize={!mobileBreak ? "16px" : "13.5px"}
-                                             startFontSize={!mobileBreak ? "18px" : "14px"}
-                                             trigger={!isTriggerActive || trigger}
-                                             style={{
-                                                 fontFamily: "raleway-thin, serif",
-                                                 fontWeight: "bold",
-                                                 letterSpacing: "1.5px"
-                                             }}>
+                                    <Logo className={styles.logo}/>
 
-                                        {companyName}
-                                    </PopText>
-                                </Button>
+                                </IconButton>
 
                                 {/*
                                 <VerticalDivider/>
