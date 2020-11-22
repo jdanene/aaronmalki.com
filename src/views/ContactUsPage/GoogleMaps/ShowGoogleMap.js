@@ -15,7 +15,8 @@ const mapContainerStyle = {
     width: "100%",
     borderTopRightRadius:5,
     borderTopLeftRadius:5,
-    padding:0
+    padding:0,
+    display:'flex'
 };
 
 const exampleMapStyles = [

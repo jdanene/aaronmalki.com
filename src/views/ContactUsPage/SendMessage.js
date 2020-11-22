@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import validator from 'validator'
 import Paper from '@material-ui/core/Paper';
 import {MESSAGE_TYPES} from "../../constants/contants";
-
+import clsx from "clsx";
 
 const CssTextField = withStyles({
     root: {
@@ -97,11 +97,6 @@ const styles = theme => ({
     brandText: {
         fontFamily: "'Baloo Bhaijaan', cursive",
         fontWeight: 400,
-        color: theme.palette.common.white
-    },
-    footerLinks: {
-        marginTop: theme.spacing(2.5),
-        marginBottom: theme.spacing(1.5),
         color: theme.palette.common.white
     },
     infoIcon: {
@@ -195,12 +190,6 @@ const styles = theme => ({
     map_map: {
         height: '75%'
     },
-    main_container: {
-        [theme.breakpoints.down("sm")]: {
-            marginTop:-25,
-           // borderBottom: `1px solid rgba(27, 48, 57, .25)`,
-        }
-    },
     contact_container: {
         display: 'flex',
         width: '100%',
@@ -220,17 +209,6 @@ const styles = theme => ({
         margin: 0,
 
 
-    },
-    address_container: {
-        backgroundColor: theme.palette.primary.main,
-        height: '30%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-    },
-    email: {
-        color: theme.palette.common.white
     },
 
     getInTouchText: {
@@ -259,13 +237,12 @@ const styles = theme => ({
     },
     paperContainer:{
         display:'flex',
-        flexGrow:1,
         flexDirection:'column',
-        width:'100%',
         alignItems:'center',
+        width:'100%',
         paddingLeft:theme.spacing(4),
         paddingRight: theme.spacing(4),
-        paddingBottom: theme.spacing(5),
+        paddingBottom: theme.spacing(2),
         paddingTop: theme.spacing(2),
         borderRadius: 7,
         [theme.breakpoints.down("xs")]: {
@@ -277,7 +254,7 @@ const styles = theme => ({
     }
 });
 
-const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
+const SendMessage = ({classes, className, theme, width, center, zoom, md = 4, lg = 4, xl = 4, sm = 5, xs = 12}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -325,7 +302,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
 
     return (
         <Grid item md={md} lg={lg} xl={xl} sm={sm} xs={xs}
-              className={classes.main_container}>
+              className={className}>
         <Paper elevation={3} className={classes.paperContainer} >
 
 
@@ -392,8 +369,9 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
                     helperText={error.message ? error.helperTxt : ''}
                 />
             </Box>
+            <div style={{display:'flex', width:'100%', height:'100%', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <Button
-                style={{width: '75%', marginTop: 10}}
+                style={{width: '75%'}}
                 color={"secondary"}
                 variant="outlined"
                 onClick={handleMessage}
@@ -402,6 +380,7 @@ const SendMessage = ({classes, theme, width, center, zoom, md = 4, lg = 4, xl = 
             >
                 Send Message
             </Button>
+            </div>
 
             {isMessageSent&&<Fade in={isMessageSent}>
                 <Alert color={"success"} variant="filled"

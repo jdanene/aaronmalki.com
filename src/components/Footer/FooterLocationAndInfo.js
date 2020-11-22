@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
         display:'flex',
         flexDirection:"column",
         maxWidth: "200px",
-        marginTop: "-20px"
+        marginTop: "-20px",
+        fontFamily:'airbnb-book'
     },
     credential:{
         textAlign:'left',
@@ -50,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
     address_container:{
         color:  theme.palette.text.secondary,
         textAlign:'left',
-        maxWidth: '160px',
+        width: '180px',
         textDecoration:'none',
-        fontFamily: 'airbnb-medium'
+        fontFamily: 'airbnb-light'
     },
     email:{
         color:  theme.palette.text.secondary
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#F5F5F5",
         textAlign:'left',
         fontSize:"10px",
-        fontFamily: 'airbnb-medium'
+        fontFamily: 'airbnb-light'
     }
 }));
 

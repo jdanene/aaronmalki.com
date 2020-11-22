@@ -89,31 +89,9 @@ const styles = theme => ({
         justifyContent: 'center',
         width: '100%',
         // marginBottom: '45px',
-        //border: `2px solid red`,
         flexGrow: 1
     },
 
-    map_container: {
-        //                 border: `2px solid pink`,
-        width: '100%',
-
-
-        [theme.breakpoints.up("xs")]: {
-            height: '500px'
-        },
-        [theme.breakpoints.up("sm")]: {
-            height: '450px'
-        },
-        [theme.breakpoints.up("md")]: {
-            height: '600px'
-        },
-        [theme.breakpoints.up("lg")]: {
-            height: '600px'
-        },
-        [theme.breakpoints.up("xl")]: {
-            height: '600px'
-        }
-    },
     map_footer: {},
     map_map: {
         height: '75%'
@@ -122,8 +100,8 @@ const styles = theme => ({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        paddingBottom: theme.spacing(10),
-        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+        paddingTop: theme.spacing(6),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colorScheme.other.backgroundComplementary,
@@ -131,6 +109,8 @@ const styles = theme => ({
             paddingLeft: 0,
             paddingRight: 0,
         },
+
+
     },
     contact_container: {
         display: 'flex',
@@ -142,10 +122,13 @@ const styles = theme => ({
     credentialname: {
         textAlign: 'left',
         color: theme.palette.common.white,
-        fontFamily: 'scope-one-regular',
-        fontWeight: 'bold',
-        fontSize: '25px'
-
+        fontFamily: 'airbnb-book',
+        fontSize: '25px',
+        letterSpacing: '1px',
+        marginBottom: theme.spacing(.25),
+        [theme.breakpoints.down("sm")]: {
+            fontSize: '23px'
+        },
     },
     address: {
         color: theme.palette.common.white,
@@ -153,7 +136,7 @@ const styles = theme => ({
         width: '100%',
         height: '100%',
         margin: 0,
-        fontFamily: 'scope-one-regular',
+        fontFamily: 'airbnb-light',
         //border: `2px solid pink`,
 
 
@@ -161,7 +144,6 @@ const styles = theme => ({
     address_container: {
         backgroundColor: colorScheme.secondary.dark,
         height: '30%',
-        minHeight: '150px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -176,6 +158,15 @@ const styles = theme => ({
     phone: {
         textDecoration: 'none',
         color: theme.palette.common.white
+    },
+    msgAndMapContainer:{
+        width: '100%',
+
+        height:'100%',
+        display:'flex',
+        [theme.breakpoints.down("sm")]: {
+            height: '575px'
+        },
     }
 });
 
@@ -212,24 +203,27 @@ const ContactUsPage = ({location, classes, theme, width, center, zoom}) => {
             />
 
             <BorderGuard/>
+
+
             <Grid container spacing={isWidthUp("md", width) ? 10 : 5} className={classes.mapAndForm_container}>
-                <SendMessage md={6} lg={6} xl={6} sm={6} xs={12}/>
+
+                <SendMessage md={6} lg={5} xl={5} sm={6} xs={12} className={classes.msgAndMapContainer}/>
 
                 {/* The map and Location*/}
                 <Grid item
-                      md={6} lg={6} xl={6} sm={6} xs={12}
-                      className={classes.map_container}
+                      md={6} lg={5} xl={5} sm={6} xs={12}
+                      className={classes.msgAndMapContainer}
 
                 >
-                    <Paper style={{height: '100%', width: '100%'}}>
+                    <Paper style={{height: '100%', width: '100%', display:'flex', flexDirection:'column'}}>
                         {/*The Map*/}
-                        <Grid item lg={12} md={12} sm={12} xs={12} style={{height: '75%'}}>
+                        <div style={{height: '75%'}}>
                             <ShowGoogleMap address={address} phoneNumber={phoneNumber} email={email}/>
-                        </Grid>
+                        </div>
 
                         {/*The Location*/}
 
-                        <Grid item lg={12} md={12} sm={12} className={classes.address_container}>
+                        <div className={classes.address_container}>
 
                             <div style={{
                                 display: 'flex',
@@ -251,7 +245,7 @@ const ContactUsPage = ({location, classes, theme, width, center, zoom}) => {
                                        className={classes.email}>{email} </a>
                                 </FittedText>
                             </div>
-                        </Grid>
+                        </div>
                     </Paper>
 
                 </Grid>
