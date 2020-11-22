@@ -196,6 +196,9 @@ export default function SearchBar({isFocusedCallback, searchResultCallback}) {
                 }}
                 inputProps={{'aria-label': 'search'}}
             />
+                        <div className={classes.searchIcon}>
+                <SearchIcon style={{zIndex: 2}}/>
+            </div>
         </div>
 
     );

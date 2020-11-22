@@ -2,9 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 import BuyerForm from "./components/BuyerForm/BuyerForm";
 import {colorScheme, pageToPathName} from "../../constants";
 import BuyerImageAndDescription from "./components/BuyerImageAndDescription/BuyerImageAndDescription";
-import Typography from "@material-ui/core/Typography";
 import {makeStyles} from '@material-ui/core/styles';
-import BuyerTopImg from "resources/images/buyerpage_top.png"
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import FormPlug from "../../components/Forms/FormPlug";
 import {AppContext} from "../../context";

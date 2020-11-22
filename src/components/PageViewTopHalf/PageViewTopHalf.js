@@ -6,8 +6,6 @@ import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import parseMultiPartTextToArray from "../Utility/parseMultiPartTextToArray";
-import BuyerTopImg from "resources/images/buyerpage_top.png"
-import clsx from "clsx";
 import {DB_MULTIPART_TEXT_KEY} from "../../constants/contants";
 
 const useStyles = makeStyles((theme) => ({

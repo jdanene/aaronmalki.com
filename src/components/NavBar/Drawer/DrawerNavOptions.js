@@ -128,12 +128,12 @@ const DrawerNavOptions = ({toggleDrawerCallback, locationPathName}) => {
             onKeyDown={toggleDrawerCallback(false)}
         >
             <List>
-                {topRouteTitles.map((page) => (<TopItem page={page} isSelected={pathMatcherExact(pageToPathName[page])}/>))}
+                {topRouteTitles.map((page) => (<TopItem key={page} page={page} isSelected={pathMatcherExact(pageToPathName[page])}/>))}
             </List>
             <Divider/>
             <List>
                 {bottomRouteTitles.map((page) => (
-                    <BottomItem page={page} isSelected={pathMatcherFuzzy(pageToPathName[page])}/>))}
+                    <BottomItem page={page} key={page} isSelected={pathMatcherFuzzy(pageToPathName[page])}/>))}
             </List>
 
             {/*Admin Page*/}
