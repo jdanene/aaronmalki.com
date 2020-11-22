@@ -1,21 +1,13 @@
-import React, {useContext, useEffect, useState} from "react"
-import {AppContext} from "../../context";
-import Link from "react-router-dom";
+import React from "react"
 import VirtualAdminPage from "./VirtualAdminPage";
-import AdminLoginPage from "../AdminLoginPage/AdminLoginPage";
-import {
-    Redirect,
-} from "react-router-dom";
 import {pageToPathName} from "../../constants";
 import {createMuiTheme} from "@material-ui/core";
-import {MuiThemeProvider} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import {makeStyles} from '@material-ui/core/styles';
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import SettingsIcon from '@material-ui/icons/Settings';
 

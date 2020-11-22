@@ -1,10 +1,10 @@
-import React, {useState} from "react"
+import React from "react"
 import {makeStyles} from '@material-ui/core/styles';
 import {StyledText} from "../Text";
 import PropTypes from 'prop-types';
-import Typography from "@material-ui/core/Typography";
 import textArrayToParagraph from "../Utility/textArrayToParagraph";
 import {colorScheme} from "../../constants";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',

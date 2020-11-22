@@ -1,15 +1,12 @@
-import React, {useContext, useEffect, useState, useRef, Suspense} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import "./HomePage.scss"
 import {useMediaQuery} from "@material-ui/core";
 import {StyledText} from "../../components/Text";
-import {useTheme} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {colorScheme} from "../../constants";
 import {LinkedIn} from "@material-ui/icons";
-import {IconButton} from "@material-ui/core";
-import {makeStyles} from '@material-ui/core/styles';
 import Link from "@material-ui/core/Link";
 import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
 
 const useStyles = makeStyles((theme) => ({

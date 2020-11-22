@@ -1,22 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
-import {blog_category_to_string, blog_categories_keysOnly} from "../../../constants/contants";
-import { matchPath } from "react-router";
-import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
-import {useEffect} from "react";
+import {blog_categories_keysOnly, blog_category_to_string} from "../../../constants/contants";
 import clsx from "clsx";
-import isPathMatch from "../../../components/Utility/isPathMatch";
 import {colorScheme} from "../../../constants";
 import {Divider} from "@material-ui/core";
 import SearchBar from "../../../components/SearchBar/SearchBar";
-import {blog_categories} from "../../../constants/contants";
 //blog_category_to_string
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -54,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header({location,isFocusedCallback,searchResultCallback}) {
+function Header({searchText, setSearchText, isSearching, location,isFocusedCallback,searchResultCallback}) {
   const classes = useStyles();
 
   const pathMatcher = (targetPath)=>{
@@ -78,7 +70,7 @@ function Header({location,isFocusedCallback,searchResultCallback}) {
         >
           {"Malki's Blog"}
         </Typography>
-        <SearchBar isFocusedCallback={isFocusedCallback} searchResultCallback={searchResultCallback}/>
+        <SearchBar searchText={searchText} setSearchText={setSearchText} isSearching={isSearching} isFocusedCallback={isFocusedCallback} searchResultCallback={searchResultCallback}/>
 
           {/*
           <Button variant="outlined" size="small">

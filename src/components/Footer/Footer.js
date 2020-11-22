@@ -1,29 +1,13 @@
 import React, {useContext} from "react";
 import PropTypes from "prop-types";
-import {
-    Grid,
-    Typography,
-    Box,
-    IconButton,
-    Hidden,
-    withStyles,
-    withWidth,
-    isWidthUp,
-    TextField
-} from "@material-ui/core";
-import {ColoredButton} from "../Button"
-import {WaveBorder} from "../WaveBorder"
+import {Box, Grid, IconButton, isWidthUp, Typography, useMediaQuery, withStyles, withWidth} from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import transitions from "@material-ui/core/styles/transitions";
-import {StyledText} from "../Text";
-import {VscLocation} from "react-icons/vsc";
-import {BiPhone} from "react-icons/bi";
 import {colorScheme} from "../../constants";
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 import FooterListItem from "./FooterListItem";
 import FooterLocationAndInfo from "./FooterLocationAndInfo";
-import {useMediaQuery} from "@material-ui/core";
 import {AiFillHeart} from "react-icons/ai";
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES} from "../../constants/contants";
@@ -31,9 +15,9 @@ import {FIREBASE_ANALYTICS} from "../../App";
 
 function Copyright() {
     return (
-        <Typography variant="caption" color="textSecondary" align="center">
+        <Typography variant="caption" color="textSecondary" >
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
+            <Link color="inherit" to="/" style={{textDecoration:'none', color:"inherit"}}>
                 aaronmalki.com
             </Link>{' '}
             {new Date().getFullYear()}

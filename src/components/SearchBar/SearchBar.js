@@ -1,17 +1,16 @@
-import React, {useContext, useRef, useEffect, useState} from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import React, {useContext, useEffect, useRef} from 'react';
 import InputBase from '@material-ui/core/InputBase';
-import {fade, makeStyles} from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import {makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import {colorScheme} from "../../constants";
 import Fuse from 'fuse.js'
 import {AppContext} from "../../context";
 import PropTypes from 'prop-types';
 import {FIREBASE_ANALYTICS} from "../../App";
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import CancelSharpIcon from '@material-ui/icons/CancelSharp';
+import {colorScheme} from "../../constants";
+import clsx from "clsx";
 // fuse is a fuzzy search library that ReactSearchBox uses ---these are the parameters.
 const defaultFuseConfigs = {
     /**
@@ -92,15 +91,17 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 2),
         height: '100%',
         position: 'absolute',
-        pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+
+        zIndex:2,
+        cursor: 'pointer'
     },
     inputRoot: {
         color: 'inherit',
     },
-    inputInput: {
+    inputOpen: {
         zIndex: 1,
         //border:'1px solid pink',
         padding: theme.spacing(1, 1, 1, 0),
@@ -110,36 +111,39 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('width'),
         [theme.breakpoints.up('sm')]: {
 
-            width: 0,
-            '&:focus': {
                 width: '20ch',
                 border: `1.5px solid rgba(0,0,0,.50)`,
                 borderRadius: 5,
                 backgroundColor: theme.palette.common.white
 
-            },
         },
         [theme.breakpoints.only('sm')]: {
-            width: 0,
-            '&:focus': {
+
                 width: '80vw',
                 border: `1.5px solid rgba(0,0,0,.50)`,
                 borderRadius: 5,
                 backgroundColor: theme.palette.common.white
 
-            },
         },
         [theme.breakpoints.only('xs')]: {
-            width: 0,
-            '&:focus': {
+
                 width: '64vw',
                 border: `1.5px solid rgba(0,0,0,.50)`,
                 borderRadius: 5,
                 backgroundColor: theme.palette.common.white
 
-            },
         },
     },
+    inputClose:{
+                zIndex: 1,
+        //border:'1px solid pink',
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width:0
+    }
 }));
 
 const postsToList = (blogPostsRaw, blogPaths) => {
@@ -150,7 +154,9 @@ const postsToList = (blogPostsRaw, blogPaths) => {
     })
 };
 
-export default function SearchBar({isFocusedCallback, searchResultCallback}) {
+export default function SearchBar({searchText,setSearchText, isSearching, isFocusedCallback, searchResultCallback}) {
+  const inputRef = React.useRef();
+
     const classes = useStyles();
     const {blogPostsRaw, blogPaths} = useContext(AppContext);
     const fuse = useRef(new Fuse(postsToList(blogPostsRaw, blogPaths), defaultFuseConfigs));
@@ -167,6 +173,7 @@ export default function SearchBar({isFocusedCallback, searchResultCallback}) {
             });
 
 
+        setSearchText(e.target.value);
         searchResultCallback(fuse.current.search(e.target.value));
     };
 
@@ -175,30 +182,47 @@ export default function SearchBar({isFocusedCallback, searchResultCallback}) {
     };
 
     const handleBlur = (e) => {
-        // isFocusedCallback(false);
+        isFocusedCallback(false);
+        if (inputRef.current){
+            inputRef.current.blur();
+            setSearchText('');
+            searchResultCallback([]);
+        }
     };
 
+    //inputRef.current.focus();
     //searchData = fuse.current.search(text);
     return (
 
         <div className={classes.search}>
-            <div className={classes.searchIcon}>
-                <SearchIcon style={{zIndex: 2}}/>
+            <div className={classes.searchIcon} onClick={handleFocus}>
+                <SearchIcon style={{zIndex:-2}} />
             </div>
             <InputBase
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+
+                value={searchText}
+                inputRef={inputRef}
                 placeholder="Search…"
                 onChange={handleChange}
                 classes={{
                     root: classes.inputRoot,
-                    input: classes.inputInput,
+                    input: isSearching? classes.inputOpen: classes.inputClose,
                 }}
-                inputProps={{'aria-label': 'search'}}
+                inputProps={{'aria-label': 'blog search'}}
+                endAdornment={
+                    isSearching&&<InputAdornment position={'end'} component={'div'}>
+                        <IconButton
+                            aria-label="close blog search"
+                            onClick={handleBlur}
+                            edge="end"
+                        >
+                            <CancelSharpIcon  style={{zIndex: 2}} />
+                        </IconButton>
+                    </InputAdornment>
+                }
             />
-                        <div className={classes.searchIcon}>
-                <SearchIcon style={{zIndex: 2}}/>
-            </div>
+
+
         </div>
 
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -17,11 +17,7 @@ import "./resources/fonts/ScopeOne-Regular.ttf"
 import "./resources/fonts/AirbnbCereal-Bold.ttf"
 import "./resources/fonts/AirbnbCereal-Medium.ttf"
 import {AppContextProvider} from "./context";
-import {
-    BrowserRouter as Router,
-} from "react-router-dom";
-
-import {hydrate, render} from "react-dom";
+import {BrowserRouter as Router,} from "react-router-dom";
 
 if (global) {
     global.fetch = require("node-fetch");

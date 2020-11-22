@@ -1,33 +1,23 @@
-import React, {useEffect, useContext, useState} from 'react';
-import logo from './logo.svg';
+import React, {useContext, useEffect, useState} from 'react';
 import './App.css';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route, Redirect,
-} from "react-router-dom";
+import {Redirect, Route, Switch,} from "react-router-dom";
 import {TopNavBar} from "./components/NavBar";
-import {pageToPathName} from "./constants";
+import {colorScheme, pageToPathName} from "./constants";
 import {pageToPathName as protectedPageToPathName} from "./views-protected/protected-views"
-import {HomePage, SellersPage, CurrentListingsPage, ContactUsPage, BuyersPage, LeasePage, BlogPage} from "./views";
-import {AppContextProvider} from "./context";
-import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
-import {colorScheme} from "./constants";
+import {BlogPage, BuyersPage, ContactUsPage, HomePage, LeasePage} from "./views";
+import {AppContext} from "./context";
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import AdminLoginPage from "./views-protected/AdminLoginPage/AdminLoginPage";
 import ProtectedRoute from "./views-protected/ProtectedRoute";
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
-import * as firebase from "firebase/app";
+import firebase from 'firebase/app';
 // Add the Firebase services that you want to use
-import "firebase/auth";
-import "firebase/firestore";
-import {SocialMediaButtons} from "./components/SocialMediaButtons";
+import "firebase/analytics";
+import "firebase/database";
+import "firebase/storage";
 import {Footer} from "./components/Footer";
-import {TransitionGroup, CSSTransition} from "react-transition-group";
-import {useLocation} from 'react-router-dom'
-import {AppContext} from "./context";
-import {blog_categories, blog_category_to_string,blog_categories_keysOnly} from "./constants/contants";
-import {AnimatedSwitch} from 'react-router-transition';
+import {blog_categories_keysOnly, blog_category_to_string} from "./constants/contants";
 import AdminPage from "./views-protected/AdminPage/AdminPage";
 import NoMatch from "./views/NoMatchPage/NoMatchPage";
 import ScrollToTop from "./context/ScrollToTop";

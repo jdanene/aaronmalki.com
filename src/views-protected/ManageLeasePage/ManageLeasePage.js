@@ -11,7 +11,7 @@ import FileDropDialog from "../../components/FileDrop/FileDropDialog";
 import BasicTextDialog from "../../components/ManagePages/BasicTextDialog";
 import MultiParagraphTextDialog from "../../components/ManagePages/MultiParagraphTextDialog";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES, DB_LEASE_FORMATS, DB_FORMATS, DB_KEYS_LEASE_PAGE} from "../../constants/contants";
+import {DB_FORMATS, DB_KEYS_LEASE_PAGE, DB_LEASE_FORMATS, DB_NODES_PAGES} from "../../constants/contants";
 import Button from '@material-ui/core/Button';
 import multiPartTextArrayToDict from "../../components/Utility/multiPartTextArrayToDict";
 import LoadingModal from "../../components/ManagePages/LoadingModal";
@@ -21,7 +21,7 @@ import useStyles from "../../components/ManagePages/pageStyles"
 import updateState from "../../components/ManagePages/updateState";
 import confirmPageEdits from "../../components/ManagePages/confirmPageEdits";
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
-import {ImParagraphRight, ImParagraphLeft} from "react-icons/im";
+import {ImParagraphLeft, ImParagraphRight} from "react-icons/im";
 import {CgImage} from "react-icons/cg";
 import {IoIosImages} from "react-icons/io";
 import {MdTextFields} from "react-icons/md"

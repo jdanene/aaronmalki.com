@@ -6,7 +6,6 @@ import {ContactForm} from "../../components/ContactForm";
 import FormDivider from "../../components/Forms/FormDivider";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import SendEmailToAaron from "../../components/Database/SendEmailToAaron";
 import {MESSAGE_TYPES} from "../../constants/contants";
 

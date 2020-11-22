@@ -1,37 +1,15 @@
-import React, {useContext, useEffect, useState} from "react"
-import {firebaseConfig} from "../../App";
-import GoogleMapReact from 'google-map-react';
-import PropTypes from "prop-types";
-import {
-    Grid,
-    Typography,
-    Box,
-    IconButton,
-    Hidden,
-    withStyles,
-    withWidth,
-    isWidthUp,
-    TextField
-} from "@material-ui/core";
+import React, {useState} from "react"
+import {Box, Button, Grid, IconButton, TextField, withStyles, withWidth} from "@material-ui/core";
 import SendEmailToAaron from "../../components/Database/SendEmailToAaron";
 import {colorScheme} from "../../constants";
-import PhoneIcon from "@material-ui/icons/Phone";
-import MailIcon from "@material-ui/icons/Mail";
 import transitions from "@material-ui/core/styles/transitions";
-import {VscLocation} from "react-icons/vsc";
-import {BiPhone} from "react-icons/bi";
-import {useMediaQuery} from "@material-ui/core";
-import ColoredButton from "../../components/Button/ColoredButton";
-import {FittedText, StyledText} from "../../components/Text";
-import {Button} from "@material-ui/core";
+import {StyledText} from "../../components/Text";
 import {Alert} from '@material-ui/lab';
-import Collapse from '@material-ui/core/Collapse';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import validator from 'validator'
 import Paper from '@material-ui/core/Paper';
 import {MESSAGE_TYPES} from "../../constants/contants";
-
 
 
 const CssTextField = withStyles({

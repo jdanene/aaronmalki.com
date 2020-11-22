@@ -1,11 +1,10 @@
-import React, {useContext, useEffect, useState} from "react"
-import {Redirect, withRouter} from "react-router-dom"
+import React, {useContext} from "react"
+import {withRouter} from "react-router-dom"
 import {AppContext} from "../context";
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import {createMuiTheme} from "@material-ui/core";
 import {pageToPathName} from "../constants";
 import AdminLoginPage from "./AdminLoginPage/AdminLoginPage";
-import {colorScheme} from "../constants";
 //https://courses.cs.northwestern.edu/394/intro-react.php#authentication
 const darkTheme = createMuiTheme({
     palette: {

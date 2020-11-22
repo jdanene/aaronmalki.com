@@ -1,12 +1,10 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import PropTypes from 'prop-types';
-import {Button} from "../Button";
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import {makeStyles} from '@material-ui/core/styles';
 import {StyledText} from "../Text";
 import FormDropDownChoices from "./FormDropDownChoices";
-import {Collapse} from '@material-ui/core';
 import clsx from "clsx";
+
 const BUTTON_FONTFAMILY = 'raleway-regular';
 
 const useStyles = makeStyles((theme) => ({

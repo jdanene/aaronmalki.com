@@ -1,46 +1,24 @@
 import MenuIcon from '@material-ui/icons/Menu';
 import "./TopNavBar.scss";
-import React, {useContext, useEffect, useRef, useState} from "react"
-import "./TopNavBar.scss"
+import React, {useContext, useEffect, useState} from "react"
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import {StyledText, PopText, FittedText} from "../Text";
-import Grid from '@material-ui/core/Grid';
+import {FittedText, PopText} from "../Text";
 import DrawerNavOptions from "./Drawer/DrawerNavOptions";
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Slide from '@material-ui/core/Slide';
 import PropTypes from 'prop-types';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Zoom from '@material-ui/core/Zoom';
-import Fade from "./NavBarTransition";
 import {makeStyles} from '@material-ui/core/styles';
-import {Container} from "@material-ui/core";
-import GTranslateIcon from '@material-ui/icons/GTranslate';
 import {colorScheme, pageToPathName} from "../../constants";
-import {useTheme} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {FaPhoneAlt} from "react-icons/fa";
 import Fab from '@material-ui/core/Fab';
 import {useLocation} from 'react-router-dom'
-import {VerticalDivider} from "../VerticalDivider";
-import {DB_NODES_PAGES, pathToPageName} from "../../constants/contants";
+import {DB_NODES_PAGES} from "../../constants/contants";
 import {AppContext} from "../../context";
-import {
-    pageToPageName as adminPageToPageName,
-    pageToPathName as adminPageToPathName
-} from "views-protected/protected-views"
 
 function ElevationScroll({window, children, setTrigger, triggerActive}) {
     //const {children, window, setTrigger} = props;

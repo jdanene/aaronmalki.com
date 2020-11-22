@@ -1,7 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from "react"
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+import React from "react"
 import {Instagram, LinkedIn} from "@material-ui/icons";
 import Avatar from '@material-ui/core/Avatar';
 

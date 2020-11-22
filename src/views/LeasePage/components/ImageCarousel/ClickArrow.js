@@ -1,9 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {IoIosArrowForward} from "react-icons/io";
-import {IoIosArrowBack} from "react-icons/io";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import clsx from "clsx";
 //https://www.npmjs.com/package/react-responsive-carousel
 

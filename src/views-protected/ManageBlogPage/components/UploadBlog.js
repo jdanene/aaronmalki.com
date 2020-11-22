@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 //import {blog_states} from "constants/contants";
-import {blog_states, blog_categories} from "../../../constants/contants";
+import {blog_categories, blog_states} from "../../../constants/contants";
 import generateUUID from "../../../components/Utility/uuid";
-import {pageToPageName} from "../../../constants/contants";
-import Divider from "@material-ui/core/Divider";
 import OptionsSelect from "./OptionSelect";
 import TextInput from "./TextInput";
 import DatePicker from "./DatePicker";

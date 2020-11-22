@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, {useRef, useState} from "react"
 import GroupAddIcon from "@material-ui/icons/GroupAdd"
 import copy from "copy-to-clipboard"
 import "./ShareBanner.scss"

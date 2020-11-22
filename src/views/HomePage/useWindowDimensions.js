@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useEffect, useState} from 'react';
 
 function getWindowDimensions(refResizeCount) {
   return refResizeCount.current+=1;

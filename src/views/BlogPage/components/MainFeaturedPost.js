@@ -1,15 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import {getKeyFromSingelton} from "../../../context/useBlogPost";
-import {colorScheme} from "../../../constants";
 import ButtonBase from '@material-ui/core/ButtonBase';
 import clsx from "clsx";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     mainFeaturedPost: {

@@ -1,23 +1,20 @@
-import React, {useContext, useEffect, useState, useRef} from "react"
+import React, {useContext, useEffect, useRef, useState} from "react"
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {AppContext} from "../../context";
-import TextInput from "../ManageBlogPage/components/TextInput";
+import TextInput, {PhoneInput} from "../ManageBlogPage/components/TextInput";
 import Grid from "@material-ui/core/Grid";
 import {colorScheme} from "../../constants";
 import PropTypes from 'prop-types';
 import {Divider} from '@material-ui/core';
-import {PhoneInput} from "../ManageBlogPage/components/TextInput";
 import ModalEditBusinessLocation from "./ModalEditBusinessLocation";
 import Button from '@material-ui/core/Button';
-import uploadSettingToDb from "../../components/Database/uploadSettingToDb";
-import {DB_NODES_PAGES, DB_KEYS_SETTINGS_PAGE, PUBLIC_PAGE_KEYS} from "../../constants/contants";
+import {DB_KEYS_SETTINGS_PAGE, DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import uploadPageToDb from "../../components/Database/uploadPageToDb";
 import isObjectEmpty from "../../components/Utility/isObjectEmpty";
 import Box from "@material-ui/core/Box";
-import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({

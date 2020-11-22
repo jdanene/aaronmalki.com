@@ -1,21 +1,11 @@
-import React, {useContext, useEffect, useState} from "react"
-import {
-    Grid,
-    Box,
-    withStyles,
-    withWidth,
-    TextField,
-    IconButton,
-    Divider
-} from "@material-ui/core";
+import React, {useState} from "react"
+import {Box, Button, IconButton, TextField, withStyles, withWidth} from "@material-ui/core";
 import {colorScheme} from "../../constants";
-import transitions from "@material-ui/core/styles/transitions";
 import PropTypes from 'prop-types';
 import MaterialUiPhoneNumber from 'material-ui-phone-number';
 import validator from 'validator'
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
-import {Button} from "@material-ui/core";
 import {Alert} from '@material-ui/lab';
 
 //https://stackoverflow.com/questions/58963242/change-border-color-on-material-ui-textfield

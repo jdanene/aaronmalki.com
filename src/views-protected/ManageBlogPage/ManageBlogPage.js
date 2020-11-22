@@ -1,19 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
+import React from "react"
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Button from '@material-ui/core/Button';
-import FileDrop from "../../components/FileDrop/FileDrop";
-import UploadBlog from "./components/UploadBlog";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from '@material-ui/core/styles';
-import MarkDownEditor from "./components/MardownEditor";
+import {makeStyles} from '@material-ui/core/styles';
 import ListBlogPosts from "./components/ListBlogPosts";
-import {AppContext} from "../../context";
-import {getKeyFromSingelton} from "../../context/useBlogPost";
 import Typography from "@material-ui/core/Typography";
-import {blog_categories} from "../../constants/contants";
-import OptionsSelect from "./components/OptionSelect";
-import Divider from "@material-ui/core/Divider";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

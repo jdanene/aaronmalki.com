@@ -1,28 +1,23 @@
-import React, {useContext, useEffect, useState} from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import React, {useContext} from "react";
+import {Link} from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import PropTypes from "prop-types";
-import {pageToPathName, pageToPageName, colorScheme} from "../../../constants";
+import {colorScheme, pageToPageName, pageToPathName} from "../../../constants";
 import "./DrawerNavOptions.scss"
 import {SiMicroDotBlog} from "react-icons/si";
-import isPathMatch from "../../Utility/isPathMatch";
 import matchPath from "react-router/modules/matchPath";
 import isObjectEmpty from "../../Utility/isObjectEmpty";
 import {AppContext} from "../../../context";
-import Button from "../../Button";
-import { RiAdminLine } from "react-icons/ri";
-import {pageToPageName as adminPageToPageName, pageToPathName as adminPageToPathName} from "views-protected/protected-views"
+import {RiAdminLine} from "react-icons/ri";
+import {
+    pageToPageName as adminPageToPageName,
+    pageToPathName as adminPageToPathName
+} from "views-protected/protected-views"
 
 
 const TopItem = ({page, isSelected}) => {

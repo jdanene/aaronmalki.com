@@ -1,11 +1,6 @@
-import React, {createContext, useState, useEffect, useContext} from "react"
-import {blog_categories, blog_states, DB_NODES, DB_NODES_PAGES} from "../constants/contants";
-import useBlogPosts from "./useBlogPost";
-import useProvideAuth from "./use-auth";
-import uploadSettingToDb from "../components/Database/uploadSettingToDb";
+import React, {useEffect, useState} from "react"
+import {DB_NODES, DB_NODES_PAGES} from "../constants/contants";
 import downloadFromDb from "../components/Database/downloadFromDb";
-import {isObject} from "../components/Utility";
-import isObjectEmpty from "../components/Utility/isObjectEmpty";
 
 
 const pages = {

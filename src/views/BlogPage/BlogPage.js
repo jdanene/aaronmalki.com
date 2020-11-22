@@ -2,8 +2,7 @@ import React, {useContext} from "react"
 import Blog from "./components/Blog";
 import {colorScheme} from "../../constants";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES, OG_TYPE, PUBLIC_PAGE_KEYS} from "../../constants/contants";
-import {blog_categories_keysOnly} from "../../constants/contants";
+import {blog_categories_keysOnly, DB_NODES_PAGES, OG_TYPE, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import SeoTags from "../../components/SeoTags/SeoTags";
 
 /**

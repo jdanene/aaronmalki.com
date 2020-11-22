@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useContext} from "react"
 import BuyerForm from "./components/BuyerForm/BuyerForm";
 import {colorScheme, pageToPathName} from "../../constants";
 import BuyerImageAndDescription from "./components/BuyerImageAndDescription/BuyerImageAndDescription";
@@ -6,7 +6,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import FormPlug from "../../components/Forms/FormPlug";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES,PUBLIC_PAGE_KEYS} from "../../constants/contants";
+import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import {Helmet} from 'react-helmet'
 import SeoTags from "../../components/SeoTags/SeoTags";
 

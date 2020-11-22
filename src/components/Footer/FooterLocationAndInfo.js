@@ -1,15 +1,11 @@
 import React from "react";
-import {
-    Grid,
-
-} from "@material-ui/core";
+import {Grid, useTheme,} from "@material-ui/core";
 
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import {FittedText, StyledText} from "../Text";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {useTheme} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     credentialsTitle_container: {
@@ -54,8 +50,9 @@ const useStyles = makeStyles((theme) => ({
     address_container:{
         color:  theme.palette.text.secondary,
         textAlign:'left',
-        maxWidth: '180px',
-        textDecoration:'none'
+        maxWidth: '160px',
+        textDecoration:'none',
+        fontFamily: 'airbnb-medium'
     },
     email:{
         color:  theme.palette.text.secondary
@@ -63,9 +60,8 @@ const useStyles = makeStyles((theme) => ({
     bio:{
         color: "#F5F5F5",
         textAlign:'left',
-        fontSize:"12px",
-        fontFamily:"raleway-thin, serif",
-        fontWeight: "bold"
+        fontSize:"10px",
+        fontFamily: 'airbnb-medium'
     }
 }));
 
@@ -102,20 +98,20 @@ const FooterLocationAndInfo = ({phoneNumber,email,address,license}) => {
             </div>
             */}
 
-            <div className={classes.credential_container}>
+            <header className={classes.credential_container}>
                 <FittedText className={classes.credentialname}>Aaron Malki</FittedText>
                 <FittedText className={classes.credential}>CalBRE LICENSE# {license}</FittedText>
-            </div>
+            </header>
 
             <div style={{height:'20px'}}/>
-            <div>
+            <address style={{textDecoration:"none", fontStyle:'inherit'}}>
                 <FittedText className={classes.address_container}>
                     {address.line1} <br/>
                      {address.line2} <br/>
                     <a  className={classes.address_container} href={`tel:${phoneNumber.tel}`}>{phoneNumber.dot}</a>  <br/>
                     <a href={`mailto:${email}`} className={classes.email}> {email} </a>
                 </FittedText>
-            </div>
+            </address>
             <div style={{height:'20px'}}/>
 
             <StyledText className={classes.bio}>

@@ -1,17 +1,10 @@
-import React, {useCallback, useState, useContext, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import {
-    withStyles,
-    withWidth,
-} from "@material-ui/core";
-
-import {AppContext} from "../../../context";
-import {FittedText, StyledText} from "../../../components/Text";
+import {withStyles, withWidth,} from "@material-ui/core";
+import {StyledText} from "../../../components/Text";
 import {colorScheme} from "../../../constants";
 import {FaDirections} from "react-icons/fa";
-import Tooltip from '@material-ui/core/Tooltip';
 import Link from "@material-ui/core/Link";
 
 const styles = theme => ({

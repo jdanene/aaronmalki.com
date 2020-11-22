@@ -1,12 +1,9 @@
 // Import FirebaseAuth and firebase.
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import {AppContext} from "../../context/AppContext";
-import PropTypes from 'prop-types';
-import {
-    Redirect,
-} from "react-router-dom";
+import {Redirect, useHistory,} from "react-router-dom";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -14,17 +11,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import {
-    useHistory
-} from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
-import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import {pageToPathName} from "../../constants";
 import {createMuiTheme} from "@material-ui/core";
-import {MuiThemeProvider} from '@material-ui/core/styles';
 import getSHA from "../../components/Utility/getSHA";
 //https://courses.cs.northwestern.edu/394/intro-react.php#authentication
 const darkTheme = createMuiTheme({

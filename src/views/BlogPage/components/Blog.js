@@ -1,9 +1,8 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -12,20 +11,17 @@ import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
-import useBlogPosts from "../../../context/useBlogPost";
+import {getKeyFromSingelton} from "../../../context/useBlogPost";
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 import {StyledText} from "../../../components/Text";
-import {getKeyFromSingelton} from "../../../context/useBlogPost";
 import {AppContext} from "../../../context";
 import {useLocation} from "react-router";
 import ActualPost from "./ActualPost";
-import {getPostFromBlogPosts} from "../../../context/useBlogPost";
-import {blog_categories, blog_states} from "../../../constants/contants";
+import {blog_states, DB_NODES_PAGES} from "../../../constants/contants";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import BlogSearch from "./BlogSearch";
-import {DB_NODES_PAGES} from "../../../constants/contants";
 import Splash from "../../../components/Splash/Splash";
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
@@ -119,6 +115,7 @@ export default function Blog({blogUUID, category}) {
 
     const [searchList, setSearchList] = useState([]);
     const [isSearching, setSearching] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     // This is non null and equal to one of blog_categories then we are in a blog page , not a individual post
     console.log(JSON.stringify(location), 'state' in location, location.state);
@@ -146,14 +143,14 @@ export default function Blog({blogUUID, category}) {
                 <CssBaseline/>
                 {isBlogLoaded ?
                     <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
-                        <Header location={location} searchResultCallback={setSearchList}
+                        <Header searchText={searchText} setSearchText={setSearchText} isSearching={isSearching} location={location} searchResultCallback={setSearchList}
                                 isFocusedCallback={setSearching}/>
                         <main>
 
 
                             <Grid container spacing={5} className={classes.mainGrid}>
                                 <Grid item xs={12} md={8}>
-                                    <BlogSearch searchList={searchList}/>
+                                    <BlogSearch searchList={searchList} searchText={searchText}/>
                                 </Grid>
 
                                 <Sidebar

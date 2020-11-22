@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useState} from "react"
 import PropTypes from 'prop-types';
-import {Button} from "../Button";
-import {ButtonGroup} from "../Button";
+import {Button, ButtonGroup} from "../Button";
 import {makeStyles} from '@material-ui/core/styles';
 import {StyledText} from "../Text";
 import Grid from '@material-ui/core/Grid';
@@ -9,17 +8,12 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
-import Slide from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import clsx from "clsx"
-import Menu from '@material-ui/core/Menu';
-import {IconButton} from "@material-ui/core";
-import {getTextWidth} from "../Utility";
-import {isObject} from "../Utility";
-import {Popover} from "@material-ui/core";
+import {getTextWidth, isObject} from "../Utility";
 
 const BUTTON_FONTFAMILY = 'airbnb-book';
 

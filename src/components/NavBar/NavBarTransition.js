@@ -1,5 +1,5 @@
 import {Transition} from 'react-transition-group';
-import React, {useContext, useEffect, useRef, useState} from "react"
+import React from "react"
 
 const duration = 500;
 

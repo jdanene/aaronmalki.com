@@ -14,13 +14,10 @@ import FileDropDialog from "../../components/FileDrop/FileDropDialog";
 import BasicTextDialog from "../../components/ManagePages/BasicTextDialog";
 import MultiParagraphTextDialog from "../../components/ManagePages/MultiParagraphTextDialog";
 import {AppContext} from "../../context";
-import {DB_NODES_PAGES,DB_HOME_FORMATS} from "../../constants/contants";
+import {DB_HOME_FORMATS, DB_KEYS_HOME_PAGE, DB_NODES_PAGES} from "../../constants/contants";
 import Button from '@material-ui/core/Button';
 import multiPartTextArrayToDict from "../../components/Utility/multiPartTextArrayToDict";
 import multiPartTextDictToArray from "../../components/Utility/multiPartTextDictToArray";
-import {DB_KEYS_HOME_PAGE} from "../../constants/contants";
-import uploadPageToDb from "../../components/Database/uploadPageToDb";
-import uploadImgToDbEasy from "../../components/Database/uploadImgToDbEasy";
 import LoadingModal from "../../components/ManagePages/LoadingModal";
 import ManagePageListOption from "../../components/ManagePages/ManagePageListOption";
 import SecondaryHeading from "../../components/ManagePages/SecondaryHeading"
@@ -28,6 +25,7 @@ import isInvalidAboutMe from "./isInvalidAboutMe"
 import useStyles from "../../components/ManagePages/pageStyles"
 import {GiConqueror} from "react-icons/gi"
 import confirmPageEdits from "../../components/ManagePages/confirmPageEdits";
+
 const ManageHomePage = () => {
     const {
         pageState: {

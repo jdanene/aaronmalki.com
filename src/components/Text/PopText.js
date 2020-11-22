@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react"
-import {Textfit} from 'react-textfit';
+import React from "react"
 import {Transition} from 'react-transition-group';
 import PropTypes from 'prop-types';
 

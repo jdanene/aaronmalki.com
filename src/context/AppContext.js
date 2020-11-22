@@ -1,10 +1,8 @@
-import React, {createContext, useState, useEffect, useContext} from "react"
-import {blog_categories, blog_states} from "../constants/contants";
+import React, {createContext, useContext} from "react"
 import useBlogPosts from "./useBlogPost";
 import useProvideAuth from "./use-auth";
-import uploadSettingToDb from "../components/Database/uploadSettingToDb";
-import downloadSettingsFromDb from "../components/Database/downloadSettingsFromDb";
 import usePages from "./usePages";
+
 const AppContext = createContext();
 
 

@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
-import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import {Button, createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 
 function ColoredButton(props) {
   const { color, children, theme } = props;

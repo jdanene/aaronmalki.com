@@ -1,20 +1,17 @@
-import React, {useContext, useEffect, useState} from "react"
-import Container from '@material-ui/core/Container';
+import React from "react"
 import {makeStyles} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import DashboardOption from "./components/DashboardOption";
 import Grid from '@material-ui/core/Grid';
-import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import MalkiBlogImg from "resources/images/malki_blog.jpg"
 import HomeImg from "resources/images/humaans_home.jpg"
 import BuyImg from "resources/images/buyinghouse.jpg"
 import LeaseImg from "resources/images/lease.png"
 import CurrentListingImg from "resources/images/searching.jpg"
 import SellImg from "resources/images/undraw_for_sale_viax.png"
-import {pageToPageName,pageToPathName} from "../../constants";
+import {pageToPageName, pageToPathName} from "../../constants";
 import {colorScheme} from "../../constants/styles";
-import {FittedText, StyledText} from "../../components/Text";
-import Typography from "@material-ui/core/Typography";
+import {FittedText} from "../../components/Text";
+
 const useStyles = makeStyles((theme) => ({
     title:{
         marginTop:theme.spacing(0),

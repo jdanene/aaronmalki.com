@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useContext} from "react"
 import ImageCarousel from "./components/ImageCarousel/ImageCarousel";
 import Grid from "@material-ui/core/Grid";
 import {useMediaQuery} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
-import LeaseTopImg from "resources/images/leasePage/leasingpagepic1.png"
 import {colorScheme, pageToPathName} from "../../constants";
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 import TextBlurbWithTitle from "../../components/TextBlurbWithTitle/TextBlurbWithTitle";
@@ -14,7 +13,6 @@ import {AppContext} from "../../context";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
 import SeoTags from "../../components/SeoTags/SeoTags";
-import Video from "../../components/Video/Video";
 
 const useStyles = makeStyles((theme) => ({
     formPlug: {

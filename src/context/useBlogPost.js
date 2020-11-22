@@ -1,13 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {AppContext} from "./index";
-import {blog_states} from "../constants/contants";
+import React, {useEffect, useState} from 'react';
+import {blog_categories, blog_states, DB_NODES, pageToPathName} from "../constants/contants";
 import generateUUID from "../components/Utility/uuid";
-import {blog_categories} from "../constants/contants";
 import getRandomValueFromObject from "../components/Utility/getRandomValueFromObject";
-import {pageToPathName} from "../constants/contants";
 import isObjectEmpty from "../components/Utility/isObjectEmpty";
 import {FIREBASE_DB} from "../App";
-import {DB_NODES} from "../constants/contants";
 // path -> blog/{category}/{name}
 let blog1 = {
     state: blog_states.posts,

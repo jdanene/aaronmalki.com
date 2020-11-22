@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import "./HomePage.scss"
 import {DownArrow} from "../../components/DownArrow";
 import {FittedText} from "../../components/Text";

@@ -1,7 +1,7 @@
 import Prism from 'prismjs'
-import React, {useState, useCallback, useMemo, useEffect} from 'react'
-import {Slate, Editable, withReact} from 'slate-react'
-import {Text, createEditor,Node} from 'slate'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import {Editable, Slate, withReact} from 'slate-react'
+import {createEditor, Node, Text} from 'slate'
 import {withHistory} from 'slate-history'
 import {css} from 'emotion'
 import Paper from '@material-ui/core/Paper';

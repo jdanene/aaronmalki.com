@@ -1,11 +1,8 @@
-import React, {useCallback, useState, useContext, useEffect} from 'react'
-import PropTypes from 'prop-types'
-import {GoogleMap, OverlayView, Marker, LoadScript, InfoBox, Data, InfoWindow} from '@react-google-maps/api'
-import {firebaseConfig} from "../../../App";
+import React from 'react'
+import {GoogleMap, LoadScript, Marker, OverlayView} from '@react-google-maps/api'
 import {StyledText} from "../../../components/Text";
-import {colorScheme} from "../../../constants";
-import {AppContext} from "../../../context";
 import NavigateToGoogleMapButton from "./NavigateToGoogleMapButton";
+
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
 const centerOverlayView = (width, height) => ({

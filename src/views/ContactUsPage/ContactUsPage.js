@@ -1,27 +1,7 @@
-import React, {useContext, useEffect, useState} from "react"
-import {firebaseConfig} from "../../App";
-import GoogleMapReact from 'google-map-react';
-import PropTypes from "prop-types";
-import {
-    Grid,
-    Typography,
-    Box,
-    IconButton,
-    Hidden,
-    withStyles,
-    withWidth,
-    isWidthUp,
-    TextField
-} from "@material-ui/core";
-import PhoneIcon from "@material-ui/icons/Phone";
-import MailIcon from "@material-ui/icons/Mail";
+import React, {useContext} from "react"
+import {Grid, isWidthUp, withStyles, withWidth} from "@material-ui/core";
 import transitions from "@material-ui/core/styles/transitions";
-import {VscLocation} from "react-icons/vsc";
-import {BiPhone} from "react-icons/bi";
-import {useMediaQuery} from "@material-ui/core";
-import ColoredButton from "../../components/Button/ColoredButton";
 import {FittedText, StyledText} from "../../components/Text";
-import LocationMap from "./LocationMap";
 import SendMessage from "./SendMessage";
 import ShowGoogleMap from "./GoogleMaps/ShowGoogleMap";
 import {colorScheme} from "../../constants";

@@ -1,7 +1,7 @@
 //https://stackoverflow.com/questions/52720954/send-email-when-firebase-database-gets-new-data
 import {FIREBASE_DB} from "../../App";
 import firebase from "firebase";
-import {DB_NODES, DB_NODES_PAGES} from "../../constants/contants";
+import {DB_NODES} from "../../constants/contants";
 
 const validateKeys = (props, truth, errorMsg) => {
     let keys = Object.keys(truth);

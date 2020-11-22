@@ -1,13 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import MomentUtils from '@date-io/moment';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
     container: {

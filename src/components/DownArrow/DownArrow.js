@@ -1,26 +1,9 @@
-import React, {useEffect, useState, useRef} from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import PropTypes from "prop-types";
-import {colorScheme} from "../../constants";
+import React, {useEffect, useRef, useState} from "react";
 import {BsArrowDown} from "react-icons/bs";
 import {makeStyles} from '@material-ui/core/styles';
-import {useSpring, animated} from 'react-spring'
-import {Button, ButtonBase} from "@material-ui/core";
-import * as Scroll from 'react-scroll';
-import {Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
-import {useMediaQuery} from "@material-ui/core";
+import {animated, useSpring} from 'react-spring'
+import {Button, useMediaQuery} from "@material-ui/core";
+import {animateScroll as scroll, Events, scrollSpy} from 'react-scroll';
 import {useWindowSize} from "../useWindowSize";
 
 const PAGE_HEIGHT = window.innerHeight;

@@ -1,7 +1,4 @@
 import React, {useContext} from "react";
-import {
-    useLocation
-} from "react-router-dom";
 import BorderGuard from "../../components/BorderGuard/BorderGuard";
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -11,7 +8,7 @@ import SeoTags from "../../components/SeoTags/SeoTags";
 import Typography from "@material-ui/core/Typography";
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES} from "../../constants/contants";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 
 const imgs = [BackgroundGif3,BackgroundGif4,BackgroundGif4,BackgroundGif4,BackgroundGif4];
 

@@ -1,22 +1,12 @@
-import React, {useContext, useEffect, useState, useRef} from "react"
+import React, {useContext, useEffect, useRef, useState} from "react"
 import "./HomePage.scss"
-import {DownArrow} from "../../components/DownArrow";
-import useWindowDimensions from "./useWindowDimensions";
-import HomePageTopHalfInfo from "./HomePageTopHalfInfo";
-import {useImage} from 'react-image'
-import {CardMedia} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Image from 'react-image-resizer';
 import {useMediaQuery} from "@material-ui/core";
-import {FittedText, StyledText} from "../../components/Text";
-import {useTheme} from '@material-ui/core/styles';
-import {useWindowSize} from "../../components/useWindowSize";
+import {makeStyles} from '@material-ui/core/styles';
 import {colorScheme, pageToPathName} from "../../constants";
 import HomePageBottomHalfInfo from "./HomePageBottomHalfInfo";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppContext} from "../../context";
 import {DB_NODES_PAGES, PUBLIC_PAGE_KEYS} from "../../constants/contants";
-import {makeStyles} from '@material-ui/core/styles';
 import SeoTags from "../../components/SeoTags/SeoTags";
 import PageViewTopHalf from "../../components/PageViewTopHalf/PageViewTopHalf";
 

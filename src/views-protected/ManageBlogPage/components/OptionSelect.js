@@ -1,11 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
+import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {blog_states,blog_categories} from "../../../constants/contants";
+import {blog_categories} from "../../../constants/contants";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

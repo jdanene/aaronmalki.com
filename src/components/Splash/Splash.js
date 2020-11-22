@@ -1,6 +1,6 @@
 import React from "react"
 import LeaseTopImg from "resources/images/official_logo_white_bg.png"
-import {Keyframes, animated} from 'react-spring/renderprops'
+import {animated, Keyframes} from 'react-spring/renderprops'
 
 const Container = Keyframes.Spring(async next => {
     while (true) {

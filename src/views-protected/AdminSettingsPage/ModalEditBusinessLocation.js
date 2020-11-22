@@ -8,8 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextInput from "../ManageBlogPage/components/TextInput";
 import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
-import { AiOutlineWarning } from "react-icons/ai";
-import {colorScheme} from "../../constants";
+import {AiOutlineWarning} from "react-icons/ai";
 
 
 const ModalEditBusinessLocation = ({open, openCallback, address, createCallback})=> {

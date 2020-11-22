@@ -1,14 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import Markdown from './Markdown';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import FeaturedPost from "./FeaturedPost";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,11 +23,15 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(10),
         fontFamily: 'airbnb-medium',
         color: theme.palette.text.disabled,
+    },
+    list:{
+        overflowY: 'scroll',
+        maxHeight:'75vh',
     }
 }));
 
 // [{item:{post}, refIndex: int}]
-function BlogSearch({searchList}) {
+function BlogSearch({searchList,searchText}) {
     const classes = useStyles();
 
     return (
@@ -43,7 +43,7 @@ function BlogSearch({searchList}) {
             <Divider/>
 
             {searchList.length > 0 ?
-                <List component="nav" aria-label="list blog search">
+                <List component="ul" aria-label="list blog search" className={classes.list}>
                     {
                         searchList.map((searchItem) => {
                             return (
@@ -57,7 +57,7 @@ function BlogSearch({searchList}) {
 
                 </List> :
                 <Typography variant="h5" className={classes.noResults}>
-                    No Results :(
+                    {searchText.length !== 0? 'No results :(': 'Start typing to see results...'}
                 </Typography>
             }
         </div>

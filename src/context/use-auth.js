@@ -1,12 +1,9 @@
 // Hook (use-auth.js)
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, {useEffect, useState} from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import {
-  useHistory
-} from "react-router-dom";
-import {pageToPathName as adminPageToPathName} from "../views-protected/protected-views";
 import getSHA from "../components/Utility/getSHA";
+
 let ADMIN_EMAILS = process.env.REACT_APP_ADMIN_EMAILS;
 ADMIN_EMAILS = new Set(ADMIN_EMAILS.split(","));
 

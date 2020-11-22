@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useState} from "react"
 import {makeStyles} from '@material-ui/core/styles';
 import FormDropDownChoices from "../../../../components/Forms/FormDropDownChoices";
 import FormStaticChoices from "../../../../components/Forms/FormStaticChoices";
@@ -7,7 +7,6 @@ import {ContactForm} from "../../../../components/ContactForm";
 import FormDivider from "../../../../components/Forms/FormDivider";
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import {colorScheme} from "../../../../constants";
 import {MESSAGE_TYPES} from "../../../../constants/contants";
 import SendEmailToAaron from "../../../../components/Database/SendEmailToAaron";
 

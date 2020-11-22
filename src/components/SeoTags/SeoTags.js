@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import {Helmet} from 'react-helmet'
-import Logo from "resources/images/official_logo_white_bg.png"
 import {OG_TYPE, SEO_DEFAULT_IMG} from "../../constants/contants";
 import PropTypes from 'prop-types';
 import {FIREBASE_ANALYTICS} from "../../App";

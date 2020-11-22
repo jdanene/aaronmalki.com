@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {DropzoneDialog} from 'material-ui-dropzone'
 import PropTypes from 'prop-types';
-import {DropzoneArea} from 'material-ui-dropzone'
 
 import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';

@@ -1,11 +1,6 @@
-import React, {useContext, useEffect, useState, useRef} from "react"
+import React from "react"
 import "./HomePage.scss"
-import {DownArrow} from "../../components/DownArrow";
-import useWindowDimensions from "./useWindowDimensions";
-import {StyledText, FittedText} from "../../components/Text";
-import Button from '@material-ui/core/Button';
-import {colorScheme} from "../../constants";
-import {pageToPathName} from "../../constants";
+import {FittedText} from "../../components/Text";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
 //"raleway-regular"
 // "raleway-italic"
