@@ -111,7 +111,6 @@ const LeasePage = ({location}) => {
         <PageViewTopHalf pageTitle={pageTitle} className={classes.topHalfImg}/>
         <div className={classes.body}>
 
-                    <Video/>
 
             <Grid className={classes.imgTextContainer} container spacing={mobileBreak ? 3 : 4}>
                 <Grid sm={12} md={6} item  >

@@ -3,7 +3,7 @@
     border-width: 0;
     border-radius: 1.25px;
     border-color: transparent;
-
+    opacity: .5
 }
 
 .carousel.carousel-slider .control-arrow:hover {
@@ -26,21 +26,32 @@
 
 .carousel .thumb.selected, .carousel .thumb.selected:hover {
     border: 2px solid #004080;
-
+    opacity: 1
 }
 
 .carousel .control-dots .dot {
     background: transparent;
 }
+
+/*https://gist.github.com/serglo/f9f0be9a66fd6755a0bda85f9c64e85f*/
 .carousel .thumb:hover {
-    border: 2px solid transparent;
+    border: 2px none transparent;
+    opacity: 1;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.20);
 }
 
-  .carousel .control-prev.control-arrow {
-    left: 0; }
-    .carousel .control-prev.control-arrow:before {
-      border-right: 8px solid rgba(0,0,0,.10); }
-  .carousel .control-next.control-arrow {
-    right: 0; }
-    .carousel .control-next.control-arrow:before {
-      border-left: 8px solid rgba(0,0,0,.10); }
+.carousel .control-prev.control-arrow {
+    left: 0;
+}
+
+.carousel .control-prev.control-arrow:before {
+    border-right: 8px solid rgba(0, 0, 0, .10);
+}
+
+.carousel .control-next.control-arrow {
+    right: 0;
+}
+
+.carousel .control-next.control-arrow:before {
+    border-left: 8px solid rgba(0, 0, 0, .10);
+}

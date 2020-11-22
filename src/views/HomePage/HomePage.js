@@ -112,7 +112,7 @@ const HomePage = ({location}) => {
 
         />
 
-   
+
         <PageViewTopHalf className={classes.topHalf_container} pageTitle={pageTitle} />
         <div style={{
             border: '0',

@@ -82,7 +82,7 @@ const ImageCarousel = ({imgArray}) => {
 
     const customRenderThumb = (children) =>
         children.map((item,index) => {
-            return <ThumbImg className={classes.thumbImage} item={item} key={index} currentSlide={currentSlide}/>
+            return <ThumbImg  item={item} key={index} currentSlide={currentSlide}/>
         });
 
     const customRenderItem = (item, props) => {
@@ -100,7 +100,6 @@ const ImageCarousel = ({imgArray}) => {
 
                 selectedItem={currentSlide}
                 onChange={updateCurrentSlide}
-                renderThumbs={customRenderThumb}
                 statusFormatter={(current, total) => null}
                 renderArrowPrev={(onClickHandler, hasPrev, label) =>
                     (
