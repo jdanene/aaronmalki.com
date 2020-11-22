@@ -27,6 +27,10 @@ import Splash from "../../../components/Splash/Splash";
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
         marginTop: theme.spacing(3),
+        alignSelf:'center',
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center'
     },
 }));
 
@@ -142,38 +146,22 @@ export default function Blog({blogUUID, category}) {
             <React.Fragment>
                 <CssBaseline/>
                 {isBlogLoaded ?
-                    <Container maxWidth="lg" style={{height: '100%', width: '100%'}}>
+                    <Container maxWidth="lg" style={{height: '100%', width: '100%',display:'flex', flexDirection:'column' }} component={'div'}>
                         <Header searchText={searchText} setSearchText={setSearchText} isSearching={isSearching} location={location} searchResultCallback={setSearchList}
                                 isFocusedCallback={setSearching}/>
-                        <main>
 
 
                             <Grid container spacing={5} className={classes.mainGrid}>
-                                <Grid item xs={12} md={8}>
+                                <Grid item xs={12} md={7} >
                                     <BlogSearch searchList={searchList} searchText={searchText}/>
                                 </Grid>
 
-                                <Sidebar
-                                    socialMedia={socialMedia}
-                                    title={sidebar.title}
-                                    description={sidebar.description}
-                                    archives={sidebar.archives}
-                                    social={sidebar.social}
-                                />
+
                             </Grid>
 
 
-                        </main>
-                    </Container> :
-                    <div style={{
-                        height: '100vh',
-                        width: '100vw',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
-                        <StyledText>Loading ... </StyledText>
-                    </div>
+
+                    </Container> : <Splash/>
                 }
 
             </React.Fragment>

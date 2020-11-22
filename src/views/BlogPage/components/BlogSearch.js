@@ -18,11 +18,16 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         justifyContent: 'center',
 
+
     },
     noResults: {
-        margin: theme.spacing(10),
         fontFamily: 'airbnb-medium',
         color: theme.palette.text.disabled,
+                        minHeight: '50vh',
+        display: 'flex',
+        alignItems:'center',
+        justifyContent: 'center'
+
     },
     list:{
         overflowY: 'scroll',
@@ -49,7 +54,7 @@ function BlogSearch({searchList,searchText}) {
                             return (
                                 <ListItem style={{justifyContent: 'center', alignItems: 'center'}} alignItems="center"
                                           component={'div'} key={searchItem.item.key}>
-                                    <FeaturedPost post={searchItem.item} path={searchItem.item.path}/>
+                                    <FeaturedPost md={10} post={searchItem.item} path={searchItem.item.path}/>
                                 </ListItem>
                             )
                         })

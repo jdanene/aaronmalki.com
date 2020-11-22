@@ -23,10 +23,10 @@ const useStyles = makeStyles({
 
 function FeaturedPost(props) {
   const classes = useStyles();
-  const { post,path } = props;
+  const { post,path,md } = props;
 
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={12} md={md?md:6}>
       <CardActionArea component="a" href={path}>
         <Link to={path} style={{textDecoration:'none'}}>
         <Card className={classes.card}>

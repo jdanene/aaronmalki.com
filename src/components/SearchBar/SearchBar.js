@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     inputClose:{
-                zIndex: 1,
+        zIndex: 1,
         //border:'1px solid pink',
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
