@@ -154,7 +154,7 @@ const ListBlogArchive = ({monthYear, unixDateTime, sortedBlogPost, blogPaths}) =
                     </TimelineSeparator>
                     <div className={classes.blog_container}>
                         <div className={classes.blogTitleLink}>
-                            <Link to={blogPaths[blogPost.key]}>{blogPost.title}</Link>
+                            <Link style={{color:'#004080'}} to={blogPaths[blogPost.key]}>{blogPost.title}</Link>
                         </div>
                         <div className={classes.blogDescription}>
                             <Truncate lines={2} trimWhitespace ellipsis={"..."}>

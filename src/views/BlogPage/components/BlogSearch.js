@@ -29,7 +29,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#eceff1'
+        backgroundColor: '#eceff1',
+        boxShadow: "0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.20)",
+        height: 'max(50vh,500px)',
+        borderRadius: 2.5,
 
     },
     list: {
@@ -37,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'scroll',
         borderRadius: 2.5,
         minHeight: '50vh',
-        maxHeight: 'max(50vh,500px)',
+        height: 'max(50vh,500px)',
         border: '.1px solid rgba(0,0,0,.1)',
         boxShadow: "0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.20)"
     }

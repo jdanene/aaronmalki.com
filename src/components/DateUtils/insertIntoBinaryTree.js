@@ -12,12 +12,12 @@ const insertIntoBinaryTree = (comparator) => (aTree, value) => {
 
 
     if (aTree === null || aTree === undefined) {
-        var tree = new RBTree(comparator);
-        tree.insert(value);
-        return tree;
-    }else{
-            aTree.insert(value);
-    return aTree;
+        let tree = new RBTree(comparator);
+        let isSuccess = tree.insert(value);
+        return {isSuccess,tree};
+    } else {
+        let isSuccess = aTree.insert(value);
+        return {isSuccess,tree: aTree};
     }
 
 
@@ -30,6 +30,13 @@ const blogComparator = (a, b) => {
 const _insertIntoBlogBinaryTree = insertIntoBinaryTree(blogComparator);
 export const insertIntoBlogBinaryTree = (aTree, blogPost) => {
 
-    return _insertIntoBlogBinaryTree(aTree, blogPost)
+    const {isSuccess, tree} = _insertIntoBlogBinaryTree(aTree, blogPost);
+    if (isSuccess){
+        return tree
+    }else{
+        blogPost.dateObj.setSeconds(blogPost.dateObj.getSeconds()+1);
+        return insertIntoBlogBinaryTree(tree,blogPost)
+    }
+
 };
 
