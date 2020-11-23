@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'center',
+        textAlign:'left'
     },
     title: {
 
