@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     root:{
-        paddingLeft:theme.spacing(1),
-        paddingRight:theme.spacing(1),
+        paddingLeft:0,
+        paddingRight:0,
         maxWidth:'100vw',
         width:'100%'
     }

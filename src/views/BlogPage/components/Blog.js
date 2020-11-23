@@ -23,13 +23,14 @@ import {blog_states, DB_NODES_PAGES} from "../../../constants/contants";
 import isObjectEmpty from "../../../components/Utility/isObjectEmpty";
 import BlogSearch from "./BlogSearch";
 import Splash from "../../../components/Splash/Splash";
+
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
+        alignItems: 'flex-start',
         marginTop: theme.spacing(3),
         alignSelf:'center',
         display:'flex',
-        alignItems:'center',
         justifyContent:'center'
     },
 }));
@@ -80,7 +81,7 @@ const posts = [post1, post2, post3];
 const sidebar = {
     title: 'About',
     description:
-        'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+    `This is a blog about the San Francisco Bay area rental market, the hottest areas to lease, tips about leasing and navigating tenant laws, and general buying and lifestyle tips to keep yourself zen. We really hope you enjoy the site! Of course, if there's anything you can feel free to drop us a line, we'll be happy to hear from you (suggestions/feedback/contributions welcome!)`,
     // ToDo: Limit on Archives shown.
     archives: [
         {title: 'November 2020', url: '#'},
@@ -126,7 +127,7 @@ export default function Blog({blogUUID, category}) {
     const main_page_category_key = category ? category : ((location) && ('state' in location) && (location.state) && ('category' in location.state)) ? location.state.category : null;
 
     const {
-        filteredBlogPosts, isBlogLoaded, blogPaths, blogPostsRaw,
+        blogArchivePaths,filteredBlogPosts, isBlogLoaded, blogPaths, blogPostsRaw,
         pageState: {
             [DB_NODES_PAGES.settings]: {
                 socialMedia
@@ -155,7 +156,13 @@ export default function Blog({blogUUID, category}) {
                                 <Grid item xs={12} md={7} >
                                     <BlogSearch searchList={searchList} searchText={searchText}/>
                                 </Grid>
-
+                            <Sidebar
+                                socialMedia={socialMedia}
+                                title={sidebar.title}
+                                description={sidebar.description}
+                                blogArchivePaths={blogArchivePaths}
+                                social={sidebar.social}
+                            />
 
                             </Grid>
 
@@ -192,7 +199,7 @@ export default function Blog({blogUUID, category}) {
                         }
                         <Grid container spacing={5} className={classes.mainGrid}>
                             {!blogUUID ?
-                                hasBlogs() && <Main title="" posts={posts} paths={blogPaths}/>
+                                hasBlogs()? <Main title="" posts={posts} paths={blogPaths}/>:<Grid item xs={12} md={8} component={'div'}/>
                                 :
                                 <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
                             }
@@ -200,7 +207,7 @@ export default function Blog({blogUUID, category}) {
                                 socialMedia={socialMedia}
                                 title={sidebar.title}
                                 description={sidebar.description}
-                                archives={sidebar.archives}
+                                blogArchivePaths={blogArchivePaths}
                                 social={sidebar.social}
                             />
                         </Grid>

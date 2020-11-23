@@ -4,6 +4,13 @@ import generateUUID from "../components/Utility/uuid";
 import getRandomValueFromObject from "../components/Utility/getRandomValueFromObject";
 import isObjectEmpty from "../components/Utility/isObjectEmpty";
 import {FIREBASE_DB} from "../App";
+import getFormattedMonthYear from "../components/DateUtils/getFormattedMonthYear";
+import {insertIntoBlogBinaryTree} from "../components/DateUtils/insertIntoBinaryTree";
+import stringToPath from "../components/Utility/stringToPath";
+import {getDateFromTimeStamp,getMonthYearToTimeStamp} from "../components/DateUtils/getMonthYear";
+import * as BinarySearch from "binary-search";
+const RBTree = require('bintrees').RBTree;
+
 // path -> blog/{category}/{name}
 let blog1 = {
     state: blog_states.posts,
@@ -346,12 +353,54 @@ export const getPostFromBlogPosts = ({blogUUID, blogPosts}) => {
     }
 };
 
+
+
 const useBlogPosts = () => {
     const [blogPostsRaw, setBlogPostsRaw] = useState({});
     const [blogPosts, setBlogPosts] = useState({});
     const [filteredBlogPosts, setFilteredBlogPosts] = useState({});
     const [isBlogLoaded, setBlogLoaded] = useState(false);
     const [blogPaths, setBlogPaths] = useState({});
+    const [sortedBlogPost, setSortedBlogPost] = useState({});
+    const [blogArchivePaths, setBlogArchivePaths]=useState(null);
+
+    /**
+     * Paritions blog posts into month/year sets were each set is a balanced binary tree
+     * sorrted by date. Adds additionaly attribute to each post in tree, post.dateObj
+     * @param blogPostsRaw
+     */
+    const partitionPostsIntoMonths = (blogPostsRaw) => {
+
+        let _sortedBlogPost = {};
+        let _blogArchivePaths = {};
+
+        Object.keys(blogPostsRaw).forEach((key)=>{
+            // get the raw post
+            let post = blogPostsRaw[key];
+            // add the dateObj attribute to the post so don't have to keep computing it
+            let blogPost = {...post, dateObj: new Date(Date.parse(post.date)), key};
+
+            let monthYearTimeStamp = getMonthYearToTimeStamp(blogPost.dateObj).getTime();
+
+
+            // get the tree that represents the year/month post published in.
+            let aTree = _sortedBlogPost[monthYearTimeStamp];
+            // insert post into tree that corresponds to the year/month post published in.
+            _sortedBlogPost[monthYearTimeStamp]= insertIntoBlogBinaryTree(aTree,blogPost);
+
+            // the paths for each monhyear found, in timestamp fiormat
+            _blogArchivePaths[monthYearTimeStamp] = `${pageToPathName.BlogPage}/archive/${stringToPath(getFormattedMonthYear(getDateFromTimeStamp(monthYearTimeStamp)))}`;
+        });
+
+
+       // alert(JSON.stringify(Object.keys(_blogArchivePaths).map((k)=>getFormattedMonthYear(getDateFromTimeStamp(k)))));
+
+
+        setSortedBlogPost(_sortedBlogPost);
+        setBlogArchivePaths(_blogArchivePaths);
+
+    };
+
 
     useEffect(() => {
         // Activate this for testing
@@ -359,7 +408,9 @@ const useBlogPosts = () => {
 
         const db = FIREBASE_DB.ref().child(`${DB_NODES.blogPosts}`);
         const handleData = snap => {
-            if (snap.val()) setBlogPostsRaw(snap.val());
+            if (snap.val()) {
+                setBlogPostsRaw(snap.val());
+            }
         };
 
         // Listen to Firebase for events
@@ -377,7 +428,7 @@ const useBlogPosts = () => {
      * @param category
      // @return {{[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}}}
      */
-    const filterPostToBlogState = (blogPostsRaw,category = blog_categories.news) => {
+    const filterPostToBlogState = (blogPostsRaw, category = blog_categories.news) => {
 
         let blogPost = {[blog_states.posts]: {}, [blog_states.featured]: {}, [blog_states.main_featured]: {}};
 
@@ -397,7 +448,7 @@ const useBlogPosts = () => {
      * @param category
      */
     const getFormattedBlogPost = (category = blog_categories.news) => {
-        let posts = filterPostToBlogState(blogPostsRaw,category);
+        let posts = filterPostToBlogState(blogPostsRaw, category);
         if (Object.keys(posts).every((key) => isObjectEmpty(posts[key]))) {
             return null;
         } else {
@@ -437,6 +488,9 @@ const useBlogPosts = () => {
             });
             setBlogPaths(paths);
 
+            // get path & partition into months
+            partitionPostsIntoMonths(blogPostsRaw);
+
             // True so now we can start playing
             setBlogLoaded(true);
         } else {
@@ -445,7 +499,7 @@ const useBlogPosts = () => {
     }, [blogPostsRaw]);
 
 
-    return {filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, blogPostsRaw, filterPostToBlogState}
+    return {blogArchivePaths,sortedBlogPost,filteredBlogPosts, blogPosts, isBlogLoaded, blogPaths, blogPostsRaw, filterPostToBlogState}
 };
 
 

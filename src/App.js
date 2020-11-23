@@ -30,7 +30,8 @@ import ManageLeasePage from "./views-protected/ManageLeasePage/ManageLeasePage";
 import UnderConstructionPage from "./views/UnderConstructionPage/UnderConstructionPage";
 import Splash from "./components/Splash/Splash";
 import Fade from '@material-ui/core/Fade';
-
+import BlogArchive from "./views/blog-archive/blog-archive";
+import {getDateFromTimeStamp} from "./components/DateUtils/getMonthYear";
 
 const FIREBASE_KEY = process.env.REACT_APP_FIREBASE_KEY;
 
@@ -60,7 +61,7 @@ export const FIREBASE_STORAGE = firebase.storage();
 
 function App({location}) {
 
-    const {blogPaths, filteredBlogPosts,isBlogLoaded,settingsHasLoaded,pageStateHasLoaded} = useContext(AppContext);
+    const {blogArchivePaths,blogPaths, filteredBlogPosts,isBlogLoaded,settingsHasLoaded,pageStateHasLoaded} = useContext(AppContext);
 
     // const location = useLocation();
 
@@ -91,12 +92,6 @@ function App({location}) {
         return ()=>clearTimeout(timeout);
     }, []);
 
-
-
-    Object.keys(blog_categories_keysOnly).filter((key)=>{
-        return filteredBlogPosts[key] === null
-    }).map((key)=><Route key={key} path={blog_category_to_string[key].path} exact
-                                   component={BlogPage}/>);
 
     return (
 
@@ -161,6 +156,16 @@ function App({location}) {
                             <Route key={key} path={blogPaths[key]} exact
                                    render={(props) => <BlogPage {...props} blogUUID={key}/>}/>
                         )}
+
+                        {/*Pages that hold all blogs within a given months */}
+
+                        {Object.keys(blogArchivePaths).map((unixDateTime,index)=>{
+                            return <Route key={unixDateTime} path={blogArchivePaths[unixDateTime]} exact
+                                   render={(props) => <BlogArchive {...props} unixDateTime={unixDateTime}/>}/>
+                        })}
+
+
+
 
                         {/*404*/}
                         <Route path="*">

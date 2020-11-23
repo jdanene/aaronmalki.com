@@ -94,9 +94,12 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-
+        backgroundColor:'transparent',
         zIndex:2,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        '&:hover':{
+            backgroundColor:'transparent',
+        }
     },
     inputRoot: {
         color: 'inherit',
@@ -195,9 +198,9 @@ export default function SearchBar({searchText,setSearchText, isSearching, isFocu
     return (
 
         <div className={classes.search}>
-            <div className={classes.searchIcon} onClick={handleFocus}>
+            <IconButton className={classes.searchIcon} onTouchStart={handleFocus} onClick={handleFocus} disabled={isSearching}>
                 <SearchIcon style={{zIndex:-2}} />
-            </div>
+            </IconButton>
             <InputBase
 
                 value={searchText}

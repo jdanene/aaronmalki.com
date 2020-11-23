@@ -9,6 +9,7 @@ import Link from "@material-ui/core/Link";
 import Avatar from "@material-ui/core/Avatar";
 import parseMultiPartTextToArray from "../../components/Utility/parseMultiPartTextToArray";
 
+
 const useStyles = makeStyles((theme) => ({
 
     icon_container: {
@@ -35,7 +36,13 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute",
         top: 7.9,
         left: 7.9
-    }
+    },
+    root: {
+        width: theme.spacing(2),
+        display: "flex",
+        justifyContent: 'space-between',
+
+    },
 
 
 }));
@@ -129,12 +136,14 @@ const getBoldText = (text) => {
     )
 };
 
+
 const HomePageBottomHalfInfo = ({profilePic, professionalTitle, aboutMe, linkedin}) => {
     const inputRef = useRef();
     const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
     const tabletBreak = useMediaQuery("only screen and (max-width: 1050px)");
     const aboutMeTextArray = parseMultiPartTextToArray(aboutMe);
     const [topHalf_bottomPosn, setTopHalf_bottomPosn] = useState(undefined);
+    const theme = useTheme();
 
 
     useEffect(() => {
@@ -147,7 +156,10 @@ const HomePageBottomHalfInfo = ({profilePic, professionalTitle, aboutMe, linkedi
     //https://www.pluralsight.com/tech-blog/getting-size-and-position-of-an-element-in-react/
 //https://stackoverflow.com/questions/32667847/get-divs-offsettop-positions-in-react
     return <div style={{
-        width: mobileBreak ? "95%" : (tabletBreak ? "90%" : "90%"),
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+
+        width: '100%',
         display: "flex",
         justifyContent: 'space-between',
         flexDirection: mobileBreak ? "column-reverse" : "row",
