@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ABOUTUS =    `A blog about the SF Bay area real estate market, the hottest neighborhoods in The Bay to buy, insights about leasing and navigating pesky tenant laws, general buying and lifestyle tips to keep yourself always in that zen mindset, and my struggles/success providing you with a premier real estate experience. I really hope you enjoy the site! Of course, if there's anything you can feel free to drop me a line, I'll be happy to hear from you (feedback/contributions welcome!).   As always, DON'T PANIC!`;
+const ABOUTUS =    `A blog about the SF Bay area real estate market, the hottest neighborhoods in The Bay to buy, insights about leasing and navigating pesky tenant laws, general buying and lifestyle tips to keep yourself always in that zen mindset, and my journey providing you with a premier real estate experience. I really hope you enjoy the site! Of course, if there's anything you can feel free to drop me a line, I'll be happy to hear from you (feedback/contributions welcome!).   As always, DON'T PANIC!`;
 
 export default function Sidebar(props) {
     const classes = useStyles();
