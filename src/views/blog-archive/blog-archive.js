@@ -33,13 +33,13 @@ import Divider from '@material-ui/core/Divider';
 // Color: https://encycolorpedia.com/445963
 const useStyles = makeStyles((theme) => ({
 
-    mainroot:{
-                    display: "flex",
-            alignContent: "center",
-            alignItems: "center",
-            width: '100vw',
-            backgroundColor: colorScheme.other.backgroundComplementary,
-        paddingBottom:theme.spacing(3)
+    mainroot: {
+        display: "flex",
+        alignContent: "center",
+        alignItems: "center",
+        width: '100vw',
+        backgroundColor: colorScheme.other.backgroundComplementary,
+        paddingBottom: theme.spacing(3)
     },
     mainGrid: {
         marginTop: theme.spacing(3),
@@ -48,16 +48,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start',
         justifyContent: 'center'
     },
-    archiveTitle:{
-              fontFamily: 'airbnb-bold',
+    archiveTitle: {
+        fontFamily: 'airbnb-bold',
         color: theme.palette.text.primary,
-        paddingBottom:theme.spacing(2)
+        paddingBottom: theme.spacing(2)
     },
     dateTitle: {
-        fontSize:'25px',
+        fontSize: '25px',
         fontFamily: 'airbnb-black',
         color: theme.palette.text.secondary,
-        paddingBottom:theme.spacing(1),
+        paddingBottom: theme.spacing(1),
         marginTop: theme.spacing(1)
     },
     timelineDate: {
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'airbnb-medium',
         width: '100%',
         display: 'flex',
-        color:'#004080'
+        color: '#004080'
     },
     root: {
         float: 'left',
@@ -135,6 +135,8 @@ const ListBlogArchive = ({monthYear, unixDateTime, sortedBlogPost, blogPaths}) =
 
     const getPosts = () => {
         let postList = [];
+        let itEarliest = sortedBlogPost[unixDateTime].iterator();
+        let earliestBlogPost = itEarliest.next();
         let it = sortedBlogPost[unixDateTime].iterator(), blogPost;
         while ((blogPost = it.prev()) !== null) {
             // do stuff with item
@@ -148,11 +150,11 @@ const ListBlogArchive = ({monthYear, unixDateTime, sortedBlogPost, blogPaths}) =
 
                     <TimelineSeparator>
                         <TimelineDot/>
-                        <TimelineConnector/>
+                         {earliestBlogPost!==blogPost&&<TimelineConnector/>}
                     </TimelineSeparator>
                     <div className={classes.blog_container}>
                         <div className={classes.blogTitleLink}>
-                            <Link  to={blogPaths[blogPost.key]}>{blogPost.title}</Link>
+                            <Link to={blogPaths[blogPost.key]}>{blogPost.title}</Link>
                         </div>
                         <div className={classes.blogDescription}>
                             <Truncate lines={2} trimWhitespace ellipsis={"..."}>
@@ -230,11 +232,16 @@ const BlogArchive = ({location, unixDateTime}) => {
                                     <Typography component={'h1'} variant={'h3'} className={classes.archiveTitle}>
                                         Archive
                                     </Typography>
-                                    <div style={{width:'100%', display:'flex', flexDirection:'column',  alignItems:'flex-start'}}>
+                                    <div style={{
+                                        width: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'flex-start'
+                                    }}>
 
-                                    <Typography component={'h2'} variant={'h4'} className={classes.dateTitle}>
-                                        {monthYear}
-                                    </Typography>
+                                        <Typography component={'h2'} variant={'h4'} className={classes.dateTitle}>
+                                            {monthYear}
+                                        </Typography>
                                     </div>
                                     <Divider/>
                                     <ListBlogArchive monthYear={monthYear} blogPaths={blogPaths}
