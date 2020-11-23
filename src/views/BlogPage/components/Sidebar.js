@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left'
     },
     sidebarSection: {
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(0),
         textAlign: 'left',
         color: '#222D32',
         fontFamily: 'airbnb-bold',
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ABOUTUS =    `A blog about the SF Bay area real estate market, the hottest neighborhoods in The Bay to buy, insights about leasing and navigating pesky tenant laws, general buying and lifestyle tips to keep yourself always in that zen mindset, and my journey providing you with a premier real estate experience. I really hope you enjoy the site! Of course, if there's anything you can feel free to drop me a line, I'll be happy to hear from you (feedback/contributions welcome!).   As always, DON'T PANIC!`;
+const ABOUTUS =    `A blog about the SF Bay area real estate market, the hottest neighborhoods in The Bay to buy, insights about leasing and navigating pesky tenant laws, general buying and lifestyle tips to keep yourself always in that zen mindset, and my journey providing you with a premier real estate experience. I really hope you enjoy the site! Of course, if there's anything you can feel free to drop me a line, I'll be happy to hear from you (feedback/contributions welcome!).   As always, DON'T PANIC.`;
 
 export default function Sidebar(props) {
     const classes = useStyles();
@@ -54,9 +54,9 @@ export default function Sidebar(props) {
         <Grid item xs={12} md={4} className={classes.container}>
             <Paper elevation={0} className={classes.sidebarAboutBox}>
                 <Typography variant="h6" component={'h1'} gutterBottom style={{fontFamily: 'airbnb-bold', fontSize:20}}>
-                    A Hitchhiker's Guide the Bay
+                    A Hitchhiker's Guide to The Bay
                 </Typography>
-                <Typography variant={'caption'} component={'body1'} style={{fontSize:14}}>{ABOUTUS}</Typography>
+                <Typography variant={'caption'} component={'span'} style={{fontSize:14}}>{ABOUTUS}</Typography>
             </Paper>
 
           <Typography variant="h6" gutterBottom className={classes.sidebarSection}>

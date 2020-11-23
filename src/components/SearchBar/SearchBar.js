@@ -158,7 +158,8 @@ const postsToList = (blogPostsRaw, blogPaths) => {
 };
 
 export default function SearchBar({searchText,setSearchText, isSearching, isFocusedCallback, searchResultCallback}) {
-  const inputRef = React.useRef();
+
+    const inputRef = React.useRef();
 
     const classes = useStyles();
     const {blogPostsRaw, blogPaths} = useContext(AppContext);
@@ -203,7 +204,7 @@ export default function SearchBar({searchText,setSearchText, isSearching, isFocu
             </IconButton>
             <InputBase
 
-                value={searchText}
+                value={searchText?searchText:''}
                 inputRef={inputRef}
                 placeholder="Search…"
                 onChange={handleChange}

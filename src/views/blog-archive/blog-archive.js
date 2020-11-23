@@ -107,8 +107,6 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         float: 'left',
-        maxHeight: 'max(50vh,500px)',
-        overflowY: 'scroll'
     }
 }));
 
@@ -172,6 +170,8 @@ const ListBlogArchive = ({monthYear, unixDateTime, sortedBlogPost, blogPaths}) =
     return <div className={classes.root}>
         <ul className={classes.timeline}>
             {getPosts()}
+
+
         </ul>
     </div>
 };
@@ -229,7 +229,7 @@ const BlogArchive = ({location, unixDateTime}) => {
                                 <BlogSearch searchList={searchList} searchText={searchText}/>
                                 :
                                 <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
-                                    <Typography component={'h1'} variant={'h3'} className={classes.archiveTitle}>
+                                    <Typography component={'h1'} variant={'h4'} className={classes.archiveTitle}>
                                         Archive
                                     </Typography>
                                     <div style={{

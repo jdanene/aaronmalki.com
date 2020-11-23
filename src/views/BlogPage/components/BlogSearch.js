@@ -11,7 +11,7 @@ import {colorScheme} from "../../../constants";
 const useStyles = makeStyles((theme) => ({
     searchResults: {
         fontFamily: 'airbnb-bold',
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
         marginBottom: theme.spacing(2)
     },
     root: {
@@ -24,25 +24,28 @@ const useStyles = makeStyles((theme) => ({
     },
     noResults: {
         fontFamily: 'airbnb-medium',
-        color: theme.palette.text.disabled,
+        color: theme.palette.text.secondary,
         minHeight: '50vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#eceff1',
-        boxShadow: "0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.20)",
+        boxShadow: "0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20)",
         height: 'max(50vh,500px)',
         borderRadius: 2.5,
+        marginBottom: theme.spacing(2)
 
     },
     list: {
         backgroundColor: '#eceff1',
         overflowY: 'scroll',
         borderRadius: 2.5,
+         marginBottom: theme.spacing(2),
+
         minHeight: '50vh',
         height: 'max(50vh,500px)',
-        border: '.1px solid rgba(0,0,0,.1)',
-        boxShadow: "0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.20)"
+        border: '.5px solid rgba(0,0,0,.1)',
+        boxShadow: "0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20)"
     }
 }));
 

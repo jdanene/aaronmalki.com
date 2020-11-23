@@ -62,10 +62,10 @@ const sendConfirmEmailToUser = async (mailTransport,settings, {email, name}) => 
     <h2 style=style=${getCSSstyle(styles.header)}>Dear ${name}, thanks for reaching out!</h2>
     <div>
     <p style=style=${getCSSstyle(styles.inquiryBody)}>
-        We have received your message and would like to thank you for 
-        writing to us. If your inquiry is urgent, please use the telephone 
-        number listed below to talk to one of our staff members. 
-        Otherwise, we will reply by email as soon as possible. 
+        I have received your message and would like to thank you for 
+        writing. If your inquiry is urgent, please use the telephone 
+        number listed below to contact me. 
+        Otherwise, I will reply by email as soon as possible. 
     </p>
     <strong style=style=${getCSSstyle(styles.signature)} >Talk to you soon, <br>
         Aaron Malki
