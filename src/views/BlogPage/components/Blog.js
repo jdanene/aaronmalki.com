@@ -199,7 +199,7 @@ export default function Blog({blogUUID, category}) {
                         }
                         <Grid container spacing={5} className={classes.mainGrid}>
                             {!blogUUID ?
-                                hasBlogs()? <Main title="" posts={posts} paths={blogPaths}/>:<Grid item xs={12} md={8} component={'div'}/>
+                                hasBlogs()? <Main title="" posts={posts} paths={blogPaths}/>:<Grid item xs={12} md={7} component={'div'}/>
                                 :
                                 <ActualPost key={blogUUID} post={blogPostsRaw[blogUUID]}/>
                             }
