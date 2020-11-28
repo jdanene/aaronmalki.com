@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {FIREBASE_ANALYTICS} from "../../../App";
 import {Link} from "react-router-dom";
+import {Link as MuLink} from "@material-ui/core";
 import getFormattedMonthYear from "../../../components/DateUtils/getFormattedMonthYear";
 import {getDateFromTimeStamp} from "../../../components/DateUtils/getMonthYear";
 //getDateFromTimeStamp
@@ -74,8 +75,8 @@ export default function Sidebar(props) {
                 Social
             </Typography>
             {social.map((network) => (
-                <Link onClick={() => handleSocialIconClick(network.key, socialMedia[network.key])}
-                      className={classes.listItem} display="block" variant="body1" to={socialMedia[network.key]}
+                <MuLink onClick={() => handleSocialIconClick(network.key, socialMedia[network.key])}
+                      className={classes.listItem} display="block" variant="body1" href={socialMedia[network.key]}
                       key={network.key}>
                     <Grid container direction="row" spacing={1} alignItems="center">
                         <Grid item>
@@ -83,7 +84,7 @@ export default function Sidebar(props) {
                         </Grid>
                         <Grid item>{network.name}</Grid>
                     </Grid>
-                </Link>
+                </MuLink>
             ))}
         </Grid>
     );

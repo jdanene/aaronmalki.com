@@ -13,6 +13,7 @@ const centerOverlayView = (width, height) => ({
 const mapContainerStyle = {
     height: "100%",
     width: "100%",
+    minHeight:250,
     borderTopRightRadius:5,
     borderTopLeftRadius:5,
     padding:0,
@@ -77,6 +78,7 @@ const ShowGoogleMap = ({phoneNumber, email, address}) => {
     const options = {closeBoxURL: '', enableEventPropagation: true, pixelOffset: 5};
 
     return (
+        <div style={{display:'flex', width:'100%', height:'100%',minHeight:275}}>
         <LoadScript
             googleMapsApiKey={API_KEY}
         >
@@ -136,6 +138,7 @@ const ShowGoogleMap = ({phoneNumber, email, address}) => {
                 */}
             </GoogleMap>
         </LoadScript>
+            </div>
 
     )
 }

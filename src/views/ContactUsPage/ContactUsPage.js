@@ -144,6 +144,7 @@ const styles = theme => ({
     msgAndMapContainer:{
         width: '100%',
 
+
         height:'100%',
         display:'flex',
         [theme.breakpoints.down("sm")]: {
@@ -196,10 +197,10 @@ const ContactUsPage = ({location, classes, theme, width, center, zoom}) => {
                       md={6} lg={5} xl={5} sm={6} xs={12}
                       className={classes.msgAndMapContainer}
 
-                >
-                    <Paper style={{height: '100%', width: '100%', display:'flex', flexDirection:'column'}}>
+                 component={'div'}>
+                    <Paper component={'div'} style={{height: '100%', width: '100%', display:'flex', flexDirection:'column'}}>
                         {/*The Map*/}
-                        <div style={{height: '75%'}}>
+                        <div style={{height: '70%',display: 'flex'}}>
                             <ShowGoogleMap address={address} phoneNumber={phoneNumber} email={email}/>
                         </div>
 

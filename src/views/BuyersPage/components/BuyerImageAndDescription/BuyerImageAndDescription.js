@@ -37,7 +37,7 @@ const BLURB_2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
 
 const BuyerImageAndDescription = ({leftParagraph, leftPicture, leftTitle, rightParagraph, rightPicture, rightTitle}) => {
 
-    const mobileBreak = useMediaQuery("only screen and (max-width: 600px)");
+    const mobileBreak = useMediaQuery("only screen and (max-width: 900px)");
 
     const classes = useStyles();
 

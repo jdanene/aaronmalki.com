@@ -49,9 +49,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     },
     archiveTitle: {
-        fontFamily: 'airbnb-bold',
+        fontFamily: 'airbnb-black',
         color: theme.palette.text.primary,
-        paddingBottom: theme.spacing(2)
+        paddingBottom: theme.spacing(0),
+        fontSize: '25px'
     },
     dateTitle: {
         fontSize: '25px',

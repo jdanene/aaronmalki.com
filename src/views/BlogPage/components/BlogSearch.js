@@ -12,7 +12,15 @@ const useStyles = makeStyles((theme) => ({
     searchResults: {
         fontFamily: 'airbnb-bold',
         color: theme.palette.text.primary,
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(2),
+        textAlign: 'left'
+    },
+    title:{
+                fontSize: '25px',
+        fontFamily: 'airbnb-black',
+        color: theme.palette.text.secondary,
+        paddingBottom: theme.spacing(1),
+        marginTop: theme.spacing(1)
     },
     root: {
         display: 'flex',
@@ -40,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#eceff1',
         overflowY: 'scroll',
         borderRadius: 2.5,
-         marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(2),
 
         minHeight: '50vh',
         height: 'max(50vh,500px)',
@@ -56,9 +64,17 @@ function BlogSearch({searchList, searchText}) {
     return (
 
         <div className={classes.root}>
-            <Typography variant="h4" component={'h1'} className={classes.searchResults}>
-                Search Results
-            </Typography>
+            <div style={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}>
+
+                <Typography component={'h1'} variant={'h4'} className={classes.title}>
+                    Search Results
+                </Typography>
+            </div>
 
             {searchList.length > 0 ?
                 <List component="ul" aria-label="list blog search" className={classes.list}>
